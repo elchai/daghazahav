@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DAGHAZAHAV - פיתוח מערכות ניהול מתקדמות בהתאמה אישית">
+<title>DAGHAZAHAV | מערכות ניהול מתקדמות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d14;
+  --bg2: #0f0f1a;
+  --card: #13131f;
+  --card2: #181828;
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.12);
+  --gold: #f0a500;
+  --gold-dim: rgba(240,165,0,0.12);
+  --text: #ffffff;
+  --dim: #7a7a9d;
+  --muted: #3a3a5a;
+  --border: rgba(0,212,255,0.1);
+  --border-gold: rgba(240,165,0,0.18);
+  --glow-c: 0 0 24px rgba(0,212,255,0.28);
+  --glow-g: 0 0 24px rgba(240,165,0,0.28);
+  --r: 12px;
+  --r2: 20px;
+  --tr: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Heebo',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  z-index:0;
+}
+
+
+/* ── TYPOGRAPHY ── */
+.orb { font-family:'Orbitron',sans-serif; }
+h1,h2,h3,h4 { font-family:'Heebo',sans-serif; font-weight:800; line-height:1.2; }
+.tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--cyan-dim); border:1px solid var(--border);
+  color:var(--cyan); padding:6px 16px; border-radius:100px;
+  font-size:0.78rem; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; margin-bottom:16px;
+}
+.tag::before {
+  content:''; width:6px; height:6px;
+  background:var(--cyan); border-radius:50%;
+  box-shadow:0 0 8px var(--cyan);
+}
+.grad { background:linear-gradient(135deg,var(--cyan),var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── LAYOUT ── */
+.wrap { max-width:1200px; margin:0 auto; padding:0 24px; }
+section { padding:100px 0; position:relative; z-index:1; }
+.sec-head { text-align:center; margin-bottom:60px; }
+.sec-title { font-size:clamp(1.9rem,4vw,3rem); font-weight:900; margin-bottom:12px; }
+.sec-sub { color:var(--dim); font-size:1.05rem; max-width:580px; margin:0 auto; line-height:1.75; }
+
+/* ── NAVBAR ── */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:16px 0; transition:var(--tr);
+}
+.nav.on {
+  background:rgba(13,13,20,0.96);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:10px 0;
+}
+.nav-in { display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
+.nav-logo img { height:64px; display:block; mix-blend-mode:screen; }
+.nav-logo-info { display:flex; flex-direction:column; gap:2px; }
+.nav-logo-txt {
+  font-family:'Orbitron',sans-serif; font-weight:900; font-size:1.1rem;
+  background:linear-gradient(135deg,var(--gold),#ffcd60);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  line-height:1.2; display:block;
+}
+.nav-logo-tag {
+  font-size:0.6rem; color:var(--dim); font-weight:500;
+  display:block; letter-spacing:0.3px;
+}
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a {
+  color:var(--dim); text-decoration:none; font-size:0.95rem; font-weight:500;
+  transition:var(--tr); position:relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; right:0;
+  width:0; height:2px; background:var(--cyan); transition:var(--tr);
+}
+.nav-links a:hover { color:var(--text); }
+.nav-links a:hover::after { width:100%; }
+.nav-cta {
+  background:linear-gradient(135deg,var(--cyan),#0090b8) !important;
+  color:#000 !important; padding:10px 22px; border-radius:8px;
+  font-weight:700 !important; box-shadow:var(--glow-c);
+}
+.nav-cta::after { display:none !important; }
+.burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+.burger span { display:block; width:24px; height:2px; background:var(--text); border-radius:2px; transition:var(--tr); }
+
+/* ── MOBILE MENU ── */
+.mob-menu {
+  display:none; position:fixed; inset:0;
+  background:rgba(13,13,20,0.98); backdrop-filter:blur(20px);
+  z-index:99; flex-direction:column; align-items:center; justify-content:center; gap:32px;
+}
+.mob-menu.open { display:flex; }
+.mob-menu a { color:var(--text); text-decoration:none; font-size:1.5rem; font-weight:700; transition:var(--tr); }
+.mob-menu a:hover { color:var(--cyan); }
+.mob-close { position:absolute; top:24px; left:24px; background:none; border:none; color:var(--text); font-size:1.5rem; cursor:pointer; }
+
+/* ── HERO ── */
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; padding:0; }
+.hero-bg { position:absolute; inset:0; overflow:hidden; }
+.hero-glow {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:700px; height:700px;
+  background:radial-gradient(ellipse,rgba(0,212,255,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.gear-wrap { position:fixed; opacity:0.073; z-index:0; pointer-events:none; }
+.gear-wrap:nth-child(1) { top:8%; right:6%; width:300px; }
+.gear-wrap:nth-child(2) { bottom:12%; left:4%; width:200px; }
+.gear-wrap:nth-child(3) { top:50%; right:22%; width:110px; opacity:0.055; }
+.gear-wrap:nth-child(4) { top:18%; left:12%; width:75px; opacity:0.066; }
+.gear-svg { width:100%; height:100%; }
+.cw  { animation:gcw  20s linear infinite; }
+.ccw { animation:gccw 15s linear infinite; }
+.cw2 { animation:gcw  35s linear infinite; }
+.ccw2{ animation:gccw 10s linear infinite; }
+@keyframes gcw  { to { transform:rotate(360deg); } }
+@keyframes gccw { to { transform:rotate(-360deg); } }
+
+.hero-content { position:relative; z-index:2; text-align:center; padding:120px 24px 80px; max-width:860px; margin:0 auto; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border-gold); background:var(--gold-dim);
+  color:var(--gold); padding:8px 20px; border-radius:100px;
+  font-size:0.82rem; font-weight:700; margin-bottom:28px; letter-spacing:1px;
+}
+.badge-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; box-shadow:0 0 8px var(--gold); animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+.hero-brand {
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(2.4rem,7vw,5.5rem);
+  font-weight:900; letter-spacing:4px; line-height:1;
+  background:linear-gradient(135deg,#fff 0%,var(--gold) 45%,var(--cyan) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:6px;
+  filter:drop-shadow(0 0 30px rgba(240,165,0,0.25));
+}
+.hero-sub { font-size:clamp(0.9rem,2vw,1.2rem); color:#b0b0cc; letter-spacing:2px; margin-bottom:24px; }
+.hero-title { font-size:clamp(1.3rem,3vw,2.1rem); font-weight:900; line-height:1.3; margin-bottom:18px; }
+.hero-desc { font-size:clamp(0.95rem,1.8vw,1.1rem); color:var(--dim); margin-bottom:44px; max-width:580px; margin-left:auto; margin-right:auto; }
+.ctas { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.btn-p {
+  background:linear-gradient(135deg,var(--cyan),#0090b8); color:#000;
+  padding:15px 34px; border-radius:10px; font-size:1rem; font-weight:700;
+  text-decoration:none; border:none; cursor:pointer;
+  box-shadow:var(--glow-c),0 4px 20px rgba(0,0,0,0.3);
+  transition:var(--tr); font-family:'Heebo',sans-serif;
+}
+.btn-p:hover { transform:translateY(-3px); box-shadow:0 0 40px rgba(0,212,255,0.45),0 8px 30px rgba(0,0,0,0.4); }
+.btn-s {
+  background:transparent; color:var(--text);
+  padding:14px 34px; border-radius:10px; font-size:1rem; font-weight:600;
+  text-decoration:none; border:1px solid rgba(255,255,255,0.18);
+  cursor:pointer; transition:var(--tr); font-family:'Heebo',sans-serif;
+  backdrop-filter:blur(10px);
+}
+.btn-s:hover { border-color:var(--cyan); color:var(--cyan); box-shadow:var(--glow-c); }
+.scroll-hint {
+  position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  color:#9a9abf; font-size:0.72rem; letter-spacing:2px;
+}
+.scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,transparent,var(--cyan)); animation:sline 2s ease-in-out infinite; }
+@keyframes sline { 0%{height:0;opacity:0} 50%{height:40px;opacity:1} 100%{height:40px;opacity:0;transform:translateY(8px)} }
+
+/* ── ABOUT ── */
+.about { background:transparent; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+.about-text p { color:var(--dim); font-size:1.05rem; line-height:1.8; margin-bottom:14px; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+.stat {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); padding:20px; text-align:center;
+}
+.stat-n { font-family:'Orbitron',sans-serif; font-size:2.2rem; font-weight:900; color:var(--cyan); line-height:1; margin-bottom:4px; }
+.stat-l { color:var(--dim); font-size:0.82rem; }
+.vals { display:flex; flex-direction:column; gap:14px; }
+.val {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); padding:22px;
+  display:flex; align-items:flex-start; gap:14px;
+  transition:var(--tr);
+}
+.val:hover { border-color:var(--cyan); box-shadow:var(--glow-c); transform:translateX(-4px); }
+.val:nth-child(2) .vi { background:var(--gold-dim); border-color:var(--border-gold); }
+.val:nth-child(3) .vi { background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.2); }
+.vi {
+  width:46px; height:46px; background:var(--cyan-dim);
+  border:1px solid var(--border); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+}
+.val h3 { font-size:1.05rem; margin-bottom:4px; font-weight:700; }
+.val p { color:var(--dim); font-size:0.88rem; line-height:1.6; }
+
+/* ── SERVICES ── */
+.services { background:transparent; }
+.process {
+  display:flex; align-items:flex-start; position:relative; margin-bottom:60px;
+}
+.process::before {
+  content:''; position:absolute; top:27px; right:5%; left:5%;
+  height:2px; background:linear-gradient(to left,var(--cyan-dim),var(--cyan),var(--gold),var(--cyan-dim));
+  opacity:0.4; z-index:0;
+}
+.step { flex:1; text-align:center; position:relative; z-index:1; }
+.step-n {
+  width:54px; height:54px; background:var(--card);
+  border:2px solid var(--cyan); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Orbitron',sans-serif; font-weight:700; font-size:0.85rem;
+  color:var(--cyan); margin:0 auto 10px;
+  box-shadow:var(--glow-c); position:relative;
+  transition:box-shadow 0.4s ease, transform 0.4s ease, color 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+}
+.step-n.pulse {
+  border-color:#fff;
+  color:#fff;
+  background:rgba(0,212,255,0.15);
+  transform:scale(1.15);
+  box-shadow:0 0 16px rgba(0,212,255,0.9), 0 0 32px rgba(0,212,255,0.55), 0 0 56px rgba(0,212,255,0.25);
+}
+.step-n::before { content:''; position:absolute; inset:4px; background:var(--cyan-dim); border-radius:50%; }
+.step-n span { position:relative; z-index:1; }
+.step-l { font-size:0.88rem; font-weight:700; }
+.step-d { font-size:0.72rem; color:var(--dim); margin-top:3px; }
+.svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.svc {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); padding:26px 22px; transition:var(--tr); position:relative; overflow:hidden;
+}
+.svc::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  transform:scaleX(0); transition:var(--tr);
+}
+.svc:hover::after { transform:scaleX(1); }
+.svc:hover { border-color:var(--cyan); box-shadow:var(--glow-c),0 20px 40px rgba(0,0,0,0.3); transform:translateY(-6px); }
+.svc-icon {
+  width:54px; height:54px; background:var(--cyan-dim);
+  border:1px solid var(--border); border-radius:13px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:18px; color:#52527a; transition:color var(--tr), background var(--tr), filter var(--tr);
+}
+.svc-icon svg { width:28px; height:28px; fill:currentColor; }
+.svc:hover .svc-icon { color:var(--cyan); background:rgba(0,212,255,0.15); filter:drop-shadow(0 0 6px rgba(0,212,255,0.4)); }
+.svc h3 { font-size:1rem; margin-bottom:9px; font-weight:700; }
+.svc p { color:var(--dim); font-size:0.84rem; line-height:1.6; }
+
+/* ── PROJECTS ── */
+.projects { background:transparent; }
+.proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.proj-cta { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:48px; padding:28px 36px; background:rgba(0,212,255,0.04); border:1px solid rgba(0,212,255,0.12); border-radius:16px; flex-wrap:wrap; }
+.proj-cta p { color:var(--text-secondary); font-size:1rem; margin:0; }
+.proj {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); overflow:hidden; transition:var(--tr);
+}
+.proj:hover { border-color:var(--gold); box-shadow:var(--glow-g),0 20px 40px rgba(0,0,0,0.4); transform:translateY(-8px); }
+.proj-img {
+  height:175px; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.proj-img-1 { background:linear-gradient(135deg,#0a1628,#1a2a4a,#0d1f3c); }
+.proj-img-ph { background:linear-gradient(135deg,#1a1a2e,#16213e); }
+.pgrid { position:absolute; inset:0; background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px); background-size:28px 28px; }
+.pico { position:relative; z-index:1; text-align:center; }
+.pico span { font-size:2.8rem; display:block; margin-bottom:6px; filter:drop-shadow(0 0 16px rgba(0,212,255,0.35)); }
+.pico small { font-size:0.7rem; color:var(--cyan); font-family:'Orbitron',sans-serif; letter-spacing:2px; }
+.cs-ov {
+  position:absolute; inset:0; background:rgba(13,13,20,0.72);
+  backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center;
+}
+.cs-badge {
+  background:var(--gold-dim); border:1px solid var(--border-gold);
+  color:var(--gold); padding:8px 20px; border-radius:100px;
+  font-weight:700; font-size:0.82rem; letter-spacing:2px;
+}
+.proj-body { padding:22px; }
+.proj-title { font-size:1.1rem; font-weight:800; margin-bottom:9px; }
+.proj-desc { color:var(--dim); font-size:0.88rem; line-height:1.7; margin-bottom:14px; }
+.tags { display:flex; flex-wrap:wrap; gap:6px; }
+.tag-t {
+  background:var(--cyan-dim); border:1px solid var(--border);
+  color:var(--cyan); padding:3px 10px; border-radius:6px;
+  font-size:0.72rem; font-weight:700; font-family:'Orbitron',sans-serif;
+}
+.tag-t.g { background:var(--gold-dim); border-color:var(--border-gold); color:var(--gold); }
+
+/* ── TECH ── */
+.tech { background:transparent; }
+.tech-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.tech-item {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r); padding:22px 14px; text-align:center;
+  transition:var(--tr); cursor:default;
+}
+.tech-item:hover { border-color:var(--cyan); box-shadow:var(--glow-c); transform:translateY(-4px); }
+.t-ico { width:44px; height:44px; display:block; margin:0 auto 14px; color:#52527a; transition:color var(--tr), filter var(--tr); }
+.t-ico svg { width:100%; height:100%; fill:currentColor; }
+.tech-item:hover .t-ico { color:var(--cyan); filter:drop-shadow(0 0 8px rgba(0,212,255,0.5)); }
+.t-name { font-size:0.72rem; font-weight:700; color:var(--dim); font-family:'Orbitron',sans-serif; letter-spacing:1px; transition:color var(--tr); }
+.tech-item:hover .t-name { color:var(--text); }
+
+/* ── CONTACT ── */
+.contact { background:transparent; position:relative; overflow:hidden; }
+.contact-gear {
+  position:absolute; opacity:0.04; width:380px;
+  top:-100px; left:-80px; pointer-events:none;
+}
+.con-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+.con-info h2 { font-size:clamp(1.9rem,4vw,2.8rem); font-weight:900; margin-bottom:14px; }
+.con-info p { color:var(--dim); line-height:1.8; margin-bottom:28px; font-size:1.02rem; }
+.con-items { display:flex; flex-direction:column; gap:10px; }
+.con-item {
+  display:flex; align-items:center; gap:12px;
+  color:var(--dim); text-decoration:none; font-size:0.98rem;
+  transition:var(--tr); padding:12px 14px; border-radius:var(--r);
+  border:1px solid transparent;
+}
+.con-item:hover { color:var(--text); border-color:var(--border); background:var(--card); }
+.cico {
+  width:40px; height:40px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.cico svg { width:20px; height:20px; }
+.cico-p { background:var(--cyan-dim); border:1px solid var(--border); }
+.cico-w { background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.2); }
+.con-form {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); padding:30px;
+}
+.fg { margin-bottom:18px; }
+.fg label { display:block; font-size:0.88rem; font-weight:600; color:var(--dim); margin-bottom:7px; }
+.fg input, .fg textarea {
+  width:100%; background:var(--bg); border:1px solid var(--border);
+  border-radius:8px; padding:11px 14px; color:var(--text);
+  font-family:'Heebo',sans-serif; font-size:0.98rem; transition:var(--tr); resize:vertical;
+}
+.fg input:focus, .fg textarea:focus { outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(0,212,255,0.1); }
+.fg textarea { min-height:110px; }
+.btn-send {
+  width:100%; background:linear-gradient(135deg,var(--gold),#ffcd60);
+  color:#000; padding:14px; border-radius:10px; font-size:1rem; font-weight:700;
+  border:none; cursor:pointer; font-family:'Heebo',sans-serif;
+  box-shadow:var(--glow-g); transition:var(--tr);
+}
+.btn-send:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(240,165,0,0.45); }
+
+/* ── FOOTER ── */
+footer {
+  background:#08080e; border-top:1px solid var(--border);
+  padding:28px 0; position:relative; z-index:1;
+}
+.foot-in { display:flex; align-items:center; justify-content:space-between; }
+.foot-logo {
+  font-family:'Orbitron',sans-serif; font-weight:900; font-size:0.95rem;
+  background:linear-gradient(135deg,var(--gold),#ffcd60);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.foot-copy { color:var(--dim); font-size:0.82rem; }
+.foot-phone { color:var(--dim); font-size:0.82rem; text-decoration:none; direction:ltr; }
+.foot-phone:hover { color:var(--cyan); }
+
+/* ── REVEAL ── */
+.rev { opacity:0; transform:translateY(28px); transition:opacity 0.6s ease,transform 0.6s ease; }
+.rev.vis { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:0.1s; } .d2 { transition-delay:0.2s; } .d3 { transition-delay:0.3s; } .d4 { transition-delay:0.4s; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .svc-cards { grid-template-columns:repeat(2,1fr); }
+  .tech-grid { grid-template-columns:repeat(4,1fr); }
+}
+@media(max-width:768px){
+  .nav-links { display:none; }
+  .burger { display:flex; }
+  section { padding:65px 0; }
+  .about-grid { grid-template-columns:1fr; gap:36px; }
+  .proj-grid { grid-template-columns:1fr; }
+  .svc-cards { grid-template-columns:1fr; }
+  .con-grid { grid-template-columns:1fr; gap:36px; }
+  .foot-in { flex-direction:column; gap:10px; text-align:center; }
+  .tech-grid { grid-template-columns:repeat(3,1fr); }
+  .process { flex-direction:column; gap:0; padding-right:28px; }
+  .process::before { top:auto; right:-28px; left:auto; bottom:0; width:2px; height:calc(100% - 54px); background:linear-gradient(to bottom,var(--cyan),var(--cyan-dim)); }
+  .step { display:flex; align-items:center; text-align:right; gap:14px; width:100%; padding-bottom:22px; }
+  .step-n { margin:0; flex-shrink:0; }
+  .stats { grid-template-columns:1fr 1fr; }
+  .fg input,.fg textarea,.fg select { font-size:16px; }
+}
+@media(max-width:480px){
+  .tech-grid { grid-template-columns:repeat(2,1fr); }
+  /* Hero */
+  .hero-content { padding:90px 16px 60px; }
+  .hero-content h1 { font-size:clamp(1.7rem,7vw,2.2rem); }
+  .hero-content p { font-size:0.95rem; }
+  .hero-btns { flex-direction:column; gap:12px; align-items:stretch; }
+  .hero-btns a { text-align:center; }
+  /* Navigation */
+  .nav-logo { height:36px; }
+  .nav-logo-text { font-size:0.95rem; }
+  .nav-tagline { display:none; }
+  /* Sections */
+  section { padding:50px 0; }
+  .sec-title { font-size:clamp(1.4rem,6vw,1.8rem); }
+  /* Services */
+  .process { padding-right:16px; }
+  .step-label { font-size:0.7rem; }
+  /* Projects */
+  .proj-card { padding:16px; }
+  .proj-card svg { height:160px; }
+  /* Stats */
+  .stats { gap:12px; }
+  .stat-num { font-size:2rem; }
+  /* About */
+  .core-values { gap:10px; }
+  /* Layout */
+  .wrap { padding:0 16px; }
+  /* Gear background: hide to prevent overflow */
+  .gear-wrap { display:none; }
+  .hero-glow { width:300px; height:300px; }
+}
+@media(max-width:375px){
+  .hero-content h1 { font-size:1.55rem; }
+  .stats { grid-template-columns:1fr; }
+  .svc-card { padding:20px 14px; }
+  .proj-card svg { height:140px; }
+}
+@media(hover:none){
+  .proj-card:hover,.svc-card:hover,.tech-item:hover,.con-item:hover,.about-value:hover { transform:none; box-shadow:none; }
+  .proj-card:hover .proj-img { transform:none; }
+  .hero-btns a:hover { transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#about"    onclick="closeMob()">מי אנחנו</a>
+  <a href="#services" onclick="closeMob()">יכולות</a>
+  <a href="#projects" onclick="closeMob()">פרויקטים</a>
+  <a href="#tech"     onclick="closeMob()">טכנולוגיות</a>
+  <a href="#contact"  onclick="closeMob()">צור קשר</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#" class="nav-logo">
+        <img src="daghazahav-logo-new.png" alt="DAGHAZAHAV" onerror="this.style.display='none'">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">מי אנחנו</a></li>
+        <li><a href="#services">יכולות</a></li>
+        <li><a href="#projects">פרויקטים</a></li>
+        <li><a href="#tech">טכנולוגיות</a></li>
+        <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+      </ul>
+      <button class="burger" onclick="openMob()" aria-label="תפריט"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-glow"></div>
+    <!-- Gear 1 – large, top-right, gold, counter-clockwise -->
+    <div class="gear-wrap">
+      <svg class="gear-svg ccw" viewBox="0 0 100 100">
+        <g fill="#f0a500" transform="translate(50,50)">
+          <rect x="-6" y="-46" width="12" height="20" rx="3"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(30)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(60)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(90)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(120)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(150)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(180)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(210)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(240)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(270)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(300)"/>
+          <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(330)"/>
+          <circle r="33"/><circle r="14" fill="#0d0d14"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Gear 2 – medium, bottom-left, cyan, clockwise -->
+    <div class="gear-wrap">
+      <svg class="gear-svg cw" viewBox="0 0 100 100">
+        <g fill="#00d4ff" transform="translate(50,50)">
+          <rect x="-5" y="-44" width="10" height="18" rx="2"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(45)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(90)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(135)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(180)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(225)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(270)"/>
+          <rect x="-5" y="-44" width="10" height="18" rx="2" transform="rotate(315)"/>
+          <circle r="31"/><circle r="12" fill="#0d0d14"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Gear 3 – small, mid-right, gold, slow -->
+    <div class="gear-wrap">
+      <svg class="gear-svg cw2" viewBox="0 0 100 100">
+        <g fill="#f0a500" transform="translate(50,50)">
+          <rect x="-5" y="-42" width="10" height="16" rx="2"/>
+          <rect x="-5" y="-42" width="10" height="16" rx="2" transform="rotate(60)"/>
+          <rect x="-5" y="-42" width="10" height="16" rx="2" transform="rotate(120)"/>
+          <rect x="-5" y="-42" width="10" height="16" rx="2" transform="rotate(180)"/>
+          <rect x="-5" y="-42" width="10" height="16" rx="2" transform="rotate(240)"/>
+          <rect x="-5" y="-42" width="10" height="16" rx="2" transform="rotate(300)"/>
+          <circle r="29"/><circle r="11" fill="#0d0d14"/>
+        </g>
+      </svg>
+    </div>
+    <!-- Gear 4 – tiny, top-left, cyan, fast -->
+    <div class="gear-wrap">
+      <svg class="gear-svg ccw2" viewBox="0 0 100 100">
+        <g fill="#00d4ff" transform="translate(50,50)">
+          <rect x="-5" y="-40" width="10" height="14" rx="2"/>
+          <rect x="-5" y="-40" width="10" height="14" rx="2" transform="rotate(72)"/>
+          <rect x="-5" y="-40" width="10" height="14" rx="2" transform="rotate(144)"/>
+          <rect x="-5" y="-40" width="10" height="14" rx="2" transform="rotate(216)"/>
+          <rect x="-5" y="-40" width="10" height="14" rx="2" transform="rotate(288)"/>
+          <circle r="27"/><circle r="10" fill="#0d0d14"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      ספק משרד הביטחון
+    </div>
+    <h1 class="hero-brand orb">DAGHAZAHAV</h1>
+    <p class="hero-sub">ד &nbsp; ג &nbsp; &nbsp; ה &nbsp; ז &nbsp; ה &nbsp; ב</p>
+    <h2 class="hero-title">
+      פיתוח מערכות ניהול מתקדמות<br>
+      <span class="grad">בהתאמה אישית</span>
+    </h2>
+    <p class="hero-desc">בונים עבורך פתרונות דיגיטליים חכמים שמשנים את האופן שבו הארגון שלך פועל</p>
+    <div class="ctas">
+      <a href="#projects" class="btn-p">ראה פרויקטים</a>
+      <a href="#contact"  class="btn-s">צור קשר</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>גלול</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="rev">
+        <span class="tag">מי אנחנו</span>
+        <h2 class="sec-title">בונים מערכות<br><span class="grad">שעובדות בשבילך</span></h2>
+        <p>DAGHAZAHAV, בניהולו של אלחי פיין רס"ן (מיל'), מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
+        <p>בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-n" data-target="400" data-prefix="+">0</div>
+            <div class="stat-l">מערכות ואתרים</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">24/6</div>
+            <div class="stat-l">תמיכה זמינה</div>
+          </div>
+        </div>
+      </div>
+      <div class="vals">
+        <div class="val rev d1">
+          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="#00d4ff" stroke-width="1.5" opacity=".6"/><circle cx="12" cy="12" r="2.5" fill="#00d4ff"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div>
+            <h3>דיוק</h3>
+            <p>כל מערכת שאנחנו בונים יוצאת מניתוח מעמיק של הצרכים שלך. שואלים שאלות, מבינים את התהליכים, ובונים בדיוק את מה שצריך לעבוד בפועל.</p>
+          </div>
+        </div>
+        <div class="val rev d2">
+          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 2L3 6v6c0 5 4 9.5 9 11 5-1.5 9-6 9-11V6l-9-4z" stroke="#f0a500" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12l2.5 2.5L16 9" stroke="#f0a500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3>אמינות</h3>
+            <p>מערכות שנבנות לעמוד בעומס, בשטח, עם / בלי חיבור לרשת. מגובות, מאובטחות, עם תמיכה מהירה כשצריך.</p>
+          </div>
+        </div>
+        <div class="val rev d3">
+          <div class="vi"><img src="1.png" width="42" height="42" alt="gears" style="filter:brightness(0.5) sepia(1) saturate(8) hue-rotate(248deg) brightness(1.5);"></div>
+          <div>
+            <h3>מותאם אישית</h3>
+            <p>כל ארגון עובד אחרת. מה שעובד לגדוד לא יעבוד למוסך, ומה שעובד למוסך לא יעבוד לחברת שמירה. מתחילים מהתחלה בכל פרויקט.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">תהליך העבודה</span>
+      <h2 class="sec-title">מהרעיון <span class="grad">למוצר מוגמר</span></h2>
+      <p class="sec-sub">תהליך מסודר ושקוף — כך אנו עובדים איתך מהרגע הראשון ועד לאספקה</p>
+    </div>
+    <div class="process rev">
+      <div class="step"><div class="step-n"><span>01</span></div><div class="step-l">ניתוח</div><div class="step-d">הבנת הצרכים</div></div>
+      <div class="step"><div class="step-n"><span>02</span></div><div class="step-l">עיצוב</div><div class="step-d">תכנון הפתרון</div></div>
+      <div class="step"><div class="step-n"><span>03</span></div><div class="step-l">פיתוח</div><div class="step-d">בניית המערכת</div></div>
+      <div class="step"><div class="step-n"><span>04</span></div><div class="step-l">שילוב</div><div class="step-d">אינטגרציה וכלים</div></div>
+      <div class="step"><div class="step-n"><span>05</span></div><div class="step-l">מסירה</div><div class="step-d">הדרכה ותמיכה</div></div>
+    </div>
+    <div class="svc-cards">
+      <div class="svc rev d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm0-4h2v2h-2zm-6 0h4v2h-4z"/></svg></div>
+        <h3>מערכות ניהול Web</h3>
+        <p>מערכות PWA מתקדמות — עובדות בדפדפן, במובייל, ובלי אינטרנט. ממשק אינטואיטיבי בעברית.</p>
+      </div>
+      <div class="svc rev d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm10 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
+        <h3>שילוב כלים מתקדמים</h3>
+        <p>Firebase, Google Sheets, WhatsApp API, PDF — כל הכלים שאתה כבר משתמש בהם, מחוברים חכם.</p>
+      </div>
+      <div class="svc rev d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
+        <h3>אוטומציות ותהליכים</h3>
+        <p>הפחת עומס ידני. מערכות שעובדות לבד — התראות, דוחות אוטומטיים, עדכוני נתונים בזמן אמת.</p>
+      </div>
+      <div class="svc rev d4">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7l-4-4v3H2v2h2v3l4-4z"/></svg></div>
+        <h3>ממשקים בעברית + RTL</h3>
+        <p>ניסיון עמוק בפיתוח מערכות עבריות — RTL אמיתי, PDF בעברית, הכל עובד בצורה מושלמת.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">פרויקטים</span>
+      <h2 class="sec-title">מה <span class="grad">אנחנו בונים?</span></h2>
+      <p class="sec-sub">הצצה למגוון פרויקטים ומערכות מתקדמות</p>
+    </div>
+    <div class="proj-grid">
+
+      <!-- 1 Battalion -->
+      <div class="proj rev">
+        <div class="proj-img" style="background:#0a0812">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+<defs>
+  <pattern id="pg1" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M20 0 L0 0 0 20" fill="none" stroke="rgba(168,85,247,0.05)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="400" height="200" fill="#0a0812"/>
+<rect width="400" height="200" fill="url(#pg1)"/>
+<rect width="400" height="8" fill="rgba(239,68,68,0.2)"/>
+<text x="200" y="6" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle" letter-spacing="1.5">&#9679; CLASSIFIED &#9679; מסווג &#9679;</text>
+<rect width="400" height="18" y="8" fill="#140a22"/>
+<rect width="400" height="1" y="25" fill="rgba(168,85,247,0.5)"/>
+<circle cx="11" cy="17" r="5" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+<circle cx="11" cy="17" r="1.8" fill="#a855f7"/>
+<line x1="11" y1="11" x2="11" y2="9" stroke="#a855f7" stroke-width="1"/>
+<line x1="11" y1="23" x2="11" y2="25" stroke="#a855f7" stroke-width="1"/>
+<line x1="5" y1="17" x2="3" y2="17" stroke="#a855f7" stroke-width="1"/>
+<line x1="17" y1="17" x2="19" y2="17" stroke="#a855f7" stroke-width="1"/>
+<text x="21" y="20" font-size="7" fill="#c084fc" font-family="monospace" font-weight="bold">BATTALION-51 | כוח אדם</text>
+<circle cx="340" cy="17" r="2.5" fill="#4ade80"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<text x="345" y="20" font-size="4.5" fill="#4ade80" font-family="monospace">LIVE</text>
+<text x="220" y="20" font-size="4" fill="rgba(168,85,247,0.5)" font-family="monospace">31&#176;21'N  034&#176;27'E</text>
+<rect width="400" height="12" y="26" fill="#0d0617"/>
+<rect x="4" y="27" width="47" height="9" rx="1" fill="#2a1248"/>
+<text x="27" y="33" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">כוח אדם</text>
+<text x="67" y="33" font-size="4.5" fill="rgba(168,85,247,0.4)" font-family="monospace" text-anchor="middle">תורנויות</text>
+<text x="108" y="33" font-size="4.5" fill="rgba(168,85,247,0.4)" font-family="monospace" text-anchor="middle">ציוד</text>
+<text x="145" y="33" font-size="4.5" fill="rgba(168,85,247,0.4)" font-family="monospace" text-anchor="middle">דוחות</text>
+<rect x="4" y="41" width="85" height="24" rx="2" fill="#100820"/>
+<text x="46" y="51" font-size="13" font-weight="bold" fill="#a855f7" font-family="monospace" text-anchor="middle">87</text>
+<text x="46" y="61" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">לוחמים</text>
+<rect x="94" y="41" width="85" height="24" rx="2" fill="#100820"/>
+<text x="136" y="51" font-size="13" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">12</text>
+<text x="136" y="61" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חופשות</text>
+<rect x="184" y="41" width="85" height="24" rx="2" fill="#100820"/>
+<text x="226" y="51" font-size="13" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">3</text>
+<text x="226" y="61" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">פציעות</text>
+<rect x="274" y="41" width="122" height="24" rx="2" fill="#100820"/>
+<text x="335" y="51" font-size="13" font-weight="bold" fill="#c084fc" font-family="monospace" text-anchor="middle">102</text>
+<text x="335" y="61" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">סה"כ</text>
+<rect x="4" y="68" width="392" height="10" rx="1" fill="#2a1248"/>
+<text x="10" y="75" font-size="5" fill="#c084fc" font-family="monospace">מס'</text>
+<text x="38" y="75" font-size="5" fill="#c084fc" font-family="monospace">שם</text>
+<text x="116" y="75" font-size="5" fill="#c084fc" font-family="monospace">דרגה</text>
+<text x="168" y="75" font-size="5" fill="#c084fc" font-family="monospace">מחלקה</text>
+<text x="248" y="75" font-size="5" fill="#c084fc" font-family="monospace">תפקיד</text>
+<text x="335" y="75" font-size="5" fill="#c084fc" font-family="monospace">סטטוס</text>
+<rect x="4" y="79" width="392" height="10" fill="#0e0618"/>
+<text x="10" y="86" font-size="5" fill="#7c6a9b" font-family="monospace">001</text>
+<text x="38" y="86" font-size="5" fill="#d4b8f0" font-family="monospace">כהן יוסי</text>
+<text x="116" y="86" font-size="5" fill="#c084fc" font-family="monospace">רס"ל</text>
+<text x="168" y="86" font-size="5" fill="#7c6a9b" font-family="monospace">מחלקה א'</text>
+<text x="248" y="86" font-size="5" fill="#7c6a9b" font-family="monospace">מ"כ</text>
+<rect x="328" y="80" width="40" height="8" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="348" y="86" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="4" y="90" width="392" height="10" fill="#0d0617"/>
+<text x="10" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">002</text>
+<text x="38" y="97" font-size="5" fill="#d4b8f0" font-family="monospace">לוי מיכאל</text>
+<text x="116" y="97" font-size="5" fill="#c084fc" font-family="monospace">סמ"ר</text>
+<text x="168" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">מחלקה א'</text>
+<text x="248" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">לוחם</text>
+<rect x="328" y="91" width="40" height="8" rx="3" fill="rgba(245,158,11,0.15)"/>
+<text x="348" y="97" font-size="4.5" fill="#f59e0b" font-family="monospace" text-anchor="middle">חופשה</text>
+<rect x="4" y="101" width="392" height="10" fill="#0e0618"/>
+<text x="10" y="108" font-size="5" fill="#7c6a9b" font-family="monospace">003</text>
+<text x="38" y="108" font-size="5" fill="#d4b8f0" font-family="monospace">אברהם דן</text>
+<text x="116" y="108" font-size="5" fill="#c084fc" font-family="monospace">רב"ט</text>
+<text x="168" y="108" font-size="5" fill="#7c6a9b" font-family="monospace">מחלקה ב'</text>
+<text x="248" y="108" font-size="5" fill="#7c6a9b" font-family="monospace">לוחם</text>
+<rect x="328" y="102" width="40" height="8" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="348" y="108" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="4" y="112" width="392" height="10" fill="#0d0617"/>
+<text x="10" y="119" font-size="5" fill="#7c6a9b" font-family="monospace">004</text>
+<text x="38" y="119" font-size="5" fill="#d4b8f0" font-family="monospace">פרץ אלי</text>
+<text x="116" y="119" font-size="5" fill="#c084fc" font-family="monospace">טוראי</text>
+<text x="168" y="119" font-size="5" fill="#7c6a9b" font-family="monospace">מחלקה ב'</text>
+<text x="248" y="119" font-size="5" fill="#7c6a9b" font-family="monospace">לוחם</text>
+<rect x="328" y="113" width="40" height="8" rx="3" fill="rgba(239,68,68,0.15)"/>
+<text x="348" y="119" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle">חולה</text>
+<rect x="4" y="123" width="392" height="10" fill="#0e0618"/>
+<text x="10" y="130" font-size="5" fill="#7c6a9b" font-family="monospace">005</text>
+<text x="38" y="130" font-size="5" fill="#d4b8f0" font-family="monospace">בן דוד רון</text>
+<text x="116" y="130" font-size="5" fill="#c084fc" font-family="monospace">סמ"ר</text>
+<text x="168" y="130" font-size="5" fill="#7c6a9b" font-family="monospace">מחלקה ג'</text>
+<text x="248" y="130" font-size="5" fill="#7c6a9b" font-family="monospace">קשר</text>
+<rect x="328" y="124" width="40" height="8" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="348" y="130" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="4" y="136" width="392" height="60" rx="2" fill="#0d0617"/>
+<text x="10" y="146" font-size="5" fill="#7c6a9b" font-family="monospace">תורנות שבועית</text>
+<rect x="8" y="149" width="28" height="7" rx="1" fill="#1e1030"/>
+<text x="22" y="155" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">א'</text>
+<rect x="40" y="149" width="28" height="7" rx="1" fill="#1e1030"/>
+<text x="54" y="155" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">ב'</text>
+<rect x="72" y="149" width="28" height="7" rx="1" fill="#2a1248"/>
+<text x="86" y="155" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">ג'</text>
+<rect x="104" y="149" width="28" height="7" rx="1" fill="#1e1030"/>
+<text x="118" y="155" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">ד'</text>
+<rect x="8" y="159" width="52" height="7" rx="1" fill="#1e1030"/>
+<text x="34" y="165" font-size="4.5" fill="#a87bd0" font-family="monospace" text-anchor="middle">כהן</text>
+<rect x="64" y="159" width="52" height="7" rx="1" fill="#1e1030"/>
+<text x="90" y="165" font-size="4.5" fill="#a87bd0" font-family="monospace" text-anchor="middle">לוי</text>
+<rect x="120" y="159" width="52" height="7" rx="1" fill="#2a1248"/>
+<text x="146" y="165" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">אברהם</text>
+<rect x="300" y="182" width="92" height="9" rx="3" fill="#2a1248"/>
+<text x="346" y="188" font-size="5" fill="#c084fc" font-family="monospace" text-anchor="middle">+ הוסף רישום</text>
+<path d="M2 1 L2 11 M2 1 L12 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 1 L398 11 M398 1 L388 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M2 199 L2 189 M2 199 L12 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 199 L398 189 M398 199 L388 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול גדוד</h3>
+          <p class="proj-desc">ניהול מבצעי מלא — כוח אדם, תורנויות, ציוד, דוחות וחתימות. PWA עם סנכרון Firebase.</p>
+        </div>
+      </div>
+
+      <!-- 2 Telegram Intel -->
+      <div class="proj rev d1">
+        <div class="proj-img" style="background:#0a0812">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+<defs>
+  <pattern id="pg2" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M20 0 L0 0 0 20" fill="none" stroke="rgba(168,85,247,0.04)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="400" height="200" fill="#0a0812"/>
+<rect width="400" height="200" fill="url(#pg2)"/>
+<rect width="400" height="6" fill="rgba(239,68,68,0.2)"/>
+<text x="200" y="4.5" font-size="3.5" fill="#ef4444" font-family="monospace" text-anchor="middle" letter-spacing="1.5">&#9679; CLASSIFIED &#9679; מסווג &#9679;</text>
+<rect width="400" height="19" y="6" fill="#140a22"/>
+<rect width="400" height="1" y="24" fill="rgba(168,85,247,0.4)"/>
+<ellipse cx="13" cy="15" rx="5" ry="3" fill="none" stroke="#a855f7" stroke-width="1"/>
+<circle cx="13" cy="15" r="1.8" fill="#c084fc"/>
+<circle cx="13" cy="15" r=".8" fill="#0a0812"/>
+<text x="22" y="18" font-size="7.5" fill="#a855f7" font-family="monospace" font-weight="bold">מבט 443</text>
+<text x="65" y="18" font-size="5.5" fill="rgba(168,85,247,0.45)" font-family="monospace">| INTEL MONITOR</text>
+<circle cx="340" cy="15" r="2.5" fill="#4ade80"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<text x="346" y="18" font-size="5" fill="#4ade80" font-family="monospace">LIVE</text>
+<text x="200" y="18" font-size="4.5" fill="rgba(168,85,247,0.4)" font-family="monospace" text-anchor="middle">13:42:07</text>
+<rect x="0" y="25" width="88" height="175" fill="#0d0619"/>
+<rect x="87" y="25" width="1" height="175" fill="rgba(168,85,247,0.15)"/>
+<text x="7" y="37" font-size="5" fill="rgba(168,85,247,0.5)" font-family="monospace">מקורות</text>
+<rect x="3" y="40" width="81" height="19" rx="2" fill="rgba(168,85,247,0.12)" stroke="rgba(168,85,247,0.4)" stroke-width=".6"/>
+<circle cx="11" cy="49" r="3" fill="#a855f7"/>
+<text x="18" y="53" font-size="5.5" fill="#e0d4f7" font-family="monospace">ערוץ צפון</text>
+<circle cx="77" cy="49" r="2.5" fill="#4ade80"/>
+<rect x="3" y="62" width="81" height="19" rx="2" fill="#120920"/>
+<circle cx="11" cy="71" r="3" fill="#c084fc"/>
+<text x="18" y="75" font-size="5.5" fill="#a896cc" font-family="monospace">מבט 443</text>
+<circle cx="77" cy="71" r="2.5" fill="#f59e0b" opacity=".8"/>
+<rect x="3" y="84" width="81" height="19" rx="2" fill="#120920"/>
+<circle cx="11" cy="93" r="3" fill="#818cf8"/>
+<text x="18" y="97" font-size="5.5" fill="#a896cc" font-family="monospace">איסוף כללי</text>
+<circle cx="77" cy="93" r="2.5" fill="#4ade80"/>
+<rect x="3" y="106" width="81" height="19" rx="2" fill="rgba(239,68,68,0.07)" stroke="rgba(239,68,68,0.2)" stroke-width=".5"/>
+<circle cx="11" cy="115" r="3" fill="#ef4444" opacity=".9"/>
+<text x="18" y="119" font-size="5.5" fill="#ff8080" font-family="monospace">ערוץ דחוף</text>
+<circle cx="77" cy="115" r="2.5" fill="#ef4444"/>
+<rect x="3" y="128" width="81" height="19" rx="2" fill="#120920"/>
+<circle cx="11" cy="137" r="3" fill="#e879f9" opacity=".8"/>
+<text x="18" y="141" font-size="5.5" fill="#a896cc" font-family="monospace">מידע שטח</text>
+<circle cx="77" cy="137" r="2.5" fill="#e879f9" opacity=".7"/>
+<rect x="3" y="150" width="81" height="19" rx="2" fill="#120920"/>
+<circle cx="11" cy="159" r="3" fill="#818cf8" opacity=".8"/>
+<text x="18" y="163" font-size="5.5" fill="#a896cc" font-family="monospace">עדכונים</text>
+<circle cx="77" cy="159" r="2.5" fill="#818cf8" opacity=".6"/>
+<rect x="88" y="25" width="220" height="175" fill="#0a0812"/>
+<rect x="88" y="25" width="76" height="13" fill="rgba(168,85,247,0.1)"/>
+<text x="126" y="34" font-size="5" fill="#a855f7" font-family="monospace" text-anchor="middle">הזנה חיה</text>
+<rect x="164" y="25" width="60" height="13" fill="transparent"/>
+<text x="194" y="34" font-size="5" fill="rgba(168,85,247,0.3)" font-family="monospace" text-anchor="middle">מסונן AI</text>
+<rect x="91" y="41" width="214" height="25" rx="2" fill="#0e0618"/>
+<rect x="91" y="41" width="2" height="25" fill="#ef4444"/>
+<text x="97" y="51" font-size="5" fill="#ff6060" font-family="monospace">&#9888; דחוף  13:42</text>
+<text x="97" y="61" font-size="5" fill="#a896cc" font-family="monospace">זוהתה פעילות חריגה בגזרה</text>
+<rect x="91" y="69" width="214" height="25" rx="2" fill="#0d0617"/>
+<rect x="91" y="69" width="2" height="25" fill="#a855f7"/>
+<text x="97" y="79" font-size="5" fill="#a855f7" font-family="monospace">מודיעין  13:38</text>
+<text x="97" y="89" font-size="5" fill="#a896cc" font-family="monospace">דיווח מהאיזור: תנועת כוחות</text>
+<rect x="91" y="97" width="214" height="25" rx="2" fill="#0d0617"/>
+<rect x="91" y="97" width="2" height="25" fill="#c084fc"/>
+<text x="97" y="107" font-size="5" fill="#c084fc" font-family="monospace">AI ניתוח  13:31</text>
+<text x="97" y="117" font-size="5" fill="#a896cc" font-family="monospace">מזוהים 3 מילות מפתח רלוונטיות</text>
+<rect x="91" y="125" width="214" height="25" rx="2" fill="#0d0617"/>
+<rect x="91" y="125" width="2" height="25" fill="#818cf8"/>
+<text x="97" y="135" font-size="5" fill="#818cf8" font-family="monospace">שגרה  13:25</text>
+<text x="97" y="145" font-size="5" fill="#a896cc" font-family="monospace">עדכון שוטף — אין חריגות</text>
+<rect x="91" y="153" width="214" height="22" rx="2" fill="#0e0618"/>
+<rect x="91" y="153" width="2" height="22" fill="#e879f9" opacity=".8"/>
+<text x="97" y="163" font-size="5" fill="#e879f9" font-family="monospace">התראה  13:19</text>
+<text x="97" y="172" font-size="5" fill="#a896cc" font-family="monospace">מילת מפתח: "תנועה" x7</text>
+<rect x="308" y="25" width="92" height="175" fill="#0d0619"/>
+<rect x="308" y="25" width="1" height="175" fill="rgba(168,85,247,0.15)"/>
+<text x="316" y="37" font-size="5" fill="rgba(168,85,247,0.5)" font-family="monospace">סטטוס</text>
+<rect x="311" y="41" width="85" height="30" rx="2" fill="#0e0618"/>
+<text x="316" y="52" font-size="5" fill="#a896cc" font-family="monospace">הודעות היום</text>
+<text x="316" y="65" font-size="11" font-weight="bold" fill="#a855f7" font-family="monospace">1,247</text>
+<rect x="311" y="74" width="85" height="30" rx="2" fill="#0e0618"/>
+<text x="316" y="85" font-size="5" fill="#a896cc" font-family="monospace">התראות</text>
+<text x="316" y="98" font-size="11" font-weight="bold" fill="#ef4444" font-family="monospace">23</text>
+<rect x="311" y="107" width="85" height="30" rx="2" fill="#0e0618"/>
+<text x="316" y="118" font-size="5" fill="#a896cc" font-family="monospace">מילות מפתח</text>
+<text x="316" y="131" font-size="11" font-weight="bold" fill="#c084fc" font-family="monospace">48</text>
+<rect x="311" y="140" width="85" height="42" rx="2" fill="#0e0618"/>
+<text x="316" y="150" font-size="5" fill="#a896cc" font-family="monospace">6 שעות</text>
+<polyline points="316,174 326,166 336,170 346,160 356,163 366,153 376,156 390,148" fill="none" stroke="#a855f7" stroke-width="1.5" opacity=".85"/>
+<polygon points="316,174 326,166 336,170 346,160 356,163 366,153 376,156 390,148 390,174" fill="rgba(168,85,247,0.08)"/>
+<path d="M2 1 L2 11 M2 1 L12 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 1 L398 11 M398 1 L388 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M2 199 L2 189 M2 199 L12 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 199 L398 189 M398 199 L388 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">ניטור מודיעין טלגרם</h3>
+          <p class="proj-desc">ניטור ואיסוף מודיעין אוטומטי מקבוצות טלגרם — מילות מפתח, התראות, ניתוח תוכן בזמן אמת.</p>
+        </div>
+      </div>
+
+      <!-- 3 Brigade -->
+      <div class="proj rev d2">
+        <div class="proj-img" style="background:#0a0812">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+<defs>
+  <pattern id="pg3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M20 0 L0 0 0 20" fill="none" stroke="rgba(168,85,247,0.05)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="400" height="200" fill="#0a0812"/>
+<rect width="400" height="200" fill="url(#pg3)"/>
+<rect width="400" height="8" fill="rgba(239,68,68,0.2)"/>
+<text x="200" y="6" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle" letter-spacing="1.5">&#9679; CLASSIFIED &#9679; מסווג &#9679;</text>
+<rect width="400" height="18" y="8" fill="#140a22"/>
+<rect width="400" height="1" y="25" fill="rgba(168,85,247,0.5)"/>
+<circle cx="11" cy="17" r="5" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+<circle cx="11" cy="17" r="1.8" fill="#a855f7"/>
+<line x1="11" y1="11" x2="11" y2="9" stroke="#a855f7" stroke-width="1"/>
+<line x1="11" y1="23" x2="11" y2="25" stroke="#a855f7" stroke-width="1"/>
+<line x1="5" y1="17" x2="3" y2="17" stroke="#a855f7" stroke-width="1"/>
+<line x1="17" y1="17" x2="19" y2="17" stroke="#a855f7" stroke-width="1"/>
+<text x="21" y="20" font-size="7" fill="#c084fc" font-family="monospace" font-weight="bold">BRIGADE-7 | מבט מפקד</text>
+<circle cx="340" cy="17" r="2.5" fill="#4ade80"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></circle>
+<text x="345" y="20" font-size="4.5" fill="#4ade80" font-family="monospace">LIVE</text>
+<text x="220" y="20" font-size="4" fill="rgba(168,85,247,0.5)" font-family="monospace">31&#176;21'N  034&#176;27'E</text>
+<rect x="4" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="48" y="38" font-size="12" font-weight="bold" fill="#a855f7" font-family="monospace" text-anchor="middle">312</text>
+<text x="48" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">כוח אדם כולל</text>
+<rect x="97" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="141" y="38" font-size="12" font-weight="bold" fill="#c084fc" font-family="monospace" text-anchor="middle">3</text>
+<text x="141" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">גדודים פעילים</text>
+<rect x="190" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="234" y="38" font-size="12" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">94%</text>
+<text x="234" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">כשירות</text>
+<rect x="283" y="28" width="113" height="26" rx="2" fill="#100820"/>
+<text x="339" y="38" font-size="12" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">8</text>
+<text x="339" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">אירועים פתוחים</text>
+<rect x="4" y="57" width="121" height="76" rx="3" fill="#0d0617"/>
+<rect x="4" y="57" width="121" height="13" rx="3" fill="#1e0a38"/>
+<text x="64" y="66" font-size="6" fill="#c084fc" font-family="monospace" text-anchor="middle" font-weight="bold">גדוד 51</text>
+<rect x="8" y="74" width="85" height="5" rx="1" fill="#1a1030"/>
+<rect x="8" y="74" width="82" height="5" rx="1" fill="#a855f7" opacity=".5"/>
+<text x="96" y="78" font-size="4.5" fill="#a855f7" font-family="monospace">96%</text>
+<text x="8" y="88" font-size="5" fill="#7c6a9b" font-family="monospace">כוח אדם: 102/106</text>
+<text x="8" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">תחמושת: 98%</text>
+<text x="8" y="106" font-size="5" fill="#7c6a9b" font-family="monospace">ציוד: תקין</text>
+<rect x="10" y="112" width="50" height="7" rx="2" fill="#1e0a38"/>
+<text x="35" y="117" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">מבט מלא</text>
+<rect x="130" y="57" width="121" height="76" rx="3" fill="#0d0617"/>
+<rect x="130" y="57" width="121" height="13" rx="3" fill="#1e0a38"/>
+<text x="190" y="66" font-size="6" fill="#c084fc" font-family="monospace" text-anchor="middle" font-weight="bold">גדוד 52</text>
+<rect x="134" y="74" width="85" height="5" rx="1" fill="#1a1030"/>
+<rect x="134" y="74" width="72" height="5" rx="1" fill="#f59e0b" opacity=".5"/>
+<text x="222" y="78" font-size="4.5" fill="#f59e0b" font-family="monospace">85%</text>
+<text x="134" y="88" font-size="5" fill="#7c6a9b" font-family="monospace">כוח אדם: 89/104</text>
+<text x="134" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">תחמושת: 82%</text>
+<text x="134" y="106" font-size="5" fill="#f59e0b" font-family="monospace">ציוד: חסר</text>
+<rect x="257" y="57" width="139" height="76" rx="3" fill="#0d0617"/>
+<rect x="257" y="57" width="139" height="13" rx="3" fill="#1e0a38"/>
+<text x="326" y="66" font-size="6" fill="#c084fc" font-family="monospace" text-anchor="middle" font-weight="bold">גדוד 53</text>
+<rect x="261" y="74" width="95" height="5" rx="1" fill="#1a1030"/>
+<rect x="261" y="74" width="94" height="5" rx="1" fill="#a855f7" opacity=".5"/>
+<text x="359" y="78" font-size="4.5" fill="#a855f7" font-family="monospace">98%</text>
+<text x="261" y="88" font-size="5" fill="#7c6a9b" font-family="monospace">כוח אדם: 121/123</text>
+<text x="261" y="97" font-size="5" fill="#7c6a9b" font-family="monospace">תחמושת: 100%</text>
+<text x="261" y="106" font-size="5" fill="#c084fc" font-family="monospace">ציוד: תקין</text>
+<rect x="4" y="136" width="392" height="10" rx="2" fill="#1e0a38"/>
+<text x="8" y="143" font-size="5.5" fill="#c084fc" font-family="monospace">אירוע</text>
+<text x="100" y="143" font-size="5.5" fill="#c084fc" font-family="monospace">גדוד</text>
+<text x="180" y="143" font-size="5.5" fill="#c084fc" font-family="monospace">שעה</text>
+<text x="310" y="143" font-size="5.5" fill="#c084fc" font-family="monospace">סטטוס</text>
+<rect x="4" y="147" width="392" height="10" fill="#0d0617"/>
+<text x="8" y="154" font-size="5" fill="#a896cc" font-family="monospace">תדרוך פיקוד</text>
+<text x="100" y="154" font-size="5" fill="#a896cc" font-family="monospace">51</text>
+<text x="180" y="154" font-size="5" fill="#a896cc" font-family="monospace">08:00</text>
+<rect x="300" y="148" width="44" height="8" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="322" y="154" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">הושלם</text>
+<rect x="4" y="158" width="392" height="10" fill="#0e0618"/>
+<text x="8" y="165" font-size="5" fill="#a896cc" font-family="monospace">אימון קרבי</text>
+<text x="100" y="165" font-size="5" fill="#a896cc" font-family="monospace">52</text>
+<text x="180" y="165" font-size="5" fill="#a896cc" font-family="monospace">14:00</text>
+<rect x="300" y="159" width="44" height="8" rx="3" fill="rgba(245,158,11,0.15)"/>
+<text x="322" y="165" font-size="4.5" fill="#f59e0b" font-family="monospace" text-anchor="middle">בתהליך</text>
+<rect x="4" y="169" width="392" height="10" fill="#0d0617"/>
+<text x="8" y="176" font-size="5" fill="#a896cc" font-family="monospace">בדיקת ציוד</text>
+<text x="100" y="176" font-size="5" fill="#a896cc" font-family="monospace">53</text>
+<text x="180" y="176" font-size="5" fill="#a896cc" font-family="monospace">16:30</text>
+<rect x="300" y="170" width="44" height="8" rx="3" fill="rgba(168,85,247,0.12)"/>
+<text x="322" y="176" font-size="4.5" fill="#a855f7" font-family="monospace" text-anchor="middle">מתוכנן</text>
+<rect x="300" y="182" width="96" height="8" rx="3" fill="#1e0a38"/>
+<text x="348" y="187.5" font-size="5" fill="#c084fc" font-family="monospace" text-anchor="middle">אירוע חדש +</text>
+<path d="M2 1 L2 11 M2 1 L12 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 1 L398 11 M398 1 L388 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M2 199 L2 189 M2 199 L12 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 199 L398 189 M398 199 L388 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול חטיבה</h3>
+          <p class="proj-desc">ניהול רמת חטיבה — מבט אחוד על כלל הגדודים, כוח אדם, סטטוסים וייצוג ויזואלי בזמן אמת.</p>
+        </div>
+      </div>
+
+      <!-- 4 Division -->
+      <div class="proj rev">
+        <div class="proj-img" style="background:#0a0812">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+<defs>
+  <pattern id="pg4" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M20 0 L0 0 0 20" fill="none" stroke="rgba(168,85,247,0.05)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="400" height="200" fill="#0a0812"/>
+<rect width="400" height="200" fill="url(#pg4)"/>
+<rect width="400" height="8" fill="rgba(239,68,68,0.2)"/>
+<text x="200" y="6" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle" letter-spacing="1.5">&#9679; CLASSIFIED &#9679; מסווג &#9679;</text>
+<rect width="400" height="18" y="8" fill="#140a22"/>
+<rect width="400" height="1" y="25" fill="rgba(168,85,247,0.5)"/>
+<circle cx="11" cy="17" r="5" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+<circle cx="11" cy="17" r="1.8" fill="#a855f7"/>
+<line x1="11" y1="11" x2="11" y2="9" stroke="#a855f7" stroke-width="1"/>
+<line x1="11" y1="23" x2="11" y2="25" stroke="#a855f7" stroke-width="1"/>
+<line x1="5" y1="17" x2="3" y2="17" stroke="#a855f7" stroke-width="1"/>
+<line x1="17" y1="17" x2="19" y2="17" stroke="#a855f7" stroke-width="1"/>
+<text x="21" y="20" font-size="7" fill="#c084fc" font-family="monospace" font-weight="bold">DIVISION-36 | פיקוד ושליטה</text>
+<circle cx="345" cy="17" r="2.5" fill="#4ade80"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+<text x="350" y="20" font-size="4.5" fill="#4ade80" font-family="monospace">LIVE</text>
+<rect x="4" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="48" y="38" font-size="12" font-weight="bold" fill="#a855f7" font-family="monospace" text-anchor="middle">6</text>
+<text x="48" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חטיבות</text>
+<rect x="97" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="141" y="38" font-size="10" font-weight="bold" fill="#c084fc" font-family="monospace" text-anchor="middle">1,842</text>
+<text x="141" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">כוח אדם</text>
+<rect x="190" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="234" y="38" font-size="12" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">91%</text>
+<text x="234" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">כשירות</text>
+<rect x="283" y="28" width="113" height="26" rx="2" fill="#100820"/>
+<text x="339" y="38" font-size="12" font-weight="bold" fill="#e879f9" font-family="monospace" text-anchor="middle">24</text>
+<text x="339" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">משימות פעילות</text>
+<rect x="4" y="57" width="392" height="10" rx="2" fill="#1e0a38"/>
+<text x="10" y="64" font-size="5.5" fill="#c084fc" font-family="monospace">חטיבה</text>
+<text x="90" y="64" font-size="5.5" fill="#c084fc" font-family="monospace">מפקד</text>
+<text x="170" y="64" font-size="5.5" fill="#c084fc" font-family="monospace">כוח אדם</text>
+<text x="250" y="64" font-size="5.5" fill="#c084fc" font-family="monospace">כשירות</text>
+<text x="320" y="64" font-size="5.5" fill="#c084fc" font-family="monospace">מצב</text>
+<rect x="4" y="68" width="392" height="10" fill="#0e0618"/>
+<text x="10" y="75" font-size="5" fill="#d4b8f0" font-family="monospace">חטיבה 1</text>
+<text x="90" y="75" font-size="5" fill="#d4b8f0" font-family="monospace">אל"מ כהן</text>
+<text x="170" y="75" font-size="5" fill="#d4b8f0" font-family="monospace">312 / 330</text>
+<rect x="246" y="69" width="55" height="7" rx="1" fill="#1a1030"/>
+<rect x="246" y="69" width="52" height="7" rx="1" fill="#a855f7" opacity=".4"/>
+<rect x="316" y="69" width="44" height="7" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="338" y="75" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">כשיר</text>
+<rect x="4" y="79" width="392" height="10" fill="#0d0617"/>
+<text x="10" y="86" font-size="5" fill="#d4b8f0" font-family="monospace">חטיבה 2</text>
+<text x="90" y="86" font-size="5" fill="#d4b8f0" font-family="monospace">אל"מ לוי</text>
+<text x="170" y="86" font-size="5" fill="#d4b8f0" font-family="monospace">285 / 330</text>
+<rect x="246" y="80" width="55" height="7" rx="1" fill="#1a1030"/>
+<rect x="246" y="80" width="44" height="7" rx="1" fill="#f59e0b" opacity=".4"/>
+<rect x="316" y="80" width="44" height="7" rx="3" fill="rgba(245,158,11,0.15)"/>
+<text x="338" y="86" font-size="4.5" fill="#f59e0b" font-family="monospace" text-anchor="middle">חלקי</text>
+<rect x="4" y="90" width="392" height="10" fill="#0e0618"/>
+<text x="10" y="97" font-size="5" fill="#d4b8f0" font-family="monospace">חטיבה 3</text>
+<text x="90" y="97" font-size="5" fill="#d4b8f0" font-family="monospace">אל"מ אבי</text>
+<text x="170" y="97" font-size="5" fill="#d4b8f0" font-family="monospace">328 / 330</text>
+<rect x="246" y="91" width="55" height="7" rx="1" fill="#1a1030"/>
+<rect x="246" y="91" width="54" height="7" rx="1" fill="#a855f7" opacity=".4"/>
+<rect x="316" y="91" width="44" height="7" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="338" y="97" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">כשיר</text>
+<rect x="4" y="101" width="392" height="10" fill="#0d0617"/>
+<text x="10" y="108" font-size="5" fill="#d4b8f0" font-family="monospace">חטיבה 7</text>
+<text x="90" y="108" font-size="5" fill="#d4b8f0" font-family="monospace">אל"מ נדב</text>
+<text x="170" y="108" font-size="5" fill="#d4b8f0" font-family="monospace">301 / 330</text>
+<rect x="246" y="102" width="55" height="7" rx="1" fill="#1a1030"/>
+<rect x="246" y="102" width="50" height="7" rx="1" fill="#a855f7" opacity=".3"/>
+<rect x="316" y="102" width="44" height="7" rx="3" fill="rgba(239,68,68,0.15)"/>
+<text x="338" y="108" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle">חסר</text>
+<rect x="4" y="114" width="190" height="82" rx="3" fill="#0d0617"/>
+<text x="10" y="124" font-size="5.5" fill="#7c6a9b" font-family="monospace">מסמכים ודוחות</text>
+<rect x="8" y="128" width="182" height="9" rx="2" fill="#0e0618"/>
+<text x="12" y="134" font-size="5" fill="#a896cc" font-family="monospace">דוח כשירות שבועי</text>
+<rect x="8" y="139" width="182" height="9" rx="2" fill="#0e0618"/>
+<text x="12" y="145" font-size="5" fill="#a896cc" font-family="monospace">תוכנית אימונים חודשית</text>
+<rect x="8" y="150" width="182" height="9" rx="2" fill="#0e0618"/>
+<text x="12" y="156" font-size="5" fill="#a896cc" font-family="monospace">סיכום אירועים שבועי</text>
+<rect x="8" y="177" width="80" height="10" rx="3" fill="#1e0a38"/>
+<text x="48" y="184" font-size="5" fill="#c084fc" font-family="monospace" text-anchor="middle">הפק דוח</text>
+<rect x="198" y="114" width="198" height="82" rx="3" fill="#0d0617"/>
+<text x="206" y="124" font-size="5.5" fill="#7c6a9b" font-family="monospace">עומס משימות</text>
+<rect x="202" y="129" width="32" height="55" rx="2" fill="#0e0618"/>
+<rect x="202" y="152" width="32" height="32" rx="2" fill="#a855f7" opacity=".6"/>
+<text x="218" y="189" font-size="4" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חט1</text>
+<rect x="240" y="129" width="32" height="55" rx="2" fill="#0e0618"/>
+<rect x="240" y="145" width="32" height="39" rx="2" fill="#f59e0b" opacity=".5"/>
+<text x="256" y="189" font-size="4" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חט2</text>
+<rect x="278" y="129" width="32" height="55" rx="2" fill="#0e0618"/>
+<rect x="278" y="132" width="32" height="52" rx="2" fill="#a855f7" opacity=".6"/>
+<text x="294" y="189" font-size="4" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חט3</text>
+<rect x="316" y="129" width="32" height="55" rx="2" fill="#0e0618"/>
+<rect x="316" y="147" width="32" height="37" rx="2" fill="#ef4444" opacity=".4"/>
+<text x="332" y="189" font-size="4" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חט7</text>
+<rect x="354" y="129" width="36" height="55" rx="2" fill="#0e0618"/>
+<rect x="354" y="137" width="36" height="47" rx="2" fill="#a855f7" opacity=".5"/>
+<text x="372" y="189" font-size="4" fill="#7c6a9b" font-family="monospace" text-anchor="middle">חט9</text>
+<path d="M2 1 L2 11 M2 1 L12 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 1 L398 11 M398 1 L388 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M2 199 L2 189 M2 199 L12 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 199 L398 189 M398 199 L388 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול אוגדה</h3>
+          <p class="proj-desc">מערכת פיקוד ושליטה ברמת האוגדה — ניהול מרובה חטיבות, כוח אדם אגרגטיבי ודוחות מפקד.</p>
+        </div>
+      </div>
+
+      <!-- 5 Fire Dept -->
+      <div class="proj rev d1">
+        <div class="proj-img" style="background:#140808">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+  <defs>
+    <pattern id="pg5" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L0 0 0 30" fill="none" stroke="rgba(239,68,68,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="200" fill="#0c0404"/>
+  <rect width="400" height="200" fill="url(#pg5)"/>
+  <rect width="400" height="22" fill="#200b0b"/>
+  <rect width="400" height="1" y="22" fill="rgba(239,68,68,0.35)"/>
+  <circle cx="12" cy="11" r="5.5" fill="#ef4444" opacity=".8"/>
+  <circle cx="26" cy="11" r="5.5" fill="#f59e0b" opacity=".8"/>
+  <circle cx="40" cy="11" r="5.5" fill="#22c55e" opacity=".8"/>
+  <text x="214" y="14.5" font-size="6.5" fill="#d09090" font-family="monospace" text-anchor="middle" font-weight="bold">FireControl</text>
+  <circle cx="376" cy="11" r="3" fill="#ef4444"><animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/></circle>
+  <text x="382" y="14" font-size="4.5" fill="#ef4444" font-family="monospace">חירום</text>
+  <rect x="0" y="23" width="28" height="177" fill="#180808"/>
+  <rect x="28" y="23" width="1" height="177" fill="rgba(239,68,68,0.25)"/>
+  <rect x="5" y="30" width="18" height="15" rx="3" fill="#ef4444" opacity=".9"/>
+  <rect x="8" y="33" width="12" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="36.5" width="9" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="40" width="11" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="5" y="52" width="18" height="15" rx="3" fill="rgba(239,68,68,0.12)"/>
+  <rect x="8" y="55" width="5" height="5" rx="1" fill="#ef4444" opacity=".45"/>
+  <rect x="15" y="55" width="5" height="5" rx="1" fill="#ef4444" opacity=".45"/>
+  <rect x="8" y="62" width="5" height="3" rx="1" fill="#ef4444" opacity=".45"/>
+  <rect x="15" y="62" width="5" height="3" rx="1" fill="#ef4444" opacity=".45"/>
+  <rect x="5" y="74" width="18" height="15" rx="3" fill="rgba(239,68,68,0.12)"/>
+  <circle cx="14" cy="81.5" r="4.5" fill="none" stroke="#ef4444" stroke-width="1.2" opacity=".45"/>
+  <circle cx="14" cy="81.5" r="1.8" fill="#ef4444" opacity=".45"/>
+  <rect x="5" y="96" width="18" height="15" rx="3" fill="rgba(239,68,68,0.1)"/>
+  <rect x="7" y="99" width="14" height="1.5" rx="1" fill="#ef4444" opacity=".4"/>
+  <rect x="7" y="103" width="14" height="1.5" rx="1" fill="#ef4444" opacity=".4"/>
+  <rect x="7" y="107" width="10" height="1.5" rx="1" fill="#ef4444" opacity=".4"/>
+  <rect x="31" y="24" width="88" height="19" rx="2" fill="#1a0808" stroke="rgba(239,68,68,0.22)" stroke-width="1"/>
+  <text x="75" y="33" font-size="11" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">3</text>
+  <text x="75" y="40" font-size="3.5" fill="#6a3535" font-family="monospace" text-anchor="middle">קריאות פעילות</text>
+  <rect x="121" y="24" width="88" height="19" rx="2" fill="#1a0808" stroke="rgba(34,197,94,0.18)" stroke-width="1"/>
+  <text x="165" y="33" font-size="11" font-weight="bold" fill="#22c55e" font-family="monospace" text-anchor="middle">8</text>
+  <text x="165" y="40" font-size="3.5" fill="#6a3535" font-family="monospace" text-anchor="middle">יחידות זמינות</text>
+  <rect x="211" y="24" width="88" height="19" rx="2" fill="#1a0808" stroke="rgba(249,115,22,0.18)" stroke-width="1"/>
+  <text x="255" y="33" font-size="11" font-weight="bold" fill="#f97316" font-family="monospace" text-anchor="middle">5</text>
+  <text x="255" y="40" font-size="3.5" fill="#6a3535" font-family="monospace" text-anchor="middle">יחידות בפריסה</text>
+  <rect x="301" y="24" width="95" height="19" rx="2" fill="#1a0808" stroke="rgba(251,191,36,0.18)" stroke-width="1"/>
+  <text x="348" y="33" font-size="11" font-weight="bold" fill="#fbbf24" font-family="monospace" text-anchor="middle">4:32</text>
+  <text x="348" y="40" font-size="3.5" fill="#6a3535" font-family="monospace" text-anchor="middle">זמן תגובה ממוצע</text>
+  <rect x="31" y="46" width="214" height="150" rx="3" fill="#120606" stroke="rgba(239,68,68,0.12)" stroke-width="1"/>
+  <text x="37" y="56" font-size="5" fill="#ef4444" font-family="monospace" font-weight="bold">קריאות פעילות</text>
+  <rect x="35" y="59" width="206" height="31" rx="2" fill="#1e0a0a" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+  <rect x="35" y="59" width="3" height="31" rx="1" fill="#ef4444"/>
+  <text x="41" y="68" font-size="5" fill="#fca5a5" font-family="monospace" font-weight="bold">שריפת בניין — רח' הרצל 12</text>
+  <text x="41" y="76" font-size="4" fill="#8a5555" font-family="monospace">2 רכבים בשטח | 08:14 | קומה 3</text>
+  <rect x="199" y="62" width="38" height="8" rx="4" fill="rgba(239,68,68,0.2)"/>
+  <text x="218" y="68" font-size="4" fill="#ef4444" font-family="monospace" text-anchor="middle">עובד</text>
+  <text x="41" y="85" font-size="3.5" fill="#5a3535" font-family="monospace">יחידות: 181, 182</text>
+  <rect x="35" y="93" width="206" height="24" rx="2" fill="#1c0a08" stroke="rgba(249,115,22,0.2)" stroke-width=".8"/>
+  <rect x="35" y="93" width="3" height="24" rx="1" fill="#f97316"/>
+  <text x="41" y="103" font-size="5" fill="#fdba74" font-family="monospace" font-weight="bold">תאונת דרכים — כביש 4</text>
+  <text x="41" y="111" font-size="4" fill="#8a5555" font-family="monospace">1 רכב בדרך | 08:31</text>
+  <rect x="199" y="96" width="38" height="8" rx="4" fill="rgba(249,115,22,0.2)"/>
+  <text x="218" y="102" font-size="4" fill="#f97316" font-family="monospace" text-anchor="middle">בדרך</text>
+  <rect x="35" y="120" width="206" height="24" rx="2" fill="#1c0a08" stroke="rgba(251,191,36,0.15)" stroke-width=".8"/>
+  <rect x="35" y="120" width="3" height="24" rx="1" fill="#fbbf24"/>
+  <text x="41" y="130" font-size="5" fill="#fde68a" font-family="monospace" font-weight="bold">עשן לא מזוהה — מפעל צפון</text>
+  <text x="41" y="138" font-size="4" fill="#8a5555" font-family="monospace">רכב שלוח | 08:47</text>
+  <rect x="199" y="123" width="38" height="8" rx="4" fill="rgba(251,191,36,0.2)"/>
+  <text x="218" y="129" font-size="4" fill="#fbbf24" font-family="monospace" text-anchor="middle">שלוח</text>
+  <rect x="249" y="46" width="147" height="150" rx="3" fill="#120606" stroke="rgba(239,68,68,0.12)" stroke-width="1"/>
+  <text x="255" y="56" font-size="5" fill="#ef4444" font-family="monospace" font-weight="bold">סטטוס יחידות</text>
+  <rect x="253" y="59" width="139" height="8" rx="2" fill="#1e0a0a"/>
+  <text x="257" y="65" font-size="4" fill="#6a3535" font-family="monospace">רכב</text>
+  <text x="290" y="65" font-size="4" fill="#6a3535" font-family="monospace">סטטוס</text>
+  <text x="352" y="65" font-size="4" fill="#6a3535" font-family="monospace">צוות</text>
+  <rect x="253" y="68" width="139" height="9" fill="#180808"/>
+  <text x="257" y="74" font-size="4" fill="#c09090" font-family="monospace">181</text>
+  <rect x="283" y="69" width="44" height="7" rx="3.5" fill="rgba(239,68,68,0.2)"/>
+  <text x="305" y="74" font-size="3.5" fill="#ef4444" font-family="monospace" text-anchor="middle">בשריפה</text>
+  <text x="358" y="74" font-size="4" fill="#c09090" font-family="monospace">5</text>
+  <rect x="253" y="78" width="139" height="9" fill="#150606"/>
+  <text x="257" y="84" font-size="4" fill="#c09090" font-family="monospace">182</text>
+  <rect x="283" y="79" width="44" height="7" rx="3.5" fill="rgba(239,68,68,0.2)"/>
+  <text x="305" y="84" font-size="3.5" fill="#ef4444" font-family="monospace" text-anchor="middle">בשריפה</text>
+  <text x="358" y="84" font-size="4" fill="#c09090" font-family="monospace">4</text>
+  <rect x="253" y="88" width="139" height="9" fill="#180808"/>
+  <text x="257" y="94" font-size="4" fill="#c09090" font-family="monospace">183</text>
+  <rect x="283" y="89" width="44" height="7" rx="3.5" fill="rgba(249,115,22,0.2)"/>
+  <text x="305" y="94" font-size="3.5" fill="#f97316" font-family="monospace" text-anchor="middle">בדרך</text>
+  <text x="358" y="94" font-size="4" fill="#c09090" font-family="monospace">4</text>
+  <rect x="253" y="98" width="139" height="9" fill="#150606"/>
+  <text x="257" y="104" font-size="4" fill="#c09090" font-family="monospace">184</text>
+  <rect x="283" y="99" width="44" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="305" y="104" font-size="3.5" fill="#22c55e" font-family="monospace" text-anchor="middle">זמין</text>
+  <text x="358" y="104" font-size="4" fill="#c09090" font-family="monospace">5</text>
+  <rect x="253" y="108" width="139" height="9" fill="#180808"/>
+  <text x="257" y="114" font-size="4" fill="#c09090" font-family="monospace">185</text>
+  <rect x="283" y="109" width="44" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="305" y="114" font-size="3.5" fill="#22c55e" font-family="monospace" text-anchor="middle">זמין</text>
+  <text x="358" y="114" font-size="4" fill="#c09090" font-family="monospace">4</text>
+  <rect x="253" y="118" width="139" height="9" fill="#150606"/>
+  <text x="257" y="124" font-size="4" fill="#c09090" font-family="monospace">186</text>
+  <rect x="283" y="119" width="44" height="7" rx="3.5" fill="rgba(251,191,36,0.2)"/>
+  <text x="305" y="124" font-size="3.5" fill="#fbbf24" font-family="monospace" text-anchor="middle">שלוח</text>
+  <text x="358" y="124" font-size="4" fill="#c09090" font-family="monospace">4</text>
+  <rect x="253" y="145" width="139" height="47" rx="3" fill="#1e0a0a" stroke="rgba(239,68,68,0.12)" stroke-width="1"/>
+  <text x="322" y="158" font-size="4" fill="#6a3535" font-family="monospace" text-anchor="middle">קריאות היום</text>
+  <text x="322" y="181" font-size="16" font-weight="bold" fill="#f97316" font-family="monospace" text-anchor="middle">47</text>
+  <path d="M2 1 L2 11 M2 1 L12 1" stroke="#ef4444" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 1 L398 11 M398 1 L388 1" stroke="#ef4444" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M2 199 L2 189 M2 199 L12 199" stroke="#ef4444" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 199 L398 189 M398 199 L388 199" stroke="#ef4444" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול כיבוי אש</h3>
+          <p class="proj-desc">מרכז שליטה לתחנות כיבוי — קריאות בזמן אמת, ניהול יחידות, תורנויות ומעקב ציוד.</p>
+        </div>
+      </div>
+
+      <!-- 6 Factory -->
+      <div class="proj rev d2">
+        <div class="proj-img" style="background:#0e0e08">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+  <defs>
+    <pattern id="pg6" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L0 0 0 30" fill="none" stroke="rgba(245,158,11,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="200" fill="#080600"/>
+  <rect width="400" height="200" fill="url(#pg6)"/>
+  <rect width="400" height="22" fill="#1c1404"/>
+  <rect width="400" height="1" y="22" fill="rgba(245,158,11,0.35)"/>
+  <circle cx="12" cy="11" r="5.5" fill="#ef4444" opacity=".8"/>
+  <circle cx="26" cy="11" r="5.5" fill="#f59e0b" opacity=".8"/>
+  <circle cx="40" cy="11" r="5.5" fill="#22c55e" opacity=".8"/>
+  <text x="214" y="14.5" font-size="6.5" fill="#c8a040" font-family="monospace" text-anchor="middle" font-weight="bold">FactoryOS</text>
+  <circle cx="376" cy="11" r="3" fill="#22c55e"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+  <text x="382" y="14" font-size="4.5" fill="#22c55e" font-family="monospace">פעיל</text>
+  <rect x="0" y="23" width="28" height="177" fill="#141002"/>
+  <rect x="28" y="23" width="1" height="177" fill="rgba(245,158,11,0.25)"/>
+  <rect x="5" y="30" width="18" height="15" rx="3" fill="#f59e0b" opacity=".9"/>
+  <rect x="8" y="33" width="12" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="36.5" width="9" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="40" width="11" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="5" y="52" width="18" height="15" rx="3" fill="rgba(245,158,11,0.12)"/>
+  <rect x="8" y="55" width="5" height="5" rx="1" fill="#f59e0b" opacity=".45"/>
+  <rect x="15" y="55" width="5" height="5" rx="1" fill="#f59e0b" opacity=".45"/>
+  <rect x="8" y="62" width="5" height="3" rx="1" fill="#f59e0b" opacity=".45"/>
+  <rect x="15" y="62" width="5" height="3" rx="1" fill="#f59e0b" opacity=".45"/>
+  <rect x="5" y="74" width="18" height="15" rx="3" fill="rgba(245,158,11,0.12)"/>
+  <rect x="8" y="77" width="12" height="2.5" rx="1" fill="#f59e0b" opacity=".4"/>
+  <rect x="9" y="81" width="8" height="5" rx="1" fill="none" stroke="#f59e0b" stroke-width="1" opacity=".4"/>
+  <rect x="5" y="96" width="18" height="15" rx="3" fill="rgba(245,158,11,0.1)"/>
+  <rect x="7" y="99" width="14" height="1.5" rx="1" fill="#f59e0b" opacity=".4"/>
+  <rect x="7" y="103" width="14" height="1.5" rx="1" fill="#f59e0b" opacity=".4"/>
+  <rect x="7" y="107" width="10" height="1.5" rx="1" fill="#f59e0b" opacity=".4"/>
+  <rect x="4" y="28" width="86" height="24" rx="3" fill="#141004" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+  <text x="47" y="39" font-size="11" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">2,840</text>
+  <text x="47" y="48" font-size="4" fill="#5a5020" font-family="monospace" text-anchor="middle">יחידות היום</text>
+  <rect x="96" y="28" width="86" height="24" rx="3" fill="#141004" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
+  <text x="139" y="39" font-size="12" font-weight="bold" fill="#22c55e" font-family="monospace" text-anchor="middle">98.2%</text>
+  <text x="139" y="48" font-size="4" fill="#5a5020" font-family="monospace" text-anchor="middle">אחוז איכות</text>
+  <rect x="188" y="28" width="86" height="24" rx="3" fill="#141004" stroke="rgba(96,165,250,0.15)" stroke-width="1"/>
+  <text x="231" y="39" font-size="13" font-weight="bold" fill="#60a5fa" font-family="monospace" text-anchor="middle">47</text>
+  <text x="231" y="48" font-size="4" fill="#5a5020" font-family="monospace" text-anchor="middle">עובדים נוכחים</text>
+  <rect x="280" y="28" width="116" height="24" rx="3" fill="#141004" stroke="rgba(239,68,68,0.15)" stroke-width="1"/>
+  <text x="338" y="39" font-size="13" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">3</text>
+  <text x="338" y="48" font-size="4" fill="#5a5020" font-family="monospace" text-anchor="middle">עצירות לא מתוכננות</text>
+  <rect x="4" y="55" width="242" height="141" rx="4" fill="#0e0c02" stroke="rgba(245,158,11,0.12)" stroke-width="1"/>
+  <text x="10" y="65" font-size="5.5" fill="#f59e0b" font-family="monospace" font-weight="bold">קווי ייצור</text>
+  <rect x="8" y="69" width="234" height="12" rx="2" fill="#181404"/>
+  <text x="12" y="76" font-size="5" fill="#c8a050" font-family="monospace">קו 1 — אריזה</text>
+  <rect x="116" y="71" width="100" height="7" rx="3" fill="#080700"/>
+  <rect x="116" y="71" width="94" height="7" rx="3" fill="#22c55e" opacity=".55"/>
+  <text x="218" y="76" font-size="4.5" fill="#22c55e" font-family="monospace">94%</text>
+  <rect x="8" y="83" width="234" height="12" rx="2" fill="#181404"/>
+  <text x="12" y="90" font-size="5" fill="#c8a050" font-family="monospace">קו 2 — הרכבה</text>
+  <rect x="116" y="85" width="100" height="7" rx="3" fill="#080700"/>
+  <rect x="116" y="85" width="87" height="7" rx="3" fill="#f59e0b" opacity=".55"/>
+  <text x="218" y="90" font-size="4.5" fill="#f59e0b" font-family="monospace">87%</text>
+  <rect x="8" y="97" width="234" height="12" rx="2" fill="#181404"/>
+  <text x="12" y="104" font-size="5" fill="#c8a050" font-family="monospace">קו 3 — בדיקות</text>
+  <rect x="116" y="99" width="100" height="7" rx="3" fill="#080700"/>
+  <rect x="116" y="99" width="99" height="7" rx="3" fill="#22c55e" opacity=".55"/>
+  <text x="218" y="104" font-size="4.5" fill="#22c55e" font-family="monospace">99%</text>
+  <rect x="8" y="111" width="234" height="12" rx="2" fill="#181404"/>
+  <text x="12" y="118" font-size="5" fill="#ef4444" font-family="monospace">קו 4 — עצור</text>
+  <rect x="116" y="113" width="100" height="7" rx="3" fill="#080700"/>
+  <rect x="186" y="114" width="30" height="5" rx="2.5" fill="rgba(239,68,68,0.3)"/>
+  <text x="218" y="118" font-size="4.5" fill="#ef4444" font-family="monospace">תקלה</text>
+  <rect x="8" y="125" width="234" height="12" rx="2" fill="#181404"/>
+  <text x="12" y="132" font-size="5" fill="#c8a050" font-family="monospace">קו 5 — אריזה B</text>
+  <rect x="116" y="127" width="100" height="7" rx="3" fill="#080700"/>
+  <rect x="116" y="127" width="78" height="7" rx="3" fill="#f59e0b" opacity=".55"/>
+  <text x="218" y="132" font-size="4.5" fill="#f59e0b" font-family="monospace">78%</text>
+  <rect x="250" y="55" width="146" height="141" rx="4" fill="#0e0c02" stroke="rgba(245,158,11,0.12)" stroke-width="1"/>
+  <text x="256" y="65" font-size="5.5" fill="#f59e0b" font-family="monospace" font-weight="bold">נוכחות עובדים</text>
+  <rect x="254" y="69" width="138" height="9" rx="2" fill="#181404"/>
+  <text x="258" y="75" font-size="4.5" fill="#7a6030" font-family="monospace">עובד</text>
+  <text x="316" y="75" font-size="4.5" fill="#7a6030" font-family="monospace">קו</text>
+  <text x="356" y="75" font-size="4.5" fill="#7a6030" font-family="monospace">סטטוס</text>
+  <rect x="254" y="79" width="138" height="9" fill="#141004"/>
+  <text x="258" y="85" font-size="4.5" fill="#c8a050" font-family="monospace">משה כהן</text>
+  <text x="318" y="85" font-size="4.5" fill="#c8a050" font-family="monospace">1</text>
+  <circle cx="360" cy="83.5" r="3" fill="#22c55e"/>
+  <rect x="254" y="89" width="138" height="9" fill="#181404"/>
+  <text x="258" y="95" font-size="4.5" fill="#c8a050" font-family="monospace">רינה לוי</text>
+  <text x="318" y="95" font-size="4.5" fill="#c8a050" font-family="monospace">2</text>
+  <circle cx="360" cy="93.5" r="3" fill="#22c55e"/>
+  <rect x="254" y="99" width="138" height="9" fill="#141004"/>
+  <text x="258" y="105" font-size="4.5" fill="#c8a050" font-family="monospace">יוסי אבי</text>
+  <text x="318" y="105" font-size="4.5" fill="#c8a050" font-family="monospace">4</text>
+  <circle cx="360" cy="103.5" r="3" fill="#ef4444"/>
+  <rect x="254" y="109" width="138" height="9" fill="#181404"/>
+  <text x="258" y="115" font-size="4.5" fill="#c8a050" font-family="monospace">שרה מזרחי</text>
+  <text x="318" y="115" font-size="4.5" fill="#c8a050" font-family="monospace">3</text>
+  <circle cx="360" cy="113.5" r="3" fill="#22c55e"/>
+  <rect x="254" y="138" width="138" height="54" rx="3" fill="#141004" stroke="rgba(245,158,11,0.1)" stroke-width="1"/>
+  <text x="323" y="148" font-size="4.5" fill="#7a6030" font-family="monospace" text-anchor="middle">ייצור שבועי</text>
+  <polyline points="258,183 272,176 286,179 300,169 314,173 328,162 342,165 378,158" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity=".8"/>
+  <polygon points="258,183 272,176 286,179 300,169 314,173 328,162 342,165 378,158 378,183" fill="rgba(245,158,11,0.08)"/>
+  <path d="M2 1 L2 11 M2 1 L12 1" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 1 L398 11 M398 1 L388 1" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M2 199 L2 189 M2 199 L12 199" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 199 L398 189 M398 199 L388 199" stroke="#f59e0b" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול מפעל</h3>
+          <p class="proj-desc">ניהול פסי ייצור, בקרת איכות, ניהול עובדים, מלאי חומרי גלם ומעקב הזמנות בזמן אמת.</p>
+        </div>
+      </div>
+
+      <!-- 7 Security -->
+      <div class="proj rev">
+        <div class="proj-img" style="background:#060a18">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+  <defs>
+    <pattern id="pg7" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L0 0 0 30" fill="none" stroke="rgba(59,130,246,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="200" fill="#030608"/>
+  <rect width="400" height="200" fill="url(#pg7)"/>
+  <rect width="400" height="22" fill="#0c1830"/>
+  <rect width="400" height="1" y="22" fill="rgba(59,130,246,0.35)"/>
+  <circle cx="12" cy="11" r="5.5" fill="#ef4444" opacity=".8"/>
+  <circle cx="26" cy="11" r="5.5" fill="#f59e0b" opacity=".8"/>
+  <circle cx="40" cy="11" r="5.5" fill="#22c55e" opacity=".8"/>
+  <text x="214" y="14.5" font-size="6.5" fill="#6090d0" font-family="monospace" text-anchor="middle" font-weight="bold">GuardView</text>
+  <circle cx="376" cy="11" r="3" fill="#3b82f6"><animate attributeName="opacity" values="1;0.3;1" dur="1.3s" repeatCount="indefinite"/></circle>
+  <text x="382" y="14" font-size="4.5" fill="#3b82f6" font-family="monospace">LIVE</text>
+  <rect x="0" y="23" width="28" height="177" fill="#060e20"/>
+  <rect x="28" y="23" width="1" height="177" fill="rgba(59,130,246,0.25)"/>
+  <rect x="5" y="30" width="18" height="15" rx="3" fill="#3b82f6" opacity=".9"/>
+  <rect x="8" y="33" width="12" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="36.5" width="9" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="40" width="11" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="5" y="52" width="18" height="15" rx="3" fill="rgba(59,130,246,0.12)"/>
+  <rect x="8" y="55" width="5" height="5" rx="1" fill="#3b82f6" opacity=".45"/>
+  <rect x="15" y="55" width="5" height="5" rx="1" fill="#3b82f6" opacity=".45"/>
+  <rect x="8" y="62" width="5" height="3" rx="1" fill="#3b82f6" opacity=".45"/>
+  <rect x="15" y="62" width="5" height="3" rx="1" fill="#3b82f6" opacity=".45"/>
+  <rect x="5" y="74" width="18" height="15" rx="3" fill="rgba(59,130,246,0.12)"/>
+  <circle cx="14" cy="81.5" r="4.5" fill="none" stroke="#3b82f6" stroke-width="1.2" opacity=".45"/>
+  <circle cx="14" cy="81.5" r="1.8" fill="#3b82f6" opacity=".45"/>
+  <rect x="5" y="96" width="18" height="15" rx="3" fill="rgba(59,130,246,0.1)"/>
+  <rect x="7" y="99" width="14" height="1.5" rx="1" fill="#3b82f6" opacity=".4"/>
+  <rect x="7" y="103" width="14" height="1.5" rx="1" fill="#3b82f6" opacity=".4"/>
+  <rect x="7" y="107" width="10" height="1.5" rx="1" fill="#3b82f6" opacity=".4"/>
+  <rect x="4" y="28" width="88" height="24" rx="3" fill="#0a1628" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+  <text x="48" y="39" font-size="13" font-weight="bold" fill="#3b82f6" font-family="monospace" text-anchor="middle">24</text>
+  <text x="48" y="48" font-size="4" fill="#2a4060" font-family="monospace" text-anchor="middle">שומרים</text>
+  <rect x="98" y="28" width="88" height="24" rx="3" fill="#0a1628" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
+  <text x="142" y="39" font-size="13" font-weight="bold" fill="#22c55e" font-family="monospace" text-anchor="middle">12</text>
+  <text x="142" y="48" font-size="4" fill="#2a4060" font-family="monospace" text-anchor="middle">אתרים</text>
+  <rect x="192" y="28" width="88" height="24" rx="3" fill="#0a1628" stroke="rgba(96,165,250,0.15)" stroke-width="1"/>
+  <text x="236" y="39" font-size="13" font-weight="bold" fill="#60a5fa" font-family="monospace" text-anchor="middle">3</text>
+  <text x="236" y="48" font-size="4" fill="#2a4060" font-family="monospace" text-anchor="middle">סיירי ניידה</text>
+  <rect x="286" y="28" width="110" height="24" rx="3" fill="#0a1628" stroke="rgba(239,68,68,0.15)" stroke-width="1"/>
+  <text x="341" y="39" font-size="13" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">1</text>
+  <text x="341" y="48" font-size="4" fill="#2a4060" font-family="monospace" text-anchor="middle">התרעה פעילה</text>
+  <rect x="4" y="55" width="193" height="141" rx="4" fill="#060e1c" stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
+  <text x="10" y="65" font-size="5.5" fill="#3b82f6" font-family="monospace" font-weight="bold">רשימת משמרת</text>
+  <rect x="8" y="68" width="185" height="9" rx="2" fill="#0f1f3a"/>
+  <text x="12" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">שומר</text>
+  <text x="100" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">אתר</text>
+  <text x="160" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">סטאטוס</text>
+  <rect x="8" y="78" width="185" height="9" fill="#0a1628"/>
+  <text x="12" y="84" font-size="4.5" fill="#90b8d8" font-family="monospace">ניסים ישראל</text>
+  <text x="100" y="84" font-size="4.5" fill="#90b8d8" font-family="monospace">מולטי פלאזה</text>
+  <circle cx="168" cy="82.5" r="3" fill="#22c55e"/>
+  <rect x="8" y="88" width="185" height="9" fill="#0c1830"/>
+  <text x="12" y="94" font-size="4.5" fill="#90b8d8" font-family="monospace">חיים ברק</text>
+  <text x="100" y="94" font-size="4.5" fill="#90b8d8" font-family="monospace">עזריאלי</text>
+  <circle cx="168" cy="92.5" r="3" fill="#22c55e"/>
+  <rect x="8" y="98" width="185" height="9" fill="#0a1628"/>
+  <text x="12" y="104" font-size="4.5" fill="#90b8d8" font-family="monospace">מאיר כהן</text>
+  <text x="100" y="104" font-size="4.5" fill="#90b8d8" font-family="monospace">בית חולים</text>
+  <circle cx="168" cy="102.5" r="3" fill="#3b82f6"/>
+  <rect x="8" y="108" width="185" height="9" fill="#0c1830"/>
+  <text x="12" y="114" font-size="4.5" fill="#90b8d8" font-family="monospace">אבי פרץ</text>
+  <text x="100" y="114" font-size="4.5" fill="#90b8d8" font-family="monospace">סייר</text>
+  <circle cx="168" cy="112.5" r="3" fill="#f59e0b"/>
+  <rect x="8" y="118" width="185" height="9" fill="#0a1628"/>
+  <text x="12" y="124" font-size="4.5" fill="#90b8d8" font-family="monospace">שמעון ג׳</text>
+  <text x="100" y="124" font-size="4.5" fill="#90b8d8" font-family="monospace">מחסן</text>
+  <circle cx="168" cy="122.5" r="3" fill="#22c55e"/>
+  <rect x="8" y="130" width="185" height="62" rx="3" fill="#0a1628" stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+  <text x="12" y="140" font-size="5.5" fill="#3b82f6" font-family="monospace" font-weight="bold">יומן אירועים</text>
+  <rect x="10" y="143" width="181" height="9" rx="2" fill="#0c1a30"/>
+  <rect x="10" y="143" width="3" height="9" rx="1" fill="#ef4444"/>
+  <text x="16" y="149" font-size="4.5" fill="#fca5a5" font-family="monospace">התרעת חישן — מולטי</text>
+  <text x="152" y="149" font-size="4.5" fill="#3a5a80" font-family="monospace">07:23</text>
+  <rect x="10" y="153" width="181" height="9" rx="2" fill="#0a1628"/>
+  <rect x="10" y="153" width="3" height="9" rx="1" fill="#f59e0b"/>
+  <text x="16" y="159" font-size="4.5" fill="#d0b870" font-family="monospace">נסיון כניסה — עזריאלי</text>
+  <text x="152" y="159" font-size="4.5" fill="#3a5a80" font-family="monospace">08:45</text>
+  <rect x="10" y="163" width="181" height="9" rx="2" fill="#0c1a30"/>
+  <rect x="10" y="163" width="3" height="9" rx="1" fill="#3b82f6"/>
+  <text x="16" y="169" font-size="4.5" fill="#90b8d8" font-family="monospace">סייר שגרתי — קטע 4</text>
+  <text x="152" y="169" font-size="4.5" fill="#3a5a80" font-family="monospace">09:12</text>
+  <rect x="201" y="55" width="195" height="141" rx="4" fill="#060e1c" stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
+  <text x="207" y="65" font-size="5.5" fill="#3b82f6" font-family="monospace" font-weight="bold">אתרים בפיקוח</text>
+  <rect x="205" y="68" width="187" height="9" rx="2" fill="#0f1f3a"/>
+  <text x="209" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">אתר</text>
+  <text x="315" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">שומרים</text>
+  <text x="360" y="74" font-size="4.5" fill="#3a5a80" font-family="monospace">מצב</text>
+  <rect x="205" y="78" width="187" height="9" fill="#0a1628"/>
+  <text x="209" y="84" font-size="4.5" fill="#90b8d8" font-family="monospace">מולטי פלאזה</text>
+  <text x="318" y="84" font-size="4.5" fill="#90b8d8" font-family="monospace">3</text>
+  <rect x="354" y="79" width="34" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="371" y="84" font-size="4" fill="#22c55e" font-family="monospace" text-anchor="middle">תקין</text>
+  <rect x="205" y="88" width="187" height="9" fill="#0c1830"/>
+  <text x="209" y="94" font-size="4.5" fill="#90b8d8" font-family="monospace">מגדל עזריאלי</text>
+  <text x="318" y="94" font-size="4.5" fill="#90b8d8" font-family="monospace">4</text>
+  <rect x="354" y="89" width="34" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="371" y="94" font-size="4" fill="#22c55e" font-family="monospace" text-anchor="middle">תקין</text>
+  <rect x="205" y="98" width="187" height="9" fill="#0a1628"/>
+  <text x="209" y="104" font-size="4.5" fill="#90b8d8" font-family="monospace">בית חולים</text>
+  <text x="318" y="104" font-size="4.5" fill="#90b8d8" font-family="monospace">5</text>
+  <rect x="354" y="99" width="34" height="7" rx="3.5" fill="rgba(239,68,68,0.2)"/>
+  <text x="371" y="104" font-size="4" fill="#ef4444" font-family="monospace" text-anchor="middle">התרעה</text>
+  <rect x="205" y="108" width="187" height="9" fill="#0c1830"/>
+  <text x="209" y="114" font-size="4.5" fill="#90b8d8" font-family="monospace">מחסן לוגיסטי</text>
+  <text x="318" y="114" font-size="4.5" fill="#90b8d8" font-family="monospace">2</text>
+  <rect x="354" y="109" width="34" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="371" y="114" font-size="4" fill="#22c55e" font-family="monospace" text-anchor="middle">תקין</text>
+  <rect x="205" y="126" width="187" height="66" rx="3" fill="#0a1628" stroke="rgba(59,130,246,0.1)" stroke-width="1"/>
+  <text x="298" y="136" font-size="4.5" fill="#3a5a80" font-family="monospace" text-anchor="middle">אירועים שבועיים</text>
+  <rect x="212" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="212" y="154" width="18" height="30" rx="2" fill="#3b82f6" opacity=".55"/>
+  <rect x="234" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="234" y="159" width="18" height="25" rx="2" fill="#3b82f6" opacity=".55"/>
+  <rect x="256" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="256" y="151" width="18" height="33" rx="2" fill="#3b82f6" opacity=".55"/>
+  <rect x="278" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="278" y="164" width="18" height="20" rx="2" fill="#ef4444" opacity=".45"/>
+  <rect x="300" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="300" y="156" width="18" height="28" rx="2" fill="#3b82f6" opacity=".55"/>
+  <rect x="322" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="322" y="149" width="18" height="35" rx="2" fill="#3b82f6" opacity=".65"/>
+  <rect x="344" y="144" width="18" height="40" rx="2" fill="#0d1c38"/>
+  <rect x="344" y="161" width="18" height="23" rx="2" fill="#3b82f6" opacity=".55"/>
+  <text x="257" y="192" font-size="4" fill="#3b82f6" font-family="monospace" text-anchor="middle">&#x05d0;&apos;-&#x05e9;&apos;</text>
+  <path d="M2 1 L2 11 M2 1 L12 1" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 1 L398 11 M398 1 L388 1" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M2 199 L2 189 M2 199 L12 199" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 199 L398 189 M398 199 L388 199" stroke="#3b82f6" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול חברת שמירה</h3>
+          <p class="proj-desc">ניהול שומרים, תפקידים, אתרים, סיורים ולו"ז משמרות. התראות WhatsApp לשינויים.</p>
+        </div>
+      </div>
+
+      <!-- 8 Garage -->
+      <div class="proj rev d1">
+        <div class="proj-img" style="background:#100c08">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+  <defs>
+    <pattern id="pg8" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0 L0 0 0 30" fill="none" stroke="rgba(234,88,12,0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="200" fill="#070400"/>
+  <rect width="400" height="200" fill="url(#pg8)"/>
+  <rect width="400" height="22" fill="#1c1006"/>
+  <rect width="400" height="1" y="22" fill="rgba(234,88,12,0.35)"/>
+  <circle cx="12" cy="11" r="5.5" fill="#ef4444" opacity=".8"/>
+  <circle cx="26" cy="11" r="5.5" fill="#f59e0b" opacity=".8"/>
+  <circle cx="40" cy="11" r="5.5" fill="#22c55e" opacity=".8"/>
+  <text x="214" y="14.5" font-size="6.5" fill="#c07030" font-family="monospace" text-anchor="middle" font-weight="bold">GarageMS</text>
+  <circle cx="376" cy="11" r="3" fill="#22c55e"><animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/></circle>
+  <text x="382" y="14" font-size="4.5" fill="#22c55e" font-family="monospace">פעיל</text>
+  <rect x="0" y="23" width="28" height="177" fill="#120c04"/>
+  <rect x="28" y="23" width="1" height="177" fill="rgba(234,88,12,0.25)"/>
+  <rect x="5" y="30" width="18" height="15" rx="3" fill="#ea580c" opacity=".9"/>
+  <rect x="8" y="33" width="12" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="36.5" width="9" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="8" y="40" width="11" height="2" rx="1" fill="white" opacity=".9"/>
+  <rect x="5" y="52" width="18" height="15" rx="3" fill="rgba(234,88,12,0.12)"/>
+  <rect x="8" y="55" width="5" height="5" rx="1" fill="#ea580c" opacity=".45"/>
+  <rect x="15" y="55" width="5" height="5" rx="1" fill="#ea580c" opacity=".45"/>
+  <rect x="8" y="62" width="5" height="3" rx="1" fill="#ea580c" opacity=".45"/>
+  <rect x="15" y="62" width="5" height="3" rx="1" fill="#ea580c" opacity=".45"/>
+  <rect x="5" y="74" width="18" height="15" rx="3" fill="rgba(234,88,12,0.12)"/>
+  <circle cx="14" cy="81.5" r="4.5" fill="none" stroke="#ea580c" stroke-width="1.2" opacity=".45"/>
+  <circle cx="14" cy="81.5" r="1.8" fill="#ea580c" opacity=".45"/>
+  <rect x="5" y="96" width="18" height="15" rx="3" fill="rgba(234,88,12,0.1)"/>
+  <rect x="7" y="99" width="14" height="1.5" rx="1" fill="#ea580c" opacity=".4"/>
+  <rect x="7" y="103" width="14" height="1.5" rx="1" fill="#ea580c" opacity=".4"/>
+  <rect x="7" y="107" width="10" height="1.5" rx="1" fill="#ea580c" opacity=".4"/>
+  <rect x="4" y="28" width="88" height="24" rx="3" fill="#140c04" stroke="rgba(234,88,12,0.2)" stroke-width="1"/>
+  <text x="48" y="39" font-size="12" font-weight="bold" fill="#ea580c" font-family="monospace" text-anchor="middle">47</text>
+  <text x="48" y="48" font-size="4" fill="#5a3010" font-family="monospace" text-anchor="middle">רכבים בצי</text>
+  <rect x="98" y="28" width="88" height="24" rx="3" fill="#140c04" stroke="rgba(239,68,68,0.15)" stroke-width="1"/>
+  <text x="142" y="39" font-size="13" font-weight="bold" fill="#ef4444" font-family="monospace" text-anchor="middle">8</text>
+  <text x="142" y="48" font-size="4" fill="#5a3010" font-family="monospace" text-anchor="middle">בטיפול</text>
+  <rect x="192" y="28" width="88" height="24" rx="3" fill="#140c04" stroke="rgba(245,158,11,0.15)" stroke-width="1"/>
+  <text x="236" y="39" font-size="13" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">3</text>
+  <text x="236" y="48" font-size="4" fill="#5a3010" font-family="monospace" text-anchor="middle">מתוכננים</text>
+  <rect x="286" y="28" width="110" height="24" rx="3" fill="#140c04" stroke="rgba(34,197,94,0.15)" stroke-width="1"/>
+  <text x="341" y="39" font-size="12" font-weight="bold" fill="#22c55e" font-family="monospace" text-anchor="middle">92%</text>
+  <text x="341" y="48" font-size="4" fill="#5a3010" font-family="monospace" text-anchor="middle">זמינות צי הרכב</text>
+  <rect x="4" y="55" width="252" height="141" rx="4" fill="#0e0800" stroke="rgba(234,88,12,0.12)" stroke-width="1"/>
+  <text x="10" y="65" font-size="5.5" fill="#ea580c" font-family="monospace" font-weight="bold">רשימת רכבים</text>
+  <rect x="8" y="68" width="244" height="9" rx="2" fill="#1a1004"/>
+  <text x="12" y="74" font-size="4.5" fill="#7a5020" font-family="monospace">רכב</text>
+  <text x="68" y="74" font-size="4.5" fill="#7a5020" font-family="monospace">סוג</text>
+  <text x="158" y="74" font-size="4.5" fill="#7a5020" font-family="monospace">קמ</text>
+  <text x="210" y="74" font-size="4.5" fill="#7a5020" font-family="monospace">מצב</text>
+  <rect x="8" y="78" width="244" height="10" fill="#160e02"/>
+  <text x="12" y="85" font-size="4.5" fill="#c89050" font-family="monospace">M-123</text>
+  <text x="68" y="85" font-size="4.5" fill="#c89050" font-family="monospace">ג׳יפ אמריקאי</text>
+  <text x="154" y="85" font-size="4.5" fill="#c89050" font-family="monospace">42,300</text>
+  <rect x="202" y="79" width="42" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="223" y="84" font-size="4" fill="#22c55e" font-family="monospace" text-anchor="middle">תקין</text>
+  <rect x="8" y="89" width="244" height="10" fill="#1a1004"/>
+  <text x="12" y="96" font-size="4.5" fill="#c89050" font-family="monospace">M-205</text>
+  <text x="68" y="96" font-size="4.5" fill="#c89050" font-family="monospace">הומר H3</text>
+  <text x="154" y="96" font-size="4.5" fill="#c89050" font-family="monospace">18,900</text>
+  <rect x="202" y="90" width="42" height="7" rx="3.5" fill="rgba(239,68,68,0.2)"/>
+  <text x="223" y="95" font-size="4" fill="#ef4444" font-family="monospace" text-anchor="middle">בתיקון</text>
+  <rect x="8" y="100" width="244" height="10" fill="#160e02"/>
+  <text x="12" y="107" font-size="4.5" fill="#c89050" font-family="monospace">M-318</text>
+  <text x="68" y="107" font-size="4.5" fill="#c89050" font-family="monospace">נגמשון</text>
+  <text x="154" y="107" font-size="4.5" fill="#c89050" font-family="monospace">67,100</text>
+  <rect x="202" y="101" width="42" height="7" rx="3.5" fill="rgba(239,68,68,0.2)"/>
+  <text x="223" y="106" font-size="4" fill="#ef4444" font-family="monospace" text-anchor="middle">בתיקון</text>
+  <rect x="8" y="111" width="244" height="10" fill="#1a1004"/>
+  <text x="12" y="118" font-size="4.5" fill="#c89050" font-family="monospace">M-401</text>
+  <text x="68" y="118" font-size="4.5" fill="#c89050" font-family="monospace">ג׳יפ אמריקאי</text>
+  <text x="154" y="118" font-size="4.5" fill="#c89050" font-family="monospace">31,500</text>
+  <rect x="202" y="112" width="42" height="7" rx="3.5" fill="rgba(34,197,94,0.15)"/>
+  <text x="223" y="117" font-size="4" fill="#22c55e" font-family="monospace" text-anchor="middle">תקין</text>
+  <rect x="8" y="122" width="244" height="10" fill="#160e02"/>
+  <text x="12" y="129" font-size="4.5" fill="#c89050" font-family="monospace">M-512</text>
+  <text x="68" y="129" font-size="4.5" fill="#c89050" font-family="monospace">אמבולנס</text>
+  <text x="154" y="129" font-size="4.5" fill="#c89050" font-family="monospace">12,700</text>
+  <rect x="202" y="123" width="42" height="7" rx="3.5" fill="rgba(245,158,11,0.2)"/>
+  <text x="223" y="128" font-size="4" fill="#f59e0b" font-family="monospace" text-anchor="middle">מתוכנן</text>
+  <rect x="8" y="136" width="244" height="56" rx="3" fill="#1a1004" stroke="rgba(234,88,12,0.1)" stroke-width="1"/>
+  <text x="12" y="146" font-size="5.5" fill="#ea580c" font-family="monospace" font-weight="bold">שירותים פתוחים</text>
+  <rect x="10" y="149" width="240" height="9" rx="2" fill="#160e02"/>
+  <rect x="10" y="149" width="3" height="9" rx="1" fill="#ea580c"/>
+  <text x="16" y="155" font-size="4.5" fill="#c89050" font-family="monospace">בדיקת שמן — M-123</text>
+  <text x="214" y="155" font-size="4.5" fill="#7a5020" font-family="monospace">2ד</text>
+  <rect x="10" y="159" width="240" height="9" rx="2" fill="#1a1004"/>
+  <rect x="10" y="159" width="3" height="9" rx="1" fill="#ef4444"/>
+  <text x="16" y="165" font-size="4.5" fill="#c89050" font-family="monospace">החלפת בלמים — M-205</text>
+  <text x="214" y="165" font-size="4.5" fill="#7a5020" font-family="monospace">5ד</text>
+  <rect x="10" y="169" width="240" height="9" rx="2" fill="#160e02"/>
+  <rect x="10" y="169" width="3" height="9" rx="1" fill="#f59e0b"/>
+  <text x="16" y="175" font-size="4.5" fill="#c89050" font-family="monospace">טיפול שנתי — M-318</text>
+  <text x="214" y="175" font-size="4.5" fill="#7a5020" font-family="monospace">3ש</text>
+  <rect x="260" y="55" width="136" height="141" rx="4" fill="#0e0800" stroke="rgba(234,88,12,0.12)" stroke-width="1"/>
+  <text x="266" y="65" font-size="5.5" fill="#ea580c" font-family="monospace" font-weight="bold">מכונאים</text>
+  <rect x="264" y="68" width="128" height="9" rx="2" fill="#1a1004"/>
+  <text x="268" y="74" font-size="4.5" fill="#c89050" font-family="monospace">דן שיר</text>
+  <text x="328" y="74" font-size="4.5" fill="#7a5020" font-family="monospace">מנוע</text>
+  <circle cx="385" cy="72.5" r="3" fill="#22c55e"/>
+  <rect x="264" y="78" width="128" height="9" rx="2" fill="#160e02"/>
+  <text x="268" y="84" font-size="4.5" fill="#c89050" font-family="monospace">רוני כרמל</text>
+  <text x="328" y="84" font-size="4.5" fill="#7a5020" font-family="monospace">חשמל</text>
+  <circle cx="385" cy="82.5" r="3" fill="#22c55e"/>
+  <rect x="264" y="88" width="128" height="9" rx="2" fill="#1a1004"/>
+  <text x="268" y="94" font-size="4.5" fill="#c89050" font-family="monospace">עמי זהבי</text>
+  <text x="328" y="94" font-size="4.5" fill="#7a5020" font-family="monospace">גוף רכב</text>
+  <circle cx="385" cy="92.5" r="3" fill="#f59e0b"/>
+  <rect x="264" y="108" width="128" height="84" rx="3" fill="#160e02" stroke="rgba(234,88,12,0.1)" stroke-width="1"/>
+  <text x="328" y="118" font-size="4.5" fill="#7a5020" font-family="monospace" text-anchor="middle">מעקב שבועי</text>
+  <polyline points="268,183 282,176 296,178 310,170 324,174 338,166 352,168 386,160" fill="none" stroke="#ea580c" stroke-width="1.5" opacity=".8"/>
+  <polygon points="268,183 282,176 296,178 310,170 324,174 338,166 352,168 386,160 386,183" fill="rgba(234,88,12,0.08)"/>
+  <path d="M2 1 L2 11 M2 1 L12 1" stroke="#ea580c" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 1 L398 11 M398 1 L388 1" stroke="#ea580c" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M2 199 L2 189 M2 199 L12 199" stroke="#ea580c" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M398 199 L398 189 M398 199 L388 199" stroke="#ea580c" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול מוסך</h3>
+          <p class="proj-desc">ניהול תורים, עבודות, מכונאים, מלאי חלקים ולקוחות. SMS אוטומטי לסיום טיפול.</p>
+        </div>
+      </div>
+
+      <!-- 9 Shooting Range -->
+      <div class="proj rev d2">
+        <div class="proj-img" style="background:#0a0812">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+<defs>
+  <pattern id="pg9" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <path d="M20 0 L0 0 0 20" fill="none" stroke="rgba(168,85,247,0.05)" stroke-width="1"/>
+  </pattern>
+</defs>
+<rect width="400" height="200" fill="#0a0812"/>
+<rect width="400" height="200" fill="url(#pg9)"/>
+<rect width="400" height="8" fill="rgba(239,68,68,0.2)"/>
+<text x="200" y="6" font-size="4.5" fill="#ef4444" font-family="monospace" text-anchor="middle" letter-spacing="1.5">&#9679; CLASSIFIED &#9679; מסווג &#9679;</text>
+<rect width="400" height="18" y="8" fill="#140a22"/>
+<rect width="400" height="1" y="25" fill="rgba(168,85,247,0.5)"/>
+<circle cx="11" cy="17" r="5" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+<circle cx="11" cy="17" r="1.8" fill="#a855f7"/>
+<line x1="11" y1="11" x2="11" y2="9" stroke="#a855f7" stroke-width="1"/>
+<line x1="11" y1="23" x2="11" y2="25" stroke="#a855f7" stroke-width="1"/>
+<line x1="5" y1="17" x2="3" y2="17" stroke="#a855f7" stroke-width="1"/>
+<line x1="17" y1="17" x2="19" y2="17" stroke="#a855f7" stroke-width="1"/>
+<text x="21" y="20" font-size="7" fill="#c084fc" font-family="monospace" font-weight="bold">RANGE-OPS | איתור ירי</text>
+<circle cx="340" cy="17" r="2.5" fill="#4ade80"><animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+<text x="345" y="20" font-size="4.5" fill="#4ade80" font-family="monospace">LIVE</text>
+<text x="220" y="20" font-size="4" fill="rgba(168,85,247,0.5)" font-family="monospace">31&#176;21'N  034&#176;27'E</text>
+<rect x="4" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="48" y="38" font-size="12" font-weight="bold" fill="#a855f7" font-family="monospace" text-anchor="middle">6</text>
+<text x="48" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">סדרים היום</text>
+<rect x="97" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="141" y="38" font-size="12" font-weight="bold" fill="#c084fc" font-family="monospace" text-anchor="middle">143</text>
+<text x="141" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">יורים שירותו</text>
+<rect x="190" y="28" width="88" height="26" rx="2" fill="#100820"/>
+<text x="234" y="38" font-size="12" font-weight="bold" fill="#4ade80" font-family="monospace" text-anchor="middle">98%</text>
+<text x="234" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">אחוז עברו</text>
+<rect x="283" y="28" width="113" height="26" rx="2" fill="#100820"/>
+<text x="339" y="38" font-size="12" font-weight="bold" fill="#f59e0b" font-family="monospace" text-anchor="middle">12</text>
+<text x="339" y="49" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">פעילים עכשיו</text>
+<rect x="4" y="57" width="252" height="139" rx="3" fill="#0d0617"/>
+<text x="10" y="67" font-size="5.5" fill="#c084fc" font-family="monospace" font-weight="bold">לוח סדרים</text>
+<rect x="8" y="70" width="244" height="9" rx="2" fill="#1e0a38"/>
+<text x="12" y="76" font-size="5" fill="#c084fc" font-family="monospace">שעה</text>
+<text x="60" y="76" font-size="5" fill="#c084fc" font-family="monospace">יחידה</text>
+<text x="160" y="76" font-size="5" fill="#c084fc" font-family="monospace">כלי</text>
+<text x="210" y="76" font-size="5" fill="#c084fc" font-family="monospace">סטאטוס</text>
+<rect x="8" y="80" width="244" height="10" fill="#0e0618"/>
+<text x="12" y="87" font-size="5" fill="#a896cc" font-family="monospace">07:00</text>
+<text x="60" y="87" font-size="5" fill="#a896cc" font-family="monospace">מחלקה א'</text>
+<text x="160" y="87" font-size="5" fill="#a896cc" font-family="monospace">M4</text>
+<rect x="203" y="81" width="40" height="7" rx="3" fill="rgba(168,85,247,0.2)"/>
+<text x="223" y="86" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">הושלם</text>
+<rect x="8" y="91" width="244" height="10" fill="#0d0617"/>
+<text x="12" y="98" font-size="5" fill="#a896cc" font-family="monospace">09:30</text>
+<text x="60" y="98" font-size="5" fill="#a896cc" font-family="monospace">מחלקה ב'</text>
+<text x="160" y="98" font-size="5" fill="#a896cc" font-family="monospace">עוזי</text>
+<rect x="203" y="92" width="40" height="7" rx="3" fill="rgba(168,85,247,0.3)"/>
+<text x="223" y="97" font-size="4.5" fill="#a855f7" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="8" y="102" width="244" height="10" fill="#0e0618"/>
+<text x="12" y="109" font-size="5" fill="#a896cc" font-family="monospace">11:00</text>
+<text x="60" y="109" font-size="5" fill="#a896cc" font-family="monospace">פלוגה ג'</text>
+<text x="160" y="109" font-size="5" fill="#a896cc" font-family="monospace">M16</text>
+<rect x="203" y="103" width="40" height="7" rx="3" fill="rgba(168,85,247,0.3)"/>
+<text x="223" y="108" font-size="4.5" fill="#a855f7" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="8" y="113" width="244" height="10" fill="#0d0617"/>
+<text x="12" y="120" font-size="5" fill="#a896cc" font-family="monospace">14:00</text>
+<text x="60" y="120" font-size="5" fill="#a896cc" font-family="monospace">צלפים</text>
+<text x="160" y="120" font-size="5" fill="#a896cc" font-family="monospace">עוזי</text>
+<rect x="203" y="114" width="40" height="7" rx="3" fill="rgba(168,85,247,0.12)"/>
+<text x="223" y="119" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">מתוכנן</text>
+<rect x="8" y="124" width="244" height="10" fill="#0e0618"/>
+<text x="12" y="131" font-size="5" fill="#a896cc" font-family="monospace">16:30</text>
+<text x="60" y="131" font-size="5" fill="#a896cc" font-family="monospace">מחלקה ג'</text>
+<text x="160" y="131" font-size="5" fill="#a896cc" font-family="monospace">M4</text>
+<rect x="203" y="125" width="40" height="7" rx="3" fill="rgba(168,85,247,0.12)"/>
+<text x="223" y="130" font-size="4.5" fill="#7c6a9b" font-family="monospace" text-anchor="middle">מתוכנן</text>
+<rect x="8" y="138" width="244" height="52" rx="3" fill="#1e0a38"/>
+<text x="12" y="148" font-size="5.5" fill="#c084fc" font-family="monospace" font-weight="bold">תוצאות אחרונות</text>
+<rect x="10" y="151" width="120" height="7" rx="1" fill="#0d0617"/>
+<rect x="10" y="151" width="118" height="7" rx="1" fill="#a855f7" opacity=".45"/>
+<text x="133" y="156" font-size="4.5" fill="#c084fc" font-family="monospace">דוד מימון — 98%</text>
+<rect x="10" y="159" width="120" height="7" rx="1" fill="#0d0617"/>
+<rect x="10" y="159" width="110" height="7" rx="1" fill="#a855f7" opacity=".45"/>
+<text x="133" y="164" font-size="4.5" fill="#c084fc" font-family="monospace">רונית שלום — 91%</text>
+<rect x="10" y="167" width="120" height="7" rx="1" fill="#0d0617"/>
+<rect x="10" y="167" width="104" height="7" rx="1" fill="#f59e0b" opacity=".45"/>
+<text x="133" y="172" font-size="4.5" fill="#f59e0b" font-family="monospace">גדי קוהן — 87%</text>
+<rect x="10" y="175" width="120" height="7" rx="1" fill="#0d0617"/>
+<rect x="10" y="175" width="96" height="7" rx="1" fill="#f59e0b" opacity=".45"/>
+<text x="133" y="180" font-size="4.5" fill="#f59e0b" font-family="monospace">יוסי לבי — 80%</text>
+<rect x="260" y="57" width="136" height="139" rx="3" fill="#0d0617"/>
+<text x="266" y="67" font-size="5.5" fill="#c084fc" font-family="monospace" font-weight="bold">אשכולים</text>
+<rect x="264" y="70" width="128" height="28" rx="2" fill="#0e0618"/>
+<text x="266" y="78" font-size="5" fill="#a896cc" font-family="monospace">אשכול 1 — M4</text>
+<rect x="264" y="80" width="128" height="5" rx="1" fill="#1a1030"/>
+<rect x="264" y="80" width="121" height="5" rx="1" fill="#a855f7" opacity=".4"/>
+<rect x="264" y="87" width="40" height="7" rx="2" fill="rgba(168,85,247,0.2)"/>
+<text x="284" y="92" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="264" y="100" width="128" height="28" rx="2" fill="#0e0618"/>
+<text x="266" y="108" font-size="5" fill="#a896cc" font-family="monospace">אשכול 2 — עוזי</text>
+<rect x="264" y="110" width="128" height="5" rx="1" fill="#1a1030"/>
+<rect x="264" y="110" width="80" height="5" rx="1" fill="#f59e0b" opacity=".4"/>
+<rect x="264" y="117" width="40" height="7" rx="2" fill="rgba(168,85,247,0.2)"/>
+<text x="284" y="122" font-size="4.5" fill="#a855f7" font-family="monospace" text-anchor="middle">פתוח</text>
+<rect x="264" y="130" width="128" height="28" rx="2" fill="#0e0618"/>
+<text x="266" y="138" font-size="5" fill="#a896cc" font-family="monospace">אשכול 3 — M16</text>
+<rect x="264" y="140" width="128" height="5" rx="1" fill="#1a1030"/>
+<rect x="264" y="140" width="124" height="5" rx="1" fill="#a855f7" opacity=".4"/>
+<rect x="264" y="147" width="40" height="7" rx="2" fill="rgba(168,85,247,0.2)"/>
+<text x="284" y="152" font-size="4.5" fill="#c084fc" font-family="monospace" text-anchor="middle">פעיל</text>
+<rect x="264" y="160" width="128" height="28" rx="2" fill="#0e0618"/>
+<text x="266" y="168" font-size="5" fill="#a896cc" font-family="monospace">אשכול 4 — סניפר</text>
+<rect x="264" y="170" width="128" height="5" rx="1" fill="#1a1030"/>
+<rect x="264" y="170" width="30" height="5" rx="1" fill="#ef4444" opacity=".4"/>
+<rect x="264" y="177" width="50" height="7" rx="2" fill="rgba(245,158,11,0.15)"/>
+<text x="289" y="182" font-size="4.5" fill="#f59e0b" font-family="monospace" text-anchor="middle">תחזוקה</text>
+<path d="M2 1 L2 11 M2 1 L12 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 1 L398 11 M398 1 L388 1" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M2 199 L2 189 M2 199 L12 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+<path d="M398 199 L398 189 M398 199 L388 199" stroke="#a855f7" stroke-width="1.5" fill="none" opacity=".7"/>
+</svg>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול מטווח</h3>
+          <p class="proj-desc">ניהול מסלולי ירי, הזמנות, בטיחות, ניהול נשק ותחמושת ורישום יורים.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="proj-cta">
+      <p>רוצים לראות דוגמה של הפרויקטים?</p>
+      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p">לחצו כאן לתיאום פגישת זום</a>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="tech" id="tech">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">טכנולוגיות</span>
+      <h2 class="sec-title">הכלים <span class="grad">שלנו</span></h2>
+    </div>
+    <div class="tech-grid">
+      <!-- HTML5 -->
+      <div class="tech-item rev d1">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg></div>
+        <div class="t-name">HTML5</div>
+      </div>
+      <!-- JavaScript -->
+      <div class="tech-item rev d1">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.755-1.125 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855l-.127-.196-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg></div>
+        <div class="t-name">JavaScript</div>
+      </div>
+      <!-- Firebase -->
+      <div class="tech-item rev d2">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M3.89 15.672L6.255.461A.542.542 0 017.27.288l2.543 4.771zm16.794 3.692l-2.25-14a.54.54 0 00-.919-.295L3.316 19.365l7.856 4.427a1.621 1.621 0 001.588 0zM14.3 8.723l-1.475-2.792a.54.54 0 00-.965 0L3.456 19.136z"/></svg></div>
+        <div class="t-name">Firebase</div>
+      </div>
+      <!-- CSS3 -->
+      <div class="tech-item rev d2">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"/></svg></div>
+        <div class="t-name">CSS3</div>
+      </div>
+      <!-- PWA -->
+      <div class="tech-item rev d3">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14zm-5 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zM9 7h2v4H9zm4 0h2v4h-2zm-4 5h2v2H9zm4 0h2v2h-2z"/></svg></div>
+        <div class="t-name">PWA</div>
+      </div>
+      <!-- WhatsApp -->
+      <div class="tech-item rev d3">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <div class="t-name">WhatsApp API</div>
+      </div>
+      <!-- PDF -->
+      <div class="tech-item rev d4">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg></div>
+        <div class="t-name">PDF</div>
+      </div>
+      <!-- Google Sheets -->
+      <div class="tech-item rev d4">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/></svg></div>
+        <div class="t-name">Google Sheets</div>
+      </div>
+      <!-- Service Workers -->
+      <div class="tech-item rev d1">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
+        <div class="t-name">Service Workers</div>
+      </div>
+      <!-- RTL / Hebrew -->
+      <div class="tech-item rev d2">
+        <div class="t-ico"><svg viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7l-4-4v3H2v2h2v3l4-4z"/></svg></div>
+        <div class="t-name">RTL / Hebrew</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <!-- Background gear -->
+  <svg class="contact-gear cw2" viewBox="0 0 100 100">
+    <g fill="#f0a500" transform="translate(50,50)">
+      <rect x="-6" y="-46" width="12" height="20" rx="3"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(30)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(60)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(90)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(120)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(150)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(180)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(210)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(240)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(270)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(300)"/>
+      <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(330)"/>
+      <circle r="33"/><circle r="14" fill="#0d0d14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="con-grid">
+      <div class="con-info rev">
+        <span class="tag">צור קשר</span>
+        <h2>מוכנים <span class="grad">להתחיל?</span></h2>
+        <p>צור איתנו קשר עוד היום ונבנה יחד את המערכת שהארגון שלך צריך.</p>
+        <div class="con-items">
+          <a href="tel:054-2012000" class="con-item">
+            <div class="cico cico-p"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012.04 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <span dir="ltr">054-2012000</span>
+          </a>
+          <a href="https://wa.me/972542012000" target="_blank" rel="noopener" class="con-item">
+            <div class="cico cico-w"><svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+            <span>שלח הודעת WhatsApp</span>
+          </a>
+        </div>
+      </div>
+      <div class="con-form rev d2">
+        <h3 style="margin-bottom:22px;font-size:1.15rem;">צרו קשר</h3>
+        <form id="cForm" onsubmit="sendForm(event)">
+          <div class="fg">
+            <label for="fn">שם מלא</label>
+            <input type="text" id="fn" placeholder="הכנס את שמך" required>
+          </div>
+          <div class="fg">
+            <label for="fp">טלפון</label>
+            <input type="tel" id="fp" placeholder="050-0000000">
+          </div>
+          <div class="fg">
+            <label for="fm">תיאור הצורך</label>
+            <textarea id="fm" placeholder="ספר לנו מה אתה צריך..." required></textarea>
+          </div>
+          <button type="submit" class="btn-send" id="sbtn">שלח הודעה ←</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <span class="foot-logo orb">DAGHAZAHAV</span>
+      <span class="foot-copy">© 2026 DAGHAZAHAV. כל הזכויות שמורות.</span>
+      <a href="tel:054-2012000" class="foot-phone">054-2012000</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 50));
+
+// Mobile menu
+function openMob()  { document.getElementById('mobMenu').classList.add('open');    document.body.style.overflow='hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow=''; }
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+
+// Counter animation
+function runCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const prefix = el.dataset.prefix || '';
+  const dur = 1800, start = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const v = Math.round((1 - Math.pow(1-p, 3)) * target);
+    el.textContent = (p === 1 ? prefix : '') + v + (p === 1 ? suffix : '');
+    if (p < 1) requestAnimationFrame(tick);
+  })(start);
+}
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ runCounter(e.target); cntObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => cntObs.observe(el));
+
+// Contact form → WhatsApp
+function sendForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('fn').value;
+  const phone = document.getElementById('fp').value;
+  const msg  = document.getElementById('fm').value;
+  const btn  = document.getElementById('sbtn');
+  const text = `שלום, אני ${name}${phone ? ' | ' + phone : ''}\n\n${msg}`;
+  btn.textContent = '✓ מעביר לWhatsApp...';
+  btn.style.background = 'linear-gradient(135deg,#25d366,#128c7e)';
+  setTimeout(() => {
+    window.open('https://wa.me/972542012000?text=' + encodeURIComponent(text), '_blank');
+    btn.textContent = 'שלח הודעה ←';
+    btn.style.background = '';
+    document.getElementById('cForm').reset();
+  }, 900);
+}
+
+// Process timeline auto-cycling glow
+(function() {
+  const steps = document.querySelectorAll('.step-n');
+  if (!steps.length) return;
+  let idx = 0;
+  steps[0].classList.add('pulse');
+  setInterval(() => {
+    steps[idx].classList.remove('pulse');
+    idx = (idx + 1) % steps.length;
+    steps[idx].classList.add('pulse');
+  }, 1500);
+})();
+
+// Smooth scroll offset for fixed nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 76, behavior:'smooth' }); }
+  });
+});
+</script>
+
+<!-- Content loader: fetches content.json and populates editable fields -->
+<script>
+(function(){
+  fetch('content.json?t='+Date.now()).then(function(r){return r.json();}).then(function(c){
+    var $=function(s){return document.querySelector(s);};
+    var $$=function(s){return document.querySelectorAll(s);};
+
+    // Hero
+    var hb=$('.hero-badge'); if(hb) hb.textContent=c.hero.badge;
+    var ht=$('.hero-title'); if(ht) ht.innerHTML=c.hero.title+'<br><span class="grad">'+c.hero.titleGrad+'</span>';
+    var hd=$('.hero-desc'); if(hd) hd.textContent=c.hero.description;
+
+    // About heading + paragraphs
+    var ah=$('.about .sec-title'); if(ah) ah.textContent=c.about.heading;
+    var ap=$$('.about .about-grid .rev > p');
+    if(ap[0]) ap[0].textContent=c.about.paragraph1;
+    if(ap[1]) ap[1].textContent=c.about.paragraph2;
+
+    // Value cards
+    var vals=$$('.val');
+    (c.about.values||[]).forEach(function(v,i){
+      if(!vals[i]) return;
+      var h3=vals[i].querySelector('h3'); if(h3) h3.textContent=v.title;
+      var p=vals[i].querySelector('p');   if(p)  p.textContent=v.text;
+    });
+
+    // Projects
+    $$('.proj-title').forEach(function(el,i){ if(c.projects[i]) el.textContent=c.projects[i].title; });
+    $$('.proj-desc').forEach(function(el,i){ if(c.projects[i]) el.textContent=c.projects[i].description; });
+
+    // Contact
+    var ch=$('.con-info h2'); if(ch) ch.textContent=c.contact.heading;
+    var cp=$('.con-info > p'); if(cp) cp.textContent=c.contact.description;
+    var phoneLink=$('a.con-item[href^="tel:"]');
+    if(phoneLink){ phoneLink.href='tel:'+c.contact.phone; var ps=phoneLink.querySelector('span[dir="ltr"]'); if(ps) ps.textContent=c.contact.phone; }
+    var fp=$('.foot-phone'); if(fp){ fp.textContent=c.contact.phone; fp.href='tel:'+c.contact.phone; }
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

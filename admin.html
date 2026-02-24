@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פאנל ניהול — DAGHAZAHAV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #0a0a0f;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(99,102,241,0.25);
+  }
+  .top-bar h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #a5b4fc;
+    letter-spacing: 1px;
+  }
+  .top-bar span {
+    font-size: 12px;
+    color: #64748b;
+  }
+  .btn-open {
+    padding: 8px 18px;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-open:hover { background: rgba(99,102,241,0.28); }
+
+  .section {
+    background: #111118;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .section-header:hover { background: rgba(99,102,241,0.07); }
+  .section-header.open { border-bottom-color: rgba(99,102,241,0.18); }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #c7d2fe;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(99,102,241,0.18);
+    border-radius: 20px;
+    color: #818cf8;
+    font-weight: 500;
+  }
+  .chevron {
+    color: #4f5982;
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+  .chevron.open { transform: rotate(180deg); }
+  .section-body {
+    padding: 20px;
+    display: none;
+  }
+  .section-body.open { display: block; }
+
+  .field-row {
+    margin-bottom: 16px;
+  }
+  .field-row label {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 6px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .field-row input, .field-row textarea {
+    width: 100%;
+    background: #0d0d16;
+    border: 1px solid rgba(99,102,241,0.22);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    font-family: inherit;
+    direction: rtl;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .field-row input:focus, .field-row textarea:focus {
+    border-color: rgba(99,102,241,0.6);
+  }
+  .field-row textarea { min-height: 70px; }
+
+  .value-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media(max-width: 700px) { .value-cards { grid-template-columns: 1fr; } }
+  .val-card {
+    background: #0d0d16;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .val-card label {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 6px;
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .val-card input {
+    width: 100%;
+    background: #111118;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 13px;
+    padding: 7px 10px;
+    outline: none;
+    margin-bottom: 8px;
+    direction: rtl;
+    font-family: inherit;
+  }
+  .val-card textarea {
+    width: 100%;
+    background: #111118;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 13px;
+    padding: 7px 10px;
+    outline: none;
+    font-family: inherit;
+    direction: rtl;
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .projects-list { display: flex; flex-direction: column; gap: 10px; }
+  .proj-item {
+    background: #0d0d16;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 10px;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 32px 1fr 2fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .proj-num {
+    font-size: 12px;
+    color: #4f5982;
+    font-weight: 700;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .proj-item input, .proj-item textarea {
+    width: 100%;
+    background: #111118;
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 13px;
+    padding: 7px 10px;
+    outline: none;
+    font-family: inherit;
+    direction: rtl;
+    transition: border-color 0.2s;
+  }
+  .proj-item input:focus, .proj-item textarea:focus { border-color: rgba(99,102,241,0.5); }
+  .proj-item textarea { min-height: 60px; resize: vertical; }
+  .proj-labels { display: flex; gap: 8px; margin-bottom: 6px; }
+  .proj-labels span { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  .proj-col { display: flex; flex-direction: column; }
+  .proj-col label { font-size: 10px; color: #64748b; margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  .save-bar {
+    position: sticky;
+    bottom: 0;
+    background: #0a0a0f;
+    border-top: 1px solid rgba(99,102,241,0.2);
+    padding: 16px 0 8px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .btn-save {
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .btn-save:hover { opacity: 0.88; }
+  .btn-save:active { opacity: 0.75; }
+  #statusMsg {
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: none;
+    font-weight: 500;
+  }
+  #statusMsg.ok {
+    background: rgba(34,197,94,0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34,197,94,0.3);
+    display: block;
+  }
+  #statusMsg.err {
+    background: rgba(239,68,68,0.15);
+    color: #f87171;
+    border: 1px solid rgba(239,68,68,0.3);
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>⚙ פאנל ניהול — DAGHAZAHAV</h1>
+    <span>ערוך טקסטים ופרויקטים, לחץ שמור הכל בסיום</span>
+  </div>
+  <a class="btn-open" href="portfolio.html" target="_blank">פתח פורטפוליו ↗</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="section" id="sec-hero">
+  <div class="section-header open" onclick="toggle('hero')">
+    <div class="section-title">🦸 HERO <span class="section-tag">כותרת ראשית</span></div>
+    <span class="chevron open" id="chev-hero">▼</span>
+  </div>
+  <div class="section-body open" id="body-hero">
+    <div class="field-row">
+      <label>תג / Badge</label>
+      <input type="text" id="hero_badge" placeholder="ספק משרד הביטחון">
+    </div>
+    <div class="field-row">
+      <label>כותרת — שורה ראשית</label>
+      <input type="text" id="hero_title" placeholder="פיתוח מערכות ניהול מתקדמות">
+    </div>
+    <div class="field-row">
+      <label>כותרת — שורה שנייה (צבע gradient)</label>
+      <input type="text" id="hero_titleGrad" placeholder="בהתאמה אישית">
+    </div>
+    <div class="field-row">
+      <label>תיאור קצר</label>
+      <textarea id="hero_description" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div class="section" id="sec-about">
+  <div class="section-header" onclick="toggle('about')">
+    <div class="section-title">ℹ אודות + ערכים <span class="section-tag">3 כרטיסים</span></div>
+    <span class="chevron" id="chev-about">▼</span>
+  </div>
+  <div class="section-body" id="body-about">
+    <div class="field-row">
+      <label>כותרת סעיף</label>
+      <input type="text" id="about_heading">
+    </div>
+    <div class="field-row">
+      <label>פסקה ראשונה</label>
+      <textarea id="about_p1" rows="3"></textarea>
+    </div>
+    <div class="field-row">
+      <label>פסקה שנייה</label>
+      <textarea id="about_p2" rows="2"></textarea>
+    </div>
+
+    <div style="margin-bottom:10px;margin-top:20px;font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">כרטיסי ערכים</div>
+    <div class="value-cards">
+      <div class="val-card">
+        <label>כרטיס 1 — כותרת</label>
+        <input type="text" id="val0_title">
+        <label>טקסט</label>
+        <textarea id="val0_text"></textarea>
+      </div>
+      <div class="val-card">
+        <label>כרטיס 2 — כותרת</label>
+        <input type="text" id="val1_title">
+        <label>טקסט</label>
+        <textarea id="val1_text"></textarea>
+      </div>
+      <div class="val-card">
+        <label>כרטיס 3 — כותרת</label>
+        <input type="text" id="val2_title">
+        <label>טקסט</label>
+        <textarea id="val2_text"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROJECTS ===== -->
+<div class="section" id="sec-projects">
+  <div class="section-header" onclick="toggle('projects')">
+    <div class="section-title">🗂 פרויקטים <span class="section-tag">9 פרויקטים</span></div>
+    <span class="chevron" id="chev-projects">▼</span>
+  </div>
+  <div class="section-body" id="body-projects">
+    <div class="projects-list" id="projects-list"></div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="section" id="sec-contact">
+  <div class="section-header" onclick="toggle('contact')">
+    <div class="section-title">📞 יצירת קשר <span class="section-tag">footer</span></div>
+    <span class="chevron" id="chev-contact">▼</span>
+  </div>
+  <div class="section-body" id="body-contact">
+    <div class="field-row">
+      <label>כותרת</label>
+      <input type="text" id="contact_heading">
+    </div>
+    <div class="field-row">
+      <label>תיאור</label>
+      <textarea id="contact_description" rows="2"></textarea>
+    </div>
+    <div class="field-row">
+      <label>טלפון</label>
+      <input type="text" id="contact_phone" style="direction:ltr;">
+    </div>
+  </div>
+</div>
+
+<div class="save-bar">
+  <button class="btn-save" onclick="saveAll()">שמור הכל</button>
+  <span id="statusMsg"></span>
+</div>
+
+<script>
+let currentData = {};
+
+async function load() {
+  try {
+    const r = await fetch('content.json?t=' + Date.now());
+    currentData = await r.json();
+    populate(currentData);
+  } catch(e) {
+    showStatus('שגיאה בטעינת הנתונים: ' + e.message, false);
+  }
+}
+
+function populate(c) {
+  // Hero
+  document.getElementById('hero_badge').value = c.hero?.badge || '';
+  document.getElementById('hero_title').value = c.hero?.title || '';
+  document.getElementById('hero_titleGrad').value = c.hero?.titleGrad || '';
+  document.getElementById('hero_description').value = c.hero?.description || '';
+
+  // About
+  document.getElementById('about_heading').value = c.about?.heading || '';
+  document.getElementById('about_p1').value = c.about?.paragraph1 || '';
+  document.getElementById('about_p2').value = c.about?.paragraph2 || '';
+  (c.about?.values || []).forEach((v, i) => {
+    const t = document.getElementById('val' + i + '_title');
+    const x = document.getElementById('val' + i + '_text');
+    if (t) t.value = v.title || '';
+    if (x) x.value = v.text || '';
+  });
+
+  // Projects — build dynamic list
+  const list = document.getElementById('projects-list');
+  list.innerHTML = '';
+  (c.projects || []).forEach((p, i) => {
+    const row = document.createElement('div');
+    row.className = 'proj-item';
+    row.innerHTML = `
+      <div class="proj-num">${i + 1}</div>
+      <div class="proj-col">
+        <label>כותרת</label>
+        <input type="text" id="proj${i}_title" value="${esc(p.title)}">
+      </div>
+      <div class="proj-col">
+        <label>תיאור</label>
+        <textarea id="proj${i}_desc">${esc(p.description)}</textarea>
+      </div>`;
+    list.appendChild(row);
+  });
+
+  // Contact
+  document.getElementById('contact_heading').value = c.contact?.heading || '';
+  document.getElementById('contact_description').value = c.contact?.description || '';
+  document.getElementById('contact_phone').value = c.contact?.phone || '';
+}
+
+function esc(s) {
+  return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function collect() {
+  const n = (id) => document.getElementById(id)?.value?.trim() || '';
+  const projCount = currentData.projects?.length || 0;
+
+  return {
+    hero: {
+      badge: n('hero_badge'),
+      title: n('hero_title'),
+      titleGrad: n('hero_titleGrad'),
+      description: n('hero_description')
+    },
+    about: {
+      heading: n('about_heading'),
+      paragraph1: n('about_p1'),
+      paragraph2: n('about_p2'),
+      values: [0,1,2].map(i => ({
+        title: n('val' + i + '_title'),
+        text: n('val' + i + '_text')
+      }))
+    },
+    projects: Array.from({length: projCount}, (_, i) => ({
+      id: (currentData.projects[i]?.id) || (i + 1),
+      title: n('proj' + i + '_title'),
+      description: n('proj' + i + '_desc')
+    })),
+    contact: {
+      heading: n('contact_heading'),
+      description: n('contact_description'),
+      phone: n('contact_phone')
+    }
+  };
+}
+
+async function saveAll() {
+  const btn = document.querySelector('.btn-save');
+  btn.textContent = 'שומר...';
+  btn.disabled = true;
+  try {
+    const body = collect();
+    const r = await fetch('/api/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await r.json();
+    if (data.ok) {
+      currentData = body;
+      showStatus('✓ נשמר בהצלחה!', true);
+    } else {
+      showStatus('שגיאה: ' + (data.error || 'unknown'), false);
+    }
+  } catch(e) {
+    showStatus('שגיאת רשת: ' + e.message, false);
+  }
+  btn.textContent = 'שמור הכל';
+  btn.disabled = false;
+}
+
+function showStatus(msg, ok) {
+  const el = document.getElementById('statusMsg');
+  el.textContent = msg;
+  el.className = ok ? 'ok' : 'err';
+  clearTimeout(el._t);
+  el._t = setTimeout(() => { el.className = ''; el.textContent = ''; }, 4000);
+}
+
+function toggle(id) {
+  const body = document.getElementById('body-' + id);
+  const chev = document.getElementById('chev-' + id);
+  const header = body.previousElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+
+load();
+</script>
+</body>
+</html>
