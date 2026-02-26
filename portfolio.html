@@ -1981,7 +1981,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 <!-- Content loader: fetches content.json and populates editable fields -->
 <script>
 (function(){
-  fetch('content.json?t='+Date.now()).then(function(r){return r.json();}).then(function(c){
+  var CMS_URL='https://script.google.com/macros/s/AKfycbwIY8sj2jer4FikdlqTNL7IxoWUHyW4_qBes15Qo8pCesiwS4j4L9O9XrhF2YyhISyNlQ/exec';
+  fetch(CMS_URL).then(function(r){return r.json();}).then(function(c){
     var $=function(s){return document.querySelector(s);};
     var $$=function(s){return document.querySelectorAll(s);};
 
