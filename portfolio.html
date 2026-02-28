@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="DAGHAZAHAV - פיתוח מערכות ניהול מתקדמות בהתאמה אישית">
+<meta property="og:title" content="DAGHAZAHAV | מערכות ניהול מתקדמות">
+<meta property="og:description" content="פיתוח מערכות ניהול מתקדמות בהתאמה אישית — לצבא, לתעשייה, לכל ארגון">
+<meta property="og:image" content="https://elchai.github.io/daghazahav/daghazahav-logo-new.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elchai.github.io/daghazahav/">
+<meta name="twitter:card" content="summary_large_image">
 <title>DAGHAZAHAV | מערכות ניהול מתקדמות</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,17 +95,6 @@ section { padding:100px 0; position:relative; z-index:1; }
 .nav-in { display:flex; align-items:center; justify-content:space-between; }
 .nav-logo { display:flex; align-items:center; text-decoration:none; }
 .nav-logo img { height:64px; display:block; mix-blend-mode:screen; }
-.nav-logo-info { display:flex; flex-direction:column; gap:2px; }
-.nav-logo-txt {
-  font-family:'Orbitron',sans-serif; font-weight:900; font-size:1.1rem;
-  background:linear-gradient(135deg,var(--gold),#ffcd60);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  line-height:1.2; display:block;
-}
-.nav-logo-tag {
-  font-size:0.6rem; color:var(--dim); font-weight:500;
-  display:block; letter-spacing:0.3px;
-}
 .nav-links { display:flex; gap:28px; list-style:none; }
 .nav-links a {
   color:var(--dim); text-decoration:none; font-size:0.95rem; font-weight:500;
@@ -288,7 +283,7 @@ section { padding:100px 0; position:relative; z-index:1; }
 .projects { background:transparent; }
 .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
 .proj-cta { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:48px; padding:28px 36px; background:rgba(0,212,255,0.04); border:1px solid rgba(0,212,255,0.12); border-radius:16px; flex-wrap:wrap; }
-.proj-cta p { color:var(--text-secondary); font-size:1rem; margin:0; }
+.proj-cta p { color:var(--dim); font-size:1rem; margin:0; }
 .proj {
   background:var(--card); border:1px solid var(--border);
   border-radius:var(--r2); overflow:hidden; transition:var(--tr);
@@ -298,33 +293,9 @@ section { padding:100px 0; position:relative; z-index:1; }
   height:175px; position:relative; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
 }
-.proj-img-1 { background:linear-gradient(135deg,#0a1628,#1a2a4a,#0d1f3c); }
-.proj-img-ph { background:linear-gradient(135deg,#1a1a2e,#16213e); }
-.pgrid { position:absolute; inset:0; background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px); background-size:28px 28px; }
-.pico { position:relative; z-index:1; text-align:center; }
-.pico span { font-size:2.8rem; display:block; margin-bottom:6px; filter:drop-shadow(0 0 16px rgba(0,212,255,0.35)); }
-.pico small { font-size:0.7rem; color:var(--cyan); font-family:'Orbitron',sans-serif; letter-spacing:2px; }
-.cs-ov {
-  position:absolute; inset:0; background:rgba(13,13,20,0.72);
-  backdrop-filter:blur(4px);
-  display:flex; align-items:center; justify-content:center;
-}
-.cs-badge {
-  background:var(--gold-dim); border:1px solid var(--border-gold);
-  color:var(--gold); padding:8px 20px; border-radius:100px;
-  font-weight:700; font-size:0.82rem; letter-spacing:2px;
-}
 .proj-body { padding:22px; }
 .proj-title { font-size:1.1rem; font-weight:800; margin-bottom:9px; }
 .proj-desc { color:var(--dim); font-size:0.88rem; line-height:1.7; margin-bottom:14px; }
-.tags { display:flex; flex-wrap:wrap; gap:6px; }
-.tag-t {
-  background:var(--cyan-dim); border:1px solid var(--border);
-  color:var(--cyan); padding:3px 10px; border-radius:6px;
-  font-size:0.72rem; font-weight:700; font-family:'Orbitron',sans-serif;
-}
-.tag-t.g { background:var(--gold-dim); border-color:var(--border-gold); color:var(--gold); }
-
 /* ── TECH ── */
 .tech { background:transparent; }
 .tech-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
@@ -433,26 +404,25 @@ footer {
   .hero-content { padding:90px 16px 60px; }
   .hero-content h1 { font-size:clamp(1.7rem,7vw,2.2rem); }
   .hero-content p { font-size:0.95rem; }
-  .hero-btns { flex-direction:column; gap:12px; align-items:stretch; }
-  .hero-btns a { text-align:center; }
+  .ctas { flex-direction:column; gap:12px; align-items:stretch; }
+  .ctas a { text-align:center; }
   /* Navigation */
-  .nav-logo { height:36px; }
-  .nav-logo-text { font-size:0.95rem; }
-  .nav-tagline { display:none; }
+  .nav-logo img { height:36px; }
   /* Sections */
   section { padding:50px 0; }
   .sec-title { font-size:clamp(1.4rem,6vw,1.8rem); }
   /* Services */
   .process { padding-right:16px; }
-  .step-label { font-size:0.7rem; }
+  .process::before { right:-16px; }
+  .step-l { font-size:0.7rem; }
   /* Projects */
-  .proj-card { padding:16px; }
-  .proj-card svg { height:160px; }
+  .proj { padding:16px; }
+  .proj-img { height:160px; }
   /* Stats */
   .stats { gap:12px; }
-  .stat-num { font-size:2rem; }
+  .stat-n { font-size:1.8rem; }
   /* About */
-  .core-values { gap:10px; }
+  .vals { gap:10px; }
   /* Layout */
   .wrap { padding:0 16px; }
   /* Gear background: hide to prevent overflow */
@@ -462,21 +432,20 @@ footer {
 @media(max-width:375px){
   .hero-content h1 { font-size:1.55rem; }
   .stats { grid-template-columns:1fr; }
-  .svc-card { padding:20px 14px; }
-  .proj-card svg { height:140px; }
+  .svc { padding:20px 14px; }
+  .proj-img { height:140px; }
 }
 @media(hover:none){
-  .proj-card:hover,.svc-card:hover,.tech-item:hover,.con-item:hover,.about-value:hover { transform:none; box-shadow:none; }
-  .proj-card:hover .proj-img { transform:none; }
-  .hero-btns a:hover { transform:none; }
+  .proj:hover,.svc:hover,.tech-item:hover,.con-item:hover,.val:hover { transform:none; box-shadow:none; }
+  .ctas a:hover { transform:none; }
 }
 </style>
 </head>
 <body>
 
 <!-- MOBILE MENU -->
-<div class="mob-menu" id="mobMenu">
-  <button class="mob-close" onclick="closeMob()">✕</button>
+<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
+  <button class="mob-close" onclick="closeMob()" aria-label="סגור תפריט">✕</button>
   <a href="#about"    onclick="closeMob()">מי אנחנו</a>
   <a href="#services" onclick="closeMob()">יכולות</a>
   <a href="#projects" onclick="closeMob()">פרויקטים</a>
@@ -498,7 +467,7 @@ footer {
         <li><a href="#tech">טכנולוגיות</a></li>
         <li><a href="#contact" class="nav-cta">צור קשר</a></li>
       </ul>
-      <button class="burger" onclick="openMob()" aria-label="תפריט"><span></span><span></span><span></span></button>
+      <button class="burger" id="burgerBtn" onclick="openMob()" aria-label="תפריט" aria-expanded="false" aria-controls="mobMenu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -508,7 +477,7 @@ footer {
   <div class="hero-bg">
     <div class="hero-glow"></div>
     <!-- Gear 1 – large, top-right, gold, counter-clockwise -->
-    <div class="gear-wrap">
+    <div class="gear-wrap" aria-hidden="true">
       <svg class="gear-svg ccw" viewBox="0 0 100 100">
         <g fill="#f0a500" transform="translate(50,50)">
           <rect x="-6" y="-46" width="12" height="20" rx="3"/>
@@ -528,7 +497,7 @@ footer {
       </svg>
     </div>
     <!-- Gear 2 – medium, bottom-left, cyan, clockwise -->
-    <div class="gear-wrap">
+    <div class="gear-wrap" aria-hidden="true">
       <svg class="gear-svg cw" viewBox="0 0 100 100">
         <g fill="#00d4ff" transform="translate(50,50)">
           <rect x="-5" y="-44" width="10" height="18" rx="2"/>
@@ -544,7 +513,7 @@ footer {
       </svg>
     </div>
     <!-- Gear 3 – small, mid-right, gold, slow -->
-    <div class="gear-wrap">
+    <div class="gear-wrap" aria-hidden="true">
       <svg class="gear-svg cw2" viewBox="0 0 100 100">
         <g fill="#f0a500" transform="translate(50,50)">
           <rect x="-5" y="-42" width="10" height="16" rx="2"/>
@@ -558,7 +527,7 @@ footer {
       </svg>
     </div>
     <!-- Gear 4 – tiny, top-left, cyan, fast -->
-    <div class="gear-wrap">
+    <div class="gear-wrap" aria-hidden="true">
       <svg class="gear-svg ccw2" viewBox="0 0 100 100">
         <g fill="#00d4ff" transform="translate(50,50)">
           <rect x="-5" y="-40" width="10" height="14" rx="2"/>
@@ -574,6 +543,7 @@ footer {
 
   <div class="hero-content">
     <div class="hero-badge">
+      <span class="badge-dot"></span>
       ספק משרד הביטחון
     </div>
     <h1 class="hero-brand orb">DAGHAZAHAV</h1>
@@ -588,7 +558,7 @@ footer {
       <a href="#contact"  class="btn-s">צור קשר</a>
     </div>
   </div>
-  <div class="scroll-hint">
+  <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
     <span>גלול</span>
   </div>
@@ -1838,7 +1808,7 @@ footer {
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <!-- Background gear -->
-  <svg class="contact-gear cw2" viewBox="0 0 100 100">
+  <svg class="contact-gear cw2" viewBox="0 0 100 100" aria-hidden="true">
     <g fill="#f0a500" transform="translate(50,50)">
       <rect x="-6" y="-46" width="12" height="20" rx="3"/>
       <rect x="-6" y="-46" width="12" height="20" rx="3" transform="rotate(30)"/>
@@ -1877,15 +1847,15 @@ footer {
         <form id="cForm" onsubmit="sendForm(event)">
           <div class="fg">
             <label for="fn">שם מלא</label>
-            <input type="text" id="fn" placeholder="הכנס את שמך" required>
+            <input type="text" id="fn" name="name" autocomplete="name" placeholder="הכנס את שמך" required>
           </div>
           <div class="fg">
             <label for="fp">טלפון</label>
-            <input type="tel" id="fp" placeholder="050-0000000">
+            <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000">
           </div>
           <div class="fg">
             <label for="fm">תיאור הצורך</label>
-            <textarea id="fm" placeholder="ספר לנו מה אתה צריך..." required></textarea>
+            <textarea id="fm" name="message" placeholder="ספר לנו מה אתה צריך..." required></textarea>
           </div>
           <button type="submit" class="btn-send" id="sbtn">שלח הודעה ←</button>
         </form>
@@ -1911,8 +1881,23 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('on', scrollY > 50));
 
 // Mobile menu
-function openMob()  { document.getElementById('mobMenu').classList.add('open');    document.body.style.overflow='hidden'; }
-function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow=''; }
+function openMob(){
+  var m=document.getElementById('mobMenu'); m.classList.add('open'); document.body.style.overflow='hidden';
+  document.getElementById('burgerBtn').setAttribute('aria-expanded','true');
+  var f=m.querySelector('a,button'); if(f) f.focus();
+  m._trap=function(e){
+    if(e.key!=='Tab') return;
+    var fc=Array.from(m.querySelectorAll('a,button')),first=fc[0],last=fc[fc.length-1];
+    if(e.shiftKey?document.activeElement===first:document.activeElement===last){ e.preventDefault(); (e.shiftKey?last:first).focus(); }
+  };
+  document.addEventListener('keydown',m._trap);
+}
+function closeMob(){
+  var m=document.getElementById('mobMenu'); m.classList.remove('open'); document.body.style.overflow='';
+  if(m._trap) document.removeEventListener('keydown',m._trap);
+  var b=document.getElementById('burgerBtn'); b.setAttribute('aria-expanded','false'); b.focus();
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&document.getElementById('mobMenu').classList.contains('open')) closeMob(); });
 
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {
@@ -1929,7 +1914,7 @@ function runCounter(el) {
   (function tick(now) {
     const p = Math.min((now - start) / dur, 1);
     const v = Math.round((1 - Math.pow(1-p, 3)) * target);
-    el.textContent = (p === 1 ? prefix : '') + v + (p === 1 ? suffix : '');
+    el.textContent = prefix + v + suffix;
     if (p < 1) requestAnimationFrame(tick);
   })(start);
 }
@@ -1946,13 +1931,15 @@ function sendForm(e) {
   const msg  = document.getElementById('fm').value;
   const btn  = document.getElementById('sbtn');
   const text = `שלום, אני ${name}${phone ? ' | ' + phone : ''}\n\n${msg}`;
+  btn.disabled = true;
   btn.textContent = '✓ מעביר לWhatsApp...';
   btn.style.background = 'linear-gradient(135deg,#25d366,#128c7e)';
+  const win = window.open('https://wa.me/972542012000?text=' + encodeURIComponent(text), '_blank');
   setTimeout(() => {
-    window.open('https://wa.me/972542012000?text=' + encodeURIComponent(text), '_blank');
     btn.textContent = 'שלח הודעה ←';
     btn.style.background = '';
-    document.getElementById('cForm').reset();
+    btn.disabled = false;
+    if(win) document.getElementById('cForm').reset();
   }, 900);
 }
 
@@ -1972,7 +1959,9 @@ function sendForm(e) {
 // Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const t = document.querySelector(href);
     if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 76, behavior:'smooth' }); }
   });
 });
@@ -1983,40 +1972,53 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (function(){
   var CMS_URL='https://script.google.com/macros/s/AKfycbwIY8sj2jer4FikdlqTNL7IxoWUHyW4_qBes15Qo8pCesiwS4j4L9O9XrhF2YyhISyNlQ/exec';
   fetch(CMS_URL).then(function(r){return r.json();}).then(function(c){
+    try{
     var $=function(s){return document.querySelector(s);};
     var $$=function(s){return document.querySelectorAll(s);};
 
     // Hero
-    var hb=$('.hero-badge'); if(hb) hb.textContent=c.hero.badge;
-    var ht=$('.hero-title'); if(ht) ht.innerHTML=c.hero.title+'<br><span class="grad">'+c.hero.titleGrad+'</span>';
-    var hd=$('.hero-desc'); if(hd) hd.textContent=c.hero.description;
+    if(c.hero){
+    var hb=$('.hero-badge'); if(hb&&c.hero.badge){ var dot=hb.querySelector('.badge-dot'); hb.textContent=c.hero.badge; if(dot) hb.insertBefore(dot,hb.firstChild); }
+    var ht=$('.hero-title'); if(ht&&c.hero.title){ var sp=ht.querySelector('.grad'); ht.firstChild.textContent=c.hero.title; if(sp&&c.hero.titleGrad) sp.textContent=c.hero.titleGrad; }
+    var hd=$('.hero-desc'); if(hd&&c.hero.description) hd.textContent=c.hero.description;
+    }
 
     // About heading + paragraphs
-    var ah=$('.about .sec-title'); if(ah) ah.textContent=c.about.heading;
+    if(c.about){
+    var ah=$('.about .sec-title'); if(ah&&c.about.heading){ var gs=ah.querySelector('.grad'); if(gs){ ah.firstChild.textContent=c.about.heading.split(gs.textContent)[0]; if(c.about.headingGrad) gs.textContent=c.about.headingGrad; } else ah.textContent=c.about.heading; }
     var ap=$$('.about .about-grid .rev > p');
-    if(ap[0]) ap[0].textContent=c.about.paragraph1;
-    if(ap[1]) ap[1].textContent=c.about.paragraph2;
+    if(ap[0]&&c.about.paragraph1) ap[0].textContent=c.about.paragraph1;
+    if(ap[1]&&c.about.paragraph2) ap[1].textContent=c.about.paragraph2;
 
     // Value cards
     var vals=$$('.val');
     (c.about.values||[]).forEach(function(v,i){
       if(!vals[i]) return;
-      var h3=vals[i].querySelector('h3'); if(h3) h3.textContent=v.title;
-      var p=vals[i].querySelector('p');   if(p)  p.textContent=v.text;
+      var h3=vals[i].querySelector('h3'); if(h3&&v.title) h3.textContent=v.title;
+      var p=vals[i].querySelector('p');   if(p&&v.text)  p.textContent=v.text;
     });
+    }
 
     // Projects
-    $$('.proj-title').forEach(function(el,i){ if(c.projects[i]) el.textContent=c.projects[i].title; });
-    $$('.proj-desc').forEach(function(el,i){ if(c.projects[i]) el.textContent=c.projects[i].description; });
+    if(c.projects){
+    $$('.proj-title').forEach(function(el,i){ if(c.projects[i]&&c.projects[i].title) el.textContent=c.projects[i].title; });
+    $$('.proj-desc').forEach(function(el,i){ if(c.projects[i]&&c.projects[i].description) el.textContent=c.projects[i].description; });
+    }
 
     // Contact
-    var ch=$('.con-info h2'); if(ch) ch.textContent=c.contact.heading;
-    var cp=$('.con-info > p'); if(cp) cp.textContent=c.contact.description;
+    if(c.contact){
+    var ch=$('.con-info h2'); if(ch&&c.contact.heading){ var gs=ch.querySelector('.grad'); if(gs){ ch.firstChild.textContent=c.contact.heading.split(gs.textContent)[0]; if(c.contact.headingGrad) gs.textContent=c.contact.headingGrad; } else ch.textContent=c.contact.heading; }
+    var cp=$('.con-info > p'); if(cp&&c.contact.description) cp.textContent=c.contact.description;
+    if(c.contact.phone){
     var phoneLink=$('a.con-item[href^="tel:"]');
     if(phoneLink){ phoneLink.href='tel:'+c.contact.phone; var ps=phoneLink.querySelector('span[dir="ltr"]'); if(ps) ps.textContent=c.contact.phone; }
     var fp=$('.foot-phone'); if(fp){ fp.textContent=c.contact.phone; fp.href='tel:'+c.contact.phone; }
-  }).catch(function(){});
+    }
+    }
+    }catch(e){console.warn('CMS update error:',e);}
+  }).catch(function(e){console.warn('CMS fetch failed:',e);});
 })();
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('animate').forEach(function(a){a.setAttribute('repeatCount','1');});}
 </script>
 </body>
 </html>
