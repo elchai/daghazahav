@@ -63,7 +63,7 @@ textarea.inp{min-height:90px;resize:vertical;line-height:1.6}
 </div>
 
 <script>
-document.getElementById('go').onclick=function(){
+function genLink(){
   var p=document.getElementById('ph').value.replace(/\D/g,'');
   if(p.length<9){alert('נא להזין מספר טלפון תקין');return;}
   if(p.charAt(0)==='0')p=p.substring(1);
@@ -72,23 +72,25 @@ document.getElementById('go').onclick=function(){
   if(t)url+='?text='+encodeURIComponent(t);
   document.getElementById('lnk').textContent=url;
   document.getElementById('res').className='res on';
-  // tell parent iframe to resize
   if(window.parent!==window){try{window.parent.postMessage({type:'resize',h:document.body.scrollHeight+40},'*')}catch(e){}}
-};
-
-document.getElementById('cp').onclick=function(){
+}
+function copyLink(){
   var txt=document.getElementById('lnk').textContent;
   if(!txt)return;
   var ts=document.getElementById('toast');
+  var msg='\u2713 \u05d4\u05e7\u05d5\u05d3 \u05d4\u05d5\u05e2\u05ea\u05e7 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4! \u05d4\u05d3\u05d1\u05e7 \u05d0\u05d5\u05ea\u05d5 \u05d1\u05d3\u05e4\u05d3\u05e4\u05df \u05d5\u05dc\u05d7\u05e5 \u05d1\u05d5\u05d5\u05d0\u05e6\u05d0\u05e4';
   if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(function(){ts.textContent='\u2713 \u05d4\u05d5\u05e2\u05ea\u05e7 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!';setTimeout(function(){ts.textContent=''},2500)});
+    navigator.clipboard.writeText(txt).then(function(){ts.textContent=msg;setTimeout(function(){ts.textContent=''},4000)});
   }else{
     var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';
     document.body.appendChild(ta);ta.select();
-    try{document.execCommand('copy');ts.textContent='\u2713 \u05d4\u05d5\u05e2\u05ea\u05e7 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!';setTimeout(function(){ts.textContent=''},2500)}catch(e){}
+    try{document.execCommand('copy');ts.textContent=msg;setTimeout(function(){ts.textContent=''},4000)}catch(e){}
     document.body.removeChild(ta);
   }
-};
+}
+var go=document.getElementById('go'),cp=document.getElementById('cp');
+go.onclick=genLink;go.addEventListener('pointerdown',function(e){e.preventDefault();genLink()});
+cp.onclick=copyLink;cp.addEventListener('pointerdown',function(e){e.preventDefault();copyLink()});
 </script>
 </body>
 </html>
