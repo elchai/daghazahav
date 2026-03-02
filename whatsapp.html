@@ -20,9 +20,9 @@ h2{text-align:center;font-size:24px;font-weight:800;color:#32373c;margin-bottom:
 textarea.inp{min-height:90px;resize:vertical;line-height:1.6}
 .btn-gen{width:100%;padding:14px;border:none;border-radius:10px;background:#FAB31C;color:#fff;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:4px;transition:background .2s}
 .btn-gen:hover{background:#e5a216}
-.res{margin-top:16px;display:none}
-.res.on{display:block}
+.res{margin-top:16px}
 .res-lbl{font-size:13px;font-weight:600;color:#555;margin-bottom:8px}
+.err{color:#e04040;font-size:13px;font-weight:600;margin-top:4px;min-height:18px}
 .lnk-box{background:#eef6fd;border:2px solid #c5dff5;border-radius:10px;padding:12px 14px;margin-bottom:10px;direction:ltr;text-align:left;word-break:break-all;font-size:13px;color:#333;font-family:'Courier New',monospace;line-height:1.5;min-height:40px}
 .btn-copy{width:100%;padding:12px;border:none;border-radius:10px;background:#0693e3;color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
 .btn-copy:hover{background:#0580c7}
@@ -50,9 +50,10 @@ textarea.inp{min-height:90px;resize:vertical;line-height:1.6}
   </div>
 
   <button type="button" class="btn-gen" id="go">צור קישור</button>
+  <div class="err" id="err"></div>
 
-  <div class="res" id="res">
-    <div class="res-lbl">הקישור שלכם מוכן:</div>
+  <div class="res">
+    <div class="res-lbl">הקישור שלכם:</div>
     <div class="lnk-box" id="lnk"></div>
     <button type="button" class="btn-copy" id="cp">
       <svg viewBox="0 0 24 24" fill="#fff"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
@@ -64,15 +65,15 @@ textarea.inp{min-height:90px;resize:vertical;line-height:1.6}
 
 <script>
 function genLink(){
+  var err=document.getElementById('err');
   var p=document.getElementById('ph').value.replace(/\D/g,'');
-  if(p.length<9){alert('נא להזין מספר טלפון תקין');return;}
+  if(p.length<9){err.textContent='\u26a0 \u05d7\u05d5\u05d1\u05d4 \u05dc\u05d4\u05d6\u05d9\u05df \u05de\u05e1\u05e4\u05e8 \u05e0\u05d9\u05d9\u05d3';return;}
+  err.textContent='';
   if(p.charAt(0)==='0')p=p.substring(1);
   var url='https://wa.me/972'+p;
   var t=document.getElementById('ms').value;
   if(t)url+='?text='+encodeURIComponent(t);
   document.getElementById('lnk').textContent=url;
-  document.getElementById('res').className='res on';
-  if(window.parent!==window){try{window.parent.postMessage({type:'resize',h:document.body.scrollHeight+40},'*')}catch(e){}}
 }
 function copyLink(){
   var txt=document.getElementById('lnk').textContent;
