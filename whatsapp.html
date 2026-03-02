@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Heebo',sans-serif;background:transparent;padding:10px}
+h2{text-align:center;font-size:24px;font-weight:800;color:#32373c;margin-bottom:4px}
+.sub{text-align:center;color:#888;font-size:14px;margin-bottom:18px}
+.card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 16px rgba(0,0,0,.05);border:1px solid #f0f0f0}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-weight:600;font-size:14px;margin-bottom:5px;color:#555}
+.inp{width:100%;padding:12px 14px;border:2px solid #e8e8e8;border-radius:10px;font-size:15px;font-family:inherit;background:#fafafa;color:#333;outline:none}
+.inp:focus{border-color:#FAB31C;background:#fff;box-shadow:0 0 0 3px rgba(250,179,28,.15)}
+.ph-in{direction:ltr;text-align:left;padding-left:72px}
+.ph-w{position:relative}
+.ph-pre{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:700;color:#0693e3;background:#eef6fd;padding:3px 8px;border-radius:6px;pointer-events:none}
+textarea.inp{min-height:90px;resize:vertical;line-height:1.6}
+.btn-gen{width:100%;padding:14px;border:none;border-radius:10px;background:#FAB31C;color:#fff;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:4px;transition:background .2s}
+.btn-gen:hover{background:#e5a216}
+.res{margin-top:16px;display:none}
+.res.on{display:block}
+.res-lbl{font-size:13px;font-weight:600;color:#555;margin-bottom:8px}
+.lnk-box{background:#eef6fd;border:2px solid #c5dff5;border-radius:10px;padding:12px 14px;margin-bottom:10px;direction:ltr;text-align:left;word-break:break-all;font-size:13px;color:#333;font-family:'Courier New',monospace;line-height:1.5;min-height:40px}
+.btn-copy{width:100%;padding:12px;border:none;border-radius:10px;background:#0693e3;color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s}
+.btn-copy:hover{background:#0580c7}
+.btn-copy svg{width:18px;height:18px;flex-shrink:0}
+.toast{text-align:center;color:#0693e3;font-size:13px;font-weight:600;margin-top:8px;height:20px}
+</style>
+</head>
+<body>
+
+<h2>יוצר הודעות WhatsApp</h2>
+<p class="sub">צרו קישור עם הודעה מוכנה ושלחו בלחיצה</p>
+
+<div class="card">
+  <div class="fld">
+    <label>מספר טלפון</label>
+    <div class="ph-w">
+      <input type="tel" id="ph" class="inp ph-in" placeholder="054-1234567" maxlength="11">
+      <span class="ph-pre">972+</span>
+    </div>
+  </div>
+
+  <div class="fld">
+    <label>תוכן ההודעה</label>
+    <textarea id="ms" class="inp" placeholder="נא למלא את ההודעה, למשל: שלום, הגעתי אליך מאתר האינטרנט"></textarea>
+  </div>
+
+  <button type="button" class="btn-gen" id="go">צור קישור</button>
+
+  <div class="res" id="res">
+    <div class="res-lbl">הקישור שלכם מוכן:</div>
+    <div class="lnk-box" id="lnk"></div>
+    <button type="button" class="btn-copy" id="cp">
+      <svg viewBox="0 0 24 24" fill="#fff"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      העתק את הקישור
+    </button>
+    <div class="toast" id="toast"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('go').onclick=function(){
+  var p=document.getElementById('ph').value.replace(/\D/g,'');
+  if(p.length<9){alert('נא להזין מספר טלפון תקין');return;}
+  if(p.charAt(0)==='0')p=p.substring(1);
+  var url='https://wa.me/972'+p;
+  var t=document.getElementById('ms').value;
+  if(t)url+='?text='+encodeURIComponent(t);
+  document.getElementById('lnk').textContent=url;
+  document.getElementById('res').className='res on';
+};
+
+document.getElementById('cp').onclick=function(){
+  var txt=document.getElementById('lnk').textContent;
+  if(!txt)return;
+  var ts=document.getElementById('toast');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ts.textContent='\u2713 \u05d4\u05d5\u05e2\u05ea\u05e7 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!';setTimeout(function(){ts.textContent=''},2500)});
+  }else{
+    var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');ts.textContent='\u2713 \u05d4\u05d5\u05e2\u05ea\u05e7 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!';setTimeout(function(){ts.textContent=''},2500)}catch(e){}
+    document.body.removeChild(ta);
+  }
+};
+</script>
+</body>
+</html>
