@@ -873,6 +873,8 @@ footer {
       <div class="con-form rev d2">
         <h3 style="margin-bottom:22px;font-size:1.15rem;">צרו קשר</h3>
         <form id="cForm" onsubmit="sendForm(event)">
+          <input type="hidden" name="_subject" value="פנייה חדשה מ-daghazahav.com">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <div class="fg">
             <label for="fn">שם מלא</label>
             <input type="text" id="fn" name="name" autocomplete="name" placeholder="הכנס את שמך" required>
@@ -956,17 +958,21 @@ const cntObs = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-target]').forEach(el => cntObs.observe(el));
 
-// Contact form → WhatsApp
+// Contact form → email (Formspree) + WhatsApp
 function sendForm(e) {
   e.preventDefault();
+  const form = document.getElementById('cForm');
   const name = document.getElementById('fn').value;
   const phone = document.getElementById('fp').value;
   const msg  = document.getElementById('fm').value;
   const btn  = document.getElementById('sbtn');
   const text = `שלום, אני ${name}${phone ? ' | ' + phone : ''}\n\n${msg}`;
+
   btn.disabled = true;
-  btn.textContent = '✓ מעביר לWhatsApp...';
+  btn.textContent = '✓ שולח...';
   btn.style.background = 'linear-gradient(135deg,#25d366,#128c7e)';
+
+  // 1) Open WhatsApp in a new tab (must happen inside the user click)
   const a = document.createElement('a');
   a.href = 'https://wa.me/972542012000?text=' + encodeURIComponent(text);
   a.target = '_blank';
@@ -974,12 +980,28 @@ function sendForm(e) {
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => {
-    btn.textContent = 'שלח הודעה ←';
-    btn.style.background = '';
-    btn.disabled = false;
-    document.getElementById('cForm').reset();
-  }, 900);
+
+  // 2) POST the same data to Formspree so it lands in email too
+  fetch('https://formspree.io/f/xykvglpz', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: new FormData(form)
+  }).then(r => {
+    if (r.ok) {
+      btn.textContent = '✓ נשלח';
+      form.reset();
+    } else {
+      btn.textContent = 'נשלח לוואטסאפ — מייל נכשל';
+    }
+  }).catch(() => {
+    btn.textContent = 'נשלח לוואטסאפ — מייל נכשל';
+  }).finally(() => {
+    setTimeout(() => {
+      btn.textContent = 'שלח הודעה ←';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 2200);
+  });
 }
 
 // Process timeline auto-cycling glow
