@@ -967,12 +967,18 @@ function sendForm(e) {
   btn.disabled = true;
   btn.textContent = '✓ מעביר לWhatsApp...';
   btn.style.background = 'linear-gradient(135deg,#25d366,#128c7e)';
-  const win = window.open('https://wa.me/972542012000?text=' + encodeURIComponent(text), '_blank');
+  const a = document.createElement('a');
+  a.href = 'https://wa.me/972542012000?text=' + encodeURIComponent(text);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
   setTimeout(() => {
     btn.textContent = 'שלח הודעה ←';
     btn.style.background = '';
     btn.disabled = false;
-    if(win) document.getElementById('cForm').reset();
+    document.getElementById('cForm').reset();
   }, 900);
 }
 
