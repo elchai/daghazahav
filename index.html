@@ -26,7 +26,7 @@
   --gold: #f0a500;
   --gold-dim: rgba(240,165,0,0.12);
   --text: #ffffff;
-  --dim: #7a7a9d;
+  --dim: #a4a4ca;
   --muted: #3a3a5a;
   --border: rgba(0,212,255,0.1);
   --border-gold: rgba(240,165,0,0.18);
@@ -308,7 +308,7 @@ section { padding:100px 0; position:relative; z-index:1; }
 .step-n::before { content:''; position:absolute; inset:4px; background:var(--cyan-dim); border-radius:50%; }
 .step-n span { position:relative; z-index:1; }
 .step-l { font-size:0.88rem; font-weight:700; }
-.step-d { font-size:0.72rem; color:var(--dim); margin-top:3px; }
+.step-d { font-size:0.8rem; color:var(--dim); margin-top:3px; }
 .svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
 .svc {
   background:var(--card); border:1px solid var(--border);
@@ -445,8 +445,8 @@ footer {
   .con-grid { grid-template-columns:1fr; gap:36px; }
   .foot-in { flex-direction:column; gap:10px; text-align:center; }
   .tech-grid { grid-template-columns:repeat(3,1fr); }
-  .process { flex-direction:column; gap:0; padding-right:28px; }
-  .process::before { top:auto; right:-28px; left:auto; bottom:0; width:2px; height:calc(100% - 54px); background:linear-gradient(to bottom,var(--cyan),var(--cyan-dim)); }
+  .process { flex-direction:column; gap:0; padding-right:44px; }
+  .process::before { top:auto; right:-12px; left:auto; bottom:0; width:2px; height:calc(100% - 54px); background:linear-gradient(to bottom,var(--cyan),var(--cyan-dim)); }
   .step { display:flex; align-items:center; text-align:right; gap:14px; width:100%; padding-bottom:22px; }
   .step-n { margin:0; flex-shrink:0; }
   .stats { grid-template-columns:1fr 1fr; }
@@ -466,9 +466,10 @@ footer {
   section { padding:50px 0; }
   .sec-title { font-size:clamp(1.4rem,6vw,1.8rem); }
   /* Services */
-  .process { padding-right:16px; }
-  .process::before { right:-16px; }
-  .step-l { font-size:0.7rem; }
+  .process { padding-right:32px; }
+  .process::before { right:-8px; }
+  .step-l { font-size:0.78rem; }
+  .step-d { font-size:0.74rem; }
   /* Projects */
   .proj { padding:16px; }
   .proj-img { height:160px; }
