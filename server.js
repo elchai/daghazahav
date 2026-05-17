@@ -24,5 +24,5 @@ app.post('/api/content', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`\n✅  Admin Panel: http://localhost:${PORT}/admin.html`);
-  console.log(`🌐  Portfolio:   http://localhost:${PORT}/portfolio.html\n`);
+  console.log(`🌐  Portfolio:   http://localhost:${PORT}/\n`);
 });
