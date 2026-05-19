@@ -684,7 +684,7 @@ footer {
     <div class="about-grid">
       <div class="rev">
         <span class="tag">מי אנחנו</span>
-        <h2 class="sec-title">בונים מערכות<br><span class="grad">שעובדות בשבילך</span></h2>
+        <h2 class="sec-title">בונים מערכות <span class="grad">שעובדות בשבילך</span></h2>
         <p>DAGHAZAHAV,<br>בניהולו של אלחי פיין רס"ן (מיל'),<br>מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
         <p>בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
         <div class="stats">
@@ -1183,15 +1183,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(c.hero){
     var hb=$('.hero-badge'); if(hb&&c.hero.badge){ var dot=hb.querySelector('.badge-dot'); hb.textContent=c.hero.badge; if(dot) hb.insertBefore(dot,hb.firstChild); }
     var ht=$('.hero-title'); if(ht&&c.hero.title){ var sp=ht.querySelector('.grad'); ht.firstChild.textContent=c.hero.title; if(sp&&c.hero.titleGrad) sp.textContent=c.hero.titleGrad; }
-    var hd=$('.hero-desc'); if(hd&&c.hero.description) hd.textContent=c.hero.description;
+    var hd=$('.hero-desc'); if(hd&&c.hero.description) hd.innerHTML=c.hero.description;
     }
 
     // About heading + paragraphs
     if(c.about){
     var ah=$('.about .sec-title'); if(ah&&c.about.heading){ var gs=ah.querySelector('.grad'); if(gs){ ah.firstChild.textContent=c.about.heading.split(gs.textContent)[0]; if(c.about.headingGrad) gs.textContent=c.about.headingGrad; } else ah.textContent=c.about.heading; }
     var ap=$$('.about .about-grid .rev > p');
-    if(ap[0]&&c.about.paragraph1) ap[0].textContent=c.about.paragraph1;
-    if(ap[1]&&c.about.paragraph2) ap[1].textContent=c.about.paragraph2;
+    if(ap[0]&&c.about.paragraph1) ap[0].innerHTML=c.about.paragraph1;
+    if(ap[1]&&c.about.paragraph2) ap[1].innerHTML=c.about.paragraph2;
 
     // Value cards
     var vals=$$('.val');
