@@ -332,6 +332,44 @@ section { padding:100px 0; position:relative; z-index:1; }
 .svc h3 { font-size:1rem; margin-bottom:9px; font-weight:700; }
 .svc p { color:var(--dim); font-size:0.84rem; line-height:1.6; }
 
+/* ── EXPERTISE ── */
+.expertise { background:transparent; padding-block:60px; }
+.exp-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:48px; }
+.exp {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); padding:30px 28px; position:relative;
+  transition:var(--tr); overflow:hidden;
+}
+.exp::before {
+  content:''; position:absolute; top:0; right:0; left:0; height:2px;
+  background:linear-gradient(to left,var(--cyan),var(--gold)); transform:scaleX(0); transform-origin:right;
+  transition:transform var(--tr);
+}
+.exp:hover { border-color:var(--cyan); box-shadow:var(--glow-c),0 16px 36px rgba(0,0,0,0.28); transform:translateY(-4px); }
+.exp:hover::before { transform:scaleX(1); }
+.exp-num {
+  font-family:'Orbitron',sans-serif; font-size:2.4rem; font-weight:900; line-height:1;
+  background:linear-gradient(135deg,var(--cyan) 0%,var(--gold) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:14px; letter-spacing:0.02em;
+}
+.exp h3 { font-size:1.12rem; margin-bottom:12px; font-weight:700; color:#fff; line-height:1.4; }
+.exp p { color:var(--dim); font-size:0.92rem; line-height:1.85; margin:0; }
+.exp p em { color:var(--gold); font-style:italic; font-weight:500; }
+.exp-why {
+  max-width:820px; margin:0 auto; padding:32px 36px;
+  background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(240,165,0,0.04));
+  border:1px solid var(--border); border-radius:var(--r2); text-align:center;
+}
+.exp-why h3 {
+  font-size:1.35rem; margin-bottom:14px; font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.exp-why p { color:var(--dim); font-size:1rem; line-height:1.85; margin:0; }
+.exp-why p strong { color:#fff; font-weight:700; }
+.exp-why p em { color:var(--gold); font-style:italic; font-weight:600; }
+
 /* ── PROJECTS ── */
 .projects { background:transparent; }
 .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
@@ -442,6 +480,9 @@ footer {
   .about-grid { grid-template-columns:1fr; gap:36px; }
   .proj-grid { grid-template-columns:1fr; }
   .svc-cards { grid-template-columns:1fr; }
+  .exp-grid { grid-template-columns:1fr; gap:16px; }
+  .exp { padding:24px 22px; }
+  .exp-why { padding:24px 22px; }
   .con-grid { grid-template-columns:1fr; gap:36px; }
   .foot-in { flex-direction:column; gap:10px; text-align:center; }
   .tech-grid { grid-template-columns:repeat(3,1fr); }
@@ -504,6 +545,7 @@ footer {
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
   <a href="#about"    onclick="closeMob()">מי אנחנו</a>
+  <a href="#expertise" onclick="closeMob()">המומחיות</a>
   <a href="#services" onclick="closeMob()">יכולות</a>
   <a href="#projects" onclick="closeMob()">פרויקטים</a>
   <a href="#tech"     onclick="closeMob()">טכנולוגיות</a>
@@ -533,6 +575,7 @@ footer {
       </a>
       <ul class="nav-links">
         <li><a href="#about">מי אנחנו</a></li>
+        <li><a href="#expertise">המומחיות</a></li>
         <li><a href="#services">יכולות</a></li>
         <li><a href="#projects">פרויקטים</a></li>
         <li><a href="#tech">טכנולוגיות</a></li>
@@ -678,6 +721,43 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">המומחיות שלנו</span>
+      <h2 class="sec-title">חיבור בין <span class="grad">אסטרטגיה לביצוע</span> במבחן התוצאה</h2>
+      <p class="sec-sub">מאחורי כל עסק מצליח עומדת שיטה שיודעת לקחת מורכבות ולהפוך אותה לפשטות תפעולית. הנה תחומי הליבה והעקרונות שמובילים את העבודה שלנו.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp rev d1">
+        <div class="exp-num">01</div>
+        <h3>פיתוח מתודולוגי ופישוט מערכות</h3>
+        <p>אנחנו מאמינים שניהול נכון לא צריך להיות מסובך. המומחיות שלנו היא זיקוק תהליכי עבודה מורכבים לכדי שיטות ברורות, מובנות וקלות ליישום (כפי שבא לידי ביטוי במתודולוגיית <em>דג הזהב</em>). אנחנו לוקחים את הידע, הניסיון והחזון של העסק, והופכים אותם למבנה ארגוני סדור שעובד בשטח.</p>
+      </div>
+      <div class="exp rev d2">
+        <div class="exp-num">02</div>
+        <h3>אוטומציה והתאמת כלי עבודה חכמים</h3>
+        <p>טכנולוגיה צריכה לשרת את העסק, ולא להפך. במקום פתרונות מדף גנריים, אנו מתמחים באפיון, התאמה ופיתוח של מערכות CRM ואוטומציות מתקדמות המותאמות בדיוק לצרכים המשתנים של החברה. המטרה היא אחת: שחרור צווארי בקבוק, חיסכון בזמן יקר ומניעת טעויות אנוש באמצעות ייעול תהליכים דיגיטליים מקצה לקצה.</p>
+      </div>
+      <div class="exp rev d3">
+        <div class="exp-num">03</div>
+        <h3>חשיבה מערכתית וניסיון פיקודי ועסקי</h3>
+        <p>הליווי שלנו נשען על למעלה משני עשורים של ניסיון מעשי בניהול חברות, הובלת עובדים ורקע פיקודי עשיר בשטח. השילוב הזה מאפשר לנו להביא אל השולחן ראייה מערכתית רחבה, חוסן מנטלי בניהול משברים, ויכולת להניע אנשים ותהליכים קדימה מתוך מחויבות עמוקה להצלחת הפרויקט.</p>
+      </div>
+      <div class="exp rev d4">
+        <div class="exp-num">04</div>
+        <h3>תכנון וליווי אסטרטגי ארוך טווח</h3>
+        <p>בניית עסק יציב דורשת חזון שמחובר למציאות. לצד פתרון הבעיות המיידיות ביומיום, אנו מסייעים למנהלים וליזמים לבנות תשתית אסטרטגית סדורה קדימה — משלב התכנון הרעיוני, דרך בניית מודלים עסקיים מניבים, ועד להוצאה לפועל של מיזמים חדשים בצורה מבוקרת ואחראית.</p>
+      </div>
+    </div>
+    <div class="exp-why rev">
+      <h3>למה זה עובד?</h3>
+      <p>כי אנחנו לא מסתפקים רק בייעוץ תיאורטי. החוזקה של <em>דג הזהב</em> היא היכולת לשלב בין <strong>המיינדסט והאסטרטגיה העסקית</strong> לבין <strong>הביצוע המערכתי והטכנולוגי</strong>. אנחנו בונים את הארכיטקטורה הנכונה לעסק שלך — ומקפידים שהיא תעבוד בצורה חלקה, יעילה ורווחית.</p>
     </div>
   </div>
 </section>
