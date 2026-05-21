@@ -499,15 +499,15 @@ footer {
   .con-grid { grid-template-columns:1fr; gap:36px; }
   .foot-in { flex-direction:column; gap:10px; text-align:center; }
   .tech-grid { grid-template-columns:repeat(3,1fr); }
-  .process { flex-direction:column; gap:0; align-items:stretch; padding:0; }
+  .process { flex-direction:column; align-items:center; gap:0; padding:0; }
   .process::before { display:none; }
-  .step { flex:none; position:relative; padding-right:70px; padding-bottom:32px; text-align:right; min-height:54px; }
+  .step { flex:none; position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; width:100%; padding-bottom:48px; }
   .step:last-child { padding-bottom:0; }
-  .step::after { content:''; position:absolute; top:60px; bottom:-4px; right:26px; width:2px; background:linear-gradient(to bottom,var(--cyan),rgba(0,212,255,0.12)); opacity:0.4; z-index:0; }
+  .step::after { content:''; position:absolute; top:66px; bottom:-2px; left:50%; transform:translateX(-50%); width:2px; background:linear-gradient(to bottom,var(--cyan),rgba(0,212,255,0.12)); opacity:0.4; z-index:0; }
   .step:last-child::after { display:none; }
-  .step-n { position:absolute; right:0; top:0; margin:0; z-index:1; }
-  .step-l { text-align:right; font-size:1.18rem; font-weight:700; line-height:1.3; }
-  .step-d { text-align:right; margin-top:3px; font-size:0.92rem; line-height:1.5; }
+  .step-n { position:relative; width:66px; height:66px; font-size:1.05rem; margin:0 0 16px; z-index:1; }
+  .step-l { text-align:center; font-size:1.3rem; font-weight:700; line-height:1.3; }
+  .step-d { text-align:center; margin-top:5px; font-size:0.98rem; line-height:1.5; }
   .about .about-grid .rev > .tag { display:block; width:fit-content; margin-inline:auto; }
   .stats { grid-template-columns:1fr 1fr; }
   .fg input,.fg textarea,.fg select { font-size:16px; }
@@ -526,9 +526,8 @@ footer {
   section { padding:50px 0; }
   .sec-title { font-size:clamp(1.4rem,6vw,1.8rem); }
   /* Services */
-  .step { padding-right:66px; }
-  .step-l { font-size:1.1rem; }
-  .step-d { font-size:0.9rem; }
+  .step-l { font-size:1.22rem; }
+  .step-d { font-size:0.94rem; }
   /* Projects */
   .proj { padding:16px; }
   .proj-img { height:160px; }
