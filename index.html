@@ -1202,7 +1202,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(c.hero){
     var hb=$('.hero-badge'); if(hb&&c.hero.badge){ var dot=hb.querySelector('.badge-dot'); hb.textContent=c.hero.badge; if(dot) hb.insertBefore(dot,hb.firstChild); }
     var ht=$('.hero-title'); if(ht&&c.hero.title){ var sp=ht.querySelector('.grad'); ht.firstChild.textContent=c.hero.title; if(sp&&c.hero.titleGrad) sp.textContent=c.hero.titleGrad; }
-    var hd=$('.hero-desc'); if(hd&&c.hero.description) hd.innerHTML=c.hero.description;
+    var hd=$('.hero-desc'); if(hd&&c.hero.description) hd.innerHTML=c.hero.description.indexOf('<br')>-1?c.hero.description:c.hero.description.replace(/\s*שמשנים/,'<br>שמשנים');
     }
 
     // About heading + paragraphs
