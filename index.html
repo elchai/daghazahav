@@ -825,8 +825,19 @@ footer {
     </div>
     <div class="proj-grid">
 
-      <!-- 1 Battalion -->
+      <!-- 1 CRM -->
       <div class="proj rev">
+        <div class="proj-img">
+          <img src="screenshots/crm.jpg" alt="מערכת לניהול לקוחות" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">מערכת לניהול לקוחות</h3>
+          <p class="proj-desc">ניהול לידים, עסקאות ומשימות במקום אחד - צינור מכירות ויזואלי, מעקב אחר ערך עסקאות ושיעורי סגירה והתראות בזמן אמת.</p>
+        </div>
+      </div>
+
+      <!-- 2 Battalion -->
+      <div class="proj rev d1">
         <div class="proj-img">
           <img src="screenshots/battalion.jpg" alt="מערכת לניהול גדוד" loading="lazy">
         </div>
@@ -855,17 +866,6 @@ footer {
         <div class="proj-body">
           <h3 class="proj-title">מערכת לניהול חטיבה</h3>
           <p class="proj-desc">ניהול רמת חטיבה - מבט אחוד על כלל הגדודים, כוח אדם, סטטוסים וייצוג ויזואלי בזמן אמת.</p>
-        </div>
-      </div>
-
-      <!-- 4 Division -->
-      <div class="proj rev">
-        <div class="proj-img">
-          <img src="screenshots/division.jpg" alt="מערכת לניהול אוגדה" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול אוגדה</h3>
-          <p class="proj-desc">מערכת פיקוד ושליטה ברמת האוגדה - ניהול מרובה חטיבות, כוח אדם אגרגטיבי ודוחות מפקד.</p>
         </div>
       </div>
 
@@ -1219,11 +1219,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
     }
 
-    // Projects
-    if(c.projects){
-    $$('.proj-title').forEach(function(el,i){ if(c.projects[i]&&c.projects[i].title) el.textContent=c.projects[i].title; });
-    $$('.proj-desc').forEach(function(el,i){ if(c.projects[i]&&c.projects[i].description) el.textContent=c.projects[i].description; });
-    }
+    // Projects: HTML is the source of truth (CMS list is out of sync with curated order), so we don't overwrite titles/descriptions by index here.
 
     // Contact
     if(c.contact){
