@@ -1154,6 +1154,13 @@ function sendForm(e) {
     body: new FormData(form)
   }).catch(() => {});  // email failure is non-blocking - user still has WhatsApp option
 
+  // 1b) POST to Make webhook → triggers WhatsApp auto-reply to lead + alert to team
+  fetch('https://hook.eu1.make.com/ntxl6uxnyqka3rb7qos0rd4epetufha7', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, phone: phone, message: msg, source: 'contact-form' })
+  }).catch(() => {});
+
   // 2) Show success modal with WhatsApp CTA the user can tap
   link.href = 'https://wa.me/972542012000?text=' + encodeURIComponent(text);
   if (window.fbq) fbq('track', 'Lead');  // Meta Pixel: form submitted = lead
@@ -1336,6 +1343,7 @@ function lpSubmit(e){
   var form=document.getElementById('lpForm');
   var name=document.getElementById('lpName').value, phone=document.getElementById('lpPhone').value;
   fetch('https://formspree.io/f/xykvglpz',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)}).catch(function(){});
+  fetch('https://hook.eu1.make.com/ntxl6uxnyqka3rb7qos0rd4epetufha7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,message:'רוצה הצעה למערכת ניהול לעסק שלי',source:'popup'})}).catch(function(){});
   if(window.fbq) fbq('track','Lead');
   if(window.gtag) gtag('event','generate_lead');
   var text='שלום, אני '+name+' | '+phone+'\n\nרוצה הצעה למערכת ניהול לעסק שלי';
