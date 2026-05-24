@@ -1053,7 +1053,7 @@ footer {
           </div>
           <div class="fg">
             <label for="fp">טלפון</label>
-            <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000">
+            <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין">
           </div>
           <div class="fg">
             <label for="fm">תיאור הצורך</label>
@@ -1144,6 +1144,9 @@ function sendForm(e) {
   const modal = document.getElementById('successModal');
   const link  = document.getElementById('smLink');
   const text  = `שלום, אני ${name}${phone ? ' | ' + phone : ''}\n\n${msg}`;
+
+  // Hard guard: never POST an empty lead to the automation
+  if (!name.trim() || !phone.trim()) { btn.disabled = false; return; }
 
   btn.disabled = true;
 
@@ -1342,6 +1345,7 @@ function lpSubmit(e){
   e.preventDefault();
   var form=document.getElementById('lpForm');
   var name=document.getElementById('lpName').value, phone=document.getElementById('lpPhone').value;
+  if(!name.trim()||!phone.trim()) return;  // guard: never POST empty lead
   fetch('https://formspree.io/f/xykvglpz',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)}).catch(function(){});
   fetch('https://hook.eu1.make.com/ntxl6uxnyqka3rb7qos0rd4epetufha7',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,phone:phone,message:'רוצה הצעה למערכת ניהול לעסק שלי',source:'popup'})}).catch(function(){});
   if(window.fbq) fbq('track','Lead');
