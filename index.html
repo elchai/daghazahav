@@ -563,6 +563,40 @@ footer {
   .proj:hover,.svc:hover,.tech-item:hover,.con-item:hover,.val:hover { transform:none; box-shadow:none; }
   .ctas a:hover { transform:none; }
 }
+
+/* ── TESTIMONIALS SLIDER ── */
+.testimonials { background:transparent; }
+.test-slider { position:relative; max-width:780px; margin:36px auto 0; direction:ltr; }
+.test-viewport { overflow:hidden; border-radius:var(--r2); }
+.test-track { display:flex; transition:transform 0.5s ease; will-change:transform; }
+.test-card { flex:0 0 100%; background:var(--card); border:1px solid var(--border); border-radius:var(--r2); padding:42px 38px; direction:rtl; text-align:right; display:flex; flex-direction:column; min-height:280px; }
+.test-quote-icon { font-family:'Orbitron',sans-serif; font-size:4.5rem; color:var(--cyan); opacity:0.28; line-height:0.4; margin-bottom:14px; }
+.test-quote { font-size:1.15rem; color:var(--text); line-height:1.7; margin-bottom:28px; font-weight:500; flex:1; }
+.test-author { display:flex; align-items:center; gap:14px; padding-top:18px; border-top:1px solid var(--border); }
+.test-avatar { width:52px; height:52px; border-radius:50%; background:var(--cyan-dim); border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'Orbitron',sans-serif; font-size:1.1rem; flex-shrink:0; }
+.test-name { font-weight:700; font-size:1.02rem; margin-bottom:2px; }
+.test-role { color:var(--dim); font-size:0.86rem; }
+.test-video-wrap { position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:var(--r); overflow:hidden; margin-bottom:22px; border:1px solid var(--border); }
+.test-video { width:100%; height:100%; object-fit:cover; display:block; }
+.test-video-placeholder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:0.95rem; pointer-events:none; background:rgba(13,13,20,0.6); }
+.test-card-video .test-quote-icon { display:none; }
+.test-arrow { position:absolute; top:46%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:var(--card); border:1px solid var(--border); color:var(--cyan); font-size:1.6rem; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; transition:var(--tr); font-family:'Heebo',sans-serif; line-height:1; padding:0; }
+.test-arrow:hover { border-color:var(--cyan); box-shadow:var(--glow-c); }
+.test-arrow-prev { right:-22px; }
+.test-arrow-next { left:-22px; }
+.test-dots { display:flex; justify-content:center; gap:10px; margin-top:24px; direction:ltr; }
+.test-dot { width:10px; height:10px; border-radius:50%; background:var(--border); border:none; cursor:pointer; transition:var(--tr); padding:0; }
+.test-dot.active { background:var(--cyan); box-shadow:0 0 12px rgba(0,212,255,0.7); }
+.test-dot:hover { background:var(--cyan-dim); }
+@media(max-width:760px){
+  .test-slider { margin-top:24px; }
+  .test-card { padding:30px 22px; min-height:240px; }
+  .test-quote { font-size:1rem; }
+  .test-quote-icon { font-size:3.5rem; }
+  .test-arrow { width:38px; height:38px; font-size:1.35rem; }
+  .test-arrow-prev { right:-6px; }
+  .test-arrow-next { left:-6px; }
+}
 </style>
 </head>
 <body>
@@ -1006,6 +1040,72 @@ footer {
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">לקוחות מספרים</span>
+      <h2 class="sec-title">מה <span class="grad">הלקוחות שלנו</span> אומרים</h2>
+      <p class="sec-sub">סיפורי הצלחה מארגונים שעובדים איתנו</p>
+    </div>
+
+    <div class="test-slider rev">
+      <div class="test-viewport">
+        <div class="test-track">
+          <div class="test-card">
+            <div class="test-quote-icon">"</div>
+            <p class="test-quote">המערכת שדג הזהב בנו לנו חסכה שעות עבודה כל יום. תהליכים שהיו לוקחים לנו שעות, עכשיו קורים בלחיצה. שירות מקצועי וזמין לכל שאלה.</p>
+            <div class="test-author">
+              <div class="test-avatar">א</div>
+              <div class="test-meta">
+                <div class="test-name">[שם הלקוח]</div>
+                <div class="test-role">[תפקיד], [שם החברה]</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card test-card-video">
+            <div class="test-video-wrap">
+              <video controls preload="none" class="test-video">
+                <source src="" type="video/mp4">
+              </video>
+              <div class="test-video-placeholder">📹 סרטון המלצה - העלו את הסרטון והחליפו את ה-src</div>
+            </div>
+            <div class="test-author">
+              <div class="test-avatar">ב</div>
+              <div class="test-meta">
+                <div class="test-name">[שם הלקוח]</div>
+                <div class="test-role">[תפקיד], [שם החברה]</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card">
+            <div class="test-quote-icon">"</div>
+            <p class="test-quote">חיפשנו פתרון מותאם לצרכים שלנו - דג הזהב הקשיבו, הבינו את האתגר ומסרו בדיוק את מה שהיינו צריכים. שינוי משמעותי בארגון.</p>
+            <div class="test-author">
+              <div class="test-avatar">ג</div>
+              <div class="test-meta">
+                <div class="test-name">[שם הלקוח]</div>
+                <div class="test-role">[תפקיד], [שם החברה]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="test-arrow test-arrow-prev" type="button" aria-label="המלצה קודמת">‹</button>
+      <button class="test-arrow test-arrow-next" type="button" aria-label="המלצה הבאה">›</button>
+
+      <div class="test-dots">
+        <button class="test-dot active" data-i="0" type="button" aria-label="המלצה 1"></button>
+        <button class="test-dot" data-i="1" type="button" aria-label="המלצה 2"></button>
+        <button class="test-dot" data-i="2" type="button" aria-label="המלצה 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <!-- Background gear -->
@@ -1197,6 +1297,37 @@ document.addEventListener('keydown', function(e) {
     idx = (idx + 1) % steps.length;
     steps[idx].classList.add('pulse');
   }, 1500);
+})();
+
+// Testimonials slider
+(function(){
+  var slider = document.querySelector('.test-slider'); if(!slider) return;
+  var track = slider.querySelector('.test-track');
+  var cards = track.querySelectorAll('.test-card');
+  var dots = slider.querySelectorAll('.test-dot');
+  var prevBtn = slider.querySelector('.test-arrow-prev');
+  var nextBtn = slider.querySelector('.test-arrow-next');
+  var i = 0, autoTimer;
+  function goTo(n){
+    i = (n + cards.length) % cards.length;
+    track.style.transform = 'translateX(' + (-i * 100) + '%)';
+    dots.forEach(function(d,k){ d.classList.toggle('active', k === i); });
+  }
+  function nextSlide(){ goTo(i + 1); }
+  function prevSlide(){ goTo(i - 1); }
+  function startAuto(){ autoTimer = setInterval(nextSlide, 6500); }
+  function stopAuto(){ clearInterval(autoTimer); }
+  dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.i); stopAuto(); startAuto(); }); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ nextSlide(); stopAuto(); startAuto(); });
+  if(prevBtn) prevBtn.addEventListener('click', function(){ prevSlide(); stopAuto(); startAuto(); });
+  // Touch swipe (RTL: swipe right = prev, swipe left = next)
+  var startX = 0, dx = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; stopAuto(); }, {passive:true});
+  track.addEventListener('touchmove',  function(e){ dx = e.touches[0].clientX - startX; }, {passive:true});
+  track.addEventListener('touchend',   function(){ if(Math.abs(dx) > 40){ if(dx > 0) prevSlide(); else nextSlide(); } dx = 0; startAuto(); });
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+  startAuto();
 })();
 
 // Smooth scroll offset for fixed nav
