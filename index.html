@@ -573,7 +573,8 @@ footer {
 .test-quote-icon { font-family:'Orbitron',sans-serif; font-size:4.5rem; color:var(--cyan); opacity:0.28; line-height:0.4; margin-bottom:14px; }
 .test-quote { font-size:1.15rem; color:var(--text); line-height:1.7; margin-bottom:28px; font-weight:500; flex:1; }
 .test-author { display:flex; align-items:center; gap:14px; padding-top:18px; border-top:1px solid var(--border); }
-.test-avatar { width:52px; height:52px; border-radius:50%; background:var(--cyan-dim); border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'Orbitron',sans-serif; font-size:1.1rem; flex-shrink:0; }
+.test-avatar { width:52px; height:52px; border-radius:50%; background:var(--cyan-dim); border:2px solid var(--cyan); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'Orbitron',sans-serif; font-size:1.1rem; flex-shrink:0; overflow:hidden; }
+.test-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
 .test-name { font-weight:700; font-size:1.02rem; margin-bottom:2px; }
 .test-role { color:var(--dim); font-size:0.86rem; }
 .test-video-wrap { position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:var(--r); overflow:hidden; margin-bottom:22px; border:1px solid var(--border); }
@@ -1056,6 +1057,42 @@ footer {
     <div class="test-slider rev">
       <div class="test-viewport">
         <div class="test-track">
+          <div class="test-card">
+            <div class="test-quote-icon">"</div>
+            <p class="test-quote">ביום יום אני מקבלת שירות מהרבה בעלי מקצוע ואף מלמדת שירות בארגונים וחברות. רמת השירות של אלחי זה משהו נדיר ביותר. רגיש, סבלני, סובלני ויעיל ברמות על. קיבלתי שירות לא פחות מוואהו בריבוע 💎</p>
+            <div class="test-author">
+              <div class="test-avatar"><img src="screenshots/testi-ortal.jpg" alt="אורטל אביזמר"></div>
+              <div class="test-meta">
+                <div class="test-name">אורטל אביזמר</div>
+                <div class="test-role">ליווי לשינוי תודעה</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card">
+            <div class="test-quote-icon">"</div>
+            <p class="test-quote">אלחי, תודה על שירות זמין אדיב ומקצועי. תודה על טיפים נכונים ומשכילים, תודה על הרגשה טובה לאורך כל הדרך. יודעת שאם אצטרך עזרה בהמשך, אפנה אליך. ממליצה בחום!</p>
+            <div class="test-author">
+              <div class="test-avatar"><img src="screenshots/testi-tal-rais.jpg" alt="טל רייס"></div>
+              <div class="test-meta">
+                <div class="test-name">טל רייס</div>
+                <div class="test-role">יועצת ארגונית</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card">
+            <div class="test-quote-icon">"</div>
+            <p class="test-quote">שירות שירות שירות!!! מענה מהיר על כל שאלה, תמיד זמין, תמיד ענייני. מבסוט מאוד מהתוצאה והליווי לאורך כל התהליך, ממליץ בחום!</p>
+            <div class="test-author">
+              <div class="test-avatar"><img src="screenshots/testi-uri.jpg" alt="אורי עובדת"></div>
+              <div class="test-meta">
+                <div class="test-name">אורי עובדת</div>
+                <div class="test-role">HOMY TLV</div>
+              </div>
+            </div>
+          </div>
+
           <div class="test-card test-card-video">
             <div class="test-video-wrap">
               <iframe class="test-video" src="https://www.youtube.com/embed/KSXxHgzAQiU?start=3&rel=0" title="המלצת לקוח" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1076,6 +1113,9 @@ footer {
       <div class="test-dots">
         <button class="test-dot active" data-i="0" type="button" aria-label="המלצה 1"></button>
         <button class="test-dot" data-i="1" type="button" aria-label="המלצה 2"></button>
+        <button class="test-dot" data-i="2" type="button" aria-label="המלצה 3"></button>
+        <button class="test-dot" data-i="3" type="button" aria-label="המלצה 4"></button>
+        <button class="test-dot" data-i="4" type="button" aria-label="המלצה 5"></button>
       </div>
     </div>
 
