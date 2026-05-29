@@ -607,29 +607,75 @@ footer {
 .google-badge-label { color:var(--dim); font-size:0.9rem; letter-spacing:1px; }
 .google-badge { display:block; width:100%; max-width:440px; height:auto; padding:14px 22px; background:#fff; border-radius:var(--r); box-shadow:0 8px 32px rgba(0,212,255,0.18), 0 2px 12px rgba(0,0,0,0.35); }
 @media(max-width:760px){ .google-badge { max-width:340px; padding:12px 18px; } }
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  background:transparent; border:1px solid var(--border); color:var(--dim);
+  font-family:'Orbitron',sans-serif; font-weight:700; font-size:0.78rem; letter-spacing:1px;
+  padding:7px 13px; border-radius:8px; cursor:pointer; transition:var(--tr);
+  margin-inline-start:8px; flex-shrink:0; line-height:1; white-space:nowrap;
+}
+.lang-toggle:hover { border-color:var(--cyan); color:var(--cyan); box-shadow:var(--glow-c); }
+@media(max-width:768px){
+  .lang-toggle { margin-inline-start:auto; margin-inline-end:12px; }
+}
+
+/* ── ENGLISH / LTR OVERRIDES ── */
+body.en, html.pref-en body { direction:ltr; }
+body.en .hero-desc,
+body.en .sec-sub { margin-left:auto; margin-right:auto; }
+body.en .hero-sub { letter-spacing:5px; }
+body.en .tag { letter-spacing:1px; }
+body.en .nav-links a::after { right:auto; left:0; }
+body.en .exp::before { transform-origin:left; }
+body.en .val:hover { transform:translateX(4px); }
+body.en .process::before { background:linear-gradient(to right,var(--cyan-dim),var(--cyan),var(--gold),var(--cyan-dim)); }
+body.en .sm-close { left:auto; right:16px; }
+body.en .lp-close { left:auto; right:18px; }
+body.en .sm-cta svg { margin-left:0; margin-right:8px; }
+/* Testimonials read LTR in English */
+body.en .test-card { direction:ltr; text-align:left; }
+body.en .test-author { flex-direction:row; }
+/* Lead popup + contact inputs align left in English */
+body.en .lp-form input { text-align:left; }
+body.en .fg input, body.en .fg textarea { text-align:left; }
+body.en .con-item span { direction:ltr; }
+body.en .foot-phone { direction:ltr; }
 </style>
+<script>
+// Set direction/lang ASAP (before paint) to avoid layout flash for returning EN users
+(function(){
+  try{
+    var l = localStorage.getItem('dz_lang') || 'he';
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl';
+    if(l === 'en') document.documentElement.classList.add('pref-en');
+    window.__dzLang = l;
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
 
 <!-- MOBILE MENU -->
-<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט">
-  <a href="#about"    onclick="closeMob()">מי אנחנו</a>
-  <a href="#expertise" onclick="closeMob()">המומחיות</a>
-  <a href="#services" onclick="closeMob()">יכולות</a>
-  <a href="#projects" onclick="closeMob()">פרויקטים</a>
-  <a href="#tech"     onclick="closeMob()">טכנולוגיות</a>
-  <a href="#testimonials" onclick="closeMob()">המלצות</a>
-  <a href="#contact"  onclick="closeMob()">צור קשר</a>
+<div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט" data-en-aria="Navigation menu">
+  <a href="#about"    onclick="closeMob()" data-en="About">מי אנחנו</a>
+  <a href="#expertise" onclick="closeMob()" data-en="Expertise">המומחיות</a>
+  <a href="#services" onclick="closeMob()" data-en="Services">יכולות</a>
+  <a href="#projects" onclick="closeMob()" data-en="Projects">פרויקטים</a>
+  <a href="#tech"     onclick="closeMob()" data-en="Tech">טכנולוגיות</a>
+  <a href="#testimonials" onclick="closeMob()" data-en="Testimonials">המלצות</a>
+  <a href="#contact"  onclick="closeMob()" data-en="Contact">צור קשר</a>
 </div>
 
 <!-- SUCCESS MODAL -->
 <div class="sm" id="successModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="smTitle">
   <div class="sm-card">
-    <button class="sm-close" id="smClose" onclick="closeSuccess()" aria-label="סגור">✕</button>
+    <button class="sm-close" id="smClose" onclick="closeSuccess()" aria-label="סגור" data-en-aria="Close">✕</button>
     <div class="sm-check" aria-hidden="true">✓</div>
-    <h2 id="smTitle">הטופס נשלח בהצלחה!</h2>
-    <p class="sm-sub">פנייתך התקבלה. אפשר גם להמשיך ישירות ב-WhatsApp:</p>
-    <a id="smLink" href="#" target="_blank" rel="noopener noreferrer" class="sm-cta" onclick="closeSuccess()">
+    <h2 id="smTitle" data-en="Your message was sent!">הטופס נשלח בהצלחה!</h2>
+    <p class="sm-sub" data-en="We received your request. You can also continue directly on WhatsApp:">פנייתך התקבלה. אפשר גם להמשיך ישירות ב-WhatsApp:</p>
+    <a id="smLink" href="#" target="_blank" rel="noopener noreferrer" class="sm-cta" onclick="closeSuccess()" data-en="<svg viewBox='0 0 24 24' width='22' height='22' aria-hidden='true' style='vertical-align:-5px;margin-left:8px;'><path fill='currentColor' d='M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.2-.6.2-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 4.9 4.4.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z'/><path fill='currentColor' d='M20.5 3.5C18.3 1.2 15.3 0 12.1 0 5.5 0 .1 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.6 1.4 5.5 1.4h.1c6.6 0 12-5.4 12.1-12 0-3.2-1.2-6.2-3.4-8.4zm-8.4 18.3c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9.9-3.5-.2-.4c-1-1.5-1.4-3.3-1.4-5.1 0-5.4 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7 0 5.6-4.5 10-9.9 10z'/></svg> Open WhatsApp">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="vertical-align:-5px;margin-left:8px;"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.2-.6.2-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 4.9 4.4.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path fill="currentColor" d="M20.5 3.5C18.3 1.2 15.3 0 12.1 0 5.5 0 .1 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.6 1.4 5.5 1.4h.1c6.6 0 12-5.4 12.1-12 0-3.2-1.2-6.2-3.4-8.4zm-8.4 18.3c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9.9-3.5-.2-.4c-1-1.5-1.4-3.3-1.4-5.1 0-5.4 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7 0 5.6-4.5 10-9.9 10z"/></svg>
       פתח WhatsApp
     </a>
@@ -644,15 +690,16 @@ footer {
         <img src="daghazahav-logo-new.png" alt="DAGHAZAHAV" onerror="this.style.display='none'">
       </a>
       <ul class="nav-links">
-        <li><a href="#about">מי אנחנו</a></li>
-        <li><a href="#expertise">המומחיות</a></li>
-        <li><a href="#services">יכולות</a></li>
-        <li><a href="#projects">פרויקטים</a></li>
-        <li><a href="#tech">טכנולוגיות</a></li>
-        <li><a href="#testimonials">המלצות</a></li>
-        <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+        <li><a href="#about" data-en="About">מי אנחנו</a></li>
+        <li><a href="#expertise" data-en="Expertise">המומחיות</a></li>
+        <li><a href="#services" data-en="Services">יכולות</a></li>
+        <li><a href="#projects" data-en="Projects">פרויקטים</a></li>
+        <li><a href="#tech" data-en="Tech">טכנולוגיות</a></li>
+        <li><a href="#testimonials" data-en="Testimonials">המלצות</a></li>
+        <li><a href="#contact" class="nav-cta" data-en="Contact">צור קשר</a></li>
       </ul>
-      <button class="burger" id="burgerBtn" onclick="toggleMob()" aria-label="תפריט" aria-expanded="false" aria-controls="mobMenu"><span></span><span></span><span></span></button>
+      <button class="lang-toggle" id="langToggle" type="button" onclick="toggleLang()" aria-label="Switch language / החלף שפה">EN</button>
+      <button class="burger" id="burgerBtn" onclick="toggleMob()" aria-label="תפריט" data-en-aria="Menu" aria-expanded="false" aria-controls="mobMenu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -727,25 +774,24 @@ footer {
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
+    <div class="hero-badge" data-en="<span class='badge-dot'></span> Ministry of Defense Approved Supplier"><span class="badge-dot"></span>
       ספק משרד הביטחון
     </div>
     <h1 class="hero-brand orb">DAGHAZAHAV</h1>
-    <p class="hero-sub">ד &nbsp; ג &nbsp; &nbsp; ה &nbsp; ז &nbsp; ה &nbsp; ב</p>
-    <h2 class="hero-title">
+    <p class="hero-sub" data-en="The Golden Fish">ד &nbsp; ג &nbsp; &nbsp; ה &nbsp; ז &nbsp; ה &nbsp; ב</p>
+    <h2 class="hero-title" data-en="Advanced management systems<br><span class='grad'>tailor-made for you</span>">
       פיתוח מערכות ניהול מתקדמות<br>
       <span class="grad">בהתאמה אישית</span>
     </h2>
-    <p class="hero-desc">בונים עבורך פתרונות דיגיטליים חכמים<br>שמשנים את האופן שבו הארגון שלך פועל</p>
+    <p class="hero-desc" data-en="We build smart digital solutions<br>that transform the way your organization works">בונים עבורך פתרונות דיגיטליים חכמים<br>שמשנים את האופן שבו הארגון שלך פועל</p>
     <div class="ctas">
-      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_zoom_click',{source:'hero'});">תיאום שיחת זום חינמית</a>
-      <a href="#projects" class="btn-s">ראה פרויקטים</a>
+      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a Free Zoom Call" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_zoom_click',{source:'hero'});">תיאום שיחת זום חינמית</a>
+      <a href="#projects" class="btn-s" data-en="View Projects">ראה פרויקטים</a>
     </div>
   </div>
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
-    <span>גלול</span>
+    <span data-en="Scroll">גלול</span>
   </div>
 </section>
 
@@ -754,18 +800,18 @@ footer {
   <div class="wrap">
     <div class="about-grid">
       <div class="rev">
-        <span class="tag">מי אנחנו</span>
-        <h2 class="sec-title">בונים מערכות <span class="grad">שעובדות בשבילך</span></h2>
-        <p>DAGHAZAHAV,<br>בניהולו של אלחי פיין רס"ן (מיל'),<br>מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
-        <p>בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
+        <span class="tag" data-en="About Us">מי אנחנו</span>
+        <h2 class="sec-title" data-en="Building systems <span class='grad'>that work for you</span>">בונים מערכות <span class="grad">שעובדות בשבילך</span></h2>
+        <p data-en="DAGHAZAHAV,<br>led by Elchai Fine, Major (Res.),<br>specializes in building advanced management systems, with a focus on the defense sector, IDF units, and other organizations - large and small - that want a system to save the organization time and enable more efficient work.">DAGHAZAHAV,<br>בניהולו של אלחי פיין רס"ן (מיל'),<br>מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
+        <p data-en="Over the past decade, DAGHAZAHAV has built more than 400 websites and systems,<br>integrated with advanced automation tools.">בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
         <div class="stats">
           <div class="stat">
             <div class="stat-n" data-target="400" data-prefix="+">0</div>
-            <div class="stat-l">מערכות ואתרים</div>
+            <div class="stat-l" data-en="Systems &amp; Websites">מערכות ואתרים</div>
           </div>
           <div class="stat">
             <div class="stat-n">24/6</div>
-            <div class="stat-l">תמיכה זמינה</div>
+            <div class="stat-l" data-en="Support Available">תמיכה זמינה</div>
           </div>
         </div>
       </div>
@@ -773,22 +819,22 @@ footer {
         <div class="val rev d1">
           <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="#00d4ff" stroke-width="1.5" opacity=".6"/><circle cx="12" cy="12" r="2.5" fill="#00d4ff"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
           <div>
-            <h3>דיוק</h3>
-            <p>כל מערכת שאנחנו בונים יוצאת מניתוח מעמיק של הצרכים שלך. שואלים שאלות, מבינים את התהליכים, ובונים בדיוק את מה שצריך לעבוד בפועל.</p>
+            <h3 data-en="Precision">דיוק</h3>
+            <p data-en="Every system we build starts from a deep analysis of your needs. We ask questions, understand the processes, and build exactly what needs to work in practice.">כל מערכת שאנחנו בונים יוצאת מניתוח מעמיק של הצרכים שלך. שואלים שאלות, מבינים את התהליכים, ובונים בדיוק את מה שצריך לעבוד בפועל.</p>
           </div>
         </div>
         <div class="val rev d2">
           <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 2L3 6v6c0 5 4 9.5 9 11 5-1.5 9-6 9-11V6l-9-4z" stroke="#f0a500" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12l2.5 2.5L16 9" stroke="#f0a500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div>
-            <h3>אמינות</h3>
-            <p>מערכות שנבנות לעמוד בעומס, בשטח, עם / בלי חיבור לרשת. מגובות, מאובטחות, עם תמיכה מהירה כשצריך.</p>
+            <h3 data-en="Reliability">אמינות</h3>
+            <p data-en="Systems built to handle load, in the field, with or without a network connection. Backed up, secured, with fast support when you need it.">מערכות שנבנות לעמוד בעומס, בשטח, עם / בלי חיבור לרשת. מגובות, מאובטחות, עם תמיכה מהירה כשצריך.</p>
           </div>
         </div>
         <div class="val rev d3">
           <div class="vi"><img src="1.png" width="42" height="42" alt="gears" style="filter:brightness(0.5) sepia(1) saturate(8) hue-rotate(248deg) brightness(1.5);"></div>
           <div>
-            <h3>מותאם אישית</h3>
-            <p>כל ארגון עובד אחרת. מה שעובד לגדוד לא יעבוד למוסך, ומה שעובד למוסך לא יעבוד לחברת שמירה. מתחילים מהתחלה בכל פרויקט.</p>
+            <h3 data-en="Tailor-Made">מותאם אישית</h3>
+            <p data-en="Every organization works differently. What works for a battalion won't work for a garage, and what works for a garage won't work for a security firm. We start from scratch on every project.">כל ארגון עובד אחרת. מה שעובד לגדוד לא יעבוד למוסך, ומה שעובד למוסך לא יעבוד לחברת שמירה. מתחילים מהתחלה בכל פרויקט.</p>
           </div>
         </div>
       </div>
@@ -800,35 +846,35 @@ footer {
 <section class="expertise" id="expertise">
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">המומחיות שלנו</span>
-      <h2 class="sec-title">חיבור בין <span class="grad">אסטרטגיה לביצוע</span><br>במבחן התוצאה</h2>
-      <p class="sec-sub">מאחורי כל עסק מצליח עומדת שיטה שיודעת לקחת מורכבות ולהפוך אותה לפשטות תפעולית. הנה תחומי הליבה והעקרונות שמובילים את העבודה שלנו.</p>
+      <span class="tag" data-en="Our Expertise">המומחיות שלנו</span>
+      <h2 class="sec-title" data-en="Connecting <span class='grad'>strategy to execution</span><br>where results count">חיבור בין <span class="grad">אסטרטגיה לביצוע</span><br>במבחן התוצאה</h2>
+      <p class="sec-sub" data-en="Behind every successful business stands a method that takes complexity and turns it into operational simplicity. Here are the core areas and principles that drive our work.">מאחורי כל עסק מצליח עומדת שיטה שיודעת לקחת מורכבות ולהפוך אותה לפשטות תפעולית. הנה תחומי הליבה והעקרונות שמובילים את העבודה שלנו.</p>
     </div>
     <div class="exp-grid">
       <div class="exp rev d1">
         <div class="exp-num">01</div>
-        <h3>פיתוח מתודולוגי ופישוט מערכות</h3>
-        <p>אנחנו מאמינים שניהול נכון לא צריך להיות מסובך. המומחיות שלנו היא זיקוק תהליכי עבודה מורכבים לכדי שיטות ברורות, מובנות וקלות ליישום (כפי שבא לידי ביטוי במתודולוגיית <em>דג הזהב</em>). אנחנו לוקחים את הידע, הניסיון והחזון של העסק, והופכים אותם למבנה ארגוני סדור שעובד בשטח.</p>
+        <h3 data-en="Methodical development &amp; system simplification">פיתוח מתודולוגי ופישוט מערכות</h3>
+        <p data-en="We believe good management shouldn't be complicated. Our expertise is distilling complex workflows into clear, structured, easy-to-apply methods (as embodied in the <em>Golden Fish</em> methodology). We take a business's knowledge, experience and vision, and turn them into an orderly organizational structure that works in the field.">אנחנו מאמינים שניהול נכון לא צריך להיות מסובך. המומחיות שלנו היא זיקוק תהליכי עבודה מורכבים לכדי שיטות ברורות, מובנות וקלות ליישום (כפי שבא לידי ביטוי במתודולוגיית <em>דג הזהב</em>). אנחנו לוקחים את הידע, הניסיון והחזון של העסק, והופכים אותם למבנה ארגוני סדור שעובד בשטח.</p>
       </div>
       <div class="exp rev d2">
         <div class="exp-num">02</div>
-        <h3>אוטומציה והתאמת כלי עבודה חכמים</h3>
-        <p>טכנולוגיה צריכה לשרת את העסק, ולא להפך. במקום פתרונות מדף גנריים, אנו מתמחים באפיון, התאמה ופיתוח של מערכות CRM ואוטומציות מתקדמות המותאמות בדיוק לצרכים המשתנים של החברה. המטרה היא אחת: שחרור צווארי בקבוק, חיסכון בזמן יקר ומניעת טעויות אנוש באמצעות ייעול תהליכים דיגיטליים מקצה לקצה.</p>
+        <h3 data-en="Automation &amp; smart tooling">אוטומציה והתאמת כלי עבודה חכמים</h3>
+        <p data-en="Technology should serve the business, not the other way around. Instead of generic off-the-shelf solutions, we specialize in scoping, tailoring and developing advanced CRM systems and automations matched precisely to a company's changing needs. The goal is one: removing bottlenecks, saving precious time and preventing human error through end-to-end digital process optimization.">טכנולוגיה צריכה לשרת את העסק, ולא להפך. במקום פתרונות מדף גנריים, אנו מתמחים באפיון, התאמה ופיתוח של מערכות CRM ואוטומציות מתקדמות המותאמות בדיוק לצרכים המשתנים של החברה. המטרה היא אחת: שחרור צווארי בקבוק, חיסכון בזמן יקר ומניעת טעויות אנוש באמצעות ייעול תהליכים דיגיטליים מקצה לקצה.</p>
       </div>
       <div class="exp rev d3">
         <div class="exp-num">03</div>
-        <h3>חשיבה מערכתית וניסיון פיקודי ועסקי</h3>
-        <p>הליווי שלנו נשען על למעלה משני עשורים של ניסיון מעשי בניהול חברות, הובלת עובדים ורקע פיקודי עשיר בשטח. השילוב הזה מאפשר לנו להביא אל השולחן ראייה מערכתית רחבה, חוסן מנטלי בניהול משברים, ויכולת להניע אנשים ותהליכים קדימה מתוך מחויבות עמוקה להצלחת הפרויקט.</p>
+        <h3 data-en="Systems thinking, command &amp; business experience">חשיבה מערכתית וניסיון פיקודי ועסקי</h3>
+        <p data-en="Our guidance rests on more than two decades of hands-on experience managing companies, leading teams, and a rich field command background. This combination lets us bring a broad systemic perspective, mental resilience in crisis management, and the ability to move people and processes forward out of a deep commitment to the project's success.">הליווי שלנו נשען על למעלה משני עשורים של ניסיון מעשי בניהול חברות, הובלת עובדים ורקע פיקודי עשיר בשטח. השילוב הזה מאפשר לנו להביא אל השולחן ראייה מערכתית רחבה, חוסן מנטלי בניהול משברים, ויכולת להניע אנשים ותהליכים קדימה מתוך מחויבות עמוקה להצלחת הפרויקט.</p>
       </div>
       <div class="exp rev d4">
         <div class="exp-num">04</div>
-        <h3>תכנון וליווי אסטרטגי ארוך טווח</h3>
-        <p>בניית עסק יציב דורשת חזון שמחובר למציאות. לצד פתרון הבעיות המיידיות ביומיום, אנו מסייעים למנהלים וליזמים לבנות תשתית אסטרטגית סדורה קדימה - משלב התכנון הרעיוני, דרך בניית מודלים עסקיים מניבים, ועד להוצאה לפועל של מיזמים חדשים בצורה מבוקרת ואחראית.</p>
+        <h3 data-en="Long-term strategic planning &amp; guidance">תכנון וליווי אסטרטגי ארוך טווח</h3>
+        <p data-en="Building a stable business requires a vision connected to reality. Alongside solving the immediate day-to-day problems, we help managers and entrepreneurs build an orderly strategic infrastructure going forward - from the conceptual planning stage, through building profitable business models, to executing new ventures in a controlled and responsible way.">בניית עסק יציב דורשת חזון שמחובר למציאות. לצד פתרון הבעיות המיידיות ביומיום, אנו מסייעים למנהלים וליזמים לבנות תשתית אסטרטגית סדורה קדימה - משלב התכנון הרעיוני, דרך בניית מודלים עסקיים מניבים, ועד להוצאה לפועל של מיזמים חדשים בצורה מבוקרת ואחראית.</p>
       </div>
     </div>
     <div class="exp-why rev">
-      <h3>למה זה עובד?</h3>
-      <p>כי אנחנו לא מסתפקים רק בייעוץ תיאורטי. החוזקה של <em>דג הזהב</em> היא היכולת לשלב בין <strong>המיינדסט והאסטרטגיה העסקית</strong> לבין <strong>הביצוע המערכתי והטכנולוגי</strong>. אנחנו בונים את הארכיטקטורה הנכונה לעסק שלך - ומקפידים שהיא תעבוד בצורה חלקה, יעילה ורווחית.</p>
+      <h3 data-en="Why does it work?">למה זה עובד?</h3>
+      <p data-en="Because we don't settle for theoretical consulting alone. The strength of <em>Golden Fish</em> is the ability to combine <strong>business mindset and strategy</strong> with <strong>systemic and technological execution</strong>. We build the right architecture for your business - and make sure it runs smoothly, efficiently and profitably.">כי אנחנו לא מסתפקים רק בייעוץ תיאורטי. החוזקה של <em>דג הזהב</em> היא היכולת לשלב בין <strong>המיינדסט והאסטרטגיה העסקית</strong> לבין <strong>הביצוע המערכתי והטכנולוגי</strong>. אנחנו בונים את הארכיטקטורה הנכונה לעסק שלך - ומקפידים שהיא תעבוד בצורה חלקה, יעילה ורווחית.</p>
     </div>
   </div>
 </section>
@@ -837,37 +883,37 @@ footer {
 <section class="services" id="services">
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">תהליך העבודה</span>
-      <h2 class="sec-title">מהרעיון <span class="grad">למוצר מוגמר</span></h2>
-      <p class="sec-sub">תהליך מסודר ושקוף - כך אנו עובדים איתך<br>מהרגע הראשון ועד לאספקה</p>
+      <span class="tag" data-en="How We Work">תהליך העבודה</span>
+      <h2 class="sec-title" data-en="From idea <span class='grad'>to finished product</span>">מהרעיון <span class="grad">למוצר מוגמר</span></h2>
+      <p class="sec-sub" data-en="An orderly, transparent process - this is how we work with you<br>from the first moment to delivery">תהליך מסודר ושקוף - כך אנו עובדים איתך<br>מהרגע הראשון ועד לאספקה</p>
     </div>
     <div class="process rev">
-      <div class="step"><div class="step-n"><span>01</span></div><div class="step-l">ניתוח</div><div class="step-d">הבנת הצרכים</div></div>
-      <div class="step"><div class="step-n"><span>02</span></div><div class="step-l">עיצוב</div><div class="step-d">תכנון הפתרון</div></div>
-      <div class="step"><div class="step-n"><span>03</span></div><div class="step-l">פיתוח</div><div class="step-d">בניית המערכת</div></div>
-      <div class="step"><div class="step-n"><span>04</span></div><div class="step-l">שילוב</div><div class="step-d">אינטגרציה וכלים</div></div>
-      <div class="step"><div class="step-n"><span>05</span></div><div class="step-l">מסירה</div><div class="step-d">הדרכה ותמיכה</div></div>
+      <div class="step"><div class="step-n"><span>01</span></div><div class="step-l" data-en="Analysis">ניתוח</div><div class="step-d" data-en="Understanding needs">הבנת הצרכים</div></div>
+      <div class="step"><div class="step-n"><span>02</span></div><div class="step-l" data-en="Design">עיצוב</div><div class="step-d" data-en="Planning the solution">תכנון הפתרון</div></div>
+      <div class="step"><div class="step-n"><span>03</span></div><div class="step-l" data-en="Development">פיתוח</div><div class="step-d" data-en="Building the system">בניית המערכת</div></div>
+      <div class="step"><div class="step-n"><span>04</span></div><div class="step-l" data-en="Integration">שילוב</div><div class="step-d" data-en="Tools &amp; integrations">אינטגרציה וכלים</div></div>
+      <div class="step"><div class="step-n"><span>05</span></div><div class="step-l" data-en="Delivery">מסירה</div><div class="step-d" data-en="Training &amp; support">הדרכה ותמיכה</div></div>
     </div>
     <div class="svc-cards">
       <div class="svc rev d1">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm0-4h2v2h-2zm-6 0h4v2h-4z"/></svg></div>
-        <h3>מערכות ניהול Web</h3>
-        <p>מערכות PWA מתקדמות - עובדות בדפדפן, במובייל, ובלי אינטרנט. ממשק אינטואיטיבי בעברית.</p>
+        <h3 data-en="Web Management Systems">מערכות ניהול Web</h3>
+        <p data-en="Advanced PWA systems - working in the browser, on mobile, and offline. An intuitive interface in Hebrew or English.">מערכות PWA מתקדמות - עובדות בדפדפן, במובייל, ובלי אינטרנט. ממשק אינטואיטיבי בעברית.</p>
       </div>
       <div class="svc rev d2">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm10 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
-        <h3>שילוב כלים מתקדמים</h3>
-        <p>Firebase, Google Sheets, WhatsApp API, PDF - כל הכלים שאתה כבר משתמש בהם, מחוברים חכם.</p>
+        <h3 data-en="Advanced Integrations">שילוב כלים מתקדמים</h3>
+        <p data-en="Firebase, Google Sheets, WhatsApp API, PDF - all the tools you already use, smartly connected.">Firebase, Google Sheets, WhatsApp API, PDF - כל הכלים שאתה כבר משתמש בהם, מחוברים חכם.</p>
       </div>
       <div class="svc rev d3">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
-        <h3>אוטומציות ותהליכים</h3>
-        <p>הפחת עומס ידני. מערכות שעובדות לבד - התראות, דוחות אוטומטיים, עדכוני נתונים בזמן אמת.</p>
+        <h3 data-en="Automations &amp; Workflows">אוטומציות ותהליכים</h3>
+        <p data-en="Cut the manual workload. Systems that run on their own - alerts, automatic reports, real-time data updates.">הפחת עומס ידני. מערכות שעובדות לבד - התראות, דוחות אוטומטיים, עדכוני נתונים בזמן אמת.</p>
       </div>
       <div class="svc rev d4">
         <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7l-4-4v3H2v2h2v3l4-4z"/></svg></div>
-        <h3>ממשקים בעברית + RTL</h3>
-        <p>ניסיון עמוק בפיתוח מערכות עבריות - RTL אמיתי, PDF בעברית, הכל עובד בצורה מושלמת.</p>
+        <h3 data-en="Hebrew + RTL Interfaces">ממשקים בעברית + RTL</h3>
+        <p data-en="Deep experience building Hebrew systems - real RTL, Hebrew PDFs, everything works perfectly.">ניסיון עמוק בפיתוח מערכות עבריות - RTL אמיתי, PDF בעברית, הכל עובד בצורה מושלמת.</p>
       </div>
     </div>
   </div>
@@ -877,115 +923,115 @@ footer {
 <section class="projects" id="projects">
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">פרויקטים</span>
-      <h2 class="sec-title">מה <span class="grad">אנחנו בונים?</span></h2>
-      <p class="sec-sub">הצצה למגוון פרויקטים ומערכות מתקדמות</p>
+      <span class="tag" data-en="Projects">פרויקטים</span>
+      <h2 class="sec-title" data-en="What <span class='grad'>do we build?</span>">מה <span class="grad">אנחנו בונים?</span></h2>
+      <p class="sec-sub" data-en="A glimpse into a range of advanced projects and systems">הצצה למגוון פרויקטים ומערכות מתקדמות</p>
     </div>
     <div class="proj-grid">
 
       <!-- 1 CRM -->
       <div class="proj rev">
         <div class="proj-img">
-          <img src="screenshots/crm.jpg" alt="מערכת לניהול לקוחות" loading="lazy">
+          <img src="screenshots/crm.jpg" alt="Customer Management (CRM)" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול לקוחות</h3>
-          <p class="proj-desc">ניהול לידים, עסקאות ומשימות במקום אחד - צינור מכירות ויזואלי, מעקב אחר ערך עסקאות ושיעורי סגירה והתראות בזמן אמת.</p>
+          <h3 class="proj-title" data-en="Customer Management (CRM)">מערכת לניהול לקוחות</h3>
+          <p class="proj-desc" data-en="Manage leads, deals and tasks in one place - a visual sales pipeline, deal-value and close-rate tracking, and real-time alerts.">ניהול לידים, עסקאות ומשימות במקום אחד - צינור מכירות ויזואלי, מעקב אחר ערך עסקאות ושיעורי סגירה והתראות בזמן אמת.</p>
         </div>
       </div>
 
       <!-- 2 Battalion -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/battalion.jpg" alt="מערכת לניהול גדוד" loading="lazy">
+          <img src="screenshots/battalion.jpg" alt="Battalion Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול גדוד</h3>
-          <p class="proj-desc">ניהול מבצעי מלא - כוח אדם, תורנויות, ציוד, דוחות וחתימות. PWA עם סנכרון Firebase.</p>
+          <h3 class="proj-title" data-en="Battalion Management">מערכת לניהול גדוד</h3>
+          <p class="proj-desc" data-en="Full operational management - personnel, duty rosters, equipment, reports and signatures. A PWA with Firebase sync.">ניהול מבצעי מלא - כוח אדם, תורנויות, ציוד, דוחות וחתימות. PWA עם סנכרון Firebase.</p>
         </div>
       </div>
 
       <!-- 2 Telegram Intel -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/telegram.jpg" alt="ניטור מודיעין מקבוצות טלגרם" loading="lazy">
+          <img src="screenshots/telegram.jpg" alt="Intel Monitoring from Telegram Groups" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">ניטור מודיעין מקבוצות טלגרם</h3>
-          <p class="proj-desc">ניטור ואיסוף מודיעין אוטומטי מקבוצות טלגרם - מילות מפתח, התראות, ניתוח תוכן בזמן אמת.</p>
+          <h3 class="proj-title" data-en="Intel Monitoring from Telegram Groups">ניטור מודיעין מקבוצות טלגרם</h3>
+          <p class="proj-desc" data-en="Automatic intelligence monitoring and collection from Telegram groups - keywords, alerts, real-time content analysis.">ניטור ואיסוף מודיעין אוטומטי מקבוצות טלגרם - מילות מפתח, התראות, ניתוח תוכן בזמן אמת.</p>
         </div>
       </div>
 
       <!-- 3 Brigade -->
       <div class="proj rev d2">
         <div class="proj-img">
-          <img src="screenshots/brigade.jpg" alt="מערכת לניהול חטיבה" loading="lazy">
+          <img src="screenshots/brigade.jpg" alt="Brigade Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול חטיבה</h3>
-          <p class="proj-desc">ניהול רמת חטיבה - מבט אחוד על כלל הגדודים, כוח אדם, סטטוסים וייצוג ויזואלי בזמן אמת.</p>
+          <h3 class="proj-title" data-en="Brigade Management">מערכת לניהול חטיבה</h3>
+          <p class="proj-desc" data-en="Brigade-level management - a unified view of all battalions, personnel, statuses and real-time visualization.">ניהול רמת חטיבה - מבט אחוד על כלל הגדודים, כוח אדם, סטטוסים וייצוג ויזואלי בזמן אמת.</p>
         </div>
       </div>
 
       <!-- 5 Fire Dept -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/fire.jpg" alt="מערכת לניהול כיבוי אש" loading="lazy">
+          <img src="screenshots/fire.jpg" alt="Fire Department Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול כיבוי אש</h3>
-          <p class="proj-desc">מרכז שליטה לתחנות כיבוי - קריאות בזמן אמת, ניהול יחידות, תורנויות ומעקב ציוד.</p>
+          <h3 class="proj-title" data-en="Fire Department Management">מערכת לניהול כיבוי אש</h3>
+          <p class="proj-desc" data-en="A control center for fire stations - real-time calls, unit management, duty rosters and equipment tracking.">מרכז שליטה לתחנות כיבוי - קריאות בזמן אמת, ניהול יחידות, תורנויות ומעקב ציוד.</p>
         </div>
       </div>
 
       <!-- 6 Factory -->
       <div class="proj rev d2">
         <div class="proj-img">
-          <img src="screenshots/factory.jpg" alt="מערכת לניהול מפעל" loading="lazy">
+          <img src="screenshots/factory.jpg" alt="Factory Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול מפעל</h3>
-          <p class="proj-desc">ניהול פסי ייצור, בקרת איכות, ניהול עובדים, מלאי חומרי גלם ומעקב הזמנות בזמן אמת.</p>
+          <h3 class="proj-title" data-en="Factory Management">מערכת לניהול מפעל</h3>
+          <p class="proj-desc" data-en="Manage production lines, quality control, staff, raw-material inventory and order tracking in real time.">ניהול פסי ייצור, בקרת איכות, ניהול עובדים, מלאי חומרי גלם ומעקב הזמנות בזמן אמת.</p>
         </div>
       </div>
 
       <!-- 7 Security -->
       <div class="proj rev">
         <div class="proj-img">
-          <img src="screenshots/security.jpg" alt="מערכת לניהול חברת שמירה" loading="lazy">
+          <img src="screenshots/security.jpg" alt="Security Company Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול חברת שמירה</h3>
-          <p class="proj-desc">ניהול שומרים, תפקידים, אתרים, סיורים ולו"ז משמרות. התראות WhatsApp לשינויים.</p>
+          <h3 class="proj-title" data-en="Security Company Management">מערכת לניהול חברת שמירה</h3>
+          <p class="proj-desc" data-en="Manage guards, roles, sites, patrols and shift schedules. WhatsApp alerts for changes.">ניהול שומרים, תפקידים, אתרים, סיורים ולו"ז משמרות. התראות WhatsApp לשינויים.</p>
         </div>
       </div>
 
       <!-- 8 Garage -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/garage.jpg" alt="מערכת לניהול מוסך" loading="lazy">
+          <img src="screenshots/garage.jpg" alt="Garage Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול מוסך</h3>
-          <p class="proj-desc">ניהול תורים, עבודות, מכונאים, מלאי חלקים ולקוחות. SMS אוטומטי לסיום טיפול.</p>
+          <h3 class="proj-title" data-en="Garage Management">מערכת לניהול מוסך</h3>
+          <p class="proj-desc" data-en="Manage appointments, jobs, mechanics, parts inventory and customers. Automatic SMS when a service is done.">ניהול תורים, עבודות, מכונאים, מלאי חלקים ולקוחות. SMS אוטומטי לסיום טיפול.</p>
         </div>
       </div>
 
       <!-- 9 Shooting Range -->
       <div class="proj rev d2">
         <div class="proj-img">
-          <img src="screenshots/range.jpg" alt="מערכת לניהול מטווח" loading="lazy">
+          <img src="screenshots/range.jpg" alt="Shooting Range Management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">מערכת לניהול מטווח</h3>
-          <p class="proj-desc">ניהול מסלולי ירי, הזמנות, בטיחות, ניהול נשק ותחמושת ורישום יורים.</p>
+          <h3 class="proj-title" data-en="Shooting Range Management">מערכת לניהול מטווח</h3>
+          <p class="proj-desc" data-en="Manage firing lanes, bookings, safety, weapons and ammunition, and shooter registration.">ניהול מסלולי ירי, הזמנות, בטיחות, ניהול נשק ותחמושת ורישום יורים.</p>
         </div>
       </div>
 
     </div>
     <div class="proj-cta">
-      <p>רוצים לראות דוגמה של הפרויקטים?</p>
-      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p">לחצו כאן לתיאום פגישת זום</a>
+      <p data-en="Want to see a live example of these projects?">רוצים לראות דוגמה של הפרויקטים?</p>
+      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Click here to book a Zoom meeting">לחצו כאן לתיאום פגישת זום</a>
     </div>
   </div>
 </section>
@@ -994,8 +1040,8 @@ footer {
 <section class="tech" id="tech">
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">טכנולוגיות</span>
-      <h2 class="sec-title">הכלים <span class="grad">שלנו</span></h2>
+      <span class="tag" data-en="Tech">טכנולוגיות</span>
+      <h2 class="sec-title" data-en="Our <span class='grad'>toolkit</span>">הכלים <span class="grad">שלנו</span></h2>
     </div>
     <div class="tech-grid">
       <!-- HTML5 -->
@@ -1056,9 +1102,9 @@ footer {
 <section class="testimonials" id="testimonials">
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">לקוחות מספרים</span>
-      <h2 class="sec-title">מה <span class="grad">הלקוחות שלנו</span> אומרים</h2>
-      <p class="sec-sub">סיפורי הצלחה מארגונים שעובדים איתנו</p>
+      <span class="tag" data-en="Client Stories">לקוחות מספרים</span>
+      <h2 class="sec-title" data-en="What <span class='grad'>our clients</span> say">מה <span class="grad">הלקוחות שלנו</span> אומרים</h2>
+      <p class="sec-sub" data-en="Success stories from organizations that work with us">סיפורי הצלחה מארגונים שעובדים איתנו</p>
     </div>
 
     <!-- Video testimonials -->
@@ -1091,35 +1137,35 @@ footer {
         <div class="test-track">
           <div class="test-card">
             <div class="test-quote-icon">"</div>
-            <p class="test-quote">ביום יום אני מקבלת שירות מהרבה בעלי מקצוע ואף מלמדת שירות בארגונים וחברות. רמת השירות של אלחי זה משהו נדיר ביותר. רגיש, סבלני, סובלני ויעיל ברמות על. קיבלתי שירות לא פחות מוואהו בריבוע 💎</p>
+            <p class="test-quote" data-en="In my day-to-day I receive service from many professionals, and I even teach service in organizations and companies. Elchai's level of service is something truly rare. Sensitive, patient, tolerant and extremely efficient. The service I got was nothing less than wow, squared 💎">ביום יום אני מקבלת שירות מהרבה בעלי מקצוע ואף מלמדת שירות בארגונים וחברות. רמת השירות של אלחי זה משהו נדיר ביותר. רגיש, סבלני, סובלני ויעיל ברמות על. קיבלתי שירות לא פחות מוואהו בריבוע 💎</p>
             <div class="test-author">
-              <div class="test-avatar"><img src="screenshots/testi-ortal.jpg" alt="אורטל אביזמר"></div>
+              <div class="test-avatar"><img src="screenshots/testi-ortal.jpg" alt="Ortal Avizmer"></div>
               <div class="test-meta">
-                <div class="test-name">אורטל אביזמר</div>
-                <div class="test-role">ליווי לשינוי תודעה</div>
+                <div class="test-name" data-en="Ortal Avizmer">אורטל אביזמר</div>
+                <div class="test-role" data-en="Mindset Change Coaching">ליווי לשינוי תודעה</div>
               </div>
             </div>
           </div>
 
           <div class="test-card">
             <div class="test-quote-icon">"</div>
-            <p class="test-quote">אלחי, תודה על שירות זמין אדיב ומקצועי. תודה על טיפים נכונים ומשכילים, תודה על הרגשה טובה לאורך כל הדרך. יודעת שאם אצטרך עזרה בהמשך, אפנה אליך. ממליצה בחום!</p>
+            <p class="test-quote" data-en="Elchai, thank you for service that is available, courteous and professional. Thank you for the smart, valuable tips, and for the good feeling all the way through. I know that if I need help down the road, I'll turn to you. Highly recommend!">אלחי, תודה על שירות זמין אדיב ומקצועי. תודה על טיפים נכונים ומשכילים, תודה על הרגשה טובה לאורך כל הדרך. יודעת שאם אצטרך עזרה בהמשך, אפנה אליך. ממליצה בחום!</p>
             <div class="test-author">
-              <div class="test-avatar"><img src="screenshots/testi-tal-rais.jpg" alt="טל רייס"></div>
+              <div class="test-avatar"><img src="screenshots/testi-tal-rais.jpg" alt="Tal Rais"></div>
               <div class="test-meta">
-                <div class="test-name">טל רייס</div>
-                <div class="test-role">יועצת ארגונית</div>
+                <div class="test-name" data-en="Tal Rais">טל רייס</div>
+                <div class="test-role" data-en="Organizational Consultant">יועצת ארגונית</div>
               </div>
             </div>
           </div>
 
           <div class="test-card">
             <div class="test-quote-icon">"</div>
-            <p class="test-quote">שירות שירות שירות!!! מענה מהיר על כל שאלה, תמיד זמין, תמיד ענייני. מבסוט מאוד מהתוצאה והליווי לאורך כל התהליך, ממליץ בחום!</p>
+            <p class="test-quote" data-en="Service, service, service!!! A fast answer to every question, always available, always to the point. Very happy with the result and the support throughout the process. Highly recommend!">שירות שירות שירות!!! מענה מהיר על כל שאלה, תמיד זמין, תמיד ענייני. מבסוט מאוד מהתוצאה והליווי לאורך כל התהליך, ממליץ בחום!</p>
             <div class="test-author">
-              <div class="test-avatar"><img src="screenshots/testi-uri.jpg" alt="אורי עובדת"></div>
+              <div class="test-avatar"><img src="screenshots/testi-uri.jpg" alt="Uri Ovedet"></div>
               <div class="test-meta">
-                <div class="test-name">אורי עובדת</div>
+                <div class="test-name" data-en="Uri Ovedet">אורי עובדת</div>
                 <div class="test-role">HOMY TLV</div>
               </div>
             </div>
@@ -1136,7 +1182,7 @@ footer {
     </div>
 
     <div class="google-badge-wrap rev">
-      <span class="google-badge-label">דירוג הלקוחות שלנו</span>
+      <span class="google-badge-label" data-en="Our client rating">דירוג הלקוחות שלנו</span>
       <img src="screenshots/google-reviews.webp" alt="Google 5.0 Top Rated Service - דג הזהב" class="google-badge" loading="lazy">
     </div>
   </div>
@@ -1165,9 +1211,9 @@ footer {
   <div class="wrap">
     <div class="con-grid">
       <div class="con-info rev">
-        <span class="tag">צור קשר</span>
-        <h2>מוכנים <span class="grad">להתחיל?</span></h2>
-        <p>צור איתנו קשר עוד היום ונבנה יחד את המערכת שהארגון שלך צריך.</p>
+        <span class="tag" data-en="Contact">צור קשר</span>
+        <h2 data-en="Ready <span class='grad'>to start?</span>">מוכנים <span class="grad">להתחיל?</span></h2>
+        <p data-en="Get in touch today and together we'll build the system your organization needs.">צור איתנו קשר עוד היום ונבנה יחד את המערכת שהארגון שלך צריך.</p>
         <div class="con-items">
           <a href="tel:054-2012000" class="con-item">
             <div class="cico cico-p"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.8 19.79 19.79 0 01.06 2.18 2 2 0 012.04 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
@@ -1175,28 +1221,28 @@ footer {
           </a>
           <a href="https://wa.me/972542012000?text=שלום%20אלחי,%20אשמח%20לקבל%20פרטים%20על%20בניית%20מערכת%20בהתאמה%20אישית" target="_blank" rel="noopener" class="con-item" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_whatsapp_click',{source:'contact'});">
             <div class="cico cico-w"><svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
-            <span>שלח הודעת WhatsApp</span>
+            <span data-en="Send a WhatsApp message">שלח הודעת WhatsApp</span>
           </a>
         </div>
       </div>
       <div class="con-form rev d2">
-        <h3 style="margin-bottom:22px;font-size:1.15rem;">צרו קשר</h3>
+        <h3 style="margin-bottom:22px;font-size:1.15rem;" data-en="Contact us">צרו קשר</h3>
         <form id="cForm" onsubmit="sendForm(event)">
           <input type="hidden" name="_subject" value="פנייה חדשה מ-daghazahav.com">
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <div class="fg">
-            <label for="fn">שם מלא</label>
-            <input type="text" id="fn" name="name" autocomplete="name" placeholder="הכנס את שמך" required>
+            <label for="fn" data-en="Full name">שם מלא</label>
+            <input type="text" id="fn" name="name" autocomplete="name" placeholder="הכנס את שמך" data-en-ph="Enter your name" required>
           </div>
           <div class="fg">
-            <label for="fp">טלפון</label>
-            <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין">
+            <label for="fp" data-en="Phone">טלפון</label>
+            <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין" data-en-title="Enter a valid phone number">
           </div>
           <div class="fg">
-            <label for="fm">תיאור הצורך</label>
-            <textarea id="fm" name="message" placeholder="ספר לנו מה אתה צריך... (אופציונלי)"></textarea>
+            <label for="fm" data-en="What do you need?">תיאור הצורך</label>
+            <textarea id="fm" name="message" placeholder="ספר לנו מה אתה צריך... (אופציונלי)" data-en-ph="Tell us what you need... (optional)"></textarea>
           </div>
-          <button type="submit" class="btn-send" id="sbtn">שלח הודעה ←</button>
+          <button type="submit" class="btn-send" id="sbtn" data-en="Send Message →">שלח הודעה ←</button>
         </form>
       </div>
     </div>
@@ -1208,7 +1254,7 @@ footer {
   <div class="wrap">
     <div class="foot-in">
       <span class="foot-logo orb">DAGHAZAHAV</span>
-      <span class="foot-copy">© 2026 DAGHAZAHAV. כל הזכויות שמורות.</span>
+      <span class="foot-copy" data-en="© 2026 DAGHAZAHAV. All rights reserved.">© 2026 DAGHAZAHAV. כל הזכויות שמורות.</span>
       <a href="tel:054-2012000" class="foot-phone">054-2012000</a>
       <a href="https://www.facebook.com/1458258277563204" target="_blank" rel="noopener" aria-label="עמוד הפייסבוק שלנו" style="display:inline-flex;align-items:center;color:var(--cyan);transition:color .2s ease,transform .2s ease;" onmouseover="this.style.color='var(--gold)';this.style.transform='translateY(-2px)'" onmouseout="this.style.color='var(--cyan)';this.style.transform='none'">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
@@ -1377,11 +1423,65 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 </script>
 
+<!-- ===== Language switching (HE / EN) ===== -->
+<script>
+(function(){
+  function applyLang(lang){
+    var root = document.documentElement;
+    root.lang = lang;
+    root.dir = lang === 'en' ? 'ltr' : 'rtl';
+    root.classList.toggle('pref-en', lang === 'en');
+    document.body.classList.toggle('en', lang === 'en');
+
+    // innerHTML content
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(!el.hasAttribute('data-he')) el.setAttribute('data-he', el.innerHTML);
+      el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-he');
+    });
+    // placeholders
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      if(!el.hasAttribute('data-he-ph')) el.setAttribute('data-he-ph', el.getAttribute('placeholder') || '');
+      el.setAttribute('placeholder', lang === 'en' ? el.getAttribute('data-en-ph') : el.getAttribute('data-he-ph'));
+    });
+    // title attributes
+    document.querySelectorAll('[data-en-title]').forEach(function(el){
+      if(!el.hasAttribute('data-he-title')) el.setAttribute('data-he-title', el.getAttribute('title') || '');
+      el.setAttribute('title', lang === 'en' ? el.getAttribute('data-en-title') : el.getAttribute('data-he-title'));
+    });
+    // aria-labels
+    document.querySelectorAll('[data-en-aria]').forEach(function(el){
+      if(!el.hasAttribute('data-he-aria')) el.setAttribute('data-he-aria', el.getAttribute('aria-label') || '');
+      el.setAttribute('aria-label', lang === 'en' ? el.getAttribute('data-en-aria') : el.getAttribute('data-he-aria'));
+    });
+
+    document.title = lang === 'en'
+      ? 'DAGHAZAHAV | Advanced Management Systems'
+      : 'DAGHAZAHAV | מערכות ניהול מתקדמות';
+
+    var btn = document.getElementById('langToggle');
+    if(btn) btn.textContent = lang === 'en' ? 'עברית' : 'EN';
+
+    window.__dzLang = lang;
+    try{ localStorage.setItem('dz_lang', lang); }catch(e){}
+  }
+
+  window.toggleLang = function(){
+    applyLang((window.__dzLang || 'he') === 'he' ? 'en' : 'he');
+  };
+
+  function init(){ applyLang(window.__dzLang || 'he'); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
 <!-- Content loader: fetches content.json and populates editable fields -->
 <script>
 (function(){
+  if((window.__dzLang||'he')!=='he') return;  // English uses static content; CMS is Hebrew-only
   var CMS_URL='https://script.google.com/macros/s/AKfycbwIY8sj2jer4FikdlqTNL7IxoWUHyW4_qBes15Qo8pCesiwS4j4L9O9XrhF2YyhISyNlQ/exec';
   fetch(CMS_URL).then(function(r){return r.json();}).then(function(c){
+    if((window.__dzLang||'he')!=='he') return;  // user switched to EN mid-fetch
     try{
     var $=function(s){return document.querySelector(s);};
     var $$=function(s){return document.querySelectorAll(s);};
@@ -1470,18 +1570,18 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 
 <div class="lp-overlay" id="leadPopup" aria-hidden="true">
   <div class="lp-card" role="dialog" aria-modal="true">
-    <button class="lp-close" onclick="closeLeadPopup()" aria-label="סגור">✕</button>
-    <div class="lp-eyebrow">דג הזהב · ספק משרד הביטחון</div>
-    <div class="lp-title">רוצה מערכת ניהול <span class="cy">בהתאמה אישית</span> לעסק שלך?</div>
-    <div class="lp-sub">השאירו פרטים ונחזור אליכם עם הצעה.<br>או דברו איתנו עכשיו בוואטסאפ.</div>
+    <button class="lp-close" onclick="closeLeadPopup()" aria-label="סגור" data-en-aria="Close">✕</button>
+    <div class="lp-eyebrow" data-en="Golden Fish · Ministry of Defense Supplier">דג הזהב · ספק משרד הביטחון</div>
+    <div class="lp-title" data-en="Want a <span class='cy'>custom-built</span> management system for your business?">רוצה מערכת ניהול <span class="cy">בהתאמה אישית</span> לעסק שלך?</div>
+    <div class="lp-sub" data-en="Leave your details and we'll get back to you with a quote.<br>Or talk to us right now on WhatsApp.">השאירו פרטים ונחזור אליכם עם הצעה.<br>או דברו איתנו עכשיו בוואטסאפ.</div>
     <form class="lp-form" id="lpForm" onsubmit="lpSubmit(event)">
       <input type="hidden" name="_subject" value="ליד מהפופאפ - daghazahav.com">
-      <input type="text" name="name" id="lpName" placeholder="שם מלא" required>
-      <input type="tel" name="phone" id="lpPhone" placeholder="טלפון" required>
-      <button type="submit" class="lp-send">קבלו הצעה</button>
+      <input type="text" name="name" id="lpName" placeholder="שם מלא" data-en-ph="Full name" required>
+      <input type="tel" name="phone" id="lpPhone" placeholder="טלפון" data-en-ph="Phone" required>
+      <button type="submit" class="lp-send" data-en="Get a quote">קבלו הצעה</button>
     </form>
-    <div class="lp-or">או</div>
-    <a href="https://wa.me/972542012000?text=שלום%20אלחי,%20אשמח%20לקבל%20פרטים%20על%20בניית%20מערכת%20בהתאמה%20אישית" target="_blank" rel="noopener" class="lp-wa" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_whatsapp_click',{source:'popup'});">
+    <div class="lp-or" data-en="or">או</div>
+    <a href="https://wa.me/972542012000?text=שלום%20אלחי,%20אשמח%20לקבל%20פרטים%20על%20בניית%20מערכת%20בהתאמה%20אישית" target="_blank" rel="noopener" class="lp-wa" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_whatsapp_click',{source:'popup'});" data-en="<svg viewBox='0 0 24 24'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z'/></svg> Talk to us on WhatsApp">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
       דברו איתנו בוואטסאפ
     </a>
