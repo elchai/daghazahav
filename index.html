@@ -1592,6 +1592,7 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 (function(){
   var shown = false;
   function openPopup(){
+    if((window.__dzLang||'he')!=='en') return;  // English-only popup; Hebrew is default
     if(shown || sessionStorage.getItem('dz_lp_seen')) return;
     shown = true; sessionStorage.setItem('dz_lp_seen','1');
     document.getElementById('leadPopup').classList.add('show');
