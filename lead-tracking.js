@@ -36,6 +36,9 @@
     try { if (window.fbq) window.fbq('track', 'Lead'); } catch (_) {}
   };
 
+  // Opening the booking page after the lead is already counted: analytics only, not a lead.
+  window.trackZoomBooking = function () { event('cta_zoom_click', 'after_lead'); };
+
   async function post(url, options) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 12000);
@@ -56,8 +59,8 @@
     if (pending.has(key) || accepted.has(key)) return false;
     pending.add(key);
     pendingForms.add(form);
-    const button = form.querySelector('[type="submit"]');
-    button.disabled = true;
+    const buttons = Array.from(form.querySelectorAll('[type="submit"]'));
+    buttons.forEach(b => { b.disabled = true; });
     try {
       // Either existing delivery channel accepting the lead is sufficient.
       await Promise.any([
@@ -82,7 +85,7 @@
     } finally {
       pending.delete(key);
       pendingForms.delete(form);
-      button.disabled = false;
+      buttons.forEach(b => { b.disabled = false; });
     }
   };
 })();

@@ -16,7 +16,7 @@ function setup(fetch) {
   };
   vm.runInNewContext(code, context);
   const button = { disabled: false };
-  const form = { values: { name: 'Test', phone: '0500000000' }, reportValidity: () => true, querySelector: () => button };
+  const form = { values: { name: 'Test', phone: '0500000000' }, reportValidity: () => true, querySelector: () => button, querySelectorAll: () => [button] };
   return { ...context.window, context, events, ads, alerts, calls, timers, form, button };
 }
 test('both channels accepted: one success event, no manual form_submit or Ads guess', async () => {
@@ -109,6 +109,28 @@ test('HTML scripts parse and all lead UI entry points use the shared handler', (
   assert.equal((html.match(/src="lead-tracking.js"/g)||[]).length,1);
   for (const source of ['contact','fab','popup','form_followup']) assert.ok(html.includes(`trackWhatsApp('${source}')`));
   assert.ok(html.includes("await submitLead(form, 'contact', msg)"));
-  assert.ok(html.includes("await submitLead(form, 'popup', message)"));
+  assert.ok(html.includes("await submitLead(form, zoom ? 'zoom' : 'popup', message)"));
   assert.equal(/gtag\('event','form_submit'/.test(html),false);
+  // A click is not a lead: no Lead pixel left on any link, and Zoom asks for details first.
+  assert.equal(/onclick="[^"]*fbq\('track','Lead'\)/.test(html),false);
+  assert.ok(html.includes('onclick="openZoomLead(event)"'));
+});
+test('opening the booking page after a lead is analytics only', () => {
+  const s=setup(async () => ({ok:true}));
+  s.trackZoomBooking();
+  assert.equal(s.events.length,1);
+  assert.equal(s.events[0][1],'cta_zoom_click');
+  assert.equal(s.ads.length,0);
+});
+test('every submit button is locked while a lead is in flight', async () => {
+  let resolve;
+  const s=setup(() => new Promise(r => { resolve = r; }));
+  const second={disabled:false};
+  s.form.querySelectorAll=()=>[s.button,second];
+  const pending=s.submitLead(s.form,'zoom','hello');
+  assert.equal(s.button.disabled,true);
+  assert.equal(second.disabled,true);
+  resolve({ok:true});
+  assert.equal(await pending,true);
+  assert.equal(second.disabled,false);
 });

@@ -180,7 +180,7 @@ section { padding:100px 0; position:relative; z-index:1; }
 .sm-card h2 {
   font-size:1.5rem; color:var(--text); margin-bottom:8px; font-weight:800;
 }
-.sm-sub { color:var(--dim); font-size:1rem; margin-bottom:24px; line-height:1.5; }
+.sm-sub { color:var(--dim); font-size:1rem; margin-bottom:24px; line-height:1.5; text-wrap:balance; }
 .sm-close {
   position:absolute; top:14px; left:16px; background:none; border:none;
   color:var(--dim); font-size:1.4rem; cursor:pointer; padding:6px 10px; line-height:1;
@@ -198,6 +198,14 @@ section { padding:100px 0; position:relative; z-index:1; }
   animation:smPulse 1.8s ease-in-out infinite;
 }
 .sm-cta:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(37,211,102,0.55); animation:none; }
+/* Zoom flow: details first, then the booking link */
+.sm .sm-zoom { display:none; }
+.sm.zoom a.sm-zoom { display:inline-flex; }
+.sm.zoom p.sm-zoom { display:block; }
+.sm.zoom .sm-default { display:none; }
+.sm.zoom #smLink { background:none; box-shadow:none; animation:none; color:var(--dim) !important; font-size:.95rem; padding:10px 16px; margin-top:6px; }
+.sm-zoom-cta { background:linear-gradient(135deg,#00d4ff,#0077ff); box-shadow:0 6px 24px rgba(0,150,255,0.4); animation:none; margin-bottom:6px; }
+.sm-zoom-cta:hover { box-shadow:0 10px 32px rgba(0,150,255,0.55); }
 @keyframes smFade  { from{opacity:0} to{opacity:1} }
 @keyframes smPop   { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
 @keyframes smCheck { from{opacity:0;transform:scale(0) rotate(-180deg)} to{opacity:1;transform:scale(1) rotate(0)} }
@@ -674,7 +682,9 @@ body.en .foot-phone { direction:ltr; }
     <button class="sm-close" id="smClose" onclick="closeSuccess()" aria-label="סגור" data-en-aria="Close">✕</button>
     <div class="sm-check" aria-hidden="true">✓</div>
     <h2 id="smTitle" data-en="Your message was sent!">הטופס נשלח בהצלחה!</h2>
-    <p class="sm-sub" data-en="We received your request. You can also continue directly on WhatsApp:">פנייתך התקבלה. אפשר גם להמשיך ישירות ב-WhatsApp:</p>
+    <p class="sm-sub sm-default" data-en="We received your request. You can also continue directly on WhatsApp:">פנייתך התקבלה. אפשר גם להמשיך ישירות ב-WhatsApp:</p>
+    <p class="sm-sub sm-zoom" data-en="Your details were received. Now pick a time for the call:">הפרטים התקבלו. עכשיו בוחרים מועד לשיחה:</p>
+    <a id="smZoom" href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="sm-cta sm-zoom-cta sm-zoom" onclick="trackZoomBooking();closeSuccess()" data-en="Pick a time for Zoom">לבחירת מועד לזום</a>
     <a id="smLink" href="#" target="_blank" rel="noopener noreferrer" class="sm-cta" onclick="trackWhatsApp('form_followup');closeSuccess()" data-en="<svg viewBox='0 0 24 24' width='22' height='22' aria-hidden='true' style='vertical-align:-5px;margin-left:8px;'><path fill='currentColor' d='M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.2-.6.2-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 4.9 4.4.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z'/><path fill='currentColor' d='M20.5 3.5C18.3 1.2 15.3 0 12.1 0 5.5 0 .1 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.6 1.4 5.5 1.4h.1c6.6 0 12-5.4 12.1-12 0-3.2-1.2-6.2-3.4-8.4zm-8.4 18.3c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9.9-3.5-.2-.4c-1-1.5-1.4-3.3-1.4-5.1 0-5.4 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7 0 5.6-4.5 10-9.9 10z'/></svg> Open WhatsApp">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="vertical-align:-5px;margin-left:8px;"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.2-.6.2-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2.1-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 4.9 4.4.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path fill="currentColor" d="M20.5 3.5C18.3 1.2 15.3 0 12.1 0 5.5 0 .1 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.7.9 3.6 1.4 5.5 1.4h.1c6.6 0 12-5.4 12.1-12 0-3.2-1.2-6.2-3.4-8.4zm-8.4 18.3c-1.7 0-3.4-.5-4.9-1.3l-.4-.2-3.6.9.9-3.5-.2-.4c-1-1.5-1.4-3.3-1.4-5.1 0-5.4 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.4 2.9 7 0 5.6-4.5 10-9.9 10z"/></svg>
       פתח WhatsApp
@@ -785,7 +795,7 @@ body.en .foot-phone { direction:ltr; }
     </h2>
     <p class="hero-desc" data-en="We build smart digital solutions<br>that transform the way your organization works">בונים עבורך פתרונות דיגיטליים חכמים<br>שמשנים את האופן שבו הארגון שלך פועל</p>
     <div class="ctas">
-      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a Free Zoom Call" onclick="if(window.fbq)fbq('track','Lead');if(window.gtag)gtag('event','cta_zoom_click',{source:'hero'});">תיאום שיחת זום חינמית</a>
+      <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a Free Zoom Call" onclick="openZoomLead(event)">תיאום שיחת זום חינמית</a>
       <a href="#projects" class="btn-s" data-en="View Projects">ראה פרויקטים</a>
     </div>
   </div>
@@ -1325,6 +1335,7 @@ async function sendForm(e) {
   const text  = `שלום, אני ${name}${phone ? ' | ' + phone : ''}\n\n${msg}`;
 
   if (!await submitLead(form, 'contact', msg)) return;
+  document.getElementById('successModal').classList.remove('zoom');
   link.href = 'https://wa.me/972542012000?text=' + encodeURIComponent(text);
   modal.classList.add('show');
   modal.setAttribute('aria-hidden','false');
@@ -1526,7 +1537,7 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 .lp-eyebrow{color:var(--gold);font-weight:700;font-size:16px;margin-bottom:8px;}
 .lp-title{font-weight:900;font-size:30px;color:#fff;line-height:1.15;margin-bottom:10px;}
 .lp-title .cy{color:var(--cyan);}
-.lp-sub{color:#b0b0cc;font-size:17px;line-height:1.45;margin-bottom:22px;}
+.lp-sub{color:#b0b0cc;font-size:17px;line-height:1.45;margin-bottom:22px;text-wrap:balance;}
 .lp-form{display:flex;flex-direction:column;gap:12px;}
 .lp-form input{background:#0a0e16;border:1px solid var(--border);border-radius:10px;color:#fff;
   font-size:16px;padding:13px 16px;font-family:inherit;text-align:right;}
@@ -1534,6 +1545,9 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 .lp-send{background:linear-gradient(180deg,#ffcd60,#f0a500);color:#0d0d14;font-weight:800;font-size:19px;
   font-family:inherit;border:none;border-radius:50px;padding:15px;cursor:pointer;box-shadow:0 0 28px rgba(240,165,0,0.45);transition:transform .2s ease;}
 .lp-send:hover{transform:translateY(-2px);}
+.lp-card .lp-zoom{display:none;}
+.lp-card.zoom .lp-zoom{display:block;}
+.lp-card.zoom .lp-default{display:none;}
 .lp-or{color:#52527a;font-size:14px;margin:14px 0 10px;}
 .lp-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#fff;
   font-weight:800;font-size:18px;text-decoration:none;border-radius:50px;padding:13px 28px;width:100%;}
@@ -1548,13 +1562,16 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
   <div class="lp-card" role="dialog" aria-modal="true">
     <button class="lp-close" onclick="closeLeadPopup()" aria-label="סגור" data-en-aria="Close">✕</button>
     <div class="lp-eyebrow" data-en="Golden Fish · Ministry of Defense Supplier">דג הזהב · ספק משרד הביטחון</div>
-    <div class="lp-title" data-en="Want a <span class='cy'>custom-built</span> management system for your business?">רוצה מערכת ניהול <span class="cy">בהתאמה אישית</span> לעסק שלך?</div>
-    <div class="lp-sub" data-en="Leave your details and we'll get back to you with a quote.<br>Or talk to us right now on WhatsApp.">השאירו פרטים ונחזור אליכם עם הצעה.<br>או דברו איתנו עכשיו בוואטסאפ.</div>
+    <div class="lp-title lp-default" data-en="Want a <span class='cy'>custom-built</span> management system for your business?">רוצה מערכת ניהול <span class="cy">בהתאמה אישית</span> לעסק שלך?</div>
+    <div class="lp-sub lp-default" data-en="Leave your details and we'll get back to you with a quote.<br>Or talk to us right now on WhatsApp.">השאירו פרטים ונחזור אליכם עם הצעה.<br>או דברו איתנו עכשיו בוואטסאפ.</div>
+    <div class="lp-title lp-zoom" data-en="Book a <span class='cy'>free</span> Zoom call">תיאום שיחת זום <span class="cy">חינמית</span></div>
+    <div class="lp-sub lp-zoom" data-en="Leave your name and phone,<br>then pick a time that suits you.">השאירו שם וטלפון<br>ומיד אחר כך בוחרים מועד שנוח לכם.</div>
     <form class="lp-form" id="lpForm" onsubmit="lpSubmit(event)">
       <input type="hidden" name="_subject" value="ליד מהפופאפ - daghazahav.com">
       <input type="text" name="name" id="lpName" placeholder="שם מלא" data-en-ph="Full name" required>
       <input type="tel" name="phone" id="lpPhone" placeholder="טלפון" data-en-ph="Phone" required>
-      <button type="submit" class="lp-send" data-en="Get a quote">קבלו הצעה</button>
+      <button type="submit" class="lp-send lp-default" data-en="Get a quote">קבלו הצעה</button>
+      <button type="submit" class="lp-send lp-zoom" data-en="Continue to scheduling">המשך לבחירת מועד</button>
     </form>
     <div class="lp-or" data-en="or">או</div>
     <a href="https://wa.me/972542012000?text=שלום%20אלחי,%20אשמח%20לקבל%20פרטים%20על%20בניית%20מערכת%20בהתאמה%20אישית" target="_blank" rel="noopener" class="lp-wa" onclick="trackWhatsApp('popup')" data-en="<svg viewBox='0 0 24 24'><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z'/></svg> Talk to us on WhatsApp">
@@ -1584,13 +1601,24 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 })();
 function closeLeadPopup(){
   var p=document.getElementById('leadPopup'); p.classList.remove('show'); p.setAttribute('aria-hidden','true');
+  p.querySelector('.lp-card').classList.remove('zoom');
+}
+// Zoom CTA: collect name + phone first (the real lead), then offer the booking link.
+function openZoomLead(e){
+  if(e) e.preventDefault();
+  try{ sessionStorage.setItem('dz_lp_seen','1'); }catch(_){}
+  var p=document.getElementById('leadPopup');
+  p.querySelector('.lp-card').classList.add('zoom');
+  p.classList.add('show'); p.setAttribute('aria-hidden','false');
+  setTimeout(function(){ var n=document.getElementById('lpName'); if(n) n.focus(); },50);
 }
 async function lpSubmit(e){
   e.preventDefault();
   var form=document.getElementById('lpForm');
   var name=document.getElementById('lpName').value, phone=document.getElementById('lpPhone').value;
-  var message='רוצה הצעה למערכת ניהול לעסק שלי';
-  if (!await submitLead(form, 'popup', message)) return;
+  var zoom=document.querySelector('#leadPopup .lp-card').classList.contains('zoom');
+  var message=zoom ? 'רוצה לתאם שיחת זום' : 'רוצה הצעה למערכת ניהול לעסק שלי';
+  if (!await submitLead(form, zoom ? 'zoom' : 'popup', message)) return;
   var text='שלום, אני '+name+' | '+phone+'\n\n'+message;
   // Reuse the success dialog: opening a tab after async delivery can be blocked.
   var link=document.getElementById('smLink');
@@ -1598,9 +1626,11 @@ async function lpSubmit(e){
   closeLeadPopup();
   form.reset();
   var modal=document.getElementById('successModal');
+  modal.classList.toggle('zoom', zoom);
+  if (zoom) document.getElementById('smZoom').href='https://cal.com/elchai/zoom40?name='+encodeURIComponent(name.trim());
   modal.classList.add('show');
   modal.setAttribute('aria-hidden','false');
-  setTimeout(function(){link.focus();},50);
+  setTimeout(function(){(zoom ? document.getElementById('smZoom') : link).focus();},50);
 }
 
 </script>
