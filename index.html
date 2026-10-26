@@ -1504,7 +1504,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     // Contact
     if(c.contact){
     var ch=$('.con-info h2'); if(ch&&c.contact.heading){ var gs=ch.querySelector('.grad'); if(gs){ ch.firstChild.textContent=c.contact.heading.split(gs.textContent)[0]; if(c.contact.headingGrad) gs.textContent=c.contact.headingGrad; } else ch.textContent=c.contact.heading; }
-    var cp=$('.con-info > p'); if(cp&&c.contact.description) cp.textContent=c.contact.description;
+    var cp=$('.con-info > p'); if(cp&&c.contact.description){ /* second sentence on its own line: break at an explicit newline or before "שתיקח" */ var cparts=String(c.contact.description).split(/\s*\n\s*|\s+(?=שתיקח\s)/); cp.textContent=''; cparts.forEach(function(t,i){ if(i) cp.appendChild(document.createElement('br')); cp.appendChild(document.createTextNode(t)); }); }
     if(c.contact.phone){
     var phoneLink=$('a.con-item[href^="tel:"]');
     if(phoneLink){ phoneLink.href='tel:'+c.contact.phone; var ps=phoneLink.querySelector('span[dir="ltr"]'); if(ps) ps.textContent=c.contact.phone; }
