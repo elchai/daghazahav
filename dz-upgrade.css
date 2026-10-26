@@ -64,3 +64,8 @@
   .tag::before { animation: none; }
   .nav, .nav.dz-hide { transition: none; }
 }
+
+/* ── project cards with an outbound link ── */
+.proj-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(0, 212, 255, .35); color: var(--cyan); font-weight: 700; font-size: .9rem; text-decoration: none; position: relative; z-index: 2; transition: background .3s, color .3s, border-color .3s, transform .3s; }
+.proj-link::after { content: '↗'; font-size: 1rem; }
+.proj-link:hover { background: var(--gold); border-color: var(--gold); color: #0d0d14; transform: translateY(-2px); }
