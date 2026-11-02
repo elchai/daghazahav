@@ -405,6 +405,7 @@ section { padding:100px 0; position:relative; z-index:1; }
 /* ── PROJECTS ── */
 .projects { background:transparent; }
 .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+@media(min-width:769px){ .proj-grid > .proj:last-child:nth-child(3n+1) { grid-column:2; } }
 .proj-cta { display:flex; align-items:center; justify-content:center; gap:20px; margin-top:48px; padding:28px 36px; background:rgba(0,212,255,0.04); border:1px solid rgba(0,212,255,0.12); border-radius:16px; flex-wrap:wrap; }
 .proj-cta p { color:var(--dim); font-size:1rem; margin:0; }
 .proj {
@@ -947,24 +948,96 @@ body.en .foot-phone { direction:ltr; }
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="CRAZY CRM - Business Management System">CRAZY CRM - מערכת לניהול העסק</h3>
-          <p class="proj-desc" data-en="Leads, deals, tasks, a WhatsApp bot and quotes in one place - a visual sales pipeline and real-time reports.">ניהול לידים, עסקאות ומשימות, בוט וואטסאפ והצעות מחיר במקום אחד - פייפליין מכירות ויזואלי ודוחות בזמן אמת.</p>
+          <p class="proj-desc" data-en="Leads, deals, tasks, a WhatsApp bot and quotes in one place - a visual sales pipeline and real-time reports.">ניהול לידים, עסקאות ומשימות, בוט וואצאפ והצעות מחיר במקום אחד - פייפליין מכירות ויזואלי ודוחות בזמן אמת.</p>
           <a class="proj-link" href="https://www.crazycrm.app/" target="_blank" rel="noopener" data-en="Visit the CRAZY CRM site">לאתר CRAZY CRM</a>
         </div>
       </div>
 
-      <!-- 2 Battalion -->
+      <!-- 2 Yishuvon -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/battalion.jpg" alt="Battalion Management" loading="lazy">
+          <img src="screenshots/yishuvon.jpg" alt="Yishuvon - settlement and community management" loading="lazy">
         </div>
         <div class="proj-body">
-          <h3 class="proj-title" data-en="Battalion Management">מערכת לניהול גדוד</h3>
-          <p class="proj-desc" data-en="Full operational management - personnel, duty rosters, equipment, reports and signatures. A PWA with Firebase sync.">ניהול מבצעי מלא - כוח אדם, תורנויות, ציוד, דוחות וחתימות. PWA עם סנכרון Firebase.</p>
+          <h3 class="proj-title" data-en="Yishuvon - Settlement &amp; Community Management">ישובון - מערכת לניהול ישוב וקהילה</h3>
+          <p class="proj-desc" data-en="Resident requests, collections, WhatsApp messages, voting, emergency response and a resident portal - all in one place.">פניות תושבים, גבייה, הודעות בוואצאפ, הצבעות, חירום ופורטל לתושב - הכול במקום אחד.</p>
+          <a class="proj-link" href="/yishuvon/" data-en="Visit the Yishuvon site">לאתר ישובון</a>
         </div>
       </div>
 
-      <!-- 2 Telegram Intel -->
+      <!-- 3 Gadudon -->
+      <div class="proj rev d2">
+        <div class="proj-img">
+          <img src="screenshots/gadudon.jpg" alt="Gadudon - battalion management" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Gadudon - Battalion Management">גדודון - מערכת לניהול גדוד</h3>
+          <p class="proj-desc" data-en="Full operational management - personnel, duty rosters, equipment, reports and signatures. Works on any phone.">ניהול מבצעי מלא - כוח אדם, תורנויות, ציוד, דוחות וחתימות. עובד מכל טלפון.</p>
+          <a class="proj-link" href="/gadudon/" data-en="Visit the Gadudon site">לאתר גדודון</a>
+        </div>
+      </div>
+
+      <!-- 4 Hafakon -->
+      <div class="proj rev">
+        <div class="proj-img">
+          <img src="screenshots/event-hall.jpg" alt="Hafakon - event hall and garden management with a seating map" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Hafakon - Event Hall &amp; Garden Management">הפקון - מערכת לניהול אולמות וגני אירועים</h3>
+          <p class="proj-desc" data-en="Manage events, bookings and guests with an interactive seating map - tables, seats and RSVPs.">ניהול אירועים, הזמנות ואורחים עם מפת הושבה אינטראקטיבית - שולחנות, מקומות ישיבה ואישורי הגעה.</p>
+          <a class="proj-link" href="/hafakon/" data-en="Visit the Hafakon site">לאתר הפקון</a>
+        </div>
+      </div>
+
+      <!-- 5 Mosachun -->
       <div class="proj rev d1">
+        <div class="proj-img">
+          <img src="screenshots/mosachun.jpg" alt="Mosachun - garage management" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Mosachun - Garage Management">מוסכון - מערכת לניהול מוסך</h3>
+          <p class="proj-desc" data-en="Vehicle intake by licence plate, quotes the customer approves on WhatsApp, mechanics, parts and test reminders.">קליטת רכב לפי מספר רישוי, הצעת מחיר שהלקוח מאשר בוואצאפ, מכונאים, חלקים ותזכורות טסט.</p>
+          <a class="proj-link" href="/mosachun/" data-en="Visit the Mosachun site">לאתר מוסכון</a>
+        </div>
+      </div>
+
+      <!-- 6 Kehilot -->
+      <div class="proj rev d2">
+        <div class="proj-img">
+          <img src="screenshots/kehilot.jpg" alt="Kehila Babinyan - community management for buildings" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Kehila Babinyan - Community Management">קהילה בבניין - מערכת לניהול קהילות</h3>
+          <p class="proj-desc" data-en="Buildings, residents, votes, budget and emergency in one system for the community department. Residents vote from a WhatsApp link.">בניינים, תושבים, הצבעות, תקציב וחירום במערכת אחת לאגף הקהילה. הדיירים מצביעים מקישור בוואצאפ.</p>
+          <a class="proj-link" href="/kehilot/" data-en="Visit the Kehila Babinyan site">לאתר קהילה בבניין</a>
+        </div>
+      </div>
+
+      <!-- 7 Iruchon -->
+      <div class="proj rev">
+        <div class="proj-img">
+          <img src="screenshots/iruchon.jpg" alt="Iruchon - management for hosting compounds" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Iruchon - Hosting Compound Management">אירוחון - מערכת לניהול מתחמי אירוח</h3>
+          <p class="proj-desc" data-en="Rooms and meals, trips and guide scheduling, faults by building and room, stock and suppliers - for field schools and guest houses.">חדרים ותפוסה, טיולים ושיבוץ מדריכים, תקלות לפי בניין וחדר, מלאי וספקים - למדרשות, בתי ספר שדה ובתי הארחה.</p>
+          <a class="proj-link" href="/iruchon/" data-en="Visit the Iruchon site">לאתר אירוחון</a>
+        </div>
+      </div>
+
+      <!-- 8 WhatsApp AI bot -->
+      <div class="proj rev d1">
+        <div class="proj-img">
+          <img src="screenshots/whatsapp-bot.jpg" alt="WhatsApp AI Bot for Businesses" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title" data-en="Business WhatsApp AI Bot">בוט וואצאפ AI לעסקים</h3>
+          <p class="proj-desc" data-en="Answers customers on WhatsApp 24/7, books appointments, sends reminders and hands off to a human when needed.">עונה ללקוחות בוואצאפ 24/7, קובע פגישות ותורים, שולח תזכורות ומעביר לנציג כשצריך.</p>
+        </div>
+      </div>
+
+      <!-- 9 Telegram Intel -->
+      <div class="proj rev d2">
         <div class="proj-img">
           <img src="screenshots/telegram.jpg" alt="Intel Monitoring from Telegram Groups" loading="lazy">
         </div>
@@ -974,42 +1047,8 @@ body.en .foot-phone { direction:ltr; }
         </div>
       </div>
 
-      <!-- 3 Yishuvon -->
-      <div class="proj rev d2">
-        <div class="proj-img">
-          <img src="screenshots/yishuvon.jpg" alt="Yishuvon - settlement and community management" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title" data-en="Yishuvon - Settlement &amp; Community Management">ישובון - מערכת לניהול ישוב וקהילה</h3>
-          <p class="proj-desc" data-en="Resident requests, collections, WhatsApp messages, voting, emergency response and a resident portal - all in one place.">פניות תושבים, גבייה, הודעות בוואטסאפ, הצבעות, חירום ופורטל לתושב - הכול במקום אחד.</p>
-          <a class="proj-link" href="https://yeshuvon-info.web.app/" target="_blank" rel="noopener" data-en="Visit the Yishuvon site">לאתר ישובון</a>
-        </div>
-      </div>
-
-      <!-- 4a WhatsApp AI bot -->
-      <div class="proj rev d1">
-        <div class="proj-img">
-          <img src="screenshots/whatsapp-bot.jpg" alt="WhatsApp AI Bot for Businesses" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title" data-en="Business WhatsApp AI Bot">בוט וואטסאפ AI לעסקים</h3>
-          <p class="proj-desc" data-en="Answers customers on WhatsApp 24/7, books appointments, sends reminders and hands off to a human when needed.">עונה ללקוחות בוואטסאפ 24/7, קובע פגישות ותורים, שולח תזכורות ומעביר לנציג כשצריך.</p>
-        </div>
-      </div>
-
-      <!-- 4b Event halls -->
-      <div class="proj rev d2">
-        <div class="proj-img">
-          <img src="screenshots/event-hall.jpg" alt="Event Hall and Garden Management with a seating map" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title" data-en="Event Hall &amp; Garden Management">מערכת לניהול אולמות וגני אירועים</h3>
-          <p class="proj-desc" data-en="Manage events, bookings and guests with an interactive seating map - tables, seats and RSVPs.">ניהול אירועים, הזמנות ואורחים עם מפת הושבה אינטראקטיבית - שולחנות, מקומות ישיבה ואישורי הגעה.</p>
-        </div>
-      </div>
-
-      <!-- 5 Fire Dept -->
-      <div class="proj rev d1">
+      <!-- 10 Fire Dept -->
+      <div class="proj rev">
         <div class="proj-img">
           <img src="screenshots/fire.jpg" alt="Fire Department Management" loading="lazy">
         </div>
@@ -1019,8 +1058,8 @@ body.en .foot-phone { direction:ltr; }
         </div>
       </div>
 
-      <!-- 6 Factory -->
-      <div class="proj rev d2">
+      <!-- 11 Factory -->
+      <div class="proj rev d1">
         <div class="proj-img">
           <img src="screenshots/factory.jpg" alt="Factory Management" loading="lazy">
         </div>
@@ -1030,8 +1069,8 @@ body.en .foot-phone { direction:ltr; }
         </div>
       </div>
 
-      <!-- 7 Security -->
-      <div class="proj rev">
+      <!-- 12 Security -->
+      <div class="proj rev d2">
         <div class="proj-img">
           <img src="screenshots/security.jpg" alt="Security Company Management" loading="lazy">
         </div>
@@ -1041,19 +1080,8 @@ body.en .foot-phone { direction:ltr; }
         </div>
       </div>
 
-      <!-- 8 Garage -->
-      <div class="proj rev d1">
-        <div class="proj-img">
-          <img src="screenshots/garage.jpg" alt="Garage Management" loading="lazy">
-        </div>
-        <div class="proj-body">
-          <h3 class="proj-title" data-en="Garage Management">מערכת לניהול מוסך</h3>
-          <p class="proj-desc" data-en="Manage appointments, jobs, mechanics, parts inventory and customers. Automatic SMS when a service is done.">ניהול תורים, עבודות, מכונאים, מלאי חלקים ולקוחות. SMS אוטומטי לסיום טיפול.</p>
-        </div>
-      </div>
-
-      <!-- 9 Shooting Range -->
-      <div class="proj rev d2">
+      <!-- 13 Shooting Range -->
+      <div class="proj rev">
         <div class="proj-img">
           <img src="screenshots/range.jpg" alt="Shooting Range Management" loading="lazy">
         </div>
