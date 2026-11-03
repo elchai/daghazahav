@@ -280,6 +280,19 @@ section { padding:100px 0; position:relative; z-index:1; }
 .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,transparent,var(--cyan)); animation:sline 2s ease-in-out infinite; }
 @keyframes sline { 0%{height:0;opacity:0} 50%{height:40px;opacity:1} 100%{height:40px;opacity:0;transform:translateY(8px)} }
 
+/* ── FOUNDER ── */
+.founder-grid { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:56px; align-items:center; }
+.founder-text p { color:var(--dim); font-size:1.08rem; line-height:1.8; margin-bottom:14px; text-wrap:balance; }
+.founder-chips { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 28px; }
+.founder-chips span { background:var(--card); border:1px solid var(--border); border-radius:50px; padding:7px 16px; font-size:0.9rem; font-weight:700; color:#fff; }
+.founder-photo { position:relative; justify-self:center; width:min(100%,360px); }
+.founder-photo::before { content:""; position:absolute; inset:8% -6% 4%; border-radius:50%; background:radial-gradient(ellipse at 50% 40%,rgba(0,212,255,0.22),rgba(0,212,255,0.08) 45%,transparent 70%); filter:blur(30px); }
+.founder-photo img { position:relative; display:block; width:100%; height:auto; }
+@media(max-width:768px){
+  .founder-grid { grid-template-columns:1fr; gap:28px; }
+  .founder-photo { order:-1; width:min(70%,260px); }
+}
+
 /* ── ABOUT ── */
 .about { background:transparent; }
 .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
@@ -807,6 +820,31 @@ body.en .foot-phone { direction:ltr; }
   </div>
 </section>
 
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-text rev">
+        <span class="tag" data-en="Nice to meet you">נעים מאוד</span>
+        <h2 class="sec-title" data-en="I'm Elchai Fine <span class='grad'>and I build your system</span>">אני אלחי פיין <span class="grad">ואני בונה את&nbsp;המערכת שלכם</span></h2>
+        <p data-en="Self-employed for over 25 years. For 16 years I built and ran a company with 50 employees, so I know from the inside what an organization needs from a management system.">עצמאי כבר יותר מ־25 שנה. 16 שנים בניתי וניהלתי חברה עם&nbsp;50 עובדים ולכן אני יודע מבפנים מה ארגון צריך ממערכת ניהול.</p>
+        <p data-en="Over the past decade I have built more than 400 websites and systems. Today I build management systems for municipalities, communities, garages, event halls and the defense sector, as an approved Ministry of Defense supplier.">בעשור האחרון בניתי יותר מ־400 אתרים ומערכות. היום אני בונה מערכות ניהול לעיריות, ליישובים, למוסכים, לאולמות אירועים ולמערכת הביטחון כספק מאושר של&nbsp;משרד הביטחון.</p>
+        <p data-en="Every project starts with a Zoom call. We map what you need together, and I build a secure system that works from any phone and connects to WhatsApp.">כל&nbsp;פרויקט מתחיל בשיחת זום. מאפיינים יחד את&nbsp;מה שאתם צריכים ואני בונה מערכת מאובטחת שעובדת מכל טלפון ומתחברת לוואצאפ.</p>
+        <div class="founder-chips">
+          <span data-en="Major (Res.)">רס"ן (מיל')</span>
+          <span data-en="Ministry of Defense supplier">ספק משרד הביטחון</span>
+          <span data-en="25+ years self-employed">25+ שנות עצמאות</span>
+          <span data-en="Secure systems">מערכות מאובטחות</span>
+        </div>
+        <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a scoping call" onclick="openZoomLead(event)">לתיאום שיחת אפיון</a>
+      </div>
+      <div class="founder-photo rev d1">
+        <img src="elchai-fine.png" alt="אלחי פיין, מייסד דג הזהב" data-en-alt="Elchai Fine, founder of DAGHAZAHAV" width="960" height="1440" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="wrap">
@@ -1310,8 +1348,12 @@ body.en .foot-phone { direction:ltr; }
             <input type="tel" id="fp" name="phone" autocomplete="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין" data-en-title="Enter a valid phone number">
           </div>
           <div class="fg">
-            <label for="fm" data-en="What do you need?">תיאור הצורך</label>
-            <textarea id="fm" name="message" placeholder="ספר לנו מה אתה צריך... (אופציונלי)" data-en-ph="Tell us what you need... (optional)"></textarea>
+            <label for="fo" data-en="Company / organization">שם החברה / ארגון</label>
+            <input type="text" id="fo" name="organization" autocomplete="organization" placeholder="לדוגמה: מוסך כהן, מועצה אזורית..." data-en-ph="e.g. Cohen Garage, regional council..." required>
+          </div>
+          <div class="fg">
+            <label for="fm" data-en="A few words about the system you'd like">כמה מילים על המערכת שהייתם רוצים</label>
+            <textarea id="fm" name="message" placeholder="מה המערכת צריכה לנהל? כמה משתמשים? (אופציונלי)" data-en-ph="What should the system manage? How many users? (optional)"></textarea>
           </div>
           <button type="submit" class="btn-send" id="sbtn" data-en="Send Message →">שלח הודעה ←</button>
         </form>
@@ -1393,7 +1435,8 @@ async function sendForm(e) {
   const form  = document.getElementById('cForm');
   const name  = document.getElementById('fn').value;
   const phone = document.getElementById('fp').value;
-  const msg   = document.getElementById('fm').value;
+  const org   = document.getElementById('fo').value.trim();
+  const msg   = `ארגון: ${org}\n${document.getElementById('fm').value.trim()}`.trim();
   const btn   = document.getElementById('sbtn');
   const modal = document.getElementById('successModal');
   const link  = document.getElementById('smLink');
@@ -1604,9 +1647,10 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
 .lp-title .cy{color:var(--cyan);}
 .lp-sub{color:#b0b0cc;font-size:17px;line-height:1.45;margin-bottom:22px;text-wrap:balance;}
 .lp-form{display:flex;flex-direction:column;gap:12px;}
-.lp-form input{background:#0a0e16;border:1px solid var(--border);border-radius:10px;color:#fff;
+.lp-form input,.lp-form textarea{background:#0a0e16;border:1px solid var(--border);border-radius:10px;color:#fff;
   font-size:16px;padding:13px 16px;font-family:inherit;text-align:right;}
-.lp-form input:focus{outline:none;border-color:var(--cyan);box-shadow:var(--glow-c);}
+.lp-form textarea{resize:vertical;min-height:64px;}
+.lp-form input:focus,.lp-form textarea:focus{outline:none;border-color:var(--cyan);box-shadow:var(--glow-c);}
 .lp-send{background:linear-gradient(180deg,#ffcd60,#f0a500);color:#0d0d14;font-weight:800;font-size:19px;
   font-family:inherit;border:none;border-radius:50px;padding:15px;cursor:pointer;box-shadow:0 0 28px rgba(240,165,0,0.45);transition:transform .2s ease;}
 .lp-send:hover{transform:translateY(-2px);}
@@ -1635,6 +1679,8 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.query
       <input type="hidden" name="_subject" value="ליד מהפופאפ - daghazahav.com">
       <input type="text" name="name" id="lpName" placeholder="שם מלא" data-en-ph="Full name" required>
       <input type="tel" name="phone" id="lpPhone" placeholder="טלפון" data-en-ph="Phone" required>
+      <input type="text" name="organization" id="lpOrg" placeholder="שם החברה / ארגון" data-en-ph="Company / organization" autocomplete="organization" required>
+      <textarea name="details" id="lpDetails" rows="2" placeholder="כמה מילים על המערכת שהייתם רוצים" data-en-ph="A few words about the system you'd like"></textarea>
       <button type="submit" class="lp-send lp-default" data-en="Get a quote">קבלו הצעה</button>
       <button type="submit" class="lp-send lp-zoom" data-en="Continue to scheduling">המשך לבחירת מועד</button>
     </form>
@@ -1682,7 +1728,9 @@ async function lpSubmit(e){
   var form=document.getElementById('lpForm');
   var name=document.getElementById('lpName').value, phone=document.getElementById('lpPhone').value;
   var zoom=document.querySelector('#leadPopup .lp-card').classList.contains('zoom');
-  var message=zoom ? 'רוצה לתאם שיחת זום' : 'רוצה הצעה למערכת ניהול לעסק שלי';
+  var message=(zoom ? 'רוצה לתאם שיחת זום' : 'רוצה הצעה למערכת ניהול לעסק שלי')+
+    '\nארגון: '+document.getElementById('lpOrg').value.trim()+
+    (document.getElementById('lpDetails').value.trim() ? '\n'+document.getElementById('lpDetails').value.trim() : '');
   if (!await submitLead(form, zoom ? 'zoom' : 'popup', message)) return;
   var text='שלום, אני '+name+' | '+phone+'\n\n'+message;
   // Reuse the success dialog: opening a tab after async delivery can be blocked.
