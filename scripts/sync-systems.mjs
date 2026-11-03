@@ -21,7 +21,7 @@ export const SYSTEMS = [
   { slug: 'gadudon', live: 'https://gdudon.web.app/' },
   { slug: 'hafakon', live: 'https://hafakon.web.app/' },
   { slug: 'mosachun', live: 'https://mosachun.web.app/' },
-  { slug: 'kehilot', live: 'https://kehilot-info.web.app/' },
+  { slug: 'kehilot', live: 'https://kehilot.web.app/' },
   { slug: 'iruchon', live: 'https://iruchon.web.app/' },
   { slug: 'mifalon', live: 'https://mifalon.web.app/' },
 ];
