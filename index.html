@@ -432,6 +432,8 @@ section { padding:100px 0; position:relative; z-index:1; }
 }
 .proj-img img { width:100%; height:100%; object-fit:cover; }
 .proj-img-link { display:block; width:100%; height:100%; }
+.proj-grid .proj-link.proj-link-wa::after { content:none; display:none; }
+.proj-link-wa svg { width:18px; height:18px; flex:none; }
 .proj-grid .proj-img { height:auto; aspect-ratio:6/5; }
 .proj-body { padding:22px; }
 .proj-title { font-size:1.1rem; font-weight:800; margin-bottom:9px; }
@@ -984,7 +986,7 @@ body.en .foot-phone { direction:ltr; }
       <!-- 1 CRAZY CRM -->
       <div class="proj rev">
         <div class="proj-img">
-          <a class="proj-img-link" href="https://www.crazycrm.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="screenshots/crazycrm-light.jpg" alt="CRAZY CRM - business management system" loading="lazy"></a>
+          <a class="proj-img-link" href="https://www.crazycrm.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="screenshots/sys-crazycrm.jpg" alt="CRAZY CRM: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy"></a>
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="CRAZY CRM - Business Management System">CRAZY CRM - מערכת לניהול העסק</h3>
@@ -1068,18 +1070,19 @@ body.en .foot-phone { direction:ltr; }
       <!-- 8 WhatsApp AI bot -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/whatsapp-bot.jpg" alt="WhatsApp AI Bot for Businesses" loading="lazy">
+          <a class="proj-img-link" href="https://wa.me/972555047720?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A0%D7%A1%D7%95%D7%AA%20%D7%90%D7%AA%20%D7%94%D7%91%D7%95%D7%98" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="screenshots/sys-whatsapp-bot.jpg" alt="בוט וואצאפ AI: לוח הבקרה ושיחה בנייד" width="1230" height="1025" loading="lazy"></a>
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Business WhatsApp AI Bot">בוט וואצאפ AI לעסקים</h3>
           <p class="proj-desc" data-en="Answers customers on WhatsApp 24/7, books appointments, sends reminders and hands off to a human when needed.">עונה ללקוחות בוואצאפ 24/7, קובע פגישות ותורים, שולח תזכורות ומעביר לנציג כשצריך.</p>
+          <a class="proj-link proj-link-wa" href="https://wa.me/972555047720?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A0%D7%A1%D7%95%D7%AA%20%D7%90%D7%AA%20%D7%94%D7%91%D7%95%D7%98" target="_blank" rel="noopener" data-en="Chat with the bot now"><svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.6 15.6 2.1 13.8 2.1 12 2.1 6.5 6.5 2.1 12 2.1c2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.4-4.4 9.8-9.9 9.8zm8.4-18.3A11.8 11.8 0 0 0 12 0C5.5 0 .2 5.3.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7c1.7.9 3.7 1.4 5.7 1.4 6.5 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.6-8.3z"/></svg><span>נסו את הבוט בוואצאפ</span></a>
         </div>
       </div>
 
       <!-- 9 Telegram Intel -->
       <div class="proj rev d2">
         <div class="proj-img">
-          <img src="screenshots/telegram.jpg" alt="Intel Monitoring from Telegram Groups" loading="lazy">
+          <img src="screenshots/sys-telegram.jpg" alt="ניטור מודיעין: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy">
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Intel Monitoring from Telegram Groups">ניטור מודיעין מקבוצות טלגרם</h3>
@@ -1090,7 +1093,7 @@ body.en .foot-phone { direction:ltr; }
       <!-- 10 Fire Dept -->
       <div class="proj rev">
         <div class="proj-img">
-          <img src="screenshots/fire.jpg" alt="Fire Department Management" loading="lazy">
+          <img src="screenshots/sys-fire.jpg" alt="מערכת לניהול כיבוי אש: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy">
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Fire Department Management">מערכת לניהול כיבוי אש</h3>
@@ -1101,7 +1104,7 @@ body.en .foot-phone { direction:ltr; }
       <!-- 11 Factory -->
       <div class="proj rev d1">
         <div class="proj-img">
-          <img src="screenshots/factory.jpg" alt="Factory Management" loading="lazy">
+          <img src="screenshots/sys-factory.jpg" alt="מערכת לניהול מפעל: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy">
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Factory Management">מערכת לניהול מפעל</h3>
@@ -1112,7 +1115,7 @@ body.en .foot-phone { direction:ltr; }
       <!-- 12 Security -->
       <div class="proj rev d2">
         <div class="proj-img">
-          <img src="screenshots/security.jpg" alt="Security Company Management" loading="lazy">
+          <img src="screenshots/sys-security.jpg" alt="מערכת לניהול חברת שמירה: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy">
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Security Company Management">מערכת לניהול חברת שמירה</h3>
@@ -1123,7 +1126,7 @@ body.en .foot-phone { direction:ltr; }
       <!-- 13 Shooting Range -->
       <div class="proj rev">
         <div class="proj-img">
-          <img src="screenshots/range.jpg" alt="Shooting Range Management" loading="lazy">
+          <img src="screenshots/sys-range.jpg" alt="מערכת לניהול מטווח: המערכת במחשב ובנייד" width="1230" height="1025" loading="lazy">
         </div>
         <div class="proj-body">
           <h3 class="proj-title" data-en="Shooting Range Management">מערכת לניהול מטווח</h3>
