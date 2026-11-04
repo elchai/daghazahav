@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ניהול קמפיינים דג הזהב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#12325e;--bg2:#0a1830;--bg3:#060d1c;
+  --card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.075);--line:rgba(255,255,255,.09);
+  --text:#eaf1ff;--muted:#93a4c3;--dim:#5f7192;
+  --blue:#4c9bff;--ok:#2fd27b;--warn:#ffb020;--bad:#ff5d6c;--wa:#25d366;
+  --accent:#4c9bff;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;color:var(--text);font-family:Heebo,Arial,sans-serif;
+  background:radial-gradient(1200px 700px at 80% -10%,var(--bg1) 0%,var(--bg2) 45%,var(--bg3) 100%) fixed;background-color:var(--bg3)}
+h1,h2,h3,p,div,span,li{text-wrap:balance}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px 60px}
+
+/* תפריט זכוכית */
+.nav{position:sticky;top:14px;z-index:10;margin:14px auto 0;max-width:1320px;padding:0 20px}
+.pill{display:flex;align-items:center;gap:14px;padding:10px 12px 10px 18px;border-radius:999px;
+  background:rgba(12,26,52,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;white-space:nowrap}
+.brand .dot{width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#ffd34d,#ff9f1a);display:grid;place-items:center;color:#0a1830;font-weight:900}
+.tabs{display:flex;gap:4px;margin-inline-start:auto;flex-wrap:wrap}
+.tab{border:0;background:transparent;color:var(--muted);font:600 15px Heebo;padding:9px 16px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:.2s}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.tab.on{color:#08142a;background:var(--text)}
+.tab i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.live{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;white-space:nowrap}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(47,210,123,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(47,210,123,0)}100%{box-shadow:0 0 0 0 rgba(47,210,123,0)}}
+
+/* כותרת */
+.hero{padding:46px 0 22px}
+.hero h1{margin:0;font-size:clamp(30px,4.4vw,52px);font-weight:900;line-height:1.08;
+  background:linear-gradient(90deg,#fff 0%,#a9ccff 55%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:10px 0 0;color:var(--muted);font-size:17px}
+.status{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--muted)}
+.chip b{color:var(--text);font-weight:600}
+.led{width:8px;height:8px;border-radius:50%;background:var(--dim)}
+.led.ok{background:var(--ok)}.led.warn{background:var(--warn)}.led.bad{background:var(--bad)}
+
+/* כרטיסים */
+.grid{display:grid;gap:16px}
+.k6{grid-template-columns:repeat(6,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k3{grid-template-columns:repeat(3,1fr)}.k2{grid-template-columns:repeat(2,1fr)}
+.span2{grid-column:span 2}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:1/-1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;transition:transform .25s,box-shadow .25s,border-color .25s;min-width:0}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 0 1px rgba(76,155,255,.25),0 0 40px rgba(76,155,255,.12);border-color:rgba(76,155,255,.3)}
+.card h3{margin:0 0 14px;font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px}
+.card h3 small{margin-inline-start:auto;color:var(--dim);font-weight:500;font-size:13px}
+.kpi .v{font-size:34px;font-weight:900;line-height:1;letter-spacing:-.5px}
+.kpi .l{color:var(--muted);font-size:14px;margin-top:8px}
+.kpi .s{color:var(--dim);font-size:13px;margin-top:4px}
+.section{margin-top:34px}
+.section>h2{font-size:22px;margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.section>h2 .ic{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--card2)}
+.section>h2 .tag{margin-inline-start:auto}
+
+/* כרטיס קמפיין בסקירה */
+.camp{cursor:pointer;position:relative;overflow:hidden}
+.camp::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c)}
+.camp .top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.camp .logo{width:44px;height:44px;border-radius:14px;background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--c);display:grid;place-items:center;font-weight:900;font-size:20px}
+.camp .t{font-weight:800;font-size:19px}.camp .p{color:var(--muted);font-size:14px}
+.chan{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.chan .n{margin-inline-start:auto;font-weight:700}
+.chan .st{color:var(--muted)}
+
+.tagx{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--card2);color:var(--muted);white-space:nowrap}
+.tagx.ok{background:rgba(47,210,123,.14);color:#6ff0a8}.tagx.warn{background:rgba(255,176,32,.14);color:#ffcd6b}.tagx.bad{background:rgba(255,93,108,.15);color:#ff98a2}.tagx.blue{background:rgba(76,155,255,.15);color:#9cc6ff}
+
+/* גרף */
+.chart{width:100%;height:190px}
+.chart text{fill:var(--dim);font:11px Heebo}
+.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:6px;vertical-align:-1px}
+
+/* משפך */
+.funnel{display:flex;flex-direction:column;gap:10px}
+.fr{display:grid;grid-template-columns:120px 1fr 70px;align-items:center;gap:12px;font-size:14px}
+.fr .bar{height:12px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.fr .bar span{display:block;height:100%;border-radius:99px;background:var(--c);transition:width 1s ease}
+.fr .num{text-align:left;font-weight:700}
+
+/* בועות וואצאפ */
+.phone{background:#0b141a url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='2' cy='2' r='1' fill='%23ffffff10'/></svg>");border-radius:16px;padding:16px;border:1px solid var(--line)}
+.bubble{background:#005c4b;color:#e9edef;padding:10px 12px 18px;border-radius:12px 0 12px 12px;max-width:92%;margin-inline-start:auto;white-space:pre-wrap;font-size:14.5px;line-height:1.55;position:relative;text-wrap:pretty}
+.bubble.in{background:#202c33;border-radius:0 12px 12px 12px;margin-inline-start:0;margin-inline-end:auto}
+.bubble .tm{position:absolute;bottom:4px;left:10px;font-size:11px;color:#8fa6b0}
+.bubble+.bubble{margin-top:10px}
+.plabel{font-size:12px;color:var(--muted);margin:14px 0 6px}
+
+/* טבלאות */
+.list{display:flex;flex-direction:column;max-height:430px;overflow:auto;margin:-4px -8px;padding:0 8px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row:last-child{border-bottom:0}
+.row .nm{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .sub{color:var(--muted);font-size:13px;grid-column:1/-1}
+.row .msg{grid-column:1/-1;background:rgba(255,255,255,.04);padding:8px 10px;border-radius:10px;white-space:pre-wrap;text-wrap:pretty}
+.row .acts{display:flex;gap:8px;align-items:center}
+.row.done{opacity:.45}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card2);color:var(--text);font:600 13px Heebo;padding:6px 11px;border-radius:999px;cursor:pointer;text-decoration:none;transition:.2s}
+.btn:hover{background:rgba(255,255,255,.14)}
+.btn.wa{background:rgba(37,211,102,.16);border-color:rgba(37,211,102,.35);color:#7df0a9}
+.btn.primary{background:var(--c,var(--blue));border-color:transparent;color:#08142a}
+.btn svg{width:15px;height:15px}
+
+/* פילוח טפסים */
+.stack{display:flex;height:16px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.05)}
+.stack span{height:100%}
+.slist{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 18px;margin-top:14px;font-size:14px}
+.slist div{display:flex;align-items:center;gap:8px}
+.slist b{margin-inline-start:auto}
+.slist i{width:10px;height:10px;border-radius:3px}
+
+/* מסגרת דפדפן לעיצוב המייל */
+.browser{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#ececec}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#1b2740}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.browser .bar i:nth-child(2){background:#febc2e}.browser .bar i:nth-child(3){background:#28c840}
+.browser .bar span{margin-inline-start:10px;color:var(--muted);font-size:12px;direction:ltr}
+.browser iframe{display:block;width:100%;height:620px;border:0;background:#ececec}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:14px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:500}
+
+.empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.empty .big{font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px}
+.check{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.check li{display:flex;gap:10px;align-items:flex-start}
+.check .y{color:var(--ok)}.check .n{color:var(--warn)}
+
+/* שלד טעינה */
+.sk{border-radius:20px;height:120px;background:linear-gradient(90deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 100%);background-size:200% 100%;animation:shim 1.4s infinite}
+@keyframes shim{to{background-position:-200% 0}}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:1100px){.k6{grid-template-columns:repeat(3,1fr)}.k4{grid-template-columns:repeat(2,1fr)}.k3{grid-template-columns:1fr}.span2,.span3,.span4{grid-column:1/-1}}
+@media (max-width:700px){.wrap,.nav{padding:0 12px}.pill{flex-wrap:wrap;border-radius:22px}.tabs{margin:0;width:100%}.k6,.k4,.k2{grid-template-columns:repeat(2,1fr)}.slist{grid-template-columns:1fr}.fr{grid-template-columns:90px 1fr 50px}.live{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="nav"><div class="pill">
+  <div class="brand"><span class="dot">ד</span>ניהול קמפיינים דג הזהב</div>
+  <div class="tabs" id="tabs"></div>
+  <div class="live"><span class="pulse"></span><span id="ago">טוען</span></div>
+</div></div>
+<div class="wrap" id="app">
+  <div class="hero"><div class="sk" style="height:90px;max-width:520px"></div></div>
+  <div class="grid k4"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+</div>
+
+<script>
+const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.01c0-5.19 4.23-9.41 9.42-9.41 2.51 0 4.88.98 6.65 2.76a9.35 9.35 0 0 1 2.75 6.66c0 5.19-4.23 9.41-9.41 9.41zm8.02-17.43A11.27 11.27 0 0 0 12.05.75C5.8.75.7 5.84.7 12.1c0 2 .52 3.95 1.52 5.67L.6 23.25l5.61-1.47a11.3 11.3 0 0 0 5.84 1.6c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.02z"/></svg>';
+const MAIL_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
+const FORM_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>';
+const FORM_COLORS = { sent:'#2fd27b', sent_unconfirmed:'#8be0b0', ready:'#4c9bff', new:'#5f7192', failed:'#ff5d6c', captcha:'#ffb020', manual:'#ff8a3d', no_form:'#3a4a68', no_site:'#2a3650', dry_ok:'#9cc6ff', skipped:'#444' };
+
+const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+let D = null, tab = 'overview', first = true;
+try { tab = localStorage.getItem('cc-tab') || 'overview'; } catch {}
+
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+const fmt = (n) => Number(n || 0).toLocaleString('he-IL');
+const time = (iso) => iso ? new Date(iso).toLocaleString('he-IL', { day:'numeric', month:'numeric', hour:'2-digit', minute:'2-digit' }) : '';
+const waBold = (s) => esc(s).replace(/\*([^*\n]+)\*/g, '<b>$1</b>');
+const intentTag = (r) => r.botLinked ? '<span class="tagx blue">הבוט שלח קישור</span>' : r.intent === 'optout' ? '<span class="tagx bad">הסרה</span>' : r.intent === 'yes' ? '<span class="tagx ok">מעוניין</span>' : '<span class="tagx warn">מחכה לך</span>';
+
+function chart(seriesList, days, h = 190) {
+  const W = 700, H = h, pad = 22, n = days.length, bw = (W - pad) / n;
+  const totals = days.map((_, i) => seriesList.reduce((a, s) => a + s.data[i].n, 0));
+  const max = Math.max(4, ...totals);
+  let bars = '';
+  days.forEach((d, i) => {
+    let y = H - pad;
+    seriesList.forEach((s) => {
+      const v = s.data[i].n; if (!v) return;
+      const bh = (v / max) * (H - pad - 18);
+      y -= bh;
+      bars += `<rect x="${i * bw + bw * .2}" y="${y}" width="${bw * .6}" height="${bh}" rx="4" fill="${s.color}"><title>${d}: ${v} ${s.name}</title></rect>`;
+    });
+    if (totals[i]) bars += `<text x="${i * bw + bw / 2}" y="${y - 5}" text-anchor="middle" style="fill:#c9d6ee">${totals[i]}</text>`;
+    bars += `<text x="${i * bw + bw / 2}" y="${H - 6}" text-anchor="middle">${d.slice(8)}/${+d.slice(5, 7)}</text>`;
+  });
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${bars}</svg>
+    <div class="legend">${seriesList.map((s) => `<span><i style="background:${s.color}"></i>${s.name}</span>`).join('')}</div>`;
+}
+
+const kpi = (v, l, s = '') => `<div class="card kpi reveal"><div class="v">${v}</div><div class="l">${l}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`;
+
+function waState(w, sys) {
+  if (!w.queue && !w.sent) return ['', 'עוד לא הוקם'];
+  if (!w.approved) return ['warn', 'ממתין לאישור נוסח'];
+  if (sys.waRun) return ['ok', 'שולח עכשיו'];
+  if (!w.remaining) return ['', 'הרשימה הסתיימה'];
+  return ['blue', sys.waWindow ? 'ממתין להפעלה הבאה' : 'מחוץ לשעות, ממשיך ב-8:00'];
+}
+function emailState(e) {
+  if (/טיוטה/.test(e.status)) return ['warn', 'טיוטה'];
+  if (/פעיל|רץ/.test(e.status)) return ['ok', 'פעיל'];
+  return ['', /בתכנון/.test(e.status) ? 'בתכנון' : 'לא נבנה'];
+}
+
+function renderTabs() {
+  const items = [['overview', 'סקירה כללית', '#eaf1ff'], ...D.campaigns.map((c) => [c.id, c.title.replace('קמפיין ', ''), c.color])];
+  document.getElementById('tabs').innerHTML = items.map(([id, t, c]) =>
+    `<button class="tab ${tab === id ? 'on' : ''}" data-tab="${id}"><i style="background:${c}"></i>${t}</button>`).join('');
+}
+
+function waiting() {
+  return D.campaigns.flatMap((c) => c.whatsapp.replies.filter((r) => !r.handled && r.intent !== 'optout' && !r.botLinked).map((r) => ({ ...r, camp: c })));
+}
+
+function replyRow(r, color) {
+  const key = `${r.phone}|${r.at}`;
+  return `<div class="row ${r.handled ? 'done' : ''}">
+    <div class="nm">${esc(r.name || r.phone)}${r.camp ? ` <span class="tagx" style="color:${r.camp.color}">${r.camp.product}</span>` : ''}</div>
+    <div class="acts">${intentTag(r)}<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${r.phone}">${WA_ICON}פתיחת שיחה</a>
+      ${LOCAL ? `<button class="btn" data-handled="${esc(key)}" data-v="${r.handled ? '' : '1'}">${r.handled ? 'החזרה' : 'טופל'}</button>` : ''}</div>
+    <div class="msg">${esc(r.text)}</div>
+    <div class="sub">${time(r.at)} · ${r.phone}</div></div>`;
+}
+
+function overview() {
+  const C = D.campaigns, sum = (f) => C.reduce((a, c) => a + (f(c) || 0), 0);
+  const w = waiting();
+  const s = D.system;
+  return `
+  <div class="hero reveal"><h1>ניהול קמפיינים דג הזהב</h1>
+    <p>כל הפניות למפעלים למוסכים וליישובים במקום אחד. הנתונים נקראים ישירות ממערכות השליחה ומתעדכנים כל 30 שניות.</p>
+    <div class="status">
+      <span class="chip"><span class="led ${s.waRun ? 'ok' : s.waWindow ? 'warn' : ''}"></span>שליחת וואצאפ <b>${s.waRun ? 'פעילה' : s.waWindow ? 'ממתינה' : 'מחוץ לשעות (א\'-ה\' 8:00 עד 17:00)'}</b></span>
+      <span class="chip"><span class="led ${s.waBot ? 'ok' : 'bad'}"></span>בוט תשובות <b>${s.waBot ? 'פעיל 24/7' : 'כבוי'}</b></span>
+      <span class="chip"><span class="led ${s.shabbat ? '' : C.some((c) => c.forms?.running) ? 'ok' : 'warn'}"></span>טפסי צור קשר <b>${s.shabbat ? 'שבת, לא שולחים' : C.some((c) => c.forms?.running) ? 'פעיל 24/6' : 'ממתין להפעלה הבאה'}</b></span>
+    </div></div>
+  <div class="grid k6">
+    ${kpi(fmt(sum((c) => c.whatsapp.sent)), 'הודעות וואצאפ שנשלחו', `${fmt(sum((c) => c.whatsapp.sentToday))} היום`)}
+    ${kpi(fmt(sum((c) => c.forms?.sent)), 'פניות בטפסי צור קשר', `${fmt(sum((c) => c.forms?.sentToday))} היום`)}
+    ${kpi(fmt(sum((c) => c.whatsapp.replied)), 'ענו בוואצאפ', `${fmt(sum((c) => c.whatsapp.yes))} מעוניינים`)}
+    ${kpi(fmt(w.length), 'תשובות שמחכות לך', w.length ? 'למטה ברשימה' : 'הכול טופל')}
+    ${kpi(fmt(sum((c) => c.email.stats?.sent)), 'מיילים שנשלחו', `${fmt(sum((c) => c.email.leads))} לידים מוכנים ב-Instantly`)}
+    ${kpi(fmt(sum((c) => c.whatsapp.remaining)), 'בתור לוואצאפ', 'עוד לא קיבלו פנייה')}
+  </div>
+  <div class="grid k3 section">
+    ${C.map((c) => {
+      const [wc, wt] = waState(c.whatsapp, s), [ec, et] = emailState(c.email);
+      return `<div class="card camp reveal" style="--c:${c.color}" data-tab="${c.id}">
+        <div class="top"><div class="logo">${c.product[0]}</div><div><div class="t">${c.title}</div><div class="p">${c.product}</div></div>
+          <span class="btn primary" style="margin-inline-start:auto;--c:${c.color}">לקמפיין</span></div>
+        <div class="chan" style="color:var(--wa)">${WA_ICON.replace('<svg', '<svg width="18" height="18"')}<span style="color:var(--text)">וואצאפ</span><span class="tagx ${wc}">${wt}</span><span class="n">${fmt(c.whatsapp.sent)}</span></div>
+        <div class="chan">${MAIL_ICON}<span>אימייל</span><span class="tagx ${ec}">${et}</span><span class="n">${fmt(c.email.stats?.sent)}</span></div>
+        <div class="chan">${FORM_ICON}<span>טפסי צור קשר</span>${c.forms ? `<span class="tagx ${c.forms.running ? 'ok' : 'blue'}">${c.forms.running ? 'פעיל' : 'ממתין'}</span><span class="n">${fmt(c.forms.sent)}</span>` : '<span class="tagx">לא בשימוש</span><span class="n">-</span>'}</div>
+      </div>`; }).join('')}
+  </div>
+  <div class="grid k3 section">
+    <div class="card span2 reveal"><h3>שליחות ב-14 הימים האחרונים<small>וואצאפ וטפסים יחד</small></h3>
+      ${chart(C.flatMap((c) => [{ name: `${c.product} וואצאפ`, color: c.color, data: c.whatsapp.daily }, ...(c.forms ? [{ name: `${c.product} טפסים`, color: `color-mix(in srgb, ${c.color} 45%, #0a1830)`, data: c.forms.daily }] : [])]).filter((x) => x.data.some((d) => d.n)), D.days)}</div>
+    <div class="card reveal"><h3>תשובות שמחכות לך<small>${w.length}</small></h3>
+      <div class="list">${w.length ? w.map((r) => replyRow(r)).join('') : '<div class="empty"><div class="big">אין תשובות פתוחות</div>מי שעונה "כן" מקבל קישור מהבוט, וכל שאלה אחרת מופיעה כאן</div>'}</div></div>
+  </div>`;
+}
+
+function campaign(c) {
+  const w = c.whatsapp, e = c.email, f = c.forms, s = D.system;
+  const [wc, wt] = waState(w, s), [ec, et] = emailState(e);
+  const planned = !w.queue && !w.sent && !e.leads;
+  const head = `<div class="hero reveal" style="--accent:${c.color}"><h1>${c.title}</h1>
+    <p>פנייה ל${c.id === 'mifalon' ? 'מפעלים קטנים ובינוניים' : c.id === 'mosachun' ? 'מוסכים' : 'מזכירי יישובים'} עם הצעה להכיר את <b style="color:${c.color}">${c.product}</b>. הקישור בכל ההודעות: <a href="${c.site}" target="_blank" rel="noopener">${c.site.replace('https://', '')}</a></p>
+    <div class="status"><span class="chip">${WA_ICON.replace('<svg', '<svg width="16" height="16" style="color:#25d366"')}וואצאפ <span class="tagx ${wc}">${wt}</span></span>
+      <span class="chip">${MAIL_ICON}אימייל <span class="tagx ${ec}">${et}</span></span>
+      ${f ? `<span class="chip">${FORM_ICON}טפסים <span class="tagx ${f.running ? 'ok' : 'blue'}">${f.running ? 'פעיל 24/6' : 'ממתין להפעלה'}</span></span>` : ''}</div></div>`;
+
+  if (planned) return head + `<div class="grid k2 section">
+    <div class="card reveal" style="--c:${c.color}"><h3>מה מוכן</h3><ul class="check">
+      <li><span class="y">✓</span>אתר ${c.product} חי בכתובת ${esc(c.site.replace('https://', ''))}</li>
+      <li><span class="y">✓</span>הבוט כבר מזהה תשובות של יישובים ושולח את הקישור לישובון</li>
+      <li><span class="y">✓</span>המערכת יודעת לשלב תחום שלישי בתור היומי</li></ul></div>
+    <div class="card reveal"><h3>מה חסר</h3><ul class="check">
+      <li><span class="n">●</span>רשימת מזכירי יישובים (שם, יישוב, נייד, מייל)</li>
+      <li><span class="n">●</span>נוסח פנייה בוואצאפ לאישורך</li>
+      <li><span class="n">●</span>מייל מעוצב לישובון וקמפיין ב-Instantly</li></ul></div></div>`;
+
+  const steps = [['בתור', w.queue], ['נשלחו', w.sent], ['ענו', w.replied], ['מעוניינים', w.yes], ['ביקשו הסרה', w.optout]];
+  const maxS = Math.max(1, w.queue);
+  const formTotal = f ? Object.values(f.by).reduce((a, b) => a + b, 0) : 0;
+  const order = ['sent', 'sent_unconfirmed', 'ready', 'new', 'failed', 'captcha', 'manual', 'no_form', 'no_site', 'dry_ok', 'skipped'];
+
+  return head + `
+  <div class="grid k6" style="--c:${c.color}">
+    ${kpi(fmt(w.sent), 'וואצאפ נשלחו', `${fmt(w.sentToday)} היום`)}
+    ${kpi(`${w.replyRate}%`, 'שיעור תגובה', `${fmt(w.replied)} ענו`)}
+    ${kpi(fmt(w.yes), 'מעוניינים', `${fmt(w.botLinked)} קיבלו קישור מהבוט`)}
+    ${kpi(fmt(w.remaining), 'בתור לוואצאפ', `${fmt(w.noWhatsapp)} בלי וואצאפ`)}
+    ${f ? kpi(fmt(f.sent), 'פניות בטפסים', `${fmt(f.confirmed)} עם אישור מהאתר`) : kpi(fmt(e.pool), 'במאגר המייל', 'כתובות לקמפיין')}
+    ${kpi(fmt(e.stats?.sent), 'מיילים שנשלחו', `${fmt(e.leads)} לידים בקמפיין`)}
+  </div>
+
+  <div class="section"><h2><span class="ic" style="color:#25d366">${WA_ICON.replace('<svg', '<svg width="18" height="18"')}</span>ערוץ וואצאפ<span class="tag tagx ${wc}">${wt}</span></h2>
+  <div class="grid k3" style="--c:${c.color}">
+    <div class="card reveal"><h3>משפך</h3><div class="funnel">${steps.map(([l, v]) => `<div class="fr"><span>${l}</span><div class="bar"><span style="width:${Math.max(v ? 1.5 : 0, (v / maxS) * 100)}%"></span></div><span class="num">${fmt(v)}</span></div>`).join('')}</div>
+      <div class="plabel" style="margin-top:18px">קצב: עד 20 ביום, א'-ה' 8:00 עד 17:00, 5 עד 9 דקות בין הודעה להודעה</div></div>
+    <div class="card span2 reveal"><h3>שליחות יומיות<small>14 ימים</small></h3>${chart([{ name: 'נשלחו', color: c.color, data: w.daily }], D.days)}</div>
+    <div class="card reveal"><h3>ההודעה שיוצאת<small>${w.approved ? '<span class="tagx ok">מאושר</span>' : '<span class="tagx warn">לא מאושר</span>'}</small></h3>
+      <div class="phone"><div class="bubble">${waBold(w.message)}<span class="tm">09:00</span></div>
+        <div class="plabel">כשעונים "כן" הבוט משיב ${w.botApproved ? '<span class="tagx ok">פעיל</span>' : '<span class="tagx warn">כבוי עד אישורך</span>'}</div>
+        <div class="bubble in">כן<span class="tm">09:12</span></div>
+        <div class="bubble">${waBold(w.botReply)}<span class="tm">09:12</span></div></div></div>
+    <div class="card reveal"><h3>תשובות<small>${w.replies.length}</small></h3><div class="list">${w.replies.length ? w.replies.map((r) => replyRow(r)).join('') : '<div class="empty"><div class="big">עוד אין תשובות</div>כל תשובה תופיע כאן ותגיע אליך גם בוואצאפ</div>'}</div></div>
+    <div class="card reveal"><h3>נשלחו לאחרונה<small>${w.recentSent.length}</small></h3><div class="list">${w.recentSent.length ? w.recentSent.map((r) => `<div class="row"><div class="nm">${esc(r.name)}</div><div class="acts"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${r.phone}">${WA_ICON}</a></div><div class="sub">${time(r.at)} · ${r.phone}</div></div>`).join('') : '<div class="empty">עוד לא נשלחו הודעות</div>'}</div></div>
+  </div></div>
+
+  <div class="section"><h2><span class="ic">${MAIL_ICON}</span>ערוץ אימייל<span class="tag tagx ${ec}">${et}</span></h2>
+  <div class="grid k3" style="--c:${c.color}">
+    <div class="card reveal"><h3>הקמפיין</h3><dl class="kv">
+      <dt>פלטפורמה</dt><dd>${esc(e.platform)}</dd>
+      ${e.name ? `<dt>שם</dt><dd>${esc(e.name)}</dd>` : ''}
+      <dt>מצב</dt><dd>${esc(e.status)}</dd>
+      ${e.subject ? `<dt>נושא</dt><dd>${esc(e.subject)}</dd>` : ''}
+      ${e.steps ? `<dt>רצף</dt><dd>${esc(e.steps)}</dd>` : ''}
+      ${e.schedule ? `<dt>לוח זמנים</dt><dd>${esc(e.schedule)}</dd>` : ''}
+      <dt>לידים בקמפיין</dt><dd>${fmt(e.leads)}</dd>
+      <dt>במאגר</dt><dd>${fmt(e.pool)} כתובות</dd>
+      <dt>תיבות שליחה</dt><dd>${e.stats?.accounts ? fmt(e.stats.accounts) : '<span class="tagx bad">אין תיבה מחוברת</span>'}</dd></dl>
+      <div class="grid k4" style="margin-top:16px;gap:10px">
+        ${[['נשלחו', e.stats?.sent], ['נפתחו', e.stats?.opened], ['ענו', e.stats?.replied], ['חזרו', e.stats?.bounced]].map(([l, v]) => `<div style="background:var(--card2);border-radius:12px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:900">${fmt(v)}</div><div style="font-size:12px;color:var(--muted)">${l}</div></div>`).join('')}
+      </div>
+      ${e.stats?.checkedAt ? `<div class="plabel">נבדק ב-Instantly: ${time(e.stats.checkedAt)}</div>` : ''}
+      ${e.url ? `<div style="margin-top:16px"><a class="btn primary" style="--c:${c.color}" target="_blank" rel="noopener" href="${e.url}">פתיחה ב-Instantly</a></div>` : ''}
+      <div class="plabel" style="margin-top:16px">נתוני פתיחות ותשובות למייל נמצאים ב-Instantly. בתקופת הניסיון אין גישת API שתאפשר להציג אותם כאן.</div></div>
+    <div class="card span2 reveal"><h3>עיצוב המייל</h3>${e.hasDesign ? `<div class="browser"><div class="bar"><i></i><i></i><i></i><span>${esc(e.subject || c.product)}</span></div><iframe loading="lazy" src="${LOCAL ? `/design/${c.id}` : esc(e.designUrl)}" title="עיצוב המייל ${c.product}"></iframe></div>` : '<div class="empty"><div class="big">עוד לא עוצב</div>המייל המעוצב יופיע כאן</div>'}</div>
+  </div></div>
+
+  ${f ? `<div class="section"><h2><span class="ic">${FORM_ICON}</span>טפסי צור קשר באתרים<span class="tag tagx ${f.running ? 'ok' : 'blue'}">${f.running ? 'פעיל 24/6' : 'ממתין להפעלה הבאה'}</span></h2>
+  <div class="grid k3" style="--c:${c.color}">
+    <div class="card reveal"><h3>מצב ${fmt(f.total)} האתרים</h3>
+      <div class="stack">${order.filter((k) => f.by[k]).map((k) => `<span title="${f.labels[k]}: ${f.by[k]}" style="width:${(f.by[k] / formTotal) * 100}%;background:${FORM_COLORS[k]}"></span>`).join('')}</div>
+      <div class="slist">${order.filter((k) => f.by[k]).map((k) => `<div><i style="background:${FORM_COLORS[k]}"></i>${f.labels[k]}<b>${fmt(f.by[k])}</b></div>`).join('')}</div></div>
+    <div class="card span2 reveal"><h3>פניות יומיות<small>14 ימים</small></h3>${chart([{ name: 'פניות שנשלחו', color: c.color, data: f.daily }], D.days)}</div>
+    <div class="card span3 reveal"><h3>ניסיונות אחרונים<small>${f.recent.length}</small></h3><div class="list">${f.recent.map((r) => `<div class="row"><div class="nm">${esc(r.name)} <span style="color:var(--dim);font-weight:400;direction:ltr;display:inline-block">${esc(r.domain)}</span></div><div class="acts"><span class="tagx ${r.status === 'sent' ? 'ok' : r.status === 'sent_unconfirmed' ? 'blue' : r.status === 'failed' ? 'bad' : 'warn'}">${f.labels[r.status] || r.status}</span><a class="btn" target="_blank" rel="noopener" href="https://${esc(r.domain)}">לאתר</a></div><div class="sub">${time(r.at)}${r.note ? ` · ${esc(r.note).slice(0, 140)}` : ''}</div></div>`).join('')}</div></div>
+  </div></div>` : ''}`;
+}
+
+function render() {
+  if (!D) return;
+  if (!['overview', ...D.campaigns.map((c) => c.id)].includes(tab)) tab = 'overview';
+  renderTabs();
+  const keepScroll = window.scrollY;
+  const c = D.campaigns.find((x) => x.id === tab);
+  document.documentElement.style.setProperty('--accent', c ? c.color : '#4c9bff');
+  document.getElementById('app').innerHTML = tab === 'overview' ? overview() : campaign(c);
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .08 }) : null;
+  document.querySelectorAll('.reveal').forEach((el) => { if (!first || !io) el.classList.add('in'); else io.observe(el); });
+  if (!first) window.scrollTo(0, keepScroll);
+  first = false;
+}
+
+// באתר (לא במחשב המקומי) הנתונים מוצפנים בקובץ data.enc.json ונפתחים בדפדפן רק עם הסיסמה
+async function decrypt(pass) {
+  const enc = await (await fetch(`data.enc.json?t=${Date.now()}`, { cache: 'no-store' })).json();
+  const b = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b(enc.salt), iterations: enc.iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+  return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b(enc.iv) }, key, b(enc.ct))));
+}
+let PASS = '';
+try { PASS = sessionStorage.getItem('cc-pass') || ''; } catch {}
+
+function gate(msg = '') {
+  document.getElementById('app').innerHTML = `<div class="hero" style="max-width:420px;margin:60px auto;text-align:center">
+    <h1>ניהול קמפיינים</h1><p>אזור סגור. הקלידו סיסמה כדי להמשיך.</p>
+    <form id="gate" style="margin-top:22px;display:flex;gap:10px">
+      <input id="pw" type="password" inputmode="numeric" autocomplete="current-password" aria-label="סיסמה" placeholder="סיסמה" autofocus
+        style="flex:1;padding:13px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card2);color:var(--text);font:500 16px Heebo;text-align:center">
+      <button class="btn primary" style="padding:12px 22px;font-size:15px">כניסה</button></form>
+    <p style="color:var(--bad);min-height:24px;margin-top:12px">${msg}</p></div>`;
+  document.getElementById('gate').onsubmit = async (ev) => {
+    ev.preventDefault();
+    PASS = document.getElementById('pw').value.trim();
+    if (await load()) { try { sessionStorage.setItem('cc-pass', PASS); } catch {} } else gate('סיסמה שגויה');
+  };
+}
+
+async function load() {
+  try {
+    D = LOCAL ? await (await fetch('/api/data', { cache: 'no-store' })).json() : await decrypt(PASS);
+    render();
+    return true;
+  } catch {
+    if (LOCAL) document.getElementById('ago').textContent = 'אין חיבור לשרת המסוף';
+    return false;
+  }
+}
+setInterval(() => {
+  if (!D) return;
+  const s = Math.round((Date.now() - new Date(D.now)) / 1000);
+  document.getElementById('ago').textContent = s < 5 ? 'מעודכן עכשיו' : s < 120 ? `עודכן לפני ${s} שניות` : `עודכן לפני ${Math.round(s / 60)} דקות`;
+}, 1000);
+
+document.addEventListener('click', async (ev) => {
+  const t = ev.target.closest('[data-tab]');
+  if (t) { tab = t.dataset.tab; try { localStorage.setItem('cc-tab', tab); } catch {} first = true; render(); window.scrollTo({ top: 0 }); return; }
+  const h = ev.target.closest('[data-handled]');
+  if (h) { await fetch('/api/handled', { method: 'POST', body: JSON.stringify({ key: h.dataset.handled, value: !!h.dataset.v }) }); load(); }
+});
+if (LOCAL || PASS) load().then((ok) => { if (!ok && !LOCAL) gate(); }); else gate();
+setInterval(() => { if (D) load(); }, LOCAL ? 30000 : 120000);
+</script>
+</body>
+</html>
