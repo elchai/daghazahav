@@ -594,6 +594,49 @@ footer {
   .ctas a:hover { transform:none; }
 }
 
+/* ── VIDEO STORIES (vertical shorts) ── */
+.test-slider.test-slider-stories { max-width:1040px; }
+.test-slider-stories .test-arrow { top:50%; }
+.test-slider-stories .test-card.test-card-story { flex-direction:row; align-items:center; gap:44px; padding:36px 44px; position:relative; overflow:hidden;
+  background:linear-gradient(225deg, rgba(24,24,40,.95), rgba(13,13,20,.9) 55%, rgba(19,19,31,.85)); }
+.test-card-story::before, .test-card-story::after { content:""; position:absolute; width:280px; height:280px; border-radius:50%; filter:blur(70px); pointer-events:none; }
+.test-card-story::before { top:-110px; left:-110px; background:rgba(240,165,0,.10); }
+.test-card-story::after { bottom:-110px; right:-110px; background:rgba(0,212,255,.10); }
+.story-phone { position:relative; z-index:1; flex:0 0 280px; aspect-ratio:9/16; border-radius:30px; padding:3px;
+  background:linear-gradient(180deg, #f6a31c, #f0a500 45%, #00d4ff); box-shadow:0 24px 50px -18px rgba(240,165,0,.35); }
+.story-screen { position:relative; width:100%; height:100%; border-radius:27px; overflow:hidden; background:#000; }
+.story-screen img, .story-screen iframe { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; display:block; }
+.story-play { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(0deg, rgba(0,0,0,.55), transparent 45%); border:0; cursor:pointer; padding:0; }
+.story-play-btn { width:78px; height:78px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff;
+  background:linear-gradient(135deg, #f97316, #f0a500); box-shadow:0 12px 30px rgba(0,0,0,.45); transition:transform .25s ease; }
+.story-play-btn svg { width:36px; height:36px; transform:translateX(2px); }
+.story-play:hover .story-play-btn { transform:scale(1.1); }
+.story-play:focus-visible { outline:3px solid #ffd27a; outline-offset:-3px; }
+.story-play-label { position:absolute; bottom:18px; inset-inline:0; text-align:center; color:#fff; font-weight:600; font-size:.92rem; text-shadow:0 2px 8px rgba(0,0,0,.6); }
+.story-body { position:relative; z-index:1; flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; }
+.story-badge { align-self:flex-start; display:inline-flex; gap:6px; align-items:center; font-size:.8rem; font-weight:600; color:#ffd27a;
+  border:1px solid rgba(240,165,0,.35); background:rgba(240,165,0,.10); border-radius:999px; padding:5px 13px; }
+.story-stars { color:var(--gold); letter-spacing:1px; }
+.story-quote { margin:0; display:flex; flex-direction:column; gap:10px; }
+.story-quote p { margin:0; font-size:1.55rem; font-weight:800; line-height:1.35; color:#fff; text-wrap:balance; }
+.story-quote p.story-hl { font-size:1.2rem; background:linear-gradient(90deg, #f0a500, #f97316); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.story-points { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.story-points li { display:flex; gap:10px; align-items:flex-start; color:var(--text); font-size:1rem; line-height:1.5; }
+.story-check { flex:0 0 22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(0,212,255,.14); color:var(--cyan); margin-top:1px; }
+.story-check svg { width:13px; height:13px; }
+.story-who { padding-top:14px; border-top:1px solid var(--border); }
+.story-role { color:var(--cyan); font-size:.9rem; }
+body.en .story-badge { align-self:flex-start; }
+@media(max-width:760px){
+  .test-slider-stories .test-card.test-card-story { flex-direction:column; gap:26px; padding:24px 18px 28px; }
+  .story-phone { flex:none; width:min(240px, 70%); }
+  .test-slider-stories .test-arrow { top:200px; }
+  .story-quote p { font-size:1.2rem; }
+  .story-quote p.story-hl { font-size:1.05rem; }
+  .story-points li { font-size:.95rem; }
+}
+@media (prefers-reduced-motion: reduce){ .story-play-btn { transition:none; } }
+
 /* ── STICKY MOBILE CTA BAR REMOVED ── */
 
 /* ── TESTIMONIALS SLIDER ── */
@@ -1218,39 +1261,165 @@ body.en .foot-phone { direction:ltr; }
       <p class="sec-sub" data-en="Success stories from organizations that work with us">סיפורי הצלחה מארגונים שעובדים איתנו</p>
     </div>
 
-    <!-- Video testimonials -->
-    <div class="test-slider rev">
+    <!-- Video testimonials (vertical shorts, poster first, YouTube loads on click) -->
+    <div class="test-slider rev test-slider-stories">
       <div class="test-viewport">
         <div class="test-track">
-          <div class="test-card test-card-video">
-            <div class="test-video-wrap">
-              <iframe class="test-video" src="https://www.youtube.com/embed/KSXxHgzAQiU?start=3&rel=0" title="המלצת לקוח" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="duoNXAcwdqg">
+                <img src="screenshots/stories/liraz-reuven.jpg" alt="לירז ראובן" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של לירז ראובן" data-en-aria="Play Liraz Reuven's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;I had endless lists and spreadsheets and everything was scattered. So many interested clients just disappeared.&quot;">"היו לי מלא רשימות ומלא אקסלים והכל היה מפוזר. המון מתעניינות פשוט נעלמו."</p>
+                <p class="story-hl" data-en="&quot;It's worth every shekel.&quot;">"זה שווה כל&nbsp;שקל."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Leads land in the system on their own">הלידים נכנסים למערכת לבד בלי&nbsp;הזנה ידנית</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Clients get an automatic reminder before the call">הלקוחה מקבלת תזכורת אוטומטית לפני השיחה</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Automations that save time every day">אוטומציות שחוסכות זמן כל&nbsp;יום</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Liraz Reuven">לירז ראובן</div>
+                <div class="story-role" data-en="Beyachad, a club for women entrepreneurs">מועדון עצמאיות ביחד</div>
+              </div>
             </div>
           </div>
-          <div class="test-card test-card-video">
-            <div class="test-video-wrap">
-              <iframe class="test-video" src="https://www.youtube.com/embed/9Dpkga97yiE?rel=0" title="המלצת לקוח" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="-XjWJYhjVts">
+                <img src="screenshots/stories/uziel-shalom.jpg" alt="עוזיאל שלום" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של עוזיאל שלום" data-en-aria="Play Uziel Shalom's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;Since working with Elchai my customer base has grown significantly.&quot;">"בעקבות הליווי של&nbsp;אלחי מאגר הלקוחות שלי צמח משמעותית."</p>
+                <p class="story-hl" data-en="&quot;Worth it. Go for it.&quot;">"שווה. תיכנסו."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Order in the cash flow">סדר בתזרים המזומנים</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="A new website and advanced systems">אתר חדש ומערכות מתקדמות</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="More exposure and more trainees">יותר חשיפה ויותר מתאמנים</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Uziel Shalom">עוזיאל שלום</div>
+                <div class="story-role" data-en="Director, Korpus College">מנהל מכללת קורפוס</div>
+              </div>
             </div>
           </div>
-          <div class="test-card test-card-video">
-            <div class="test-video-wrap">
-              <iframe class="test-video" src="https://www.youtube.com/embed/K3YdSRkHjrA?rel=0" title="המלצת עמית גרון" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="i3IXiQ4iUqE">
+                <img src="screenshots/stories/tal-chai-am.jpg" alt="טל חי עם" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של טל חי עם" data-en-aria="Play Tal Chai-Am's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;In the very first meeting Elchai gave me 20 tips to improve the business.&quot;">"כבר בפגישה הראשונה אלחי הביא לי 20 טיפים לשיפור העסק."</p>
+                <p class="story-hl" data-en="&quot;I took the business to the next level.&quot;">"הצלחתי להביא את&nbsp;העסק לרמה הבאה."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Lots of hands-on experience">המון ניסיון מהשטח</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Hand-in-hand guidance">ליווי יד ביד</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="How to grow profit and what to change">איך להגדיל את&nbsp;הרווח ומה לשנות</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Tal Chai-Am">טל חי עם</div>
+                <div class="story-role" data-en="Owner of a transcription company">בעל חברה לתמלול</div>
+              </div>
             </div>
           </div>
-          <div class="test-card test-card-video">
-            <div class="test-video-wrap">
-              <iframe class="test-video" src="https://www.youtube.com/embed/-XjWJYhjVts?rel=0" title="המלצת עוזיאל שלום" loading="lazy" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="rrvbr__RGVU">
+                <img src="screenshots/stories/amit-konig.jpg" alt="עמית קניג" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של עמית קניג" data-en-aria="Play Amit Konig's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;In the end my lecture sold at much higher prices.&quot;">"בסוף ההרצאה נמכרה במחירים הרבה יותר גבוהים."</p>
+                <p class="story-hl" data-en="&quot;He really cares about my progress.&quot;">"מאוד אכפת לו מההתקדמות שלי."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="A weekly meeting with clear tasks">מפגש שבועי עם&nbsp;משימות ברורות</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="An advanced marketing setup">מערך שיווקי מתקדם</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Raising the pricing">העלאת התמחור</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Amit Konig">עמית קניג</div>
+                <div class="story-role" data-en="Circus artist and speaker">אומן קרקס ומרצה</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="6_IEtj2IIMY">
+                <img src="screenshots/stories/bonim-besimcha.jpg" alt="יגאל וחנה נעים" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של יגאל וחנה נעים" data-en-aria="Play Yigal and Hana Naim's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;Before working with Elchai we had customers but no money.&quot;">"לפני הליווי של&nbsp;אלחי היו לקוחות בעסק אך&nbsp;לא היה כסף."</p>
+                <p class="story-hl" data-en="&quot;Like a friend who comes to lend a hand.&quot;">"כמו חבר שבא לתת לך יד."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Tips for proper management from the first meeting">טיפים לניהול נכון כבר בפגישה הראשונה</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Order in expenses and income">סדר בהוצאות ובהכנסות</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="A website and goals for higher income">אתר ומטרות להכנסה גדולה יותר</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Yigal and Hana Naim">יגאל וחנה נעים</div>
+                <div class="story-role" data-en="Bonim Besimcha, construction">"בונים בשמחה" עבודות בנייה</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card test-card-story">
+            <div class="story-phone">
+              <div class="story-screen" data-yt="zhBs-h2FXvY">
+                <img src="screenshots/stories/keren-levi.jpg" alt="עו&quot;ד קרן לוי" loading="lazy" width="540" height="960">
+                <button class="story-play" type="button" aria-label="הפעלת ההמלצה של עו&quot;ד קרן לוי" data-en-aria="Play Adv. Keren Levi's testimonial"><span class="story-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="story-play-label" data-en="Watch the testimonial">צפו בהמלצה</span></button>
+              </div>
+            </div>
+            <div class="story-body">
+              <div class="story-badge"><span class="story-stars">★★★★★</span> <span data-en="A real client">לקוח אמיתי מספר</span></div>
+              <blockquote class="story-quote">
+                <p data-en="&quot;We set goals for the business and tripled the target!&quot;">"קבענו יעדים להצלחת העסק ושילשנו את&nbsp;היעד!"</p>
+                <p class="story-hl" data-en="&quot;He promises targets and meets them.&quot;">"הוא&nbsp;מבטיח יעדים והוא עומד בהם."</p>
+              </blockquote>
+              <ul class="story-points">
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Belief in myself and my business">אמונה בעצמי ובעסק שלי</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="A clear monthly target">יעד חודשי ברור</span></li>
+                <li><span class="story-check"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-en="Doubling and even tripling">הכפלה ואפילו שילוש</span></li>
+              </ul>
+              <div class="story-who">
+                <div class="test-name" data-en="Adv. Keren Levi">עו"ד קרן לוי</div>
+                <div class="story-role" data-en="Law firm owner">בעלת משרד עורכי דין</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <button class="test-arrow test-arrow-prev" type="button" aria-label="סרטון קודם">‹</button>
-      <button class="test-arrow test-arrow-next" type="button" aria-label="סרטון הבא">›</button>
+      <button class="test-arrow test-arrow-prev" type="button" aria-label="המלצה קודמת">‹</button>
+      <button class="test-arrow test-arrow-next" type="button" aria-label="המלצה הבאה">›</button>
       <div class="test-dots">
-        <button class="test-dot active" data-i="0" type="button" aria-label="סרטון 1"></button>
-        <button class="test-dot" data-i="1" type="button" aria-label="סרטון 2"></button>
-        <button class="test-dot" data-i="2" type="button" aria-label="סרטון 3"></button>
-        <button class="test-dot" data-i="3" type="button" aria-label="סרטון 4"></button>
+        <button class="test-dot active" data-i="0" type="button" aria-label="המלצה 1"></button>
+        <button class="test-dot" data-i="1" type="button" aria-label="המלצה 2"></button>
+        <button class="test-dot" data-i="2" type="button" aria-label="המלצה 3"></button>
+        <button class="test-dot" data-i="3" type="button" aria-label="המלצה 4"></button>
+        <button class="test-dot" data-i="4" type="button" aria-label="המלצה 5"></button>
+        <button class="test-dot" data-i="5" type="button" aria-label="המלצה 6"></button>
       </div>
     </div>
 
@@ -1502,13 +1671,23 @@ document.addEventListener('keydown', function(e) {
     var nextBtn = slider.querySelector('.test-arrow-next');
     var i = 0, autoTimer;
     function goTo(n){
+      if (slider.dataset.playing) { slider.querySelectorAll('.story-screen iframe').forEach(function(f){ var s = f.parentNode; f.remove(); s.querySelector('.story-play').hidden = false; }); delete slider.dataset.playing; }
       i = (n + cards.length) % cards.length;
       track.style.transform = 'translateX(' + (-i * 100) + '%)';
       dots.forEach(function(d,k){ d.classList.toggle('active', k === i); });
     }
     function nextSlide(){ goTo(i + 1); }
     function prevSlide(){ goTo(i - 1); }
-    function startAuto(){ autoTimer = setInterval(nextSlide, 6500); }
+    function startAuto(){ clearInterval(autoTimer); autoTimer = setInterval(function(){ if (!slider.dataset.playing) nextSlide(); }, 6500); }
+    slider.querySelectorAll('.story-play').forEach(function(b){
+      b.addEventListener('click', function(){
+        var s = b.parentNode, f = document.createElement('iframe');
+        f.src = 'https://www.youtube.com/embed/' + s.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+        f.title = b.getAttribute('aria-label'); f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+        s.appendChild(f); b.hidden = true; slider.dataset.playing = '1'; stopAuto();
+        if (window.dataLayer) window.dataLayer.push({ event: 'testimonial_video_play', source: s.dataset.yt });
+      });
+    });
     function stopAuto(){ clearInterval(autoTimer); }
     dots.forEach(function(d){ d.addEventListener('click', function(){ goTo(+d.dataset.i); stopAuto(); startAuto(); }); });
     if(nextBtn) nextBtn.addEventListener('click', function(){ nextSlide(); stopAuto(); startAuto(); });
