@@ -181,3 +181,20 @@ body {
 /* Secondary button: clearer frame */
 .btn-s { border: 1.5px solid rgba(29,79,163,.45); color: #1d4fa3; background: #fff; box-shadow: 0 4px 14px -8px rgba(29,79,163,.35); }
 .btn-s:hover { border-color: #1d4fa3; color: #1d4fa3; background: rgba(29,79,163,.05); }
+
+/* Icons blue by default, change color on hover (Elchai, 5 Nov 2026) */
+.svc-icon { color: #1d4fa3; background: rgba(29,79,163,.08); border-color: rgba(29,79,163,.18); transition: color .25s, background .25s, border-color .25s, transform .25s; }
+.svc:hover .svc-icon { color: #fff; background: linear-gradient(135deg, #0a8fb5, #1d4fa3); border-color: transparent; filter: none; transform: scale(1.06); }
+.t-ico { color: #1d4fa3; }
+.tech-item:hover .t-ico { color: #0a8fb5; filter: none; }
+.vi { transition: background .25s, transform .25s; }
+.val:hover .vi { transform: scale(1.06); }
+.cico-p svg { color: #1d4fa3; }
+
+/* Thicker frame on every button (Elchai, 5 Nov 2026) */
+.proj-link { border: 2px solid rgba(29,79,163,.55); color: #1d4fa3; font-weight: 700; }
+.proj-link:hover { border-color: #1d4fa3; }
+.btn-s { border-width: 2px; border-color: rgba(29,79,163,.55); }
+.lang-toggle { border: 2px solid rgba(29,79,163,.35); color: #1d4fa3; }
+.test-arrow { border: 2px solid rgba(29,79,163,.35); color: #1d4fa3; }
+#dz-top { border-width: 2px; }

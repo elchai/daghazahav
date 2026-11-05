@@ -1714,7 +1714,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     var ah=$('.about .sec-title'); if(ah&&c.about.heading){ var gs=ah.querySelector('.grad'); if(gs){ ah.firstChild.textContent=c.about.heading.split(gs.textContent)[0]; if(c.about.headingGrad) gs.textContent=c.about.headingGrad; } else ah.textContent=c.about.heading; }
     var ap=$$('.about .about-grid .rev > p');
     if(ap[0]&&c.about.paragraph1) ap[0].innerHTML=c.about.paragraph1;
-    if(ap[1]&&c.about.paragraph2) ap[1].innerHTML=c.about.paragraph2;
+    if(ap[1]&&c.about.paragraph2) ap[1].innerHTML=String(c.about.paragraph2).replace(/בעבודה[ ]+עם/,'בעבודה<br>עם').replace(/לצה"ל(?![ ]*[(]ספק)/,'לצה"ל (ספק משרד הביטחון)');
 
     // Value cards
     var vals=$$('.val');
