@@ -133,3 +133,7 @@ footer a { color: #e2e8f4; }
 .dz-chip { background: var(--bg); border-color: var(--border); color: #2b3550; }
 #dz-top { background: rgba(255,255,255,.92); box-shadow: var(--shadow); }
 .proj-link:hover { color: #fff; }
+
+/* Elchai's own sharp logo (200x50): show at native size */
+.nav .nav-logo img { height: 50px !important; width: auto; image-rendering: -webkit-optimize-contrast; }
+@media(max-width:480px){ .nav .nav-logo img { height: 40px !important; } }
