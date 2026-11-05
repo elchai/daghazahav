@@ -40,7 +40,7 @@
 .proj:hover { border-color: rgba(0, 212, 255, .4); box-shadow: 0 24px 60px rgba(0, 0, 0, .5), 0 0 34px rgba(0, 212, 255, .14); }
 
 /* ── technologies strip, sliding left to right ── */
-#dz-strip { position: relative; overflow: hidden; border-block: 1px solid rgba(0, 212, 255, .12); background: linear-gradient(180deg, rgba(15, 15, 26, .9), rgba(13, 13, 20, .9)); padding: 18px 0; }
+#dz-strip { position: relative; overflow: hidden; direction: ltr; border-block: 1px solid rgba(0, 212, 255, .12); background: linear-gradient(180deg, rgba(15, 15, 26, .9), rgba(13, 13, 20, .9)); padding: 18px 0; }
 #dz-strip .dz-track { display: flex; width: max-content; gap: 14px; padding-inline-end: 14px; direction: ltr; animation: dz-slide-right 60s linear infinite; }
 #dz-strip:hover .dz-track { animation-play-state: paused; }
 #dz-strip::before, #dz-strip::after { content: ''; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 2; pointer-events: none; }
