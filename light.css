@@ -137,3 +137,47 @@ footer a { color: #e2e8f4; }
 /* Elchai's own sharp logo (200x50): show at native size */
 .nav .nav-logo img { height: 50px !important; width: auto; image-rendering: -webkit-optimize-contrast; }
 @media(max-width:480px){ .nav .nav-logo img { height: 40px !important; } }
+
+/* ── BLUE INSTEAD OF YELLOW on white (Elchai, 5 Nov 2026). Logo keeps its own colors. ── */
+:root {
+  --gold: #1d4fa3;
+  --gold-dim: rgba(29,79,163,0.09);
+  --border-gold: rgba(29,79,163,0.30);
+  --glow-g: 0 10px 30px -10px rgba(29,79,163,0.45);
+}
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(10,143,181,0.10), transparent 60%),
+    radial-gradient(900px 500px at 5% 10%, rgba(29,79,163,0.08), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+.grad, .exp-why h3 { background: linear-gradient(135deg, #0a8fb5, #1d4fa3); -webkit-background-clip: text; background-clip: text; }
+.hero-brand { background: linear-gradient(135deg, #111a2e 0%, #1d4fa3 50%, #0a8fb5 100%); -webkit-background-clip: text; background-clip: text; }
+.hero-badge, .story-badge { color: #1d4fa3; background: rgba(29,79,163,.07); border-color: rgba(29,79,163,.30); }
+.badge-dot, .tag::before { background: #1d4fa3; box-shadow: 0 0 8px rgba(29,79,163,.5); }
+.exp p em, .exp-why p em { color: #1d4fa3; }
+.story-stars { color: #1d4fa3; }
+.story-quote p.story-hl { background: linear-gradient(90deg, #1d4fa3, #0a8fb5); -webkit-background-clip: text; background-clip: text; }
+.story-phone { background: linear-gradient(180deg, #1d4fa3, #0a8fb5); }
+.story-play-btn { background: linear-gradient(135deg, #0a8fb5, #1d4fa3); }
+.story-play:focus-visible { outline-color: #7fb3ff; }
+.test-card-story::before { background: rgba(29,79,163,.10); }
+.founder-photo::before { background: radial-gradient(ellipse at 50% 40%, rgba(10,143,181,0.18), rgba(29,79,163,0.10) 45%, transparent 70%); }
+.btn-send { background: linear-gradient(135deg, #1d4fa3, #0a8fb5); color: #fff; box-shadow: 0 10px 26px -10px rgba(29,79,163,0.6); }
+.btn-send:hover { box-shadow: 0 16px 34px -12px rgba(29,79,163,0.7); }
+.nav.on .nav-in { border-color: rgba(29,79,163,.25) !important; }
+.svc:hover, .tech-item:hover, .val:hover { box-shadow: 0 18px 40px -16px rgba(17,26,46,.28), 0 0 0 1px rgba(29,79,163,.30); }
+.proj:hover { border-color: rgba(29,79,163,.5); }
+.dz-chip:hover { border-color: rgba(29,79,163,.5); }
+#dz-progress { background: linear-gradient(90deg, #0a8fb5, #1d4fa3); }
+#dz-top { border-color: rgba(29,79,163,.4); color: #1d4fa3; }
+#dz-top:hover, .proj-link:hover { background: #1d4fa3; border-color: #1d4fa3; color: #fff; }
+.process::before { background: linear-gradient(to left, var(--cyan-dim), var(--cyan), #1d4fa3, var(--cyan-dim)); }
+.lp-eyebrow { color: #1d4fa3 !important; }
+.lp-send { background: linear-gradient(180deg, #2a63c4, #1d4fa3) !important; color: #fff !important; }
+.gear-wrap [stroke="#f0a500"] { stroke: #1d4fa3; }
+.gear-wrap [fill="#f0a500"] { fill: #1d4fa3; }
+/* Secondary button: clearer frame */
+.btn-s { border: 1.5px solid rgba(29,79,163,.45); color: #1d4fa3; background: #fff; box-shadow: 0 4px 14px -8px rgba(29,79,163,.35); }
+.btn-s:hover { border-color: #1d4fa3; color: #1d4fa3; background: rgba(29,79,163,.05); }
