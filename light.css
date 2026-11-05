@@ -213,3 +213,9 @@ body {
   .nav-slogan { font-size: 11px; }
 }
 body.en .nav-slogan { direction: ltr; }
+
+/* System cards: on mobile the image sits inside the card padding, so round it */
+@media (max-width: 768px) {
+  .proj-grid .proj-img { border-radius: 16px; overflow: hidden; isolation: isolate; box-shadow: 0 6px 18px -10px rgba(17,26,46,.35); }
+  .proj-grid .proj-img img { border-radius: 16px; }
+}

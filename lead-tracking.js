@@ -80,7 +80,7 @@
     } catch (_) {
       window.alert((window.__dzLang || 'he') === 'en'
         ? 'We could not confirm delivery. Please retry or contact us on WhatsApp.'
-        : 'לא הצלחנו לאשר שהפנייה התקבלה. נסו שוב או פנו אלינו בוואטסאפ.');
+        : 'לא הצלחנו לאשר שהפנייה התקבלה. נסו שוב או פנו אלינו בוואצאפ.');
       return false;
     } finally {
       pending.delete(key);
