@@ -198,3 +198,18 @@ body {
 .lang-toggle { border: 2px solid rgba(29,79,163,.35); color: #1d4fa3; }
 .test-arrow { border: 2px solid rgba(29,79,163,.35); color: #1d4fa3; }
 #dz-top { border-width: 2px; }
+
+/* Gears: a bit stronger, real transparent hole (Elchai, 5 Nov 2026) */
+.gear-wrap { opacity: 0.12 !important; }
+.gear-wrap:nth-child(3), .gear-wrap:nth-child(4) { opacity: 0.10 !important; }
+.gear-wrap [stroke="#f0a500"] { stroke: #1d4fa3; }
+
+/* Logo: image = fish + wordmark, slogan = real text (always sharp) */
+.nav .nav-logo { position: relative; display: block; line-height: 0; }
+.nav .nav-logo img { height: 42px !important; width: auto; }
+.nav-slogan { position: absolute; right: 25.3%; top: 67%; font-family: 'Heebo', sans-serif; font-weight: 500; font-size: 13.5px; line-height: 1; color: #0f1729; white-space: nowrap; letter-spacing: 0; pointer-events: none; }
+@media (max-width: 480px) {
+  .nav .nav-logo img { height: 34px !important; }
+  .nav-slogan { font-size: 11px; }
+}
+body.en .nav-slogan { direction: ltr; }
