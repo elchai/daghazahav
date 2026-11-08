@@ -24,6 +24,8 @@ export const SYSTEMS = [
   { slug: 'kehilot', live: 'https://kehilot.web.app/' },
   { slug: 'iruchon', live: 'https://iruchon.web.app/' },
   { slug: 'mifalon', live: 'https://mifalon.web.app/' },
+  { slug: 'mishmeron', live: 'https://mishmeron.web.app/' },
+  { slug: 'mitvachon', live: 'https://mitvachon.web.app/' },
 ];
 
 const TEXT = new Set(['.html', '.js', '.css', '.json', '.webmanifest', '.svg', '.txt', '.xml']);
