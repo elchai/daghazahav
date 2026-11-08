@@ -744,10 +744,10 @@ body.en .foot-phone { direction:ltr; }
 
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mobMenu" role="dialog" aria-modal="true" aria-label="תפריט ניווט" data-en-aria="Navigation menu">
+  <a href="#projects" onclick="closeMob()" data-en="Projects">פרויקטים</a>
   <a href="#about"    onclick="closeMob()" data-en="About">מי אנחנו</a>
   <a href="#expertise" onclick="closeMob()" data-en="Expertise">המומחיות</a>
   <a href="#services" onclick="closeMob()" data-en="Services">יכולות</a>
-  <a href="#projects" onclick="closeMob()" data-en="Projects">פרויקטים</a>
   <a href="#tech"     onclick="closeMob()" data-en="Tech">טכנולוגיות</a>
   <a href="#testimonials" onclick="closeMob()" data-en="Testimonials">המלצות</a>
   <a href="#contact"  onclick="closeMob()" data-en="Contact">צור קשר</a>
@@ -777,10 +777,10 @@ body.en .foot-phone { direction:ltr; }
         <img src="daghazahav-logo-mark.png" alt="DAGHAZAHAV" width="1428" height="262" onerror="this.style.display='none'"><span class="nav-slogan" data-en="Advanced management systems">פיתוח מערכות ניהול מתקדמות</span>
       </a>
       <ul class="nav-links">
+        <li><a href="#projects" data-en="Projects">פרויקטים</a></li>
         <li><a href="#about" data-en="About">מי אנחנו</a></li>
         <li><a href="#expertise" data-en="Expertise">המומחיות</a></li>
         <li><a href="#services" data-en="Services">יכולות</a></li>
-        <li><a href="#projects" data-en="Projects">פרויקטים</a></li>
         <li><a href="#tech" data-en="Tech">טכנולוגיות</a></li>
         <li><a href="#testimonials" data-en="Testimonials">המלצות</a></li>
         <li><a href="#contact" class="nav-cta" data-en="Contact">צור קשר</a></li>
@@ -879,156 +879,6 @@ body.en .foot-phone { direction:ltr; }
   <div class="scroll-hint" aria-hidden="true">
     <div class="scroll-line"></div>
     <span data-en="Scroll">גלול</span>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section class="founder" id="founder">
-  <div class="wrap">
-    <div class="founder-grid">
-      <div class="founder-text rev">
-        <span class="tag" data-en="Nice to meet you">נעים מאוד</span>
-        <h2 class="sec-title" data-en="I'm Elchai Fine <span class='grad'>and I build your system</span>">אני אלחי פיין <span class="grad">ואני בונה את&nbsp;המערכת שלכם</span></h2>
-        <p data-en="I have more than 25 years of experience as a self-employed founder. For 16 years I ran a company with 50 employees, so I know an organization's challenges from the inside and exactly what a system needs to do for you.">מאחורי למעלה מ־25 שנות ניסיון כעצמאי. ניהלתי במשך 16 שנים חברה עם&nbsp;50 עובדים כך שאני מכיר את&nbsp;האתגרים של ארגון מבפנים ויודע בדיוק מה מערכת צריכה לעשות בשבילך.</p>
-        <p data-en="Over the past decade I have designed and built more than 400 systems and websites. Today I specialize in custom management systems for municipalities, communities, garages, factories, event halls and the defense sector, as an approved Ministry of Defense supplier.">בעשור האחרון תכננתי ובניתי מעל 400 מערכות ואתרים. היום אני מתמחה בפיתוח מערכות ניהול מותאמות אישית לעיריות, יישובים, מוסכים, מפעלים, אולמות אירועים ולמערכת הביטחון כספק מאושר של&nbsp;משרד הביטחון.</p>
-        <h3 class="founder-how" data-en="How does it work?" style="font-size:1.15rem;font-weight:800;margin:22px 0 8px">איך זה עובד?</h3>
-        <p data-en="It starts with a focused Zoom call where we map your needs. From there I build a secure system that runs smoothly on any phone and connects directly to WhatsApp.">התהליך מתחיל בשיחת זום ממוקדת שבה נאפיין את&nbsp;הצרכים שלך. משם אני בונה מערכת מאובטחת שעובדת חלק מכל טלפון ומתחברת ישירות לוואצאפ.</p>
-        <div class="founder-chips">
-          <span data-en="Major (Res.)">רס"ן (מיל')</span>
-          <span data-en="Ministry of Defense supplier">ספק משרד הביטחון</span>
-          <span data-en="25+ years self-employed">25+ שנות עצמאות</span>
-          <span data-en="Secure systems">מערכות מאובטחות</span>
-        </div>
-        <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a scoping call" onclick="openZoomLead(event)">לתיאום שיחת אפיון</a>
-      </div>
-      <div class="founder-photo rev d1">
-        <img src="elchai-fine.png" alt="אלחי פיין, מייסד דג הזהב" data-en-alt="Elchai Fine, founder of DAGHAZAHAV" width="960" height="1440" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="rev">
-        <span class="tag" data-en="About Us">מי אנחנו</span>
-        <h2 class="sec-title" data-en="Building systems <span class='grad'>that work for you</span>">בונים מערכות <span class="grad">שעובדות בשבילך</span></h2>
-        <p data-en="DAGHAZAHAV,<br>led by Elchai Fine, Major (Res.),<br>specializes in building advanced management systems, with a focus on the defense sector, IDF units, and other organizations - large and small - that want a system to save the organization time and enable more efficient work.">DAGHAZAHAV,<br>בניהולו של אלחי פיין רס"ן (מיל'),<br>מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
-        <p data-en="Over the past decade, DAGHAZAHAV has built more than 400 websites and systems,<br>integrated with advanced automation tools.">בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-n" data-target="400" data-prefix="+">0</div>
-            <div class="stat-l" data-en="Systems &amp; Websites">מערכות ואתרים</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n">24/6</div>
-            <div class="stat-l" data-en="Support Available">תמיכה זמינה</div>
-          </div>
-        </div>
-      </div>
-      <div class="vals">
-        <div class="val rev d1">
-          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="#00d4ff" stroke-width="1.5" opacity=".6"/><circle cx="12" cy="12" r="2.5" fill="#00d4ff"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-          <div>
-            <h3 data-en="Precision">דיוק</h3>
-            <p data-en="Every system we build starts from a deep analysis of your needs. We ask questions, understand the processes, and build exactly what needs to work in practice.">כל מערכת שאנחנו בונים יוצאת מניתוח מעמיק של הצרכים שלך. שואלים שאלות, מבינים את התהליכים, ובונים בדיוק את מה שצריך לעבוד בפועל.</p>
-          </div>
-        </div>
-        <div class="val rev d2">
-          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 2L3 6v6c0 5 4 9.5 9 11 5-1.5 9-6 9-11V6l-9-4z" stroke="#f0a500" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12l2.5 2.5L16 9" stroke="#f0a500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div>
-            <h3 data-en="Reliability">אמינות</h3>
-            <p data-en="Systems built to handle load, in the field, with or without a network connection. Backed up, secured, with fast support when you need it.">מערכות שנבנות לעמוד בעומס, בשטח, עם / בלי חיבור לרשת. מגובות, מאובטחות, עם תמיכה מהירה כשצריך.</p>
-          </div>
-        </div>
-        <div class="val rev d3">
-          <div class="vi"><img src="1.png" width="42" height="42" alt="gears" style="filter:brightness(0.5) sepia(1) saturate(8) hue-rotate(248deg) brightness(1.5);"></div>
-          <div>
-            <h3 data-en="Tailor-Made">מותאם אישית</h3>
-            <p data-en="Every organization works differently. What works for a battalion won't work for a garage, and what works for a garage won't work for a security firm. We start from scratch on every project.">כל ארגון עובד אחרת. מה שעובד לגדוד לא יעבוד למוסך, ומה שעובד למוסך לא יעבוד לחברת שמירה. מתחילים מהתחלה בכל פרויקט.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERTISE -->
-<section class="expertise" id="expertise">
-  <div class="wrap">
-    <div class="sec-head rev">
-      <span class="tag" data-en="Our Expertise">המומחיות שלנו</span>
-      <h2 class="sec-title" data-en="Connecting <span class='grad'>strategy to execution</span><br>where results count">חיבור בין <span class="grad">אסטרטגיה לביצוע</span><br>במבחן התוצאה</h2>
-      <p class="sec-sub" data-en="Behind every successful business stands a method that takes complexity and turns it into operational simplicity. Here are the core areas and principles that drive our work.">מאחורי כל עסק מצליח עומדת שיטה שיודעת לקחת מורכבות ולהפוך אותה לפשטות תפעולית. הנה תחומי הליבה והעקרונות שמובילים את העבודה שלנו.</p>
-    </div>
-    <div class="exp-grid">
-      <div class="exp rev d1">
-        <div class="exp-num">01</div>
-        <h3 data-en="Methodical development &amp; system simplification">פיתוח מתודולוגי ופישוט מערכות</h3>
-        <p data-en="We believe good management shouldn't be complicated. Our expertise is distilling complex workflows into clear, structured, easy-to-apply methods (as embodied in the <em>Golden Fish</em> methodology). We take a business's knowledge, experience and vision, and turn them into an orderly organizational structure that works in the field.">אנחנו מאמינים שניהול נכון לא צריך להיות מסובך. המומחיות שלנו היא זיקוק תהליכי עבודה מורכבים לכדי שיטות ברורות, מובנות וקלות ליישום (כפי שבא לידי ביטוי במתודולוגיית <em>דג הזהב</em>). אנחנו לוקחים את הידע, הניסיון והחזון של העסק, והופכים אותם למבנה ארגוני סדור שעובד בשטח.</p>
-      </div>
-      <div class="exp rev d2">
-        <div class="exp-num">02</div>
-        <h3 data-en="Automation &amp; smart tooling">אוטומציה והתאמת כלי עבודה חכמים</h3>
-        <p data-en="Technology should serve the business, not the other way around. Instead of generic off-the-shelf solutions, we specialize in scoping, tailoring and developing advanced CRM systems and automations matched precisely to a company's changing needs. The goal is one: removing bottlenecks, saving precious time and preventing human error through end-to-end digital process optimization.">טכנולוגיה צריכה לשרת את העסק, ולא להפך. במקום פתרונות מדף גנריים, אנו מתמחים באפיון, התאמה ופיתוח של מערכות CRM ואוטומציות מתקדמות המותאמות בדיוק לצרכים המשתנים של החברה. המטרה היא אחת: שחרור צווארי בקבוק, חיסכון בזמן יקר ומניעת טעויות אנוש באמצעות ייעול תהליכים דיגיטליים מקצה לקצה.</p>
-      </div>
-      <div class="exp rev d3">
-        <div class="exp-num">03</div>
-        <h3 data-en="Systems thinking, command &amp; business experience">חשיבה מערכתית וניסיון פיקודי ועסקי</h3>
-        <p data-en="Our guidance rests on more than two decades of hands-on experience managing companies, leading teams, and a rich field command background. This combination lets us bring a broad systemic perspective, mental resilience in crisis management, and the ability to move people and processes forward out of a deep commitment to the project's success.">הליווי שלנו נשען על למעלה משני עשורים של ניסיון מעשי בניהול חברות, הובלת עובדים ורקע פיקודי עשיר בשטח. השילוב הזה מאפשר לנו להביא אל השולחן ראייה מערכתית רחבה, חוסן מנטלי בניהול משברים, ויכולת להניע אנשים ותהליכים קדימה מתוך מחויבות עמוקה להצלחת הפרויקט.</p>
-      </div>
-      <div class="exp rev d4">
-        <div class="exp-num">04</div>
-        <h3 data-en="Long-term strategic planning &amp; guidance">תכנון וליווי אסטרטגי ארוך טווח</h3>
-        <p data-en="Building a stable business requires a vision connected to reality. Alongside solving the immediate day-to-day problems, we help managers and entrepreneurs build an orderly strategic infrastructure going forward - from the conceptual planning stage, through building profitable business models, to executing new ventures in a controlled and responsible way.">בניית עסק יציב דורשת חזון שמחובר למציאות. לצד פתרון הבעיות המיידיות ביומיום, אנו מסייעים למנהלים וליזמים לבנות תשתית אסטרטגית סדורה קדימה - משלב התכנון הרעיוני, דרך בניית מודלים עסקיים מניבים, ועד להוצאה לפועל של מיזמים חדשים בצורה מבוקרת ואחראית.</p>
-      </div>
-    </div>
-    <div class="exp-why rev">
-      <h3 data-en="Why does it work?">למה זה עובד?</h3>
-      <p data-en="Because we don't settle for theoretical consulting alone. The strength of <em>Golden Fish</em> is the ability to combine <strong>business mindset and strategy</strong> with <strong>systemic and technological execution</strong>. We build the right architecture for your business - and make sure it runs smoothly, efficiently and profitably.">כי אנחנו לא מסתפקים רק בייעוץ תיאורטי. החוזקה של <em>דג הזהב</em> היא היכולת לשלב בין <strong>המיינדסט והאסטרטגיה העסקית</strong> לבין <strong>הביצוע המערכתי והטכנולוגי</strong>. אנחנו בונים את הארכיטקטורה הנכונה לעסק שלך - ומקפידים שהיא תעבוד בצורה חלקה, יעילה ורווחית.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="wrap">
-    <div class="sec-head rev">
-      <span class="tag" data-en="How We Work">תהליך העבודה</span>
-      <h2 class="sec-title" data-en="From idea <span class='grad'>to finished product</span>">מהרעיון <span class="grad">למוצר מוגמר</span></h2>
-      <p class="sec-sub" data-en="An orderly, transparent process - this is how we work with you<br>from the first moment to delivery">תהליך מסודר ושקוף - כך אנו עובדים איתך<br>מהרגע הראשון ועד לאספקה</p>
-    </div>
-    <div class="process rev">
-      <div class="step"><div class="step-n"><span>01</span></div><div class="step-l" data-en="Analysis">ניתוח</div><div class="step-d" data-en="Understanding needs">הבנת הצרכים</div></div>
-      <div class="step"><div class="step-n"><span>02</span></div><div class="step-l" data-en="Design">עיצוב</div><div class="step-d" data-en="Planning the solution">תכנון הפתרון</div></div>
-      <div class="step"><div class="step-n"><span>03</span></div><div class="step-l" data-en="Development">פיתוח</div><div class="step-d" data-en="Building the system">בניית המערכת</div></div>
-      <div class="step"><div class="step-n"><span>04</span></div><div class="step-l" data-en="Integration">שילוב</div><div class="step-d" data-en="Tools &amp; integrations">אינטגרציה וכלים</div></div>
-      <div class="step"><div class="step-n"><span>05</span></div><div class="step-l" data-en="Delivery">מסירה</div><div class="step-d" data-en="Training &amp; support">הדרכה ותמיכה</div></div>
-    </div>
-    <div class="svc-cards">
-      <div class="svc rev d1">
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm0-4h2v2h-2zm-6 0h4v2h-4z"/></svg></div>
-        <h3 data-en="Web Management Systems">מערכות ניהול Web</h3>
-        <p data-en="Advanced PWA systems - working in the browser, on mobile, and offline. An intuitive interface in Hebrew or English.">מערכות PWA מתקדמות - עובדות בדפדפן, במובייל, ובלי אינטרנט. ממשק אינטואיטיבי בעברית.</p>
-      </div>
-      <div class="svc rev d2">
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm10 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
-        <h3 data-en="Advanced Integrations">שילוב כלים מתקדמים</h3>
-        <p data-en="Firebase, Google Sheets, WhatsApp API, PDF - all the tools you already use, smartly connected.">Firebase, Google Sheets, WhatsApp API, PDF - כל הכלים שאתה כבר משתמש בהם, מחוברים חכם.</p>
-      </div>
-      <div class="svc rev d3">
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
-        <h3 data-en="Automations &amp; Workflows">אוטומציות ותהליכים</h3>
-        <p data-en="Cut the manual workload. Systems that run on their own - alerts, automatic reports, real-time data updates.">הפחת עומס ידני. מערכות שעובדות לבד - התראות, דוחות אוטומטיים, עדכוני נתונים בזמן אמת.</p>
-      </div>
-      <div class="svc rev d4">
-        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7l-4-4v3H2v2h2v3l4-4z"/></svg></div>
-        <h3 data-en="Hebrew + RTL Interfaces">ממשקים בעברית + RTL</h3>
-        <p data-en="Deep experience building Hebrew systems - real RTL, Hebrew PDFs, everything works perfectly.">ניסיון עמוק בפיתוח מערכות עבריות - RTL אמיתי, PDF בעברית, הכל עובד בצורה מושלמת.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1197,6 +1047,156 @@ body.en .foot-phone { direction:ltr; }
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-text rev">
+        <span class="tag" data-en="Nice to meet you">נעים מאוד</span>
+        <h2 class="sec-title" data-en="I'm Elchai Fine <span class='grad'>and I build your system</span>">אני אלחי פיין <span class="grad">ואני בונה את&nbsp;המערכת שלכם</span></h2>
+        <p data-en="I have more than 25 years of experience as a self-employed founder. For 16 years I ran a company with 50 employees, so I know an organization's challenges from the inside and exactly what a system needs to do for you.">מאחורי למעלה מ־25 שנות ניסיון כעצמאי. ניהלתי במשך 16 שנים חברה עם&nbsp;50 עובדים כך שאני מכיר את&nbsp;האתגרים של ארגון מבפנים ויודע בדיוק מה מערכת צריכה לעשות בשבילך.</p>
+        <p data-en="Over the past decade I have designed and built more than 400 systems and websites. Today I specialize in custom management systems for municipalities, communities, garages, factories, event halls and the defense sector, as an approved Ministry of Defense supplier.">בעשור האחרון תכננתי ובניתי מעל 400 מערכות ואתרים. היום אני מתמחה בפיתוח מערכות ניהול מותאמות אישית לעיריות, יישובים, מוסכים, מפעלים, אולמות אירועים ולמערכת הביטחון כספק מאושר של&nbsp;משרד הביטחון.</p>
+        <h3 class="founder-how" data-en="How does it work?" style="font-size:1.15rem;font-weight:800;margin:22px 0 8px">איך זה עובד?</h3>
+        <p data-en="It starts with a focused Zoom call where we map your needs. From there I build a secure system that runs smoothly on any phone and connects directly to WhatsApp.">התהליך מתחיל בשיחת זום ממוקדת שבה נאפיין את&nbsp;הצרכים שלך. משם אני בונה מערכת מאובטחת שעובדת חלק מכל טלפון ומתחברת ישירות לוואצאפ.</p>
+        <div class="founder-chips">
+          <span data-en="Major (Res.)">רס"ן (מיל')</span>
+          <span data-en="Ministry of Defense supplier">ספק משרד הביטחון</span>
+          <span data-en="25+ years self-employed">25+ שנות עצמאות</span>
+          <span data-en="Secure systems">מערכות מאובטחות</span>
+        </div>
+        <a href="https://cal.com/elchai/zoom40" target="_blank" rel="noopener" class="btn-p" data-en="Book a scoping call" onclick="openZoomLead(event)">לתיאום שיחת אפיון</a>
+      </div>
+      <div class="founder-photo rev d1">
+        <img src="elchai-fine.png" alt="אלחי פיין, מייסד דג הזהב" data-en-alt="Elchai Fine, founder of DAGHAZAHAV" width="960" height="1440" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="rev">
+        <span class="tag" data-en="About Us">מי אנחנו</span>
+        <h2 class="sec-title" data-en="Building systems <span class='grad'>that work for you</span>">בונים מערכות <span class="grad">שעובדות בשבילך</span></h2>
+        <p data-en="DAGHAZAHAV,<br>led by Elchai Fine, Major (Res.),<br>specializes in building advanced management systems, with a focus on the defense sector, IDF units, and other organizations - large and small - that want a system to save the organization time and enable more efficient work.">DAGHAZAHAV,<br>בניהולו של אלחי פיין רס"ן (מיל'),<br>מתמחה בבניית מערכות ניהול מתקדמות בדגש על מערכת הביטחון, יחידות צה"ל וארגונים נוספים גדולים וקטנים המעוניינים בפיתוח מערכת שתחסוך לארגון זמן ותאפשר עבודה יעילה יותר.</p>
+        <p data-en="Over the past decade, DAGHAZAHAV has built more than 400 websites and systems,<br>integrated with advanced automation tools.">בעשור האחרון פיתחה DAGHAZAHAV למעלה מ־400 אתרי אינטרנט ומערכות<br>בשילוב כלי אוטומציה מתקדמים.</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-n" data-target="400" data-prefix="+">0</div>
+            <div class="stat-l" data-en="Systems &amp; Websites">מערכות ואתרים</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">24/6</div>
+            <div class="stat-l" data-en="Support Available">תמיכה זמינה</div>
+          </div>
+        </div>
+      </div>
+      <div class="vals">
+        <div class="val rev d1">
+          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><circle cx="12" cy="12" r="10" stroke="#00d4ff" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="#00d4ff" stroke-width="1.5" opacity=".6"/><circle cx="12" cy="12" r="2.5" fill="#00d4ff"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div>
+            <h3 data-en="Precision">דיוק</h3>
+            <p data-en="Every system we build starts from a deep analysis of your needs. We ask questions, understand the processes, and build exactly what needs to work in practice.">כל מערכת שאנחנו בונים יוצאת מניתוח מעמיק של הצרכים שלך. שואלים שאלות, מבינים את התהליכים, ובונים בדיוק את מה שצריך לעבוד בפועל.</p>
+          </div>
+        </div>
+        <div class="val rev d2">
+          <div class="vi"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><path d="M12 2L3 6v6c0 5 4 9.5 9 11 5-1.5 9-6 9-11V6l-9-4z" stroke="#f0a500" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 12l2.5 2.5L16 9" stroke="#f0a500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3 data-en="Reliability">אמינות</h3>
+            <p data-en="Systems built to handle load, in the field, with or without a network connection. Backed up, secured, with fast support when you need it.">מערכות שנבנות לעמוד בעומס, בשטח, עם / בלי חיבור לרשת. מגובות, מאובטחות, עם תמיכה מהירה כשצריך.</p>
+          </div>
+        </div>
+        <div class="val rev d3">
+          <div class="vi"><img src="1.png" width="42" height="42" alt="gears" style="filter:brightness(0.5) sepia(1) saturate(8) hue-rotate(248deg) brightness(1.5);"></div>
+          <div>
+            <h3 data-en="Tailor-Made">מותאם אישית</h3>
+            <p data-en="Every organization works differently. What works for a battalion won't work for a garage, and what works for a garage won't work for a security firm. We start from scratch on every project.">כל ארגון עובד אחרת. מה שעובד לגדוד לא יעבוד למוסך, ומה שעובד למוסך לא יעבוד לחברת שמירה. מתחילים מהתחלה בכל פרויקט.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag" data-en="Our Expertise">המומחיות שלנו</span>
+      <h2 class="sec-title" data-en="Connecting <span class='grad'>strategy to execution</span><br>where results count">חיבור בין <span class="grad">אסטרטגיה לביצוע</span><br>במבחן התוצאה</h2>
+      <p class="sec-sub" data-en="Behind every successful business stands a method that takes complexity and turns it into operational simplicity. Here are the core areas and principles that drive our work.">מאחורי כל עסק מצליח עומדת שיטה שיודעת לקחת מורכבות ולהפוך אותה לפשטות תפעולית. הנה תחומי הליבה והעקרונות שמובילים את העבודה שלנו.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp rev d1">
+        <div class="exp-num">01</div>
+        <h3 data-en="Methodical development &amp; system simplification">פיתוח מתודולוגי ופישוט מערכות</h3>
+        <p data-en="We believe good management shouldn't be complicated. Our expertise is distilling complex workflows into clear, structured, easy-to-apply methods (as embodied in the <em>Golden Fish</em> methodology). We take a business's knowledge, experience and vision, and turn them into an orderly organizational structure that works in the field.">אנחנו מאמינים שניהול נכון לא צריך להיות מסובך. המומחיות שלנו היא זיקוק תהליכי עבודה מורכבים לכדי שיטות ברורות, מובנות וקלות ליישום (כפי שבא לידי ביטוי במתודולוגיית <em>דג הזהב</em>). אנחנו לוקחים את הידע, הניסיון והחזון של העסק, והופכים אותם למבנה ארגוני סדור שעובד בשטח.</p>
+      </div>
+      <div class="exp rev d2">
+        <div class="exp-num">02</div>
+        <h3 data-en="Automation &amp; smart tooling">אוטומציה והתאמת כלי עבודה חכמים</h3>
+        <p data-en="Technology should serve the business, not the other way around. Instead of generic off-the-shelf solutions, we specialize in scoping, tailoring and developing advanced CRM systems and automations matched precisely to a company's changing needs. The goal is one: removing bottlenecks, saving precious time and preventing human error through end-to-end digital process optimization.">טכנולוגיה צריכה לשרת את העסק, ולא להפך. במקום פתרונות מדף גנריים, אנו מתמחים באפיון, התאמה ופיתוח של מערכות CRM ואוטומציות מתקדמות המותאמות בדיוק לצרכים המשתנים של החברה. המטרה היא אחת: שחרור צווארי בקבוק, חיסכון בזמן יקר ומניעת טעויות אנוש באמצעות ייעול תהליכים דיגיטליים מקצה לקצה.</p>
+      </div>
+      <div class="exp rev d3">
+        <div class="exp-num">03</div>
+        <h3 data-en="Systems thinking, command &amp; business experience">חשיבה מערכתית וניסיון פיקודי ועסקי</h3>
+        <p data-en="Our guidance rests on more than two decades of hands-on experience managing companies, leading teams, and a rich field command background. This combination lets us bring a broad systemic perspective, mental resilience in crisis management, and the ability to move people and processes forward out of a deep commitment to the project's success.">הליווי שלנו נשען על למעלה משני עשורים של ניסיון מעשי בניהול חברות, הובלת עובדים ורקע פיקודי עשיר בשטח. השילוב הזה מאפשר לנו להביא אל השולחן ראייה מערכתית רחבה, חוסן מנטלי בניהול משברים, ויכולת להניע אנשים ותהליכים קדימה מתוך מחויבות עמוקה להצלחת הפרויקט.</p>
+      </div>
+      <div class="exp rev d4">
+        <div class="exp-num">04</div>
+        <h3 data-en="Long-term strategic planning &amp; guidance">תכנון וליווי אסטרטגי ארוך טווח</h3>
+        <p data-en="Building a stable business requires a vision connected to reality. Alongside solving the immediate day-to-day problems, we help managers and entrepreneurs build an orderly strategic infrastructure going forward - from the conceptual planning stage, through building profitable business models, to executing new ventures in a controlled and responsible way.">בניית עסק יציב דורשת חזון שמחובר למציאות. לצד פתרון הבעיות המיידיות ביומיום, אנו מסייעים למנהלים וליזמים לבנות תשתית אסטרטגית סדורה קדימה - משלב התכנון הרעיוני, דרך בניית מודלים עסקיים מניבים, ועד להוצאה לפועל של מיזמים חדשים בצורה מבוקרת ואחראית.</p>
+      </div>
+    </div>
+    <div class="exp-why rev">
+      <h3 data-en="Why does it work?">למה זה עובד?</h3>
+      <p data-en="Because we don't settle for theoretical consulting alone. The strength of <em>Golden Fish</em> is the ability to combine <strong>business mindset and strategy</strong> with <strong>systemic and technological execution</strong>. We build the right architecture for your business - and make sure it runs smoothly, efficiently and profitably.">כי אנחנו לא מסתפקים רק בייעוץ תיאורטי. החוזקה של <em>דג הזהב</em> היא היכולת לשלב בין <strong>המיינדסט והאסטרטגיה העסקית</strong> לבין <strong>הביצוע המערכתי והטכנולוגי</strong>. אנחנו בונים את הארכיטקטורה הנכונה לעסק שלך - ומקפידים שהיא תעבוד בצורה חלקה, יעילה ורווחית.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag" data-en="How We Work">תהליך העבודה</span>
+      <h2 class="sec-title" data-en="From idea <span class='grad'>to finished product</span>">מהרעיון <span class="grad">למוצר מוגמר</span></h2>
+      <p class="sec-sub" data-en="An orderly, transparent process - this is how we work with you<br>from the first moment to delivery">תהליך מסודר ושקוף - כך אנו עובדים איתך<br>מהרגע הראשון ועד לאספקה</p>
+    </div>
+    <div class="process rev">
+      <div class="step"><div class="step-n"><span>01</span></div><div class="step-l" data-en="Analysis">ניתוח</div><div class="step-d" data-en="Understanding needs">הבנת הצרכים</div></div>
+      <div class="step"><div class="step-n"><span>02</span></div><div class="step-l" data-en="Design">עיצוב</div><div class="step-d" data-en="Planning the solution">תכנון הפתרון</div></div>
+      <div class="step"><div class="step-n"><span>03</span></div><div class="step-l" data-en="Development">פיתוח</div><div class="step-d" data-en="Building the system">בניית המערכת</div></div>
+      <div class="step"><div class="step-n"><span>04</span></div><div class="step-l" data-en="Integration">שילוב</div><div class="step-d" data-en="Tools &amp; integrations">אינטגרציה וכלים</div></div>
+      <div class="step"><div class="step-n"><span>05</span></div><div class="step-l" data-en="Delivery">מסירה</div><div class="step-d" data-en="Training &amp; support">הדרכה ותמיכה</div></div>
+    </div>
+    <div class="svc-cards">
+      <div class="svc rev d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm0-4h2v2h-2zm-6 0h4v2h-4z"/></svg></div>
+        <h3 data-en="Web Management Systems">מערכות ניהול Web</h3>
+        <p data-en="Advanced PWA systems - working in the browser, on mobile, and offline. An intuitive interface in Hebrew or English.">מערכות PWA מתקדמות - עובדות בדפדפן, במובייל, ובלי אינטרנט. ממשק אינטואיטיבי בעברית.</p>
+      </div>
+      <div class="svc rev d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h10c2.76 0 5-2.24 5-5s-2.24-5-5-5zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm10 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg></div>
+        <h3 data-en="Advanced Integrations">שילוב כלים מתקדמים</h3>
+        <p data-en="Firebase, Google Sheets, WhatsApp API, PDF - all the tools you already use, smartly connected.">Firebase, Google Sheets, WhatsApp API, PDF - כל הכלים שאתה כבר משתמש בהם, מחוברים חכם.</p>
+      </div>
+      <div class="svc rev d3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/></svg></div>
+        <h3 data-en="Automations &amp; Workflows">אוטומציות ותהליכים</h3>
+        <p data-en="Cut the manual workload. Systems that run on their own - alerts, automatic reports, real-time data updates.">הפחת עומס ידני. מערכות שעובדות לבד - התראות, דוחות אוטומטיים, עדכוני נתונים בזמן אמת.</p>
+      </div>
+      <div class="svc rev d4">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 10v5h2V4h2v11h2V4h2V2h-8C7.79 2 6 3.79 6 6s1.79 4 4 4zm-2 7l-4-4v3H2v2h2v3l4-4z"/></svg></div>
+        <h3 data-en="Hebrew + RTL Interfaces">ממשקים בעברית + RTL</h3>
+        <p data-en="Deep experience building Hebrew systems - real RTL, Hebrew PDFs, everything works perfectly.">ניסיון עמוק בפיתוח מערכות עבריות - RTL אמיתי, PDF בעברית, הכל עובד בצורה מושלמת.</p>
+      </div>
     </div>
   </div>
 </section>
