@@ -1,10 +1,12 @@
-// Builds daghazahav.com/articles/ (index + one page per system) from scripts/articles-data.mjs,
-// and refreshes the articles block in sitemap.xml and llms.txt (between "articles" markers).
+// Builds daghazahav.com/articles/ (index, one page per system from scripts/articles-data.mjs and the
+// topic guides from scripts/guides-data.mjs), and refreshes the articles block in sitemap.xml and llms.txt
+// (between "articles" markers). Quality gate before every ship: npm run check:articles
 // Usage: node scripts/build-articles.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ARTICLES, PUBLISHED } from './articles-data.mjs';
+import { GUIDES, GUIDES_PUBLISHED, GUIDES_MODIFIED, PILLAR } from './guides-data.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://daghazahav.com';
@@ -12,6 +14,8 @@ const OUT = path.join(ROOT, 'articles');
 const PHONE = '054-2012000';
 const WA = 'https://wa.me/972542012000?text=';
 const ORG_ID = `${ORIGIN}/#org`;
+const PERSON_ID = 'https://elchai.co.il/#elchai';
+const OG = `${ORIGIN}/og-daghazahav-1200.jpg`;
 const MODIFIED = PUBLISHED;
 
 // Hebrew function words must never end a line: bind them to the next word with a no-break space
@@ -23,7 +27,8 @@ const t = (s) => esc(bind(s)).replace(/ /g, '&nbsp;');
 const attr = (s) => esc(s);
 const json = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
 const url = (a) => `${ORIGIN}/articles/${a.slug}/`;
-const bySlug = Object.fromEntries(ARTICLES.map((a) => [a.slug, a]));
+const bySlug = Object.fromEntries([...GUIDES, ...ARTICLES].map((a) => [a.slug, a]));
+const pillar = GUIDES.find((g) => g.slug === PILLAR);
 const words = (s) => s.split(/\s+/).filter(Boolean).length;
 const heDate = (iso) => { const [y, m, d] = iso.split('-').map(Number); return `${d} ב${['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'][m - 1]} ${y}`; };
 
@@ -32,8 +37,26 @@ const WA_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"
 const ORG = {
   '@type': ['Organization', 'ProfessionalService'], '@id': ORG_ID, name: 'דג הזהב', alternateName: 'DAGHAZAHAV', url: `${ORIGIN}/`,
   logo: { '@type': 'ImageObject', url: `${ORIGIN}/daghazahav-logo-new.png` }, telephone: '+972-54-201-2000',
-  founder: { '@type': 'Person', name: 'אלחי פיין', url: 'https://elchai.co.il/about/' },
+  founder: { '@type': 'Person', '@id': PERSON_ID, name: 'אלחי פיין', url: 'https://elchai.co.il/about/' },
 };
+const PERSON = {
+  '@type': 'Person', '@id': PERSON_ID, name: 'אלחי פיין', url: 'https://elchai.co.il/about/', jobTitle: 'מייסד דג הזהב',
+  worksFor: { '@id': ORG_ID }, sameAs: ['https://elchai.co.il/about/'],
+};
+
+// Inline markup in guides: [label](/href) and **bold**. Text pieces go through t(), so the no-break binding still applies.
+const INLINE = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g;
+function rich(s) {
+  let out = '';
+  let last = 0;
+  for (const m of s.matchAll(INLINE)) {
+    out += t(s.slice(last, m.index));
+    out += m[1] ? `<a href="${attr(m[2])}">${t(m[1])}</a>` : `<strong>${t(m[3])}</strong>`;
+    last = m.index + m[0].length;
+  }
+  return out + t(s.slice(last));
+}
+const plain = (s) => s.replace(INLINE, (_, label, href, bold) => label ?? bold);
 
 function head({ title, description, canonical, image, type, ld }) {
   return `<!DOCTYPE html>
@@ -62,7 +85,7 @@ function head({ title, description, canonical, image, type, ld }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/articles/articles.css?v=3">
+<link rel="stylesheet" href="/articles/articles.css?v=4">
 <script>document.documentElement.classList.add('js')</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LJ0HYEW9L"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
@@ -216,16 +239,125 @@ ${foot(a.sys)}`;
   return out;
 }
 
+// ---------------------------------------------------------------- guides
+const guideUrl = (g) => `/articles/${g.slug}/`;
+const guideText = (g) => [g.answer, ...g.sections.flatMap((s) => [s.h, ...s.body.flatMap(blockText)]), ...g.faq.flat()].map(plain).join(' ');
+function blockText(b) {
+  if (typeof b === 'string') return [b];
+  if (b.h3) return [b.h3];
+  if (b.ul || b.ol || b.check) return b.ul || b.ol || b.check;
+  if (b.table) return [b.table.caption, ...b.table.head, ...b.table.rows.flat()];
+  return [];
+}
+
+function guideCard(g, level = 'h3', d = 0) {
+  return `<a class="post post-guide${g.pillar ? ' post-pillar' : ''} rv" data-d="${d}" href="${guideUrl(g)}">
+<div class="post-body"><span class="post-kind">${g.pillar ? 'המדריך המלא' : 'מדריך'}</span><${level}>${t(g.h1)}</${level}><p>${t(g.excerpt)}</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>`;
+}
+
+function block(b) {
+  if (typeof b === 'string') return `<p>${rich(b)}</p>`;
+  if (b.h3) return `<h3>${rich(b.h3)}</h3>`;
+  if (b.ul) return `<ul class="list">${b.ul.map((x) => `<li>${rich(x)}</li>`).join('')}</ul>`;
+  if (b.ol) return `<ol class="steps">${b.ol.map((x) => `<li>${rich(x)}</li>`).join('')}</ol>`;
+  if (b.check) return `<ul class="check">${b.check.map((x) => `<li>${rich(x)}</li>`).join('')}</ul>`;
+  if (b.table) {
+    const { caption, head: hd, rows } = b.table;
+    return `<div class="table-wrap" role="region" aria-label="${attr(caption)}" tabindex="0"><table><caption>${t(caption)}</caption>
+<thead><tr>${hd.map((h) => `<th scope="col">${rich(h)}</th>`).join('')}</tr></thead>
+<tbody>${rows.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${rich(c)}</th>` : `<td>${rich(c)}</td>`)).join('')}</tr>`).join('\n')}</tbody></table></div>`;
+  }
+  if (b.systems) return `<div class="posts related">${b.systems.map((s, i) => card(bySlug[s], 'h3', i % 3)).join('\n')}</div>`;
+  if (b.guides) return `<div class="posts guides">${b.guides.map((s, i) => guideCard(bySlug[s], 'h3', i % 3)).join('\n')}</div>`;
+  throw new Error(`unknown block ${JSON.stringify(b).slice(0, 80)}`);
+}
+
+function guide(g) {
+  const canonical = url(g);
+  const text = guideText(g);
+  const wc = words(text);
+  const minutes = Math.max(4, Math.round(wc / 180));
+  const waText = encodeURIComponent(`שלום אלחי, קראתי את המדריך "${g.h1}" באתר ואשמח לשיחה`);
+  const crumbs = g.pillar
+    ? [['עמוד הבית', '/'], ['מאמרים', '/articles/'], [g.short, null]]
+    : [['עמוד הבית', '/'], ['מאמרים', '/articles/'], [pillar.short, guideUrl(pillar)], [g.short, null]];
+  const toc = [...g.sections.map((s) => [s.id, s.h]), ['faq', 'שאלות נפוצות']];
+  const others = GUIDES.filter((x) => !x.pillar && x.slug !== g.slug);
+  const ld = [
+    ORG,
+    PERSON,
+    {
+      '@type': 'Article', '@id': `${canonical}#article`, headline: g.h1, description: g.description, inLanguage: 'he-IL',
+      image: [OG], datePublished: GUIDES_PUBLISHED, dateModified: GUIDES_MODIFIED, mainEntityOfPage: canonical,
+      author: { '@id': PERSON_ID }, publisher: { '@id': ORG_ID }, articleSection: 'מדריכים', wordCount: wc,
+      about: { '@type': 'Thing', name: 'פיתוח מערכת ניהול בהתאמה אישית' },
+      ...(g.pillar
+        ? { hasPart: others.map((x) => ({ '@id': `${url(x)}#article` })) }
+        : { isPartOf: { '@id': `${url(pillar)}#article` } }),
+    },
+    {
+      '@type': 'FAQPage', '@id': `${canonical}#faq`,
+      mainEntity: g.faq.map(([q, ans]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: crumbs.map(([name, href], i) => ({ '@type': 'ListItem', position: i + 1, name, item: href ? `${ORIGIN}${href}` : canonical })),
+    },
+  ];
+  const related = g.systems.length ? `<h2>${t('מערכות שקשורות למדריך')}</h2>\n<div class="posts related">${g.systems.map((s, i) => card(bySlug[s], 'h3', i)).join('\n')}</div>` : '';
+  const answers = g.answers.length ? `<h2>${t('תשובות קצרות באותו נושא')}</h2>\n<ul class="list">${g.answers.map(([href, label]) => `<li><a href="${href}">${t(label)}</a></li>`).join('')}</ul>` : '';
+  const more = g.pillar ? '' : `<h2>${t('המשך קריאה')}</h2>\n<div class="posts guides">${[pillar, ...others].map((x, i) => guideCard(x, 'h3', i % 3)).join('\n')}</div>`;
+
+  return `${head({ title: g.title, description: g.description, canonical, image: OG, type: 'article', ld })}
+<body>
+${nav('articles')}
+<main>
+<section class="wrap narrow" aria-labelledby="h1">
+<nav class="crumbs" aria-label="פירורי לחם">${crumbs.map(([name, href]) => (href ? `<a href="${href}">${t(name)}</a>` : `<span aria-current="page">${t(name)}</span>`)).join(' / ')}</nav>
+<span class="tag">${g.pillar ? 'המדריך המלא' : 'מדריך'}</span>
+<h1 id="h1">${t(g.h1)}</h1>
+<p class="meta">מאת <a href="https://elchai.co.il/about/" rel="author">אלחי פיין</a> · דג הזהב · <time datetime="${GUIDES_MODIFIED}">${heDate(GUIDES_MODIFIED)}</time> · ${minutes} דקות קריאה</p>
+<p class="answer">${t(g.answer)}</p>
+<nav class="toc" aria-label="תוכן המדריך"><p>במדריך</p><ol>${toc.map(([id, label]) => `<li><a href="#${id}">${t(label)}</a></li>`).join('')}</ol></nav>
+</section>
+<article class="wrap narrow">
+${g.sections.map((s) => `<h2 id="${s.id}">${t(s.h)}</h2>\n${s.body.map(block).join('\n')}`).join('\n')}
+<h2 id="faq">שאלות נפוצות</h2>
+${g.faq.map(([q, ans]) => `<details><summary>${t(q)}</summary><p>${t(ans)}</p></details>`).join('\n')}
+<section class="cta" aria-labelledby="cta-h">
+<h2 id="cta-h">${t('רוצים לבדוק מה מתאים לארגון שלכם?')}</h2>
+<p>${t('כל פרויקט בדג הזהב מתחיל בשיחת זום חינמית. כתבו לנו בוואצאפ ונבין יחד אם צריך מערכת חדשה, התאמה של מערכת קיימת או שבכלל לא.')}</p>
+<div class="btns">
+<a class="btn btn-wa" href="${WA}${waText}" target="_blank" rel="noopener" onclick="window.trackWhatsApp&&trackWhatsApp('guide_${g.slug}')">${WA_ICON}<span>שיחה בוואצאפ</span></a>
+<a class="btn btn-p" href="/">${t('לעמוד הבית של דג הזהב')} <span class="arr" aria-hidden="true">←</span></a>
+<a class="btn btn-s" href="tel:${PHONE}">${PHONE}</a>
+</div>
+</section>
+<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>${t('כתב: ')}<b>אלחי פיין</b>${t(', מייסד דג הזהב, רס"ן (מיל\') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לעיריות, ליישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון. ')}<a href="/answers/elchai-fine-management-systems-experience/">${t('עוד על אלחי פיין')}</a> · <a href="/">לכל המערכות</a></p></div>
+${more}
+${related}
+${answers}
+<p><a href="/articles/">לכל המאמרים והמדריכים</a></p>
+</article>
+</main>
+${foot(`guide_${g.slug}`)}`;
+}
+
+// ---------------------------------------------------------------- index
+const LATEST = GUIDES_MODIFIED > MODIFIED ? GUIDES_MODIFIED : MODIFIED;
 function index() {
   const canonical = `${ORIGIN}/articles/`;
-  const title = 'מאמרים על מערכות הניהול של דג הזהב | DAGHAZAHAV';
-  const description = 'מדריך מעמיק לכל מערכת של דג הזהב: ישובון, גדודון, הפקון, מוסכון, קהילה בבניין, אירוחון, מפעלון, משמרון, מטווחון, דפוסון ו-CRAZY CRM. יכולות, קהל יעד ושאלות נפוצות.';
+  const title = 'מאמרים ומדריכים על מערכות ניהול | DAGHAZAHAV';
+  const description = 'מדריכים לפיתוח מערכת ניהול בהתאמה אישית ומאמר מעמיק על כל מערכת של דג הזהב: ישובון, הפקון, מוסכון, קהילה בבניין, אירוחון, מפעלון, משמרון, מטווחון, דפוסון ו-CRAZY CRM.';
+  const guides = [pillar, ...GUIDES.filter((g) => !g.pillar)];
+  const all = [...guides, ...ARTICLES];
   const ld = [
     ORG,
     {
       '@type': 'CollectionPage', '@id': `${canonical}#page`, url: canonical, name: title, description, inLanguage: 'he-IL',
-      publisher: { '@id': ORG_ID }, dateModified: MODIFIED,
-      mainEntity: { '@type': 'ItemList', itemListElement: ARTICLES.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: url(a), name: a.h1 })) },
+      publisher: { '@id': ORG_ID }, dateModified: LATEST,
+      mainEntity: { '@type': 'ItemList', itemListElement: all.map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: url(a), name: a.h1 })) },
     },
     {
       '@type': 'BreadcrumbList', itemListElement: [
@@ -234,17 +366,22 @@ function index() {
       ],
     },
   ];
-  return `${head({ title, description, canonical, image: `${ORIGIN}/og-daghazahav-1200.jpg`, type: 'website', ld })}
+  return `${head({ title, description, canonical, image: OG, type: 'website', ld })}
 <body>
 ${nav('articles')}
 <main>
 <section class="wrap" aria-labelledby="h1">
 <nav class="crumbs" aria-label="פירורי לחם"><a href="/">עמוד הבית</a> / <span aria-current="page">מאמרים</span></nav>
-<span class="tag">מאמרים</span>
-<h1 id="h1">${t('מאמרים: כל מערכות הניהול של דג הזהב')}</h1>
-<p class="lead">${t('דג הזהב, בית התוכנה של אלחי פיין, מפתחת מערכות ניהול לעיריות, ליישובים, לעסקים ולמערכת הביטחון. כאן יש מאמר מעמיק על כל מערכת: מה היא עושה, למי היא מתאימה, אילו יכולות יש בה ואיך מתחילים לעבוד איתה.')}</p>
+<span class="tag">מאמרים ומדריכים</span>
+<h1 id="h1">${t('מאמרים ומדריכים: מערכות ניהול בהתאמה אישית')}</h1>
+<p class="lead">${t('דג הזהב, בית התוכנה של אלחי פיין, מפתחת מערכות ניהול לעיריות, ליישובים, לעסקים ולמערכת הביטחון. כאן תמצאו מדריכים שעוזרים להחליט אם ואיך לבנות מערכת, ומאמר מעמיק על כל מערכת שלנו.')}</p>
+<h2 id="guides">מדריכים</h2>
+<div class="posts guides">
+${guides.map((g, i) => guideCard(g, 'h3', i % 3)).join('\n')}
+</div>
+<h2 id="systems">${t('מאמרים על המערכות')}</h2>
 <div class="posts">
-${ARTICLES.map((a, i) => card(a, 'h2', i % 3)).join('\n')}
+${ARTICLES.map((a, i) => card(a, 'h3', i % 3)).join('\n')}
 </div>
 <section class="cta" aria-labelledby="cta-h">
 <h2 id="cta-h">${t('לא מצאתם מערכת שמתאימה בדיוק לארגון שלכם?')}</h2>
@@ -262,7 +399,7 @@ function replaceBlock(file, start, end, block) {
   const p = path.join(ROOT, file);
   const raw = fs.readFileSync(p, 'utf8');
   const crlf = raw.includes('\r\n');
-  let src = raw.split('\r\n').join('\n');
+  const src = raw.split('\r\n').join('\n');
   const re = new RegExp(`${start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[\\s\\S]*?${end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\n?`);
   const full = `${start}\n${block}\n${end}\n`;
   return { p, crlf, src: re.test(src) ? src.replace(re, full) : null, full };
@@ -272,15 +409,26 @@ function writeText(p, text, crlf) { fs.writeFileSync(p, crlf ? text.split('\n').
 
 // sitemap.xml: articles block before </urlset>
 function sitemap() {
-  const block = [`  <url><loc>${ORIGIN}/articles/</loc><lastmod>${MODIFIED}</lastmod></url>`, ...ARTICLES.map((a) => `  <url><loc>${url(a)}</loc><lastmod>${MODIFIED}</lastmod></url>`)].join('\n');
+  const block = [
+    `  <url><loc>${ORIGIN}/articles/</loc><lastmod>${LATEST}</lastmod></url>`,
+    ...GUIDES.map((g) => `  <url><loc>${url(g)}</loc><lastmod>${GUIDES_MODIFIED}</lastmod></url>`),
+    ...ARTICLES.map((a) => `  <url><loc>${url(a)}</loc><lastmod>${MODIFIED}</lastmod></url>`),
+  ].join('\n');
   const r = replaceBlock('sitemap.xml', '  <!-- articles:start -->', '  <!-- articles:end -->', block);
   const src = r.src ?? fs.readFileSync(r.p, 'utf8').split('\r\n').join('\n').replace('</urlset>', `${r.full}</urlset>`);
   writeText(r.p, src, r.crlf);
 }
 
-// llms.txt: articles section right after the intro, before "## שאלות ותשובות"
+// llms.txt: guides + articles sections right after the intro, before "## שאלות ותשובות"
 function llms() {
-  const block = ['## מאמרים', `- [מאמרים: כל מערכות הניהול של דג הזהב](${ORIGIN}/articles/): מאמר מעמיק על כל מערכת, עם יכולות, קהל יעד ושאלות נפוצות.`, ...ARTICLES.map((a) => `- [${a.h1}](${url(a)}): ${a.answer}`)].join('\n');
+  const block = [
+    '## מדריכים',
+    ...[pillar, ...GUIDES.filter((g) => !g.pillar)].map((g) => `- [${g.h1}](${url(g)}): ${g.answer}`),
+    '',
+    '## מאמרים',
+    `- [מאמרים ומדריכים: מערכות ניהול בהתאמה אישית](${ORIGIN}/articles/): מדריכים לפיתוח מערכת ניהול ומאמר מעמיק על כל מערכת, עם יכולות, קהל יעד ושאלות נפוצות.`,
+    ...ARTICLES.map((a) => `- [${a.h1}](${url(a)}): ${a.answer}`),
+  ].join('\n');
   const r = replaceBlock('llms.txt', '<!-- articles:start -->', '<!-- articles:end -->', block);
   let src = r.src;
   if (src === null) {
@@ -298,15 +446,21 @@ for (const a of ARTICLES) {
   fs.mkdirSync(path.join(OUT, a.slug), { recursive: true });
   fs.writeFileSync(path.join(OUT, a.slug, 'index.html'), article(a));
 }
+for (const g of GUIDES) {
+  const refs = [...g.systems, ...g.sections.flatMap((x) => x.body.flatMap((b) => b.systems || b.guides || []))];
+  for (const s of refs) if (!bySlug[s]) throw new Error(`${g.slug}: unknown slug ${s}`);
+  fs.mkdirSync(path.join(OUT, g.slug), { recursive: true });
+  fs.writeFileSync(path.join(OUT, g.slug, 'index.html'), guide(g));
+}
 sitemap();
 llms();
 
-// Guard: the copy rules that Elchai enforces on every page.
+// Guard: the copy rules that Elchai enforces on every page. The full gate is scripts/check-articles.mjs.
 const bad = [];
-for (const f of ['index.html', ...ARTICLES.map((a) => `${a.slug}/index.html`)]) {
+for (const f of ['index.html', ...ARTICLES.map((a) => `${a.slug}/index.html`), ...GUIDES.map((g) => `${g.slug}/index.html`)]) {
   const h = fs.readFileSync(path.join(OUT, f), 'utf8');
   for (const [re, why] of [[/[\u2013\u2014]/, 'em/en dash'], [/בקרוב/, 'בקרוב'], [/פיילוט/, 'פיילוט'], [/וואטסאפ/, 'וואטסאפ spelling'], [/אשקלון/, 'client name']]) if (re.test(h)) bad.push(`${f}: ${why}`);
   if ((h.match(/<h1[\s>]/g) || []).length !== 1) bad.push(`${f}: h1 count`);
 }
 if (bad.length) { console.error(bad.join('\n')); process.exit(1); }
-console.log(`built ${ARTICLES.length} articles + index, sitemap and llms.txt updated`);
+console.log(`built ${GUIDES.length} guides + ${ARTICLES.length} articles + index, sitemap and llms.txt updated`);
