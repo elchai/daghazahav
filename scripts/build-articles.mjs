@@ -229,7 +229,7 @@ ${a.faq.map(([q, ans]) => `<details><summary>${t(q)}</summary><p>${t(ans)}</p></
 <a class="btn btn-s" href="tel:${PHONE}">${PHONE}</a>
 </div>
 </section>
-<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>${t(`${a.name} היא אחת המערכות של `)}<b>דג הזהב</b>${t(', בית התוכנה של אלחי פיין, רס"ן (מיל\') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לעיריות, ליישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון.')}<a href="/">לכל המערכות</a>${a.answers ? ` · <a href="${a.answers}">שאלות ותשובות על ${t(a.name)}</a>` : ''}</p></div>
+<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>${t(`${a.name} היא אחת המערכות של `)}<b>דג הזהב</b>${t(', בית התוכנה של אלחי פיין, רס"ן (מיל\') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לחברות וארגונים, לרשויות ועיריות, לישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון.')}<a href="/">לכל המערכות</a>${a.answers ? ` · <a href="${a.answers}">שאלות ותשובות על ${t(a.name)}</a>` : ''}</p></div>
 <h2>מאמרים נוספים</h2>
 <div class="posts related">${a.related.map((s, i) => card(bySlug[s], 'h3', i)).join('\n')}</div>
 <p><a href="/articles/">לכל המאמרים</a></p>
@@ -334,7 +334,7 @@ ${g.faq.map(([q, ans]) => `<details><summary>${t(q)}</summary><p>${t(ans)}</p></
 <a class="btn btn-s" href="tel:${PHONE}">${PHONE}</a>
 </div>
 </section>
-<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>${t('כתב: ')}<b>אלחי פיין</b>${t(', מייסד דג הזהב, רס"ן (מיל\') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לעיריות, ליישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון. ')}<a href="/answers/elchai-fine-management-systems-experience/">${t('עוד על אלחי פיין')}</a> · <a href="/">לכל המערכות</a></p></div>
+<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>${t('כתב: ')}<b>אלחי פיין</b>${t(', מייסד דג הזהב, רס"ן (מיל\') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לחברות וארגונים, לרשויות ועיריות, לישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון. ')}<a href="/answers/elchai-fine-management-systems-experience/">${t('עוד על אלחי פיין')}</a> · <a href="/">לכל המערכות</a></p></div>
 ${more}
 ${related}
 ${answers}
@@ -374,7 +374,7 @@ ${nav('articles')}
 <nav class="crumbs" aria-label="פירורי לחם"><a href="/">עמוד הבית</a> / <span aria-current="page">מאמרים</span></nav>
 <span class="tag">מאמרים ומדריכים</span>
 <h1 id="h1">${t('מאמרים ומדריכים: מערכות ניהול בהתאמה אישית')}</h1>
-<p class="lead">${t('דג הזהב, בית התוכנה של אלחי פיין, מפתחת מערכות ניהול לעיריות, ליישובים, לעסקים ולמערכת הביטחון. כאן תמצאו מדריכים שעוזרים להחליט אם ואיך לבנות מערכת, ומאמר מעמיק על כל מערכת שלנו.')}</p>
+<p class="lead">${t('דג הזהב, בית התוכנה של אלחי פיין, מפתחת מערכות ניהול לחברות וארגונים, לרשויות ועיריות, לישובים, לעסקים ולמערכת הביטחון. כאן תמצאו מדריכים שעוזרים להחליט אם ואיך לבנות מערכת, ומאמר מעמיק על כל מערכת שלנו.')}</p>
 <h2 id="guides">מדריכים</h2>
 <div class="posts guides">
 ${guides.map((g, i) => guideCard(g, 'h3', i % 3)).join('\n')}
