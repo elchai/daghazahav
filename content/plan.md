@@ -25,7 +25,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 5 | excel-to-management-system | מעבר מאקסל למערכת ניהול: מדריך מעשי | מעבר מאקסל למערכת ניהול | informational | yishuvon, mifalon, mosachun | done |
 | 6 | whatsapp-management-system-integration | חיבור וואצאפ למערכת ניהול: מה אפשר לעשות ומה חשוב לבדוק | חיבור וואצאפ למערכת ניהול | informational | crazy-crm, mosachun, kehilot | done |
 | 7 | custom-crm-development | פיתוח CRM בהתאמה אישית: מה הוא כולל ומתי צריך אותו | פיתוח CRM בהתאמה אישית | commercial | crazy-crm, dfuson, hafakon | done |
-| 8 | management-system-invoicing-integration | חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | חיבור מערכת ניהול לחשבונית ירוקה | commercial | mosachun, dfuson, mifalon, crazy-crm | todo |
+| 8 | management-system-invoicing-integration | חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | חיבור מערכת ניהול לחשבונית ירוקה | commercial | mosachun, dfuson, mifalon, crazy-crm | done |
 | 9 | garage-management-software-guide | תוכנה לניהול מוסך: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מוסך | commercial | mosachun | todo |
 | 10 | factory-erp-or-dedicated-system | מפעל קטן: ERP או מערכת ניהול ייעודית | מערכת ERP למפעל קטן | commercial | mifalon | todo |
 | 11 | settlement-secretariat-software | תוכנה למזכירות ישוב: מה היא צריכה לכלול | תוכנה לניהול ישוב | commercial | yishuvon, kehilot | todo |
