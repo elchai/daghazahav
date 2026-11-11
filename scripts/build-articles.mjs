@@ -79,9 +79,9 @@ function head({ title, description, canonical, image, type, ld }) {
 <meta name="twitter:title" content="${attr(title)}">
 <meta name="twitter:description" content="${attr(description)}">
 <meta name="twitter:image" content="${image}">
-<link rel="icon" href="/favicon.ico?v=7" sizes="any">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=7">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7">
+<link rel="icon" href="/favicon.ico?v=8" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=8">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
