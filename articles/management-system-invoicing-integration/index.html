@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | דג הזהב</title>
+<meta name="description" content="איך מחברים מערכת ניהול לתוכנת החשבוניות: אילו מסמכים יש, מה זה מספר הקצאה, מה בודקים אצל Morning ו-iCount, שלוש רמות חיבור, תשלום בקישור וקבלה, ומה לסגור באפיון.">
+<link rel="canonical" href="https://daghazahav.com/articles/management-system-invoicing-integration/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="דג הזהב">
+<meta property="og:title" content="חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | דג הזהב">
+<meta property="og:description" content="איך מחברים מערכת ניהול לתוכנת החשבוניות: אילו מסמכים יש, מה זה מספר הקצאה, מה בודקים אצל Morning ו-iCount, שלוש רמות חיבור, תשלום בקישור וקבלה, ומה לסגור באפיון.">
+<meta property="og:url" content="https://daghazahav.com/articles/management-system-invoicing-integration/">
+<meta property="og:image" content="https://daghazahav.com/og-daghazahav-1200.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | דג הזהב">
+<meta name="twitter:description" content="איך מחברים מערכת ניהול לתוכנת החשבוניות: אילו מסמכים יש, מה זה מספר הקצאה, מה בודקים אצל Morning ו-iCount, שלוש רמות חיבור, תשלום בקישור וקבלה, ומה לסגור באפיון.">
+<meta name="twitter:image" content="https://daghazahav.com/og-daghazahav-1200.jpg">
+<link rel="icon" href="/favicon.ico?v=7" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=7">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/articles/articles.css?v=4">
+<script>document.documentElement.classList.add('js')</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LJ0HYEW9L"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
+<script src="/lead-tracking.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","ProfessionalService"],"@id":"https://daghazahav.com/#org","name":"דג הזהב","alternateName":"DAGHAZAHAV","url":"https://daghazahav.com/","logo":{"@type":"ImageObject","url":"https://daghazahav.com/daghazahav-logo-new.png"},"telephone":"+972-54-201-2000","founder":{"@type":"Person","@id":"https://elchai.co.il/#elchai","name":"אלחי פיין","url":"https://elchai.co.il/about/"}},{"@type":"Person","@id":"https://elchai.co.il/#elchai","name":"אלחי פיין","url":"https://elchai.co.il/about/","jobTitle":"מייסד דג הזהב","worksFor":{"@id":"https://daghazahav.com/#org"},"sameAs":["https://elchai.co.il/about/"]},{"@type":"Article","@id":"https://daghazahav.com/articles/management-system-invoicing-integration/#article","headline":"חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה","description":"איך מחברים מערכת ניהול לתוכנת החשבוניות: אילו מסמכים יש, מה זה מספר הקצאה, מה בודקים אצל Morning ו-iCount, שלוש רמות חיבור, תשלום בקישור וקבלה, ומה לסגור באפיון.","inLanguage":"he-IL","image":["https://daghazahav.com/og-daghazahav-1200.jpg"],"datePublished":"2026-11-10","dateModified":"2026-11-11","mainEntityOfPage":"https://daghazahav.com/articles/management-system-invoicing-integration/","author":{"@id":"https://elchai.co.il/#elchai"},"publisher":{"@id":"https://daghazahav.com/#org"},"articleSection":"מדריכים","wordCount":1857,"about":{"@type":"Thing","name":"פיתוח מערכת ניהול בהתאמה אישית"},"isPartOf":{"@id":"https://daghazahav.com/articles/custom-management-system-development/#article"}},{"@type":"FAQPage","@id":"https://daghazahav.com/articles/management-system-invoicing-integration/#faq","mainEntity":[{"@type":"Question","name":"המערכת שלכם מפיקה חשבוניות בעצמה?","acceptedAnswer":{"@type":"Answer","text":"לא, וזה בכוונה. המערכת שולחת את פרטי העסקה לתוכנת החשבוניות, כמו Morning או iCount, והיא מפיקה את מסמך המס עם המספור ומספר ההקצאה. המסמך חוזר לכרטיס הלקוח."}},{"@type":"Question","name":"מה זה מספר הקצאה?","acceptedAnswer":{"@type":"Answer","text":"מספר שרשות המסים מחזירה לחשבונית מס מעל סכום שהיא קובעת, במסגרת מודל חשבוניות ישראל. בלי המספר הלקוח העסקי לא יכול לקזז את המע\"מ. תוכנות החשבוניות המוכרות מבקשות אותו כחלק מההפקה."}},{"@type":"Question","name":"אנחנו עובדים עם חשבשבת או עם תוכנה בלי ממשק. אפשר לחבר?","acceptedAnswer":{"@type":"Answer","text":"כן, ברמת ייצוא קובץ. בישובון למשל מייצאים חיובים ותשלומים לקובץ שהנהלת החשבונות מייבאת. בודקים את המבנה מול התוכנה שלכם לפני שמתחילים."}},{"@type":"Question","name":"החשבונית יכולה לצאת לבד אחרי שהלקוח שילם?","acceptedAnswer":{"@type":"Answer","text":"כן, כשהתשלום עובר דרך המערכת. במוסכון הלקוח משלם בקישור כשהרכב מוכן והחשבונית נשלחת לבד. בעסק שבו ההזמנה משתנה עד הרגע האחרון עדיף שהמסמך יצא בלחיצה."}},{"@type":"Question","name":"איך מתקנים חשבונית שיצאה בטעות?","acceptedAnswer":{"@type":"Answer","text":"בזיכוי ובחשבונית חדשה, לא במחיקה. בדפוסון הזיכוי יוצא מתוך ההזמנה כמו החשבונית והקבלה, וכל המסמכים נשארים בכרטיס."}},{"@type":"Question","name":"מי שולח את החשבונית ללקוח?","acceptedAnswer":{"@type":"Answer","text":"או תוכנת החשבוניות במייל או מערכת הניהול בוואצאפ. מחליטים על אחד מהם באפיון כדי שהלקוח לא יקבל את אותו מסמך פעמיים."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"עמוד הבית","item":"https://daghazahav.com/"},{"@type":"ListItem","position":2,"name":"מאמרים","item":"https://daghazahav.com/articles/"},{"@type":"ListItem","position":3,"name":"המדריך המלא","item":"https://daghazahav.com/articles/custom-management-system-development/"},{"@type":"ListItem","position":4,"name":"חיבור לחשבוניות","item":"https://daghazahav.com/articles/management-system-invoicing-integration/"}]}]}</script>
+</head>
+<body>
+<header class="nav"><div class="nav-in">
+<a href="/" class="nav-logo" aria-label="דג הזהב, לעמוד הבית"><img src="/daghazahav-logo-mark.png" alt="DAGHAZAHAV" width="1428" height="262"><span class="nav-slogan">פיתוח מערכות ניהול מתקדמות</span></a>
+<nav aria-label="ראשי"><ul class="nav-links">
+<li class="hide-sm"><a href="/#projects">המערכות</a></li>
+<li><a href="/articles/" aria-current="page">מאמרים</a></li>
+<li class="hide-sm"><a href="/answers/">שאלות ותשובות</a></li>
+<li><a href="/#contact" class="nav-cta">צור קשר</a></li>
+</ul></nav>
+</div></header>
+<main>
+<section class="wrap narrow" aria-labelledby="h1">
+<nav class="crumbs" aria-label="פירורי לחם"><a href="/">עמוד הבית</a> / <a href="/articles/">מאמרים</a> / <a href="/articles/custom-management-system-development/">המדריך המלא</a> / <span aria-current="page">חיבור לחשבוניות</span></nav>
+<span class="tag">מדריך</span>
+<h1 id="h1">חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה</h1>
+<p class="meta">מאת <a href="https://elchai.co.il/about/" rel="author">אלחי פיין</a> · דג הזהב · <time datetime="2026-11-11">11 בנובמבר 2026</time> · 10 דקות קריאה</p>
+<p class="answer">חיבור מערכת ניהול לחשבוניות פירושו שהחשבונית, הקבלה והזיכוי נוצרים מתוך ההזמנה או&nbsp;כרטיס הלקוח במקום להיות מוקלדים מחדש בתוכנת החשבוניות. המערכת שולחת את&nbsp;פרטי העסקה לתוכנה כמו&nbsp;Morning או&nbsp;iCount, התוכנה מפיקה את&nbsp;המסמך עם&nbsp;המספור שלה ועם מספר הקצאה מרשות המסים כשנדרש, והמסמך חוזר לכרטיס הלקוח. יש שלוש רמות חיבור: ייצוא קובץ להנהלת החשבונות, הפקה בלחיצה מתוך המערכת והפקה אוטומטית אחרי תשלום. לפני שמחברים צריך לסגור מי מורשה להפיק, איך מתקנים טעות, מה קורה כשהחיבור נופל ומי הבעלים של&nbsp;המספור.</p>
+<nav class="toc" aria-label="תוכן המדריך"><p>במדריך</p><ol><li><a href="#why">למה החיבור הזה חשוב יותר ממה שנדמה</a></li><li><a href="#docs">אילו מסמכים יש ומי מפיק אותם</a></li><li><a href="#allocation">מספר הקצאה: מה זה ולמה המערכת צריכה להכיר אותו</a></li><li><a href="#providers">Morning, iCount ואחרים: מה בודקים אצל תוכנת החשבוניות</a></li><li><a href="#levels">שלוש רמות של&nbsp;חיבור</a></li><li><a href="#payment">תשלום בקישור וקבלה: החיבור השני שלא שוכחים</a></li><li><a href="#spec">מה לסגור באפיון לפני שמחברים</a></li><li><a href="#mistakes">טעויות נפוצות</a></li><li><a href="#checklist">רשימת בדיקה לפני שמחברים</a></li><li><a href="#start">מאיפה מתחילים</a></li><li><a href="#faq">שאלות נפוצות</a></li></ol></nav>
+</section>
+<article class="wrap narrow">
+<h2 id="why">למה החיבור הזה חשוב יותר ממה שנדמה</h2>
+<p>ברוב העסקים הקטנים החשבונית היא ההקלדה הכפולה האחרונה שנשארה. ההזמנה נרשמה במערכת או&nbsp;באקסל, הלקוח אישר בוואצאפ, העבודה בוצעה, ובסוף מישהו פותח את&nbsp;תוכנת החשבוניות ומקליד שוב את&nbsp;השם, את&nbsp;הפריטים ואת הסכום.</p>
+<p>ההקלדה הזאת היא לא&nbsp;רק זמן. היא המקום שבו נופלות טעויות שעולות כסף: סכום שלא תואם להצעה שהלקוח אישר, חשבונית שלא יצאה כי&nbsp;מי שאחראי היה בחופש, וקבלה שיצאה פעמיים. ואחרי חודש אף אחד לא&nbsp;יודע לומר בוודאות מי חייב ומי שילם, כי&nbsp;התשובה מפוזרת בין&nbsp;שתי מערכות.</p>
+<p>חיבור נכון סוגר את&nbsp;הפער: מה שנרשם פעם אחת ממשיך לבד להצעה, לחשבונית ולדוח. השאלה היא לא&nbsp;אם&nbsp;לחבר אלא באיזו רמה, ואת זה קובעים לפי&nbsp;איך העסק גובה כסף בפועל.</p>
+<h2 id="docs">אילו מסמכים יש ומי מפיק אותם</h2>
+<p>לפני שמדברים על&nbsp;חיבור כדאי שכולם ידברו על&nbsp;אותם מסמכים. בעסקים קטנים המונחים מתערבבים, ובאפיון זה יוצר אי הבנות:</p>
+<div class="table-wrap" role="region" aria-label="מסמכי המכירה והמס הנפוצים" tabindex="0"><table><caption>מסמכי המכירה והמס הנפוצים</caption>
+<thead><tr><th scope="col">המסמך</th><th scope="col">מתי הוא נוצר</th><th scope="col">מה חשוב לדעת</th></tr></thead>
+<tbody><tr><th scope="row">הצעת מחיר</th><td>לפני שהלקוח אישר</td><td>לא&nbsp;מסמך מס. יכולה לצאת ממערכת הניהול עצמה ולהיחתם מהטלפון</td></tr>
+<tr><th scope="row">חשבונית עסקה</th><td>דרישת תשלום לפני שהכסף הגיע</td><td>לא&nbsp;מסמך מס. מתאימה כשהלקוח משלם אחרי העבודה</td></tr>
+<tr><th scope="row">חשבונית מס</th><td>כשהעסקה מתבצעת</td><td>מסמך מס. ממוספרת ברצף ולא&nbsp;מוחקים אותה</td></tr>
+<tr><th scope="row">קבלה</th><td>כשהכסף מתקבל</td><td>מתעדת תשלום ולא&nbsp;מכירה. יכולה לצאת לבד אחרי סליקה בקישור</td></tr>
+<tr><th scope="row">חשבונית מס קבלה</th><td>כשהמכירה והתשלום קורים יחד</td><td>המסמך הנפוץ בעסק שגובה במקום, כמו&nbsp;מוסך</td></tr>
+<tr><th scope="row">חשבונית זיכוי</th><td>כשצריך לבטל או&nbsp;להקטין חשבונית</td><td>הדרך לתקן טעות. חשבונית שיצאה לא&nbsp;מוחקים</td></tr></tbody></table></div>
+<p>את&nbsp;המסמכים האלה אפשר לייצר בשתי צורות: מתוך מערכת הניהול שלכם או&nbsp;מתוך תוכנת חשבוניות ייעודית. ההמלצה שלנו ברורה: מסמכי מס מפיקה תוכנת החשבוניות, ומערכת הניהול שולחת לה את&nbsp;הנתונים ומקבלת בחזרה את&nbsp;המסמך. כך המספור, הדיווח והגיבוי של&nbsp;הספרים נשארים אצל מי שזה המקצוע שלו, והמערכת שלכם מתרכזת בתהליך.</p>
+<p>איזה מסמך נכון לכל&nbsp;מצב בעסק שלכם היא שאלה לרואה החשבון ולא&nbsp;למפתח. מה שהמפתח צריך לדעת הוא איזה מסמך יוצא באיזה שלב של&nbsp;התהליך.</p>
+<h2 id="allocation">מספר הקצאה: מה זה ולמה המערכת צריכה להכיר אותו</h2>
+<p>רשות המסים מפעילה מודל שנקרא חשבוניות ישראל. חשבונית מס מעל סכום שרשות המסים קובעת מקבלת מספר הקצאה: ברגע ההפקה החשבונית נשלחת לרשות המסים וחוזרת עם&nbsp;מספר. בלי&nbsp;המספר הזה הלקוח העסקי שלכם לא&nbsp;יכול לקזז את&nbsp;המע&quot;מ על&nbsp;החשבונית, ולכן הוא ידרוש אותו. לפי&nbsp;התוכנית של&nbsp;רשות המסים הסף יורד בהדרגה, אז גם&nbsp;עסק שהיום רוב החשבוניות שלו קטנות יפגוש את&nbsp;זה.</p>
+<p>בפועל זה אומר שחשבונית מס לא&nbsp;יכולה להיווצר רק בתוך מערכת הניהול שלכם. היא צריכה לעבור דרך תוכנה שמחוברת לרשות המסים ומבקשת את&nbsp;המספר. תוכנות החשבוניות המוכרות כמו&nbsp;Morning ו-iCount עושות את&nbsp;זה כחלק מההפקה. זו הסיבה המרכזית לחלוקת העבודה שתיארנו: המערכת שלכם מנהלת את&nbsp;התהליך, ותוכנת החשבוניות מפיקה את&nbsp;מסמך המס.</p>
+<p>ב<a href="/articles/mosachun-garage-management/">מוסכון</a> חשבונית מס קבלה עם&nbsp;מספר הקצאה של&nbsp;חשבוניות ישראל יוצאת דרך iCount או&nbsp;Morning, וזה בדיוק המודל: המערכת לא&nbsp;ממציאה חשבוניות בעצמה.</p>
+<p>שתי שאלות שכדאי לשאול כל&nbsp;ספק: מה קורה כשרשות המסים לא&nbsp;זמינה ברגע ההפקה, ואיפה רואים את&nbsp;מספר ההקצאה אחרי שהחשבונית יצאה. בשאלות על&nbsp;הסף ועל החובות שלכם התייעצו עם&nbsp;רואה החשבון.</p>
+<h2 id="providers">Morning, iCount ואחרים: מה בודקים אצל תוכנת החשבוניות</h2>
+<p>מערכת הניהול יכולה להתחבר רק למה שתוכנת החשבוניות מאפשרת. לכן לפני האפיון בדקו מה יש לכם היום:</p>
+<ul class="list"><li><strong>ממשק חיבור פתוח.</strong> Morning (חשבונית ירוקה) ו-iCount מציעות ממשק שמערכות חיצוניות מתחברות אליו, ולכן אלה החיבורים שעובדים במערכות של&nbsp;דג הזהב. תוכנה בלי&nbsp;ממשק כזה מוגבלת לייצוא קובץ.</li><li><strong>אילו מסמכים אפשר להפיק דרך הממשק.</strong> חשבונית, קבלה, חשבונית מס קבלה וזיכוי. אם&nbsp;הזיכוי לא&nbsp;נתמך, כל&nbsp;תיקון יחזיר אתכם להקלדה ידנית.</li><li><strong>מה חוזר למערכת.</strong> לפחות מספר המסמך, קישור לקובץ PDF ומספר ההקצאה. בלי&nbsp;זה כרטיס הלקוח לא&nbsp;יודע שהחשבונית יצאה.</li><li><strong>מי שולח ללקוח.</strong> תוכנת החשבוניות במייל או&nbsp;מערכת הניהול בוואצאפ. עדיף לבחור אחד כדי שהלקוח לא&nbsp;יקבל את&nbsp;אותו מסמך פעמיים.</li><li><strong>לקוחות ופריטים.</strong> האם תוכנת החשבוניות דורשת שהלקוח והפריט יהיו מוגדרים אצלה מראש, או&nbsp;שהיא מקבלת אותם מהמערכת. זה קובע כמה סנכרון צריך.</li></ul>
+<p>ואם הנהלת החשבונות שלכם חיצונית ועובדת בתוכנה אחרת? ב<a href="/articles/yishuvon-settlement-management/">ישובון</a> למשל מייצאים חיובים ותשלומים לקובץ, והמערכת מתממשקת למערכות הנהלת חשבונות כמו&nbsp;חשבשבת. ייצוא לקובץ הוא לא&nbsp;פשרה גרועה: לעסק שמנהל החשבונות שלו מקליד פעם בחודש זה לפעמים כל&nbsp;מה שצריך.</p>
+<h2 id="levels">שלוש רמות של&nbsp;חיבור</h2>
+<p>לא&nbsp;כל&nbsp;עסק צריך את&nbsp;החיבור העמוק ביותר. יש שלוש רמות, וכל אחת מתאימה לדרך אחרת של&nbsp;גבייה:</p>
+<div class="table-wrap" role="region" aria-label="שלוש רמות של חיבור בין מערכת ניהול לחשבוניות" tabindex="0"><table><caption>שלוש רמות של&nbsp;חיבור בין&nbsp;מערכת ניהול לחשבוניות</caption>
+<thead><tr><th scope="col">הרמה</th><th scope="col">איך זה עובד</th><th scope="col">מתאים כש</th><th scope="col">מה לבדוק</th></tr></thead>
+<tbody><tr><th scope="row">ייצוא קובץ</th><td>המערכת מייצאת חיובים ותשלומים לקובץ שהנהלת החשבונות מייבאת</td><td>הנהלת החשבונות חיצונית ועובדת בתוכנה משלה</td><td>מבנה הקובץ תואם לתוכנה ואפשר לייצא לפי&nbsp;תקופה</td></tr>
+<tr><th scope="row">הפקה בלחיצה</th><td>מתוך ההזמנה לוחצים &quot;חשבונית&quot; והמסמך נוצר בתוכנת החשבוניות וחוזר לכרטיס</td><td>רוצים שאדם יבדוק לפני שמסמך מס יוצא</td><td>מי מורשה ללחוץ ומה המערכת עושה אם&nbsp;שכחו</td></tr>
+<tr><th scope="row">הפקה אוטומטית</th><td>המסמך נוצר לבד אחרי אירוע כמו&nbsp;תשלום בקישור</td><td>הגבייה נעשית דרך המערכת והעסקאות דומות זו לזו</td><td>מה קורה כשהחיבור נופל ואיך מתקנים תשלום שגוי</td></tr></tbody></table></div>
+<p>כך זה מתחלק במערכות שלנו. ב<a href="/articles/dfuson-print-shop-management/">דפוסון</a> חשבונית, קבלה וזיכוי יוצאים מתוך ההזמנה דרך iCount או&nbsp;Morning, והמערכת מתריעה כשחסרה חשבונית. מסמך מס יוצא רק בלחיצה שלכם, כי&nbsp;בבית דפוס ההזמנה משתנה עד&nbsp;הרגע האחרון ומישהו צריך לאשר. ב<a href="/articles/mosachun-garage-management/">מוסכון</a> הלקוח משלם בקישור כשהרכב מוכן והחשבונית נשלחת לבד, כי&nbsp;שם התשלום הוא האירוע שסוגר את&nbsp;העבודה. ב<a href="/articles/mifalon-factory-management/">מפעלון</a> החשבוניות יוצאות דרך Morning או&nbsp;iCount, ובודקים יחד את&nbsp;החיבור למה שהמפעל עובד איתו היום.</p>
+<p>הכלל פשוט: ככל שהעסקאות אחידות יותר והתשלום מגיע דרך המערכת, כך אפשר לעלות רמה. ככל שיש יותר שינויים בין&nbsp;ההצעה למסירה, כך כדאי להשאיר אדם שמאשר.</p>
+<h2 id="payment">תשלום בקישור וקבלה: החיבור השני שלא שוכחים</h2>
+<p>חשבונית היא חצי מהסיפור. החצי השני הוא הכסף: סליקה באשראי, ביט או&nbsp;העברה. כשהתשלום עובר דרך המערכת היא יודעת שהוא התקבל ויכולה להפיק קבלה ולסגור את&nbsp;העסקה בלי&nbsp;שאף אחד יעדכן.</p>
+<ul class="list"><li>ב<a href="/articles/hafakon-event-venue-management/">הפקון</a> הלקוח משלם מקדמה בתשלום מאובטח ומקבל קבלה אוטומטית, והמערכת עוקבת אחרי מה שנגבה לאירועי החודש.</li><li>ב<a href="/articles/mitvachon-shooting-range-management/">מטווחון</a> כל&nbsp;מקצה מקבל קישור תשלום וקבלה אוטומטית.</li><li>במוסכון גובים לפני שהרכב יוצא, באשראי או&nbsp;בביט, והחשבונית יוצאת לבד אחרי התשלום.</li><li>בישובון החיובים של&nbsp;התושבים עוברים לחברות סליקה כמו&nbsp;סאמיט ופייפלוס.</li></ul>
+<p>באפיון כדאי להחליט מראש מה המערכת עושה עם&nbsp;תשלום חלקי, עם&nbsp;תשלום בתשלומים ועם לקוח שמשלם בהעברה בנקאית מחוץ למערכת. שלושת המקרים האלה הם רוב התקלות בפועל. אם&nbsp;לא&nbsp;מגדירים אותם המערכת תפיק קבלה על&nbsp;סכום לא&nbsp;נכון או&nbsp;לא&nbsp;תפיק בכלל.</p>
+<h2 id="spec">מה לסגור באפיון לפני שמחברים</h2>
+<h3>מי מורשה להפיק מסמך מס</h3>
+<p>לא&nbsp;כל&nbsp;מי שרואה את&nbsp;ההזמנה צריך להפיק חשבונית. בדפוסון המפעיל רואה רק את&nbsp;תור ההדפסה בלי&nbsp;מחירים, ובמוסכון המכונאי לא&nbsp;רואה מחירים ורווח. הגדירו תפקיד אחד או&nbsp;שניים שמפיקים מסמכי מס, והשאר רואים רק שהמסמך יצא.</p>
+<h3>איך מתקנים טעות</h3>
+<p>חשבונית שיצאה לא&nbsp;מוחקים. מתקנים אותה בזיכוי ובחשבונית חדשה. המערכת צריכה לתמוך בזה בלי&nbsp;לעקוף את&nbsp;תוכנת החשבוניות, ולהשאיר בכרטיס את&nbsp;כל&nbsp;המסמכים כדי שאפשר יהיה להבין אחר כך מה קרה.</p>
+<h3>חשבונית מרוכזת</h3>
+<p>לקוחות עסקיים שמשלמים פעם בחודש רוצים חשבונית אחת על&nbsp;כל&nbsp;העבודות. במוסכון חברות ליסינג וציים מקבלות חשבונית מרוכזת בסוף החודש. אם&nbsp;יש לכם לקוחות כאלה, זה חייב להופיע באפיון כי&nbsp;זה משנה איך העסקאות נסגרות.</p>
+<h3>חשבוניות שנכנסות</h3>
+<p>החיבור הוא לא&nbsp;רק למכירות. חשבונית ספק שמגיעה עם&nbsp;הסחורה היא מידע למלאי ולעלויות. במוסכון מצלמים את&nbsp;חשבונית הספק כדי להכניס את&nbsp;החלקים למלאי. שאלו אם&nbsp;המערכת שלכם צריכה לקלוט גם&nbsp;את&nbsp;הצד הזה.</p>
+<h3>מי הבעלים של&nbsp;המספור</h3>
+<p>מספור חשבוניות ברצף צריך להיות במקום אחד, ובמודל שתיארנו זה תוכנת החשבוניות. מערכת ניהול שמנפיקה מספרי חשבונית משלה במקביל יוצרת שני רצפים, ובביקורת זה כאב ראש.</p>
+<h3>מה קורה כשהחיבור נופל</h3>
+<p>ממשק יכול להיות לא&nbsp;זמין, הרשאת חיבור יכולה לפוג ומנוי יכול להסתיים. בלי&nbsp;התראה החשבוניות פשוט לא&nbsp;יוצאות ואף אחד לא&nbsp;יודע. בדפוסון המערכת מתריעה כשחסרה חשבונית להזמנה. בקשו מנגנון כזה: רשימה של&nbsp;עסקאות שנסגרו בלי&nbsp;מסמך וניסיון חוזר.</p>
+<h3>מה רואה הלקוח</h3>
+<p>הלקוח רוצה את&nbsp;החשבונית במקום שבו הוא כבר נמצא. ב<a href="/articles/crazy-crm-hebrew-crm/">CRAZY CRM</a> הצעת המחיר יוצאת מכרטיס הלקוח, עוברת לחתימה ואחר כך לתשלום ולחשבונית בלי&nbsp;לצאת מהמערכת. החליטו אם&nbsp;המסמך נשלח בוואצאפ מתוך המערכת או&nbsp;במייל מתוכנת החשבוניות, ולא&nbsp;בשניהם.</p>
+<h2 id="mistakes">טעויות נפוצות</h2>
+<ul class="list"><li><strong>לבנות מודול חשבוניות בתוך המערכת.</strong> זה נשמע כמו&nbsp;חיסכון במנוי, ובפועל זה אומר לקחת על&nbsp;עצמכם מספור, מספר הקצאה, דיווח וכל שינוי ברגולציה. תוכנת חשבוניות עושה את&nbsp;זה בשבילכם.</li><li><strong>להפיק אוטומטית לפני שהתהליך יציב.</strong> אוטומציה על&nbsp;הזמנות שמשתנות אחרי הסגירה מייצרת זיכויים. התחילו בהפקה בלחיצה ועברו לאוטומטי רק בעסקאות אחידות.</li><li><strong>לשכוח את&nbsp;ההעברה הבנקאית.</strong> לקוח שמשלם מחוץ למערכת נשאר &quot;לא שילם&quot; עד&nbsp;שמישהו מעדכן ידנית. הגדירו מי מסמן תשלום ידני ואיך.</li><li><strong>שני מקורות אמת.</strong> הלקוח מוגדר גם&nbsp;במערכת וגם&nbsp;בתוכנת החשבוניות עם&nbsp;פרטים שונים. החליטו מי המקור ומי מתעדכן ממנו.</li><li><strong>לא&nbsp;לשתף את&nbsp;רואה החשבון.</strong> הוא זה שיעבוד עם&nbsp;התוצאה. הראו לו את&nbsp;המסמכים שיוצאים מהחיבור לפני העלייה לאוויר ולא&nbsp;אחרי הדיווח הראשון.</li></ul>
+<h2 id="checklist">רשימת בדיקה לפני שמחברים</h2>
+<ul class="check"><li>ידוע באיזו תוכנת חשבוניות אתם עובדים והאם יש לה ממשק חיבור.</li><li>ברור איזה מסמך יוצא בכל שלב: הצעה, חשבונית עסקה, חשבונית מס, קבלה או&nbsp;חשבונית מס קבלה.</li><li>החיבור מבקש מספר הקצאה והמספר חוזר לכרטיס הלקוח.</li><li>נבחרה רמת חיבור: קובץ, לחיצה או&nbsp;אוטומטי.</li><li>הוגדר מי מורשה להפיק מסמכי מס.</li><li>יש דרך לתקן בזיכוי ולא&nbsp;במחיקה.</li><li>יש התראה על&nbsp;עסקה שנסגרה בלי&nbsp;חשבונית ועל חיבור שנפל.</li><li>הוחלט מי שולח את&nbsp;המסמך ללקוח ובאיזה ערוץ.</li><li>רואה החשבון ראה דוגמאות של&nbsp;המסמכים שיוצאים.</li></ul>
+<h2 id="start">מאיפה מתחילים</h2>
+<p>התחילו מהמסמך שיוצא הכי הרבה פעמים בשבוע. בעסק שגובה במקום זו חשבונית מס קבלה אחרי תשלום. בעסק שעובד מול&nbsp;חברות זו חשבונית מס בסוף העבודה. חברו אותו קודם, עבדו איתו תקופה ורק אז הוסיפו זיכויים, חשבוניות מרוכזות וקליטה של&nbsp;חשבוניות ספק.</p>
+<p>החיבור לחשבוניות הוא אחד הגורמים שקובעים את&nbsp;היקף הפרויקט, ומוסבר בהקשר הרחב במדריך <a href="/articles/custom-system-cost-factors/">מה משפיע על&nbsp;המחיר של&nbsp;פיתוח מערכת ניהול</a>. איפה הוא נכנס בלוח הזמנים מפורט ב<a href="/articles/custom-system-development-process/">איך עובר פרויקט פיתוח מערכת ניהול</a>. אם&nbsp;החשבונית היא הסוף של&nbsp;תהליך מכירה, ראו גם&nbsp;<a href="/articles/custom-crm-development/">פיתוח CRM בהתאמה אישית</a>, ואת התמונה המלאה ב<a href="/articles/custom-management-system-development/">המדריך המלא</a>.</p>
+<p>במערכות של&nbsp;דג הזהב החיבור ל-Morning ול-iCount כבר עובד, וכשהעסק עובד עם&nbsp;תוכנה אחרת בודקים את&nbsp;החיבור לפני שמתחילים. לשיחת הזום הראשונה כדאי להגיע עם&nbsp;שם תוכנת החשבוניות ועם דוגמה של&nbsp;חשבונית שיוצאת היום.</p>
+<h2 id="faq">שאלות נפוצות</h2>
+<details><summary>המערכת שלכם מפיקה חשבוניות בעצמה?</summary><p>לא, וזה בכוונה. המערכת שולחת את&nbsp;פרטי העסקה לתוכנת החשבוניות, כמו&nbsp;Morning או&nbsp;iCount, והיא מפיקה את&nbsp;מסמך המס עם&nbsp;המספור ומספר ההקצאה. המסמך חוזר לכרטיס הלקוח.</p></details>
+<details><summary>מה זה מספר הקצאה?</summary><p>מספר שרשות המסים מחזירה לחשבונית מס מעל סכום שהיא קובעת, במסגרת מודל חשבוניות ישראל. בלי&nbsp;המספר הלקוח העסקי לא&nbsp;יכול לקזז את&nbsp;המע&quot;מ. תוכנות החשבוניות המוכרות מבקשות אותו כחלק מההפקה.</p></details>
+<details><summary>אנחנו עובדים עם&nbsp;חשבשבת או&nbsp;עם&nbsp;תוכנה בלי&nbsp;ממשק. אפשר לחבר?</summary><p>כן, ברמת ייצוא קובץ. בישובון למשל מייצאים חיובים ותשלומים לקובץ שהנהלת החשבונות מייבאת. בודקים את&nbsp;המבנה מול&nbsp;התוכנה שלכם לפני שמתחילים.</p></details>
+<details><summary>החשבונית יכולה לצאת לבד אחרי שהלקוח שילם?</summary><p>כן, כשהתשלום עובר דרך המערכת. במוסכון הלקוח משלם בקישור כשהרכב מוכן והחשבונית נשלחת לבד. בעסק שבו ההזמנה משתנה עד&nbsp;הרגע האחרון עדיף שהמסמך יצא בלחיצה.</p></details>
+<details><summary>איך מתקנים חשבונית שיצאה בטעות?</summary><p>בזיכוי ובחשבונית חדשה, לא&nbsp;במחיקה. בדפוסון הזיכוי יוצא מתוך ההזמנה כמו&nbsp;החשבונית והקבלה, וכל המסמכים נשארים בכרטיס.</p></details>
+<details><summary>מי שולח את&nbsp;החשבונית ללקוח?</summary><p>או&nbsp;תוכנת החשבוניות במייל או&nbsp;מערכת הניהול בוואצאפ. מחליטים על&nbsp;אחד מהם באפיון כדי שהלקוח לא&nbsp;יקבל את&nbsp;אותו מסמך פעמיים.</p></details>
+<section class="cta" aria-labelledby="cta-h">
+<h2 id="cta-h">רוצים לבדוק מה מתאים לארגון שלכם?</h2>
+<p>כל&nbsp;פרויקט בדג הזהב מתחיל בשיחת זום חינמית. כתבו לנו בוואצאפ ונבין יחד אם&nbsp;צריך מערכת חדשה, התאמה של&nbsp;מערכת קיימת או&nbsp;שבכלל לא.</p>
+<div class="btns">
+<a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%A7%D7%A8%D7%90%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%9E%D7%93%D7%A8%D7%99%D7%9A%20%22%D7%97%D7%99%D7%91%D7%95%D7%A8%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%A0%D7%99%D7%94%D7%95%D7%9C%20%D7%9C%D7%97%D7%A9%D7%91%D7%95%D7%A0%D7%99%D7%95%D7%AA%3A%20Morning%2C%20iCount%20%D7%95%D7%9E%D7%A1%D7%A4%D7%A8%20%D7%94%D7%A7%D7%A6%D7%90%D7%94%22%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94" target="_blank" rel="noopener" onclick="window.trackWhatsApp&&trackWhatsApp('guide_management-system-invoicing-integration')"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.97 1-3.62-.24-.37a9.8 9.8 0 0 1-1.5-5.22c0-5.42 4.42-9.84 9.85-9.84 2.63 0 5.1 1.03 6.96 2.89a9.78 9.78 0 0 1 2.88 6.96c0 5.43-4.42 9.84-9.86 9.84zm8.38-18.22A11.77 11.77 0 0 0 12.04 0C5.5 0 .17 5.33.16 11.88c0 2.1.55 4.14 1.6 5.94L.06 24l6.33-1.66a11.86 11.86 0 0 0 5.66 1.44h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.52-8.4z"/></svg><span>שיחה בוואצאפ</span></a>
+<a class="btn btn-p" href="/">לעמוד הבית של&nbsp;דג הזהב <span class="arr" aria-hidden="true">←</span></a>
+<a class="btn btn-s" href="tel:054-2012000">054-2012000</a>
+</div>
+</section>
+<div class="about"><img src="/elchai-fine.png" alt="אלחי פיין" width="72" height="72" loading="lazy"><p>כתב: <b>אלחי פיין</b>, מייסד דג הזהב, רס&quot;ן (מיל') וספק משרד הביטחון. דג הזהב מפתחת מערכות ניהול לעיריות, ליישובים, למוסכים, למפעלים, לאולמות אירועים ולמערכת הביטחון. <a href="/answers/elchai-fine-management-systems-experience/">עוד על&nbsp;אלחי פיין</a> · <a href="/">לכל המערכות</a></p></div>
+<h2>המשך קריאה</h2>
+<div class="posts guides"><a class="post post-guide post-pillar rv" data-d="0" href="/articles/custom-management-system-development/">
+<div class="post-body"><span class="post-kind">המדריך המלא</span><h3>פיתוח מערכת ניהול בהתאמה אישית: המדריך המלא</h3><p>מה נחשב מערכת בהתאמה אישית, מתי זה הצעד הנכון, הדרכים לקבל מערכת, איך עובר פרויקט ומה קובע את&nbsp;המחיר. נקודת ההתחלה לכל&nbsp;המדריכים.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="1" href="/articles/off-the-shelf-vs-custom-system/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>מערכת מדף או&nbsp;מערכת בהתאמה אישית: איך מחליטים</h3><p>חמש שאלות שמכריעות, טבלת השוואה, האפשרות שבאמצע ומבחן מעשי שעושים על&nbsp;תהליך אמיתי אחד לפני שמחליטים.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="2" href="/articles/custom-system-cost-factors/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>מה משפיע על&nbsp;המחיר של&nbsp;פיתוח מערכת ניהול</h3><p>הגורמים שקובעים את&nbsp;ההיקף, מה מגדיל ומה מקטין כל&nbsp;אחד מהם, ומה חייב להופיע בהצעת מחיר כדי שאפשר יהיה להשוות.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="0" href="/articles/custom-system-development-process/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>איך עובר פרויקט פיתוח מערכת ניהול: מהאפיון ועד&nbsp;העלייה לאוויר</h3><p>מה קורה בכל שלב מהשיחה הראשונה ועד&nbsp;שהצוות עובד במערכת, מה הארגון צריך להביא לכל&nbsp;שלב ואיפה פרויקטים נוטים להיתקע.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="1" href="/articles/excel-to-management-system/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>מעבר מאקסל למערכת ניהול: מדריך מעשי</h3><p>סימנים שהאקסל כבר לא&nbsp;מספיק, רשימת בדיקה לניקוי נתונים, ייבוא ובדיקת מדגם ויום מעבר שלא עוצר את&nbsp;העבודה.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="2" href="/articles/whatsapp-management-system-integration/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>חיבור וואצאפ למערכת ניהול: מה אפשר לעשות ומה חשוב לבדוק</h3><p>הודעות לפי&nbsp;סטטוס, תזכורות, אישורים בקישור ובוט, ומה לבדוק לפני שמחברים: מספר, קצב שליחה, דרך החיבור, הסכמה ותקלות.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post post-guide rv" data-d="0" href="/articles/custom-crm-development/">
+<div class="post-body"><span class="post-kind">מדריך</span><h3>פיתוח CRM בהתאמה אישית: מה הוא כולל ומתי צריך אותו</h3><p>אבני הבניין של&nbsp;CRM, איך מתכננים שלבי מכירה שאפשר לסמוך עליהם, קליטת לידים מכל ערוץ, מה קורה אחרי הסגירה ומה להביא לשיחה הראשונה.</p><span class="post-more">לקריאת המדריך <span class="arr" aria-hidden="true">←</span></span></div>
+</a></div>
+<h2>מערכות שקשורות למדריך</h2>
+<div class="posts related"><a class="post rv" data-d="0" href="/articles/mosachun-garage-management/">
+<div class="post-img"><img data-sk src="/screenshots/sys-mosachun.jpg?v=2" alt="מסכי המערכת מוסכון עם נתוני הדגמה" width="1230" height="1025" loading="lazy" decoding="async"></div>
+<div class="post-body"><span class="post-kind">מוסכים</span><h3>מוסכון: מערכת מתקדמת לניהול מוסכים</h3><p>קליטה לפי&nbsp;מספר רישוי, בדיקה עם&nbsp;תמונות, הצעה שהלקוח מאשר בוואצאפ, קישור תשלום, חלפים ותזכורות טסט.</p><span class="post-more">לקריאת המאמר <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post rv" data-d="1" href="/articles/dfuson-print-shop-management/">
+<div class="post-img"><img data-sk src="/screenshots/sys-dfuson.jpg?v=4" alt="מסכי המערכת דפוסון עם נתוני הדגמה" width="1230" height="1025" loading="lazy" decoding="async"></div>
+<div class="post-body"><span class="post-kind">בתי דפוס ומוצרי פרסום</span><h3>דפוסון: מערכת מתקדמת לניהול בתי דפוס</h3><p>הצעת מחיר מהקטלוג, אישור הדמיה, תור הדפסה למפעיל, סטטוסים שמתקדמים לבד, חשבוניות וגבייה בכרטיס לקוח אחד.</p><span class="post-more">לקריאת המאמר <span class="arr" aria-hidden="true">←</span></span></div>
+</a>
+<a class="post rv" data-d="2" href="/articles/crazy-crm-hebrew-crm/">
+<div class="post-img"><img data-sk src="/screenshots/sys-crazycrm.jpg?v=2" alt="מסכי המערכת CRAZY CRM עם נתוני הדגמה" width="1230" height="1025" loading="lazy" decoding="async"></div>
+<div class="post-body"><span class="post-kind">עסקים קטנים ובינוניים</span><h3>CRAZY CRM: מערכת CRM בעברית לניהול העסק</h3><p>לידים ועסקאות בלוח קנבן, משימות, בוט AI בוואצאפ, הצעות מחיר עם&nbsp;חתימה דיגיטלית וסנכרון יומנים. CRM בעברית לעסק.</p><span class="post-more">לקריאת המאמר <span class="arr" aria-hidden="true">←</span></span></div>
+</a></div>
+
+<p><a href="/articles/">לכל המאמרים והמדריכים</a></p>
+</article>
+</main>
+<footer><div class="wrap foot-in">
+<span class="foot-logo">DAGHAZAHAV</span>
+<nav class="foot-links" aria-label="קישורים בתחתית">
+<a href="/">עמוד הבית</a>
+<a href="/articles/">מאמרים</a>
+<a href="/answers/">שאלות ותשובות</a>
+<a href="/accessibility.html">הצהרת נגישות</a>
+<a href="tel:054-2012000">054-2012000</a>
+</nav>
+<span class="foot-copy">© 2026 DAGHAZAHAV. כל הזכויות שמורות.</span>
+</div></footer>
+<a class="fab-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%9E%D7%90%D7%9E%D7%A8%D7%99%D7%9D%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" aria-label="דברו איתנו בוואצאפ" onclick="window.trackWhatsApp&&trackWhatsApp('article_fab_guide_management-system-invoicing-integration')"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.72.97 1-3.62-.24-.37a9.8 9.8 0 0 1-1.5-5.22c0-5.42 4.42-9.84 9.85-9.84 2.63 0 5.1 1.03 6.96 2.89a9.78 9.78 0 0 1 2.88 6.96c0 5.43-4.42 9.84-9.86 9.84zm8.38-18.22A11.77 11.77 0 0 0 12.04 0C5.5 0 .17 5.33.16 11.88c0 2.1.55 4.14 1.6 5.94L.06 24l6.33-1.66a11.86 11.86 0 0 0 5.66 1.44h.01c6.55 0 11.88-5.33 11.89-11.88a11.8 11.8 0 0 0-3.52-8.4z"/></svg></a>
+<script>
+(function(){document.querySelectorAll('img[data-sk]').forEach(function(i){var d=function(){i.classList.add('loaded');if(i.parentElement)i.parentElement.classList.add('loaded');};if(i.complete)d();else i.addEventListener('load',d);});
+var els=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in');});return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target;setTimeout(function(){el.classList.add('in');},(+el.dataset.d||0)*80);io.unobserve(el);}});},{rootMargin:'0px 0px -40px 0px'});
+els.forEach(function(e){io.observe(e);});})();
+</script>
+<script src="/a11y.js" defer></script>
+</body>
+</html>
