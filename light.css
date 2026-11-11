@@ -107,7 +107,7 @@ body::before {
 
 /* Footer stays dark: anchors the page */
 footer { background: #0f1729; border-top: 0; }
-footer .foot-copy, footer .foot-phone { color: #a9b3c9; }
+footer .foot-copy, footer .foot-phone, footer .foot-about { color: #a9b3c9; }
 footer a { color: #e2e8f4; }
 
 /* Lead popup (second style block) */
