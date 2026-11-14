@@ -28,7 +28,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 8 | management-system-invoicing-integration | חיבור מערכת ניהול לחשבוניות: Morning, iCount ומספר הקצאה | חיבור מערכת ניהול לחשבונית ירוקה | commercial | mosachun, dfuson, mifalon, crazy-crm | done |
 | 9 | garage-management-software-guide | תוכנה לניהול מוסך: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מוסך | commercial | mosachun | done |
 | 10 | factory-erp-or-dedicated-system | מפעל קטן: ERP או מערכת ניהול ייעודית | מערכת ERP למפעל קטן | commercial | mifalon | done |
-| 11 | settlement-secretariat-software | תוכנה למזכירות ישוב: מה היא צריכה לכלול | תוכנה לניהול ישוב | commercial | yishuvon, kehilot | todo |
+| 11 | settlement-secretariat-software | תוכנה למזכירות ישוב: מה היא צריכה לכלול | תוכנה לניהול ישוב | commercial | yishuvon, kehilot | done |
 | 12 | event-venue-management-software | תוכנה לניהול אולם אירועים: מה לבדוק לפני שבוחרים | תוכנה לניהול אולם אירועים | commercial | hafakon | todo |
 | 13 | security-shift-scheduling-software | סידור משמרות לחברת שמירה: איך בוחרים תוכנה | תוכנה לסידור משמרות שומרים | commercial | mishmeron | todo |
 | 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | todo |
