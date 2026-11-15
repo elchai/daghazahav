@@ -228,3 +228,11 @@ body.en .nav-slogan { direction: ltr; }
 /* No forced full-screen hero and no scroll hint (Elchai, 15 Nov 2026) */
 .hero { min-height: 0; }
 .scroll-hint { display: none; }
+
+/* No yellow left on the light site: tag-dot pulse, card hover frames, tints (Elchai, 15 Nov 2026) */
+@keyframes dz-pulse { 0% { box-shadow: 0 0 0 0 rgba(29,79,163,.5); } 70%, 100% { box-shadow: 0 0 0 9px rgba(29,79,163,0); } }
+.svc:hover, .tech-item:hover, .val:hover { border-color: rgba(29,79,163,.45); }
+.exp-why { background: linear-gradient(135deg, rgba(10,143,181,0.07), rgba(29,79,163,0.07)); }
+.vi svg [stroke="#f0a500"], .contact-gear [stroke="#f0a500"] { stroke: #1d4fa3; }
+.contact-gear [fill="#f0a500"] { fill: #1d4fa3; }
+.lp-send { box-shadow: 0 10px 26px -10px rgba(29,79,163,.6) !important; }
