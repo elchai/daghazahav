@@ -173,7 +173,12 @@ h2.t{font-size:clamp(1.6rem,3.2vw,2.35rem);font-weight:900;line-height:1.2;margi
 .q-who img{width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:top}
 .q-who b{display:block;line-height:1.2}
 .q-who span{color:var(--dim);font-size:.88rem}
-.q-vid{color:var(--cyan);font-weight:700;font-size:.9rem;text-decoration:none}
+.q-vid{color:var(--cyan);font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;padding:0;cursor:pointer;text-align:start}
+.vm{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:rgba(3,8,18,.88);backdrop-filter:blur(6px);padding:16px}
+.vm.show{display:grid}
+.vm-box{position:relative;height:min(86vh,760px);aspect-ratio:9/16;max-width:100%;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.vm-box iframe{width:100%;height:100%;border:0;display:block}
+.vm-x{position:absolute;top:10px;inset-inline-start:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:1.2rem;cursor:pointer}
 .q-vid:hover{text-decoration:underline}
 
 /* faq */
@@ -406,13 +411,13 @@ footer{padding:28px 0 34px;border-top:1px solid var(--line);margin-top:30px;colo
         <div class="stars" aria-label="5 כוכבים">★★★★★</div>
         <blockquote>"היו לי מלא רשימות ומלא אקסלים והכל היה מפוזר. המון מתעניינות פשוט נעלמו. זה שווה כל שקל."</blockquote>
         <div class="q-who"><img src="/screenshots/stories/liraz-reuven.jpg" alt="" width="50" height="50" loading="lazy"><div><b>לירז ראובן</b><span>מועדון עצמאיות ביחד</span></div></div>
-        <a class="q-vid" href="https://www.youtube.com/watch?v=duoNXAcwdqg" target="_blank" rel="noopener">לצפייה בהמלצה המצולמת ←</a>
+        <button type="button" class="q-vid" data-yt="duoNXAcwdqg">לצפייה בהמלצה המצולמת ←</button>
       </div>
       <div class="q rev">
         <div class="stars" aria-label="5 כוכבים">★★★★★</div>
         <blockquote>"בעקבות הליווי של אלחי מאגר הלקוחות שלי צמח משמעותית. שווה. תנסו."</blockquote>
         <div class="q-who"><img src="/screenshots/stories/uziel-shalom.jpg" alt="" width="50" height="50" loading="lazy"><div><b>עוזיאל שלום</b><span>מנהל מכללת קורפוס</span></div></div>
-        <a class="q-vid" href="https://www.youtube.com/watch?v=-XjWJYhjVts" target="_blank" rel="noopener">לצפייה בהמלצה המצולמת ←</a>
+        <button type="button" class="q-vid" data-yt="-XjWJYhjVts">לצפייה בהמלצה המצולמת ←</button>
       </div>
       <div class="q rev">
         <div class="stars" aria-label="5 כוכבים">★★★★★</div>
@@ -464,6 +469,8 @@ footer{padding:28px 0 34px;border-top:1px solid var(--line);margin-top:30px;colo
   </div>
 </footer>
 
+<div class="vm" id="vm" role="dialog" aria-modal="true" aria-label="המלצה מצולמת" aria-hidden="true"><div class="vm-box"><button type="button" class="vm-x" id="vmX" aria-label="סגירה">✕</button><div id="vmFrame" style="width:100%;height:100%"></div></div></div>
+
 <div class="mbar">
   <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-bar')"><svg aria-hidden="true"><use href="#wa"/></svg>וואצאפ</a>
   <a class="btn btn-p" href="#lead">השארת פרטים</a>
@@ -484,6 +491,16 @@ async function btSubmit(e){
   card.classList.add('sent');
   card.scrollIntoView({block:'center'});
 }
+(function(){
+  var vm=document.getElementById("vm"),fr=document.getElementById("vmFrame"),last=null;
+  function closeVm(){vm.classList.remove("show");vm.setAttribute("aria-hidden","true");fr.innerHTML="";if(last)last.focus();}
+  document.querySelectorAll(".q-vid").forEach(function(b){b.addEventListener("click",function(){last=b;
+    fr.innerHTML="<iframe src=\"https://www.youtube-nocookie.com/embed/"+b.dataset.yt+"?autoplay=1&rel=0&playsinline=1\" title=\"המלצה מצולמת\" allow=\"autoplay; encrypted-media; picture-in-picture; fullscreen\" allowfullscreen></iframe>";
+    vm.classList.add("show");vm.setAttribute("aria-hidden","false");document.getElementById("vmX").focus();});});
+  document.getElementById("vmX").addEventListener("click",closeVm);
+  vm.addEventListener("click",function(e){if(e.target===vm)closeVm();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&vm.classList.contains("show"))closeVm();});
+})();
 (function(){
   // A line must never end on a Hebrew function word: bind it to the next word.
   var words=['בלי','ובלי','ללא','על','של','עם','את','אל','לפי','מול','בין','כל','או','גם','עד','לא'];
