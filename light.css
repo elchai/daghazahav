@@ -222,6 +222,9 @@ body.en .nav-slogan { direction: ltr; }
 
 /* Hero: less empty space above the badge on desktop (Elchai, 15 Nov 2026) */
 @media (min-width: 769px) {
-  .hero { align-items: flex-start; min-height: 0; }
-  .hero-content { padding: 132px 24px 130px; }
+  .hero { align-items: flex-start; }
+  .hero-content { padding: 132px 24px 64px; }
 }
+/* No forced full-screen hero and no scroll hint (Elchai, 15 Nov 2026) */
+.hero { min-height: 0; }
+.scroll-hint { display: none; }
