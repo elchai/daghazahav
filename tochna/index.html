@@ -121,7 +121,7 @@ h1{font-size:clamp(2rem,4.6vw,3.35rem);line-height:1.14;font-weight:900;letter-s
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 10px}
 .stat{background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);border-radius:var(--r);padding:20px 14px;text-align:center}
-.stat b{display:block;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;line-height:1.15}
+.stat b{display:block;font-variant-numeric:tabular-nums;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;line-height:1.15}
 .stat span{color:var(--dim);font-size:.95rem}
 
 /* sections */
@@ -311,8 +311,8 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
 
   <div class="wrap">
     <div class="stats rev" style="margin-top:38px">
-      <div class="stat"><b class="grad">400+</b><span>מערכות ואתרים</span></div>
-      <div class="stat"><b class="grad">25+</b><span>שנות ניסיון</span></div>
+      <div class="stat"><b class="grad" data-count="400">400+</b><span>מערכות ואתרים</span></div>
+      <div class="stat"><b class="grad" data-count="25">25+</b><span>שנות ניסיון</span></div>
       <div class="stat"><b class="grad">24/6</b><span>תמיכה זמינה</span></div>
       <div class="stat"><b style="color:var(--gold);white-space:nowrap">ספק מאושר</b><span>משרד הביטחון</span></div>
     </div>
@@ -510,6 +510,12 @@ async function btSubmit(e){
   var re=new RegExp('(^|[\\s(])('+words.join('|')+') (?=\\S)','g');
   var w=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT),n;
   while(n=w.nextNode()){ if(n.parentNode.closest('script,style,textarea')) continue; n.nodeValue=n.nodeValue.replace(re,'$1$2 '); }
+  var nums=document.querySelectorAll('[data-count]');
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el){var to=+el.dataset.count,t0=null,d=1500;
+    function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/d,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+'+';if(p<1)requestAnimationFrame(step);}
+    el.textContent='0+';requestAnimationFrame(step);}
+  if(!still&&'IntersectionObserver' in window){var no=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){countUp(x.target);no.unobserve(x.target);}})},{threshold:.6});nums.forEach(function(el){no.observe(el)});}
   var els=document.querySelectorAll('.rev');
   if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in')});return;}
   var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12});
