@@ -219,3 +219,9 @@ body.en .nav-slogan { direction: ltr; }
   .proj-grid .proj-img { border-radius: 16px; overflow: hidden; isolation: isolate; box-shadow: 0 6px 18px -10px rgba(17,26,46,.35); }
   .proj-grid .proj-img img { border-radius: 16px; }
 }
+
+/* Hero: less empty space above the badge on desktop (Elchai, 15 Nov 2026) */
+@media (min-width: 769px) {
+  .hero { align-items: flex-start; min-height: 0; }
+  .hero-content { padding: 132px 24px 130px; }
+}
