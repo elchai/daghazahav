@@ -36,20 +36,201 @@
   onScroll();
 
   /* spotlight that follows the cursor + gentle 3D tilt on project cards */
-  if (fine) {
-    $$('.svc, .proj, .tech-item, .val').forEach(function (el) {
-      el.addEventListener('mousemove', function (e) {
-        var r = el.getBoundingClientRect();
-        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-        if (!reduce && el.classList.contains('proj')) {
-          var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-          el.style.transform = 'perspective(1000px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-6px)';
-        }
-      });
-      el.addEventListener('mouseleave', function () { if (el.classList.contains('proj')) el.style.transform = ''; });
+  function bindSpot(el) {
+    if (!fine) return;
+    el.addEventListener('mousemove', function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      if (!reduce && el.classList.contains('proj')) {
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(1000px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-6px)';
+      }
     });
+    el.addEventListener('mouseleave', function () { if (el.classList.contains('proj')) el.style.transform = ''; });
   }
+  $$('.svc, .proj, .tech-item, .val').forEach(bindSpot);
+
+  /* systems carousel: one row that moves right to left, filter chips, arrows, pause, "show all".
+     The markup stays a plain grid, so without this script every system is simply listed. */
+  var grid = $('#projGrid'), filters = $('#dzFilters'), ctl = $('#dzCarCtl');
+  if (grid && filters && ctl) (function () {
+    var cards = $$('.proj', grid);
+    var pauseBtn = $('.dz-car-pause', ctl), allBtn = $('.dz-car-all', ctl);
+    var SPEED = 32, STEP_WAIT = 3.8, STEP_MS = 700, HOLD_MS = 5000;
+    var cat = 'all', expanded = false, userPaused = false, hover = false, focusIn = false, touching = false;
+    var inView = false, holdUntil = 0, looping = false, perView = 3, setW = 0, base = 0, step = 0;
+    var x = 0, synced = false, last = 0, raf = 0, wait = 0, tween = null, endTimer = 0, lastW = window.innerWidth;
+
+    // each card showed itself on scroll; inside a moving row that would leave blanks
+    cards.forEach(function (c) { c.classList.remove('rev', 'd1', 'd2', 'd3'); });
+    filters.hidden = false; ctl.hidden = false;
+    if (reduce) ctl.classList.add('no-motion');
+
+    function copy(card) {
+      var n = card.cloneNode(true);
+      n.classList.add('dz-clone'); n.setAttribute('aria-hidden', 'true'); n.style.transform = '';
+      $$('a, button', n).forEach(function (a) { a.tabIndex = -1; });
+      $$('.proj-link-form', n).forEach(function (a) {
+        a.addEventListener('click', function () {
+          var m = document.getElementById('fm');
+          if (m && !m.value.trim()) m.value = 'אשמח לקבל פרטים על ' + a.dataset.sys;
+        });
+      });
+      bindSpot(n);
+      return n;
+    }
+
+    function build() {
+      cancelAnimationFrame(raf); raf = 0; tween = null; wait = 0; synced = false;
+      $$('.dz-clone', grid).forEach(function (n) { n.remove(); });
+      grid.classList.toggle('dz-row', !expanded);
+      grid.style.removeProperty('--dz-card-h');
+      if (!expanded) {   // one height for every filter, so the page does not jump when a chip is pressed
+        var tall = 0;
+        cards.forEach(function (c) { c.hidden = false; tall = Math.max(tall, c.offsetHeight); });
+        grid.style.setProperty('--dz-card-h', tall + 'px');
+      }
+      var shown = cards.filter(function (c) { var ok = cat === 'all' || c.dataset.cat === cat; c.hidden = !ok; return ok; });
+      grid.classList.toggle('dz-filtered', cat !== 'all');
+      grid.classList.remove('dz-static');
+      ctl.classList.toggle('is-open', expanded);
+      looping = false;
+      if (!expanded && shown.length) {
+        grid.scrollLeft = 0;
+        looping = grid.scrollWidth > grid.clientWidth + 2;
+        grid.classList.toggle('dz-static', !looping);
+      }
+      ctl.classList.toggle('is-static', !expanded && !looping);
+      if (!looping) return;
+
+      var gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+      var cw = shown[0].getBoundingClientRect().width;
+      step = cw + gap; setW = shown.length * step;
+      perView = Math.max(1, Math.round(grid.clientWidth / step));
+      var before = document.createDocumentFragment(), after = document.createDocumentFragment();
+      shown.forEach(function (c) { before.appendChild(copy(c)); after.appendChild(copy(c)); });
+      grid.insertBefore(before, grid.firstChild); grid.appendChild(after);
+      // three identical sets in a row; the view stays inside the middle one
+      var rtl = getComputedStyle(grid).direction === 'rtl';
+      base = rtl ? -2 * setW : setW;
+      grid.scrollLeft = rtl ? -setW : setW;
+      var d = offset(false);
+      if (Math.abs(d) > 2) grid.scrollLeft += d;   // phones: the first card starts centred
+      play();
+    }
+
+    function wrap(v) { return v >= base + setW ? v - setW : (v < base ? v + setW : v); }
+    function moving() {
+      return looping && inView && !reduce && !userPaused && !hover && !focusIn && !touching && performance.now() > holdUntil;
+    }
+    // distance to the next resting place: the card edge at the reading side (or the centre when one card fits)
+    function offset(next) {
+      var g = grid.getBoundingClientRect(), cs = getComputedStyle(grid), rtl = cs.direction === 'rtl';
+      var one = perView === 1, best = null;
+      var ref = one ? g.left + g.width / 2 : (rtl ? g.right - parseFloat(cs.paddingRight) : g.left + parseFloat(cs.paddingLeft));
+      $$('.proj', grid).forEach(function (c) {
+        if (c.hidden) return;
+        var r = c.getBoundingClientRect();
+        var d = (one ? r.left + r.width / 2 : (rtl ? r.right : r.left)) - ref;
+        if (next ? d > 4 && (best === null || d < best) : (best === null || Math.abs(d) < Math.abs(best))) best = d;
+      });
+      return best || 0;
+    }
+
+    function tick(t) {
+      raf = requestAnimationFrame(tick);
+      var dt = Math.min(64, t - last) / 1000; last = t;
+      if (!moving()) { synced = false; tween = null; wait = 0; return; }
+      if (!synced) { x = wrap(grid.scrollLeft); synced = true; }
+      if (perView > 1) x = wrap(x + SPEED * dt);          // wide screens: a slow steady drift
+      else if (tween) {                                     // phones: one card at a time
+        var p = Math.min(1, (t - tween.t0) / STEP_MS), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        x = tween.from + tween.dist * e;
+        if (p === 1) { tween = null; wait = 0; x = wrap(x); }
+      } else {
+        wait += dt;
+        if (wait >= STEP_WAIT) { x = wrap(x); tween = { t0: t, from: x, dist: offset(true) || step }; }
+        return;
+      }
+      grid.scrollLeft = x;
+    }
+    function play() { if (!raf && looping && inView && !reduce) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+    function stop() { cancelAnimationFrame(raf); raf = 0; synced = false; tween = null; }
+    function hold() { holdUntil = performance.now() + HOLD_MS; }
+
+    // after the visitor scrolls by hand: jump back into the middle set, then rest on a card
+    grid.addEventListener('scroll', function () {
+      clearTimeout(endTimer);
+      endTimer = setTimeout(function () {
+        if (!looping || touching || moving()) return;
+        var v = grid.scrollLeft, w = wrap(v);
+        if (w !== v) grid.scrollLeft = w;
+        var d = offset(false);
+        if (Math.abs(d) > 2) grid.scrollBy({ left: d, behavior: reduce ? 'auto' : 'smooth' });
+      }, 170);
+    }, { passive: true });
+
+    // a tap also fires mouseenter and never leaves, so only a real mouse counts as hover
+    grid.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
+    grid.addEventListener('pointerleave', function () { hover = false; });
+    grid.addEventListener('touchstart', function () { touching = true; hold(); }, { passive: true });
+    ['touchend', 'touchcancel'].forEach(function (ev) {
+      grid.addEventListener(ev, function () { touching = false; hold(); }, { passive: true });
+    });
+    grid.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) hold(); }, { passive: true });
+    grid.addEventListener('focusin', function (e) { focusIn = !!(e.target.matches && e.target.matches(':focus-visible')); });
+    grid.addEventListener('focusout', function () { focusIn = false; });
+
+    $$('.dz-car-btn[data-dir]', ctl).forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!looping) return;
+        hold();
+        grid.scrollBy({ left: Number(b.dataset.dir) * step, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+    pauseBtn.addEventListener('click', function () {
+      userPaused = !userPaused;
+      pauseBtn.setAttribute('aria-pressed', String(userPaused));
+    });
+    allBtn.addEventListener('click', function () {
+      expanded = !expanded;
+      allBtn.setAttribute('aria-expanded', String(expanded));
+      build();
+      if (!expanded) $('#projects').scrollIntoView({ block: 'start' });
+    });
+    $$('.dz-filter', filters).forEach(function (b) {
+      b.addEventListener('click', function () {
+        cat = b.dataset.cat;
+        $$('.dz-filter', filters).forEach(function (o) {
+          o.classList.toggle('on', o === b); o.setAttribute('aria-pressed', String(o === b));
+        });
+        build();
+      });
+    });
+
+    // run only while the row is on screen; load the pictures just before it gets there
+    new IntersectionObserver(function (en) {
+      inView = en[0].isIntersecting;
+      if (inView) play(); else stop();
+    }).observe(grid);
+    var near = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      $$('img[loading="lazy"]', grid).forEach(function (im) { im.loading = 'eager'; });
+      near.disconnect();
+    }, { rootMargin: '700px 0px' });
+    near.observe(grid);
+
+    var rz = 0;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastW) return;   // phones fire resize when the address bar hides
+      lastW = window.innerWidth; clearTimeout(rz); rz = setTimeout(build, 180);
+    });
+    // the language switch flips the page direction
+    new MutationObserver(function () { build(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['dir'] });
+
+    build();
+  })();
 
   /* hero: cursor glow and slight parallax on the gears */
   var hero = $('#home');
