@@ -69,3 +69,50 @@
 .proj-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(0, 212, 255, .35); color: var(--cyan); font-weight: 700; font-size: .9rem; text-decoration: none; position: relative; z-index: 2; transition: background .3s, color .3s, border-color .3s, transform .3s; }
 .proj-link::after { content: '↗'; font-size: 1rem; }
 .proj-link:hover { background: var(--gold); border-color: var(--gold); color: #0d0d14; transform: translateY(-2px); }
+
+/* ── systems carousel: JS adds .dz-row to the grid. Without JS the full grid stays as it was. ── */
+.proj[hidden], .dz-filters[hidden], .dz-car-ctl[hidden] { display: none !important; }
+.dz-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: -26px 0 30px; }
+.dz-filter { font: inherit; font-weight: 700; font-size: .92rem; line-height: 1.2; min-height: 40px; padding: 8px 18px; border-radius: 999px; border: 2px solid rgba(29, 79, 163, .3); background: var(--card); color: #1d4fa3; cursor: pointer; transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.dz-filter:hover { border-color: #1d4fa3; transform: translateY(-2px); }
+.dz-filter.on { background: #1d4fa3; border-color: #1d4fa3; color: #fff; }
+.dz-filter:focus-visible, .dz-car-btn:focus-visible, .dz-car-all:focus-visible { outline: 3px solid #0a8fb5; outline-offset: 2px; }
+
+.proj-grid.dz-row {
+  display: flex; gap: 22px; overflow-x: auto; overflow-y: hidden;
+  padding: 16px 8px 40px; margin: -16px -8px -14px;
+  scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 26px, #000 calc(100% - 26px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 26px, #000 calc(100% - 26px), transparent 100%);
+}
+.proj-grid.dz-row::-webkit-scrollbar { display: none; }
+.proj-grid.dz-row > .proj { flex: 0 0 calc((100% - 44px) / 3); grid-column: auto; min-height: var(--dz-card-h, 0); }
+.proj-grid.dz-row.dz-static { justify-content: center; overflow-x: hidden; -webkit-mask-image: none; mask-image: none; }
+.proj-grid.dz-filtered > .proj { grid-column: auto !important; }
+@media (max-width: 1024px) { .proj-grid.dz-row > .proj { flex-basis: calc((100% - 22px) / 2); } }
+@media (max-width: 768px) {
+  .dz-filters { gap: 8px; margin: -34px 0 22px; }
+  .dz-filter { font-size: .85rem; padding: 7px 14px; }
+  .proj-grid.dz-row { gap: 14px; -webkit-mask-image: none; mask-image: none; }
+  .proj-grid.dz-row > .proj { flex-basis: 82%; }
+}
+
+.dz-car-ctl { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; margin-top: 22px; }
+.dz-car-nav { display: flex; gap: 10px; direction: ltr; }
+.dz-car-btn { width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 2px solid rgba(29, 79, 163, .35); background: var(--card); color: #1d4fa3; display: grid; place-items: center; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.dz-car-btn svg { width: 18px; height: 18px; }
+.dz-car-btn:hover, .dz-car-all:hover { background: #1d4fa3; border-color: #1d4fa3; color: #fff; }
+.dz-car-pause .i-play, .dz-car-pause[aria-pressed="true"] .i-pause { display: none; }
+.dz-car-pause[aria-pressed="true"] .i-play { display: block; }
+.dz-car-all { font: inherit; font-weight: 700; font-size: .95rem; min-height: 44px; padding: 9px 24px; border-radius: 999px; border: 2px solid rgba(29, 79, 163, .55); background: var(--card); color: #1d4fa3; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.dz-car-all .dz-all-close, .dz-car-ctl.is-open .dz-all-open, .dz-car-ctl.is-open .dz-car-nav, .dz-car-ctl.is-static .dz-car-nav, .dz-car-ctl.no-motion .dz-car-pause { display: none; }
+.dz-car-ctl.is-open .dz-all-close { display: inline; }
+.dz-car-ctl.is-open { margin-top: 36px; }
+/* in the row every card has the same height, so the button sits on one line across cards */
+.proj-grid.dz-row > .proj { display: flex; flex-direction: column; }
+.proj-grid.dz-row .proj-img { flex: none; }
+.proj-grid.dz-row .proj-body { flex: 1; display: flex; flex-direction: column; }
+.proj-grid.dz-row .proj-body > .proj-link, .proj-grid.dz-row .proj-body > .proj-actions { margin-top: auto; align-self: flex-start; }
+.proj-grid.dz-row .proj-title { text-wrap: balance; }
+@media (max-width: 768px) { .proj-grid.dz-row > .proj { flex-basis: 86%; } .proj-grid.dz-row .proj-title { font-size: 1rem; } }
+@media (max-width: 480px) { .proj-grid.dz-row .proj-body { padding-inline: 6px; } }
