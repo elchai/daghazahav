@@ -15,7 +15,7 @@ const PHONE = '054-2012000';
 const WA = 'https://wa.me/972542012000?text=';
 const ORG_ID = `${ORIGIN}/#org`;
 const PERSON_ID = 'https://elchai.co.il/#elchai';
-const OG = `${ORIGIN}/og-daghazahav-1200.jpg`;
+const OG = `${ORIGIN}/og-daghazahav-round.jpg`;
 const MODIFIED = PUBLISHED;
 
 // Hebrew function words must never end a line: bind them to the next word with a no-break space
