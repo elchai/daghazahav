@@ -117,6 +117,8 @@ export async function sync(sys) {
     const ext = path.extname(p).toLowerCase();
     if (!TEXT.has(ext)) { fs.writeFileSync(d, body); continue; }
     let text = rewrite(body.toString('utf8'), sys.slug, entries, ext);
+    // the app lives on its own domain: a relative /login would open daghazahav.com/login (404)
+    text = text.replace(/(["'])\/login(["'/?#])/g, (m, q, end) => q + sys.live + 'login' + end);
     if (p === 'index.html') text = rewriteIndex(text, sys.slug, sys.live);
     for (const e of entries) {
       const m = text.match(new RegExp(`["'\`(=]/${escape(e)}[/"'\`)?#]`));
