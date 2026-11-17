@@ -48,7 +48,7 @@
   const NAMES = {
     yishuvon: 'ישובון', gadudon: 'גדודון', hafakon: 'הפקון', mosachun: 'מוסכון',
     kehilot: 'קהילה בבניין', iruchon: 'אירוחון', mifalon: 'מפעלון',
-    mishmeron: 'משמרון', mitvachon: 'מטווחון', dfuson: 'דפוסון', misadon: 'מסעדון', nahagon: 'נהגון', amooton: 'עמותון'
+    mishmeron: 'משמרון', mitvachon: 'מטווחון', dfuson: 'דפוסון', misadon: 'מסעדון', nahagon: 'נהגון', amooton: 'עמותון', timchuron: 'תמחורון'
   };
   const systemName = NAMES[system] || system;
   const sent = new Set(); // in memory only: no names or phones in storage or analytics
