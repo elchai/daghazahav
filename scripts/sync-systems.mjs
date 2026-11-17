@@ -30,6 +30,7 @@ export const SYSTEMS = [
   { slug: 'misadon', live: 'https://misadon.web.app/' },
   { slug: 'nahagon', live: 'https://nahagon.web.app/' },
   { slug: 'amooton', live: 'https://amooton.web.app/' },
+  { slug: 'timchuron', live: 'https://timchuron.web.app/' },
 ];
 
 const TEXT = new Set(['.html', '.js', '.css', '.json', '.webmanifest', '.svg', '.txt', '.xml']);
