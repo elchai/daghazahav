@@ -31,7 +31,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 11 | settlement-secretariat-software | תוכנה למזכירות ישוב: מה היא צריכה לכלול | תוכנה לניהול ישוב | commercial | yishuvon, kehilot | done |
 | 12 | event-venue-management-software | תוכנה לניהול אולם אירועים: מה לבדוק לפני שבוחרים | תוכנה לניהול אולם אירועים | commercial | hafakon | done |
 | 13 | security-shift-scheduling-software | סידור משמרות לחברת שמירה: איך בוחרים תוכנה | תוכנה לסידור משמרות שומרים | commercial | mishmeron | done |
-| 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | todo |
+| 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | done |
 | 15 | accessibility-standard-5568-systems | נגישות במערכת ניהול: מה דורש תקן ת"י 5568 | תקן נגישות 5568 מערכת | informational | kehilot, yishuvon | todo |
 | 16 | privacy-data-security-management-system | הגנת פרטיות ואבטחת מידע במערכת ניהול: מה לבדוק | אבטחת מידע במערכת ניהול | informational | kehilot, yishuvon, crazy-crm | todo |
 | 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | todo |
