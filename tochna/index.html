@@ -238,7 +238,7 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
   section{padding:40px 0}
   .fcard{padding:22px 18px}
   body{padding-bottom:74px}
-  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;inset:auto 0 0 0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  .mbar{display:grid;grid-template-columns:1.35fr 1fr;gap:10px;position:fixed;inset:auto 0 0 0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
     background:rgba(255,255,255,.94);border-top:1px solid var(--line);box-shadow:0 -8px 24px -14px rgba(17,26,46,.3);backdrop-filter:blur(12px)}
   .mbar .btn{padding:12px 10px;font-size:.98rem}
   #dz-a11y-btn{bottom:88px!important}
@@ -286,7 +286,7 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
         <li><svg aria-hidden="true"><use href="#ck"/></svg><span>עבודה ישירה מול אלחי פיין מהאפיון ועד ההדרכה</span></li>
       </ul>
       <div class="hero-ctas">
-        <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-hero')"><svg aria-hidden="true"><use href="#wa"/></svg>דברו איתי בוואצאפ</a>
+        <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-hero')"><svg aria-hidden="true"><use href="#wa"/></svg>שלחו וואצאפ עכשיו</a>
         <a class="btn btn-s" href="#systems">ראו מערכות שבנינו</a>
       </div>
     </div>
@@ -294,20 +294,18 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
     <div class="fcard" id="lead">
       <div class="fhead">
         <h2>רוצים לדעת מה אפשר לבנות לכם?</h2>
-        <p class="fsub">השאירו פרטים ואחזור אליכם לשיחת אפיון קצרה ללא עלות.</p>
+        <p class="fsub">רק שם וטלפון ואחזור אליכם.</p>
       </div>
       <form id="btForm" onsubmit="btSubmit(event)">
         <input type="hidden" name="_subject" value="פנייה חדשה מדף בית תוכנה - daghazahav.com">
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <div class="fg"><label for="btName">שם מלא</label><input type="text" id="btName" name="name" autocomplete="name" required></div>
         <div class="fg"><label for="btPhone">טלפון</label><input type="tel" id="btPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין"></div>
-        <div class="fg"><label for="btOrg">שם החברה או הארגון</label><input type="text" id="btOrg" name="organization" autocomplete="organization" required></div>
-        <div class="fg"><label for="btMsg">מה המערכת צריכה לנהל? (לא חובה)</label><textarea id="btMsg" name="message" placeholder="לדוגמה: הזמנות לקוחות מלאי ועובדים"></textarea></div>
-        <button type="submit" class="btn btn-p">שלחו ואחזור אליכם</button>
+        <button type="submit" class="btn btn-p">קבעו לי שיחת אפיון ללא עלות</button>
         <p class="fnote">הפרטים נשמרים אצלנו בלבד. <a href="/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a></p>
       </form>
       <div class="for">או</div>
-      <a class="btn btn-wa fwa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-form')"><svg aria-hidden="true"><use href="#wa"/></svg>שלחו הודעה בוואצאפ</a>
+      <a class="btn btn-wa fwa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-form')"><svg aria-hidden="true"><use href="#wa"/></svg>שלחו וואצאפ עכשיו</a>
       <div class="fdone" role="status" aria-live="polite">
         <div class="ok" aria-hidden="true">✓</div>
         <h2>הפרטים התקבלו</h2>
@@ -463,7 +461,7 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
       <p>שיחת אפיון קצרה ללא עלות. תספרו איך הארגון עובד היום ותקבלו כיוון ברור למערכת.</p>
       <div class="hero-ctas">
         <a class="btn btn-p" href="#lead">השאירו פרטים</a>
-        <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-final')"><svg aria-hidden="true"><use href="#wa"/></svg>דברו איתי בוואצאפ</a>
+        <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-final')"><svg aria-hidden="true"><use href="#wa"/></svg>שלחו וואצאפ עכשיו</a>
         <a class="btn btn-s" href="tel:054-2012000"><svg aria-hidden="true"><use href="#ph"/></svg><span dir="ltr">054-2012000</span></a>
       </div>
     </div>
@@ -484,7 +482,7 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
 <div class="vm" id="vm" role="dialog" aria-modal="true" aria-label="המלצה מצולמת" aria-hidden="true"><div class="vm-box"><button type="button" class="vm-x" id="vmX" aria-label="סגירה">✕</button><div id="vmFrame" style="width:100%;height:100%"></div></div></div>
 
 <div class="mbar">
-  <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-bar')"><svg aria-hidden="true"><use href="#wa"/></svg>וואצאפ</a>
+  <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%AA%D7%95%D7%97%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%99" target="_blank" rel="noopener" onclick="trackWhatsApp('beit-tochna-bar')"><svg aria-hidden="true"><use href="#wa"/></svg>שלחו וואצאפ עכשיו</a>
   <a class="btn btn-p" href="#lead">השארת פרטים</a>
 </div>
 
@@ -494,8 +492,7 @@ async function btSubmit(e){
   var form=document.getElementById('btForm');
   var name=document.getElementById('btName').value.trim();
   var phone=document.getElementById('btPhone').value.trim();
-  var details=document.getElementById('btMsg').value.trim();
-  var message='פנייה מדף בית תוכנה\nארגון: '+document.getElementById('btOrg').value.trim()+(details?'\n'+details:'');
+  var message='פנייה מדף בית תוכנה';
   if(!await submitLead(form,'beit-tochna',message)) return;
   document.getElementById('btWa').href='https://wa.me/972542012000?text='+encodeURIComponent('שלום, אני '+name+' | '+phone+'\n\n'+message);
   document.getElementById('btZoom').href='https://cal.com/elchai/zoom40?name='+encodeURIComponent(name);
