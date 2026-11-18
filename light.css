@@ -272,3 +272,6 @@ body.en .lp-close { left: auto !important; right: 10px !important; }
 .vals .vi { background: #eaf0fa !important; border-color: rgba(29,79,163,.18) !important; color: #1d4fa3; transition: background .25s, color .25s, border-color .25s, transform .25s; }
 .vals .val:hover .vi { background: linear-gradient(135deg, #2a63c4, #1d4fa3) !important; border-color: transparent !important; color: #fff; }
 .cico-p svg[stroke="#00d4ff"] { stroke: #1d4fa3; }
+
+/* Visually hidden, read by screen readers and parsers (H1 meaning, 18.11.2026) */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

@@ -8,7 +8,8 @@
 //
 // Usage:  node scripts/sync-systems.mjs            (all)
 //         node scripts/sync-systems.mjs hafakon    (one)
-// Deploy the product site first, then re-run this and push.
+// Deploy the product site first, then re-run this, then scripts/prerender-systems.mjs
+// (bakes the rendered text into index.html for AI crawlers that do not run JS), and push.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
