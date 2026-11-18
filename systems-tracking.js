@@ -131,8 +131,11 @@
     modal.innerHTML = '<div class="dzl-card" role="dialog" aria-modal="true" aria-labelledby="dzl-t">'
       + '<button type="button" class="dzl-x" aria-label="סגירה">×</button>'
       + '<div class="dzl-body">'
-      + '<h2 id="dzl-t">נחזור אליכם בוואצאפ</h2>'
-      + '<p>השאירו שם וטלפון ונשלח לכם מיד הודעה עם קישור לתיאום הדגמה של ' + systemName + '.</p>'
+      + '<h2 id="dzl-t">נחזור אליך בוואצאפ</h2>'
+      // TEMP 18.11.2026: the automatic WhatsApp (Make 8589306) goes out from Elchai's suspended number,
+      // so the popup promises a reply soon, not a message right now. Revert: shraga-proposals/revert-whatsapp-number.md.
+      // Original (singular): + '<p>השאירו שם וטלפון ונשלח לך מיד הודעה עם קישור לתיאום הדגמה של ' + systemName + '.</p>'
+      + '<p>השאירו שם וטלפון ונחזור אליך בוואצאפ בקרוב לתיאום הדגמה של ' + systemName + '.</p>'
       + '<form novalidate>'
       + '<label>שם מלא<input name="name" autocomplete="name" required maxlength="80"></label>'
       + '<label>טלפון נייד<input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required maxlength="20"></label>'
@@ -170,7 +173,9 @@
         lead();
         const body = modal.querySelector('.dzl-body');
         body.innerHTML = '<h2 id="dzl-t" tabindex="-1"></h2>'
-          + '<p>שלחנו לכם עכשיו הודעה בוואצאפ עם קישור לתיאום הדגמה. נדבר בקרוב.</p>'
+          // TEMP 18.11.2026: Elchai's WhatsApp is suspended, so no automatic message reaches the visitor now.
+          // Original (singular): '<p>שלחנו לך עכשיו הודעה בוואצאפ עם קישור לתיאום הדגמה. נדבר בקרוב.</p>'
+          + '<p>קיבלנו את הפרטים ונחזור אליך בוואצאפ בקרוב.</p>'
           + '<button type="button" class="dzl-go">סגירה</button>';
         body.querySelector('h2').textContent = 'תודה ' + name.split(' ')[0] + '!';
         body.querySelector('.dzl-go').addEventListener('click', closeModal);
