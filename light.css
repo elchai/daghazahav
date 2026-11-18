@@ -236,3 +236,13 @@ body.en .nav-slogan { direction: ltr; }
 .vi svg [stroke="#f0a500"], .contact-gear [stroke="#f0a500"] { stroke: #1d4fa3; }
 .contact-gear [fill="#f0a500"] { fill: #1d4fa3; }
 .lp-send { box-shadow: 0 10px 26px -10px rgba(29,79,163,.6) !important; }
+
+/* UI/UX audit 18.11.2026 (ui-ux-pro-max): WCAG 2.2 AA contrast and target size */
+.tag, .step-n:not(.pulse), .founder-more a { color: #06708e; }
+.lp-or { color: #5b6478 !important; }
+.lp-wa { background: #15803d !important; }
+.sm-cta, .proj-link.proj-link-wa { background: linear-gradient(135deg, #15803d, #0e6b5e) !important; }
+.kd-answers a { color: #a9b3c9 !important; opacity: 1 !important; display: inline-block; padding: 4px 0; }
+footer .foot-phone { display: inline-block; padding: 2px 0; }
+footer .foot-in a[aria-label] { min-width: 24px; min-height: 24px; justify-content: center; }
+.test-dot { width: 24px; height: 24px; padding: 7px; background-clip: content-box; }

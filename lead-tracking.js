@@ -53,6 +53,7 @@
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const phone = String(data.get('phone') || '').trim();
+    const email = String(data.get('email') || '').trim();
     if (!form.reportValidity() || !name || !phone || data.get('_gotcha')) return false;
     // In-memory only: do not put names/phones in analytics or browser storage.
     const key = JSON.stringify([name, phone, message.trim()]);
@@ -69,7 +70,7 @@
         }),
         post('https://hook.eu1.make.com/ntxl6uxnyqka3rb7qos0rd4epetufha7', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, message, source: source === 'contact' ? 'contact-form' : source })
+          body: JSON.stringify({ name, phone, email, message, source: source === 'contact' ? 'contact-form' : source })
         })
       ]);
       accepted.add(key);
