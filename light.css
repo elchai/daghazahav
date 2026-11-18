@@ -264,3 +264,6 @@ body.en .lp-close { left: auto !important; right: 10px !important; }
 .lp-title { text-wrap: balance; }
 .lp-title .cy { white-space: nowrap; }
 @media (max-width: 480px) { .lp-title { font-size: 23px !important; } }
+
+/* 18.11.2026: the slogan is part of the logo image now (title and slogan the same width), the old text overlay is hidden */
+.nav-slogan{display:none!important}

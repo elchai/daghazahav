@@ -235,3 +235,6 @@ footer a:hover { text-decoration: underline; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
+
+/* 18.11.2026: the slogan is part of the logo image now (title and slogan the same width), the old text overlay is hidden */
+.nav-slogan{display:none!important}
