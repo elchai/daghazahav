@@ -85,20 +85,21 @@ function head({ title, description, canonical, image, type, ld }) {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/articles/articles.css?v=7">
 <script>document.documentElement.classList.add('js')</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LJ0HYEW9L"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
 <script src="/lead-tracking.js" defer></script>
 <script type="application/ld+json">${json({ '@context': 'https://schema.org', '@graph': ld })}</script>
+<link rel="stylesheet" href="/dz-logo.css?v=1">
 </head>`;
 }
 
 function nav(current) {
   const cur = (k) => (k === current ? ' aria-current="page"' : '');
   return `<header class="nav"><div class="nav-in">
-<a href="/" class="nav-logo" aria-label="דג הזהב, לעמוד הבית"><img src="/daghazahav-logo-2026-480.png" srcset="/daghazahav-logo-2026-240.png 240w, /daghazahav-logo-2026-480.png 480w, /daghazahav-logo-2026-720.png 720w, /daghazahav-logo-2026-960.png 960w" sizes="240px" alt="DAG HAZAHAV - פיתוח מערכות ניהול מתקדמות" width="240" height="42"><span class="nav-slogan">פיתוח מערכות ניהול מתקדמות</span></a>
+<a href="/" class="nav-logo" aria-label="דג הזהב, לעמוד הבית"><span class="dz-logo" aria-hidden="true"><svg class="dz-mark" viewBox="40 40 792 655" aria-hidden="true" focusable="false"><path fill="#FFDF80" d="M40 108H178V435L230 368H362L298 462L178 628H40Z M300 280L462 40H598L530 140L362 368Z M696 368H832L600 695L532 602Z"/><path fill="#F7B021" d="M178 108L362 368H230L178 300Z M530 140L598 40L832 368H696Z M298 462L362 368L600 695H464Z"/></svg><span class="dz-words"><span class="dz-name">DAG HAZAHAV</span><span class="dz-tag">פיתוח מערכות ניהול מתקדמות</span></span></span></a>
 <nav aria-label="ראשי"><ul class="nav-links">
 <li class="hide-sm"><a href="/#projects">המערכות</a></li>
 <li><a href="/articles/"${cur('articles')}>מאמרים</a></li>

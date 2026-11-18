@@ -1,0 +1,9 @@
+/* לוגו דג הזהב בסרגל העליון: סמל וקטורי וטקסט חי, חד בכל מסך ובכל זום.
+   הגודל נקבע ב-font-size של .dz-logo (גובה הלוגו בפיקסלים), והכל נגזר ממנו ב-em. */
+.dz-logo { display: inline-flex; align-items: center; gap: .2em; font-size: 42px; line-height: 1; direction: rtl; vertical-align: middle; }
+.dz-mark { display: block; flex: none; height: .9em; width: auto; }
+.dz-words { display: flex; flex-direction: column; direction: ltr; }
+.dz-name { font-family: 'Orbitron', sans-serif; font-weight: 600; font-size: .464em; letter-spacing: .03em; word-spacing: .18em; line-height: 1; color: #FBBA35; white-space: nowrap; }
+.dz-tag { font-family: 'Heebo', sans-serif; font-weight: 500; font-size: .348em; line-height: 1.1; margin-top: .2em; color: #0f1729; direction: rtl; white-space: nowrap; text-align: justify; text-align-last: justify; }
+.nav-logo .nav-slogan { display: none !important; }
+@media (max-width: 480px) { .dz-logo { font-size: 32px; } }
