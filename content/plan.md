@@ -33,6 +33,11 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 13 | security-shift-scheduling-software | סידור משמרות לחברת שמירה: איך בוחרים תוכנה | תוכנה לסידור משמרות שומרים | commercial | mishmeron | done |
 | 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | done |
 | 15 | accessibility-standard-5568-systems | נגישות במערכת ניהול: מה דורש תקן ת"י 5568 | תקן נגישות 5568 מערכת | informational | kehilot, yishuvon | done |
+| 15.1 | restaurant-management-software | תוכנה לניהול מסעדה: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מסעדה | commercial | misadon | todo |
+| 15.2 | transport-company-management-software | תוכנה לניהול חברת הסעות והובלה: מה היא צריכה לכלול | תוכנה לניהול חברת הסעות | commercial | nahagon | todo |
+| 15.3 | nonprofit-management-software | מערכת ניהול לעמותה: תרומות קבלות ומתנדבים במקום אחד | מערכת ניהול לעמותה | commercial | amooton | todo |
+| 15.4 | automatic-pricing-quotes-software | תמחור אוטומטי והצעות מחיר: איך מפסיקים לחשב באקסל | תוכנה לתמחור והצעות מחיר | commercial | timchuron | todo |
+| 15.5 | event-production-management-software | תוכנה להפקת אירועים: ספקים לוחות זמנים ותקציב | תוכנה לניהול הפקת אירועים | commercial | hafakon | todo |
 | 16 | privacy-data-security-management-system | הגנת פרטיות ואבטחת מידע במערכת ניהול: מה לבדוק | אבטחת מידע במערכת ניהול | informational | kehilot, yishuvon, crazy-crm | todo |
 | 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | todo |
 | 18 | municipality-community-department-system | מערכת לאגף קהילה ברשות מקומית: מה חשוב לבדוק | מערכת ניהול לאגף קהילה | commercial | kehilot | todo |
