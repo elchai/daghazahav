@@ -240,9 +240,27 @@ body.en .nav-slogan { direction: ltr; }
 /* UI/UX audit 18.11.2026 (ui-ux-pro-max): WCAG 2.2 AA contrast and target size */
 .tag, .step-n:not(.pulse), .founder-more a { color: #06708e; }
 .lp-or { color: #5b6478 !important; }
-.lp-wa { background: #15803d !important; }
-.sm-cta, .proj-link.proj-link-wa { background: linear-gradient(135deg, #15803d, #0e6b5e) !important; }
 .kd-answers a { color: #a9b3c9 !important; opacity: 1 !important; display: inline-block; padding: 4px 0; }
 footer .foot-phone { display: inline-block; padding: 2px 0; }
 footer .foot-in a[aria-label] { min-width: 24px; min-height: 24px; justify-content: center; }
 .test-dot { width: 24px; height: 24px; padding: 7px; background-clip: content-box; }
+
+/* Lead popup fits the screen (18.11.2026): with the email field it outgrew ~880px viewports,
+   the centered card overflowed at the top and the close button was cut off */
+.lp-overlay { padding: 12px !important; overflow-y: auto; align-items: flex-start !important; overscroll-behavior: contain; }
+.lp-card { margin: auto; padding: 26px 26px 20px !important; }
+.lp-close { top: 10px !important; left: 10px !important; width: 40px; height: 40px; border-radius: 50% !important; background: #eef1f6 !important; color: #111a2e !important; font-size: 20px !important; display: flex; align-items: center; justify-content: center; }
+body.en .lp-close { left: auto !important; right: 10px !important; }
+.lp-close:hover { background: #dfe4ee !important; }
+.lp-eyebrow { font-size: 14px !important; margin-bottom: 4px !important; }
+.lp-title { font-size: 26px !important; margin-bottom: 6px !important; }
+.lp-sub { font-size: 15px !important; margin-bottom: 14px !important; }
+.lp-form { gap: 8px !important; }
+.lp-form input, .lp-form textarea { padding: 10px 14px !important; }
+.lp-form textarea { min-height: 48px !important; }
+.lp-send { padding: 12px !important; font-size: 18px !important; }
+.lp-or { margin: 8px 0 6px !important; }
+.lp-wa { padding: 11px 24px !important; }
+.lp-title { text-wrap: balance; }
+.lp-title .cy { white-space: nowrap; }
+@media (max-width: 480px) { .lp-title { font-size: 23px !important; } }
