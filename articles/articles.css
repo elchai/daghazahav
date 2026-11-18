@@ -235,3 +235,9 @@ footer a:hover { text-decoration: underline; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
+
+/* Pill logo (18.11.2026): slogan under the black DAG HAZAHAV pill */
+.nav-logo{display:flex!important;flex-direction:column;align-items:center;gap:4px;line-height:1;text-decoration:none!important}
+.nav-logo img{height:40px;width:auto}
+.nav-slogan{position:static!important;font-size:11.5px}
+@media (max-width:480px){.nav-logo img{height:30px}.nav-slogan{font-size:10px}}

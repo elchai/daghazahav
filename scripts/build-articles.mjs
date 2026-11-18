@@ -86,7 +86,7 @@ function head({ title, description, canonical, image, type, ld }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/articles/articles.css?v=4">
+<link rel="stylesheet" href="/articles/articles.css?v=5">
 <script>document.documentElement.classList.add('js')</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LJ0HYEW9L"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
@@ -98,7 +98,7 @@ function head({ title, description, canonical, image, type, ld }) {
 function nav(current) {
   const cur = (k) => (k === current ? ' aria-current="page"' : '');
   return `<header class="nav"><div class="nav-in">
-<a href="/" class="nav-logo" aria-label="דג הזהב, לעמוד הבית"><img src="/daghazahav-logo-mark.png" alt="DAGHAZAHAV" width="1428" height="262"><span class="nav-slogan">פיתוח מערכות ניהול מתקדמות</span></a>
+<a href="/" class="nav-logo" aria-label="דג הזהב, לעמוד הבית"><img src="/daghazahav-logo-pill-2026.png" alt="DAG HAZAHAV" width="1251" height="256"><span class="nav-slogan">פיתוח מערכות ניהול מתקדמות</span></a>
 <nav aria-label="ראשי"><ul class="nav-links">
 <li class="hide-sm"><a href="/#projects">המערכות</a></li>
 <li><a href="/articles/"${cur('articles')}>מאמרים</a></li>
