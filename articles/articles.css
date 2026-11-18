@@ -49,7 +49,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .nav-logo { position: relative; display: block; line-height: 0; flex: none; }
 .nav-logo img { height: 42px; width: auto; }
-.nav-slogan { position: absolute; right: 25.3%; top: 67%; font-weight: 500; font-size: 13.5px; line-height: 1; color: #0f1729; white-space: nowrap; pointer-events: none; }
+.nav-slogan { position: absolute; right: 24.3%; top: 67%; font-weight: 500; font-size: 13.5px; line-height: 1; color: #0f1729; white-space: nowrap; pointer-events: none; }
 .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
 .nav-links a { color: #3c465c; text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--blue); }
@@ -235,9 +235,3 @@ footer a:hover { text-decoration: underline; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .rv { opacity: 1; transform: none; }
 }
-
-/* Pill logo (18.11.2026): slogan under the black DAG HAZAHAV pill */
-.nav-logo{display:flex!important;flex-direction:column;align-items:center;gap:4px;line-height:1;text-decoration:none!important}
-.nav-logo img{height:40px;width:auto}
-.nav-slogan{position:static!important;font-size:11.5px}
-@media (max-width:480px){.nav-logo img{height:30px}.nav-slogan{font-size:10px}}
