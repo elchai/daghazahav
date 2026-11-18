@@ -241,8 +241,10 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
   .mbar{display:grid;grid-template-columns:1.35fr 1fr;gap:10px;position:fixed;inset:auto 0 0 0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
     background:rgba(255,255,255,.94);border-top:1px solid var(--line);box-shadow:0 -8px 24px -14px rgba(17,26,46,.3);backdrop-filter:blur(12px)}
   .mbar .btn{padding:12px 10px;font-size:.98rem}
-  #dz-a11y-btn{bottom:88px!important}
-  #dz-a11y-panel{bottom:150px!important}
+  #dz-a11y-btn{bottom:88px!important;right:auto!important;left:14px!important}
+  #dz-a11y-panel{bottom:150px!important;right:auto!important;left:14px!important}
+  #systems .bento{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -16px;padding:4px 16px 14px;-webkit-overflow-scrolling:touch}
+  #systems .bento>.sys{flex:0 0 84%;scroll-snap-align:center}
   .hero-ctas .btn-s{display:none}
   .final .hero-ctas .btn-s{display:inline-flex}
 }
@@ -253,6 +255,7 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
 
 /* 18.11.2026: the slogan is part of the logo image now (title and slogan the same width), the old text overlay is hidden */
 .nav-slogan{display:none!important}
+.fg .opt{font-weight:400;color:var(--muted,#5b6478);font-size:.85em}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"בית תוכנה לפיתוח מערכות ניהול בהתאמה אישית","serviceType":"פיתוח תוכנה בהתאמה אישית","areaServed":"IL","url":"https://daghazahav.com/tochna/","provider":{"@id":"https://daghazahav.com/#org"}}</script>
 </head>
@@ -297,13 +300,14 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
     <div class="fcard" id="lead">
       <div class="fhead">
         <h2>רוצים לדעת מה אפשר לבנות לכם?</h2>
-        <p class="fsub">רק שם וטלפון ואחזור אליכם.</p>
+        <p class="fsub">שם וטלפון ואחזור אליכם עוד היום.</p>
       </div>
       <form id="btForm" onsubmit="btSubmit(event)">
         <input type="hidden" name="_subject" value="פנייה חדשה מדף בית תוכנה - daghazahav.com">
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <div class="fg"><label for="btName">שם מלא</label><input type="text" id="btName" name="name" autocomplete="name" required></div>
         <div class="fg"><label for="btPhone">טלפון</label><input type="tel" id="btPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין"></div>
+        <div class="fg"><label for="btEmail">מייל <span class="opt">(לא חובה, לשליחת זימון לפגישה)</span></label><input type="email" id="btEmail" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@example.com"></div>
         <button type="submit" class="btn btn-p">קבעו לי שיחת אפיון ללא עלות</button>
         <p class="fnote">הפרטים נשמרים אצלנו בלבד. <a href="/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a></p>
       </form>
@@ -325,6 +329,34 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
       <div class="stat"><b class="grad" data-count="25">25+</b><span>שנות ניסיון</span></div>
       <div class="stat"><b class="grad">24/6</b><span>תמיכה זמינה</span></div>
       <div class="stat"><b style="color:var(--gold);white-space:nowrap">ספק מאושר</b><span>משרד הביטחון</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="tag">לקוחות מספרים</span>
+      <h2 class="t">מה <span class="grad">הלקוחות שלנו</span> אומרים</h2>
+    </div>
+    <div class="quotes">
+      <div class="q rev">
+        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
+        <blockquote>"היו לי מלא רשימות ומלא אקסלים והכל היה מפוזר. המון מתעניינות פשוט נעלמו. זה שווה כל שקל."</blockquote>
+        <div class="q-who"><img src="/screenshots/stories/liraz-reuven.jpg" alt="" width="50" height="50" loading="lazy"><div><b>לירז ראובן</b><span>מועדון עצמאיות ביחד</span></div></div>
+        <button type="button" class="q-vid" data-yt="duoNXAcwdqg">לצפייה בהמלצה המצולמת ←</button>
+      </div>
+      <div class="q rev">
+        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
+        <blockquote>"בעקבות הליווי של אלחי מאגר הלקוחות שלי צמח משמעותית. שווה. תנסו."</blockquote>
+        <div class="q-who"><img src="/screenshots/stories/uziel-shalom.jpg" alt="" width="50" height="50" loading="lazy"><div><b>עוזיאל שלום</b><span>מנהל מכללת קורפוס</span></div></div>
+        <button type="button" class="q-vid" data-yt="-XjWJYhjVts">לצפייה בהמלצה המצולמת ←</button>
+      </div>
+      <div class="q rev">
+        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
+        <blockquote>"שירות שירות שירות! מענה מהיר על כל שאלה תמיד זמין תמיד ענייני. מבסוט מאוד מהתוצאה והליווי לאורך כל התהליך."</blockquote>
+        <div class="q-who"><img src="/screenshots/testi-uri.jpg" alt="" width="50" height="50" loading="lazy"><div><b>אורי עובדת</b><span>HOMY TLV</span></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -416,34 +448,6 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
 <section>
   <div class="wrap">
     <div class="sec-head rev">
-      <span class="tag">לקוחות מספרים</span>
-      <h2 class="t">מה <span class="grad">הלקוחות שלנו</span> אומרים</h2>
-    </div>
-    <div class="quotes">
-      <div class="q rev">
-        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
-        <blockquote>"היו לי מלא רשימות ומלא אקסלים והכל היה מפוזר. המון מתעניינות פשוט נעלמו. זה שווה כל שקל."</blockquote>
-        <div class="q-who"><img src="/screenshots/stories/liraz-reuven.jpg" alt="" width="50" height="50" loading="lazy"><div><b>לירז ראובן</b><span>מועדון עצמאיות ביחד</span></div></div>
-        <button type="button" class="q-vid" data-yt="duoNXAcwdqg">לצפייה בהמלצה המצולמת ←</button>
-      </div>
-      <div class="q rev">
-        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
-        <blockquote>"בעקבות הליווי של אלחי מאגר הלקוחות שלי צמח משמעותית. שווה. תנסו."</blockquote>
-        <div class="q-who"><img src="/screenshots/stories/uziel-shalom.jpg" alt="" width="50" height="50" loading="lazy"><div><b>עוזיאל שלום</b><span>מנהל מכללת קורפוס</span></div></div>
-        <button type="button" class="q-vid" data-yt="-XjWJYhjVts">לצפייה בהמלצה המצולמת ←</button>
-      </div>
-      <div class="q rev">
-        <div class="stars" aria-label="5 כוכבים">★★★★★</div>
-        <blockquote>"שירות שירות שירות! מענה מהיר על כל שאלה תמיד זמין תמיד ענייני. מבסוט מאוד מהתוצאה והליווי לאורך כל התהליך."</blockquote>
-        <div class="q-who"><img src="/screenshots/testi-uri.jpg" alt="" width="50" height="50" loading="lazy"><div><b>אורי עובדת</b><span>HOMY TLV</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="sec-head rev">
       <span class="tag">שאלות נפוצות</span>
       <h2 class="t">שאלות <span class="grad">ותשובות</span></h2>
     </div>
@@ -495,7 +499,8 @@ async function btSubmit(e){
   var form=document.getElementById('btForm');
   var name=document.getElementById('btName').value.trim();
   var phone=document.getElementById('btPhone').value.trim();
-  var message='פנייה מדף בית תוכנה';
+  var email=(document.getElementById('btEmail').value||'').trim();
+  var message='פנייה מדף בית תוכנה'+(email?'\nמייל: '+email:'');
   if(!await submitLead(form,'beit-tochna',message)) return;
   document.getElementById('btWa').href='https://wa.me/972555038501?text='+encodeURIComponent('שלום, אני '+name+' | '+phone+'\n\n'+message);
   document.getElementById('btZoom').href='https://cal.com/elchai/zoom40?name='+encodeURIComponent(name);
