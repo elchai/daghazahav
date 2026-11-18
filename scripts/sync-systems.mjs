@@ -31,7 +31,7 @@ export const SYSTEMS = [
   { slug: 'nahagon', live: 'https://nahagon.web.app/' },
   { slug: 'amooton', live: 'https://amooton.web.app/' },
   { slug: 'timchuron', live: 'https://timchuron.web.app/' },
-  { slug: 'shraga', live: 'https://shraga-ai.web.app/' },
+  { slug: 'shraga', live: 'https://shraga.web.app/' },
 ];
 
 const TEXT = new Set(['.html', '.js', '.css', '.json', '.webmanifest', '.svg', '.txt', '.xml']);
