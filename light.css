@@ -267,3 +267,8 @@ body.en .lp-close { left: auto !important; right: 10px !important; }
 
 /* 18.11.2026: the slogan is part of the logo image now (title and slogan the same width), the old text overlay is hidden */
 .nav-slogan{display:none!important}
+
+/* Value icons (18.11.2026): one line style, brand dark blue; on hover the tile fills blue and the icon turns white */
+.vals .vi { background: #eaf0fa !important; border-color: rgba(29,79,163,.18) !important; color: #1d4fa3; transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.vals .val:hover .vi { background: linear-gradient(135deg, #2a63c4, #1d4fa3) !important; border-color: transparent !important; color: #fff; }
+.cico-p svg[stroke="#00d4ff"] { stroke: #1d4fa3; }
