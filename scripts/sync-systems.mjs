@@ -19,7 +19,7 @@ const ORIGIN = 'https://daghazahav.com';
 
 export const SYSTEMS = [
   { slug: 'yishuvon', live: 'https://yeshuvon.com/' },
-  { slug: 'gadudon', live: 'https://gdudon.web.app/' },
+  // gadudon: a military system, never advertised (Elchai, 16.11.2026). Not mirrored.
   { slug: 'hafakon', live: 'https://hafakon.web.app/' },
   { slug: 'mosachun', live: 'https://mosachun.web.app/' },
   { slug: 'kehilot', live: 'https://kehilot.web.app/' },
