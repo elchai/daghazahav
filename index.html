@@ -1696,7 +1696,7 @@ body.en .foot-phone { direction:ltr; }
           </div>
           <div class="fg">
             <label for="fe" data-en="Email (for the meeting invite)">מייל (לשליחת זימון לפגישה)</label>
-            <input type="email" id="fe" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@example.com">
+            <input type="email" id="fe" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@example.com" required>
           </div>
           <div class="fg">
             <label for="fo" data-en="Company / organization">שם החברה / ארגון</label>
@@ -2055,12 +2055,12 @@ document.querySelectorAll('.proj-link-form').forEach(function(a){a.addEventListe
     <div class="lp-title lp-default" data-en="Want a <span class='cy'>custom-built</span> management system for your business?">רוצה מערכת ניהול <span class="cy">בהתאמה אישית</span> לעסק שלך?</div>
     <div class="lp-sub lp-default" data-en="Leave your details and we'll get back to you with a quote.<br>Or talk to us right now on WhatsApp.">השאירו פרטים ונחזור אליכם עם הצעה.<br>או דברו איתנו עכשיו בוואצאפ.</div>
     <div class="lp-title lp-zoom" data-en="Book a <span class='cy'>free</span> Zoom call">תיאום שיחת זום <span class="cy">חינמית</span></div>
-    <div class="lp-sub lp-zoom" data-en="Leave your name and phone,<br>then pick a time that suits you.">השאירו שם וטלפון<br>ומיד אחר כך בוחרים מועד שנוח לכם.</div>
+    <div class="lp-sub lp-zoom" data-en="Leave your name, phone and email,<br>then pick a time that suits you.">השאירו שם טלפון ומייל<br>ומיד אחר כך בוחרים מועד שנוח לכם.</div>
     <form class="lp-form" id="lpForm" onsubmit="lpSubmit(event)">
       <input type="hidden" name="_subject" value="ליד מהפופאפ - daghazahav.com">
       <input type="text" name="name" id="lpName" placeholder="שם מלא" aria-label="שם מלא" data-en-ph="Full name" data-en-aria="Full name" autocomplete="name" required>
       <input type="tel" name="phone" id="lpPhone" placeholder="טלפון" aria-label="טלפון" data-en-ph="Phone" data-en-aria="Phone" autocomplete="tel" required>
-      <input type="email" name="email" id="lpEmail" placeholder="מייל (לשליחת זימון לפגישה)" aria-label="מייל לשליחת זימון לפגישה" data-en-ph="Email (for the meeting invite)" data-en-aria="Email for the meeting invite" autocomplete="email" inputmode="email">
+      <input type="email" name="email" id="lpEmail" placeholder="מייל (לשליחת זימון לפגישה)" aria-label="מייל לשליחת זימון לפגישה" data-en-ph="Email (for the meeting invite)" data-en-aria="Email for the meeting invite" autocomplete="email" inputmode="email" required>
       <input type="text" name="organization" id="lpOrg" placeholder="שם החברה / ארגון" aria-label="שם החברה או הארגון" data-en-aria="Company or organization" data-en-ph="Company / organization" autocomplete="organization" required>
       <textarea name="details" id="lpDetails" rows="2" placeholder="כמה מילים על המערכת שהייתם רוצים" aria-label="כמה מילים על המערכת שהייתם רוצים" data-en-aria="A few words about the system you'd like" data-en-ph="A few words about the system you'd like"></textarea>
       <button type="submit" class="lp-send lp-default" data-en="Get a quote">קבלו הצעה</button>

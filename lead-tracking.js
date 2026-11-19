@@ -8,6 +8,7 @@
   const accepted = new Set();
   const pending = new Set();
   const pendingForms = new WeakSet();
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   let whatsappTracked = false;
 
   function event(name, source) {
@@ -54,7 +55,8 @@
     const name = String(data.get('name') || '').trim();
     const phone = String(data.get('phone') || '').trim();
     const email = String(data.get('email') || '').trim();
-    if (!form.reportValidity() || !name || !phone || data.get('_gotcha')) return false;
+    // Name, phone and email are all required (19.11.2026): the email carries the meeting invite.
+    if (!form.reportValidity() || !name || !phone || !EMAIL_RE.test(email) || data.get('_gotcha')) return false;
     // In-memory only: do not put names/phones in analytics or browser storage.
     const key = JSON.stringify([name, phone, message.trim()]);
     if (pending.has(key) || accepted.has(key)) return false;
