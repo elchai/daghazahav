@@ -16,7 +16,7 @@ function setup(fetch) {
   };
   vm.runInNewContext(code, context);
   const button = { disabled: false };
-  const form = { values: { name: 'Test', phone: '0500000000' }, reportValidity: () => true, querySelector: () => button, querySelectorAll: () => [button] };
+  const form = { values: { name: 'Test', phone: '0500000000', email: 'test@example.com' }, reportValidity: () => true, querySelector: () => button, querySelectorAll: () => [button] };
   return { ...context.window, context, events, ads, alerts, calls, timers, form, button };
 }
 test('both channels accepted: one success event, no manual form_submit or Ads guess', async () => {
@@ -105,7 +105,10 @@ test('hung delivery times out, restores retry and never reports success', async 
 });
 test('HTML scripts parse and all lead UI entry points use the shared handler', () => {
   const html=fs.readFileSync('index.html','utf8');
-  for (const match of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) new vm.Script(match[1]);
+  for (const match of html.matchAll(/<script(\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+    if (/type="application\/(ld\+)?json"/.test(match[1] || '')) { JSON.parse(match[2]); continue; }
+    new vm.Script(match[2]);
+  }
   assert.equal((html.match(/src="lead-tracking.js"/g)||[]).length,1);
   for (const source of ['contact','fab','popup','form_followup']) assert.ok(html.includes(`trackWhatsApp('${source}')`));
   assert.ok(html.includes("await submitLead(form, 'contact', msg)"));
@@ -133,4 +136,29 @@ test('every submit button is locked while a lead is in flight', async () => {
   resolve({ok:true});
   assert.equal(await pending,true);
   assert.equal(second.disabled,false);
+});
+test('email is required and must look like an address; it is sent to Make', async () => {
+  const s=setup(async () => ({ok:true}));
+  for (const bad of [undefined,'','  ','no-at-sign','a@b','a @b.co']) {
+    s.form.values.email=bad;
+    assert.equal(await s.submitLead(s.form,'contact','hello'),false);
+  }
+  assert.equal(s.calls.length,0);
+  s.form.values.email=' test@example.com ';
+  assert.equal(await s.submitLead(s.form,'contact','hello'),true);
+  const make=s.calls.find(c => String(c[0]).includes('make.com'));
+  assert.equal(JSON.parse(make[1].body).email,'test@example.com');
+});
+test('every lead form on the site marks name, phone and email required', () => {
+  for (const file of ['index.html','tochna/index.html']) {
+    const html=fs.readFileSync(file,'utf8');
+    const forms=[...html.matchAll(/<form[^>]*onsubmit=[\s\S]*?<\/form>/g)];
+    assert.ok(forms.length>0, file+': no lead form found');
+    for (const form of forms) {
+      for (const field of ['name','phone','email']) {
+        const input=(form[0].match(new RegExp('<input[^>]*name="'+field+'"[^>]*>'))||[])[0];
+        assert.ok(input && /\srequired[\s>]/.test(input), file+': '+field+' is not required');
+      }
+    }
+  }
 });

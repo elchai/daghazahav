@@ -42,7 +42,7 @@
   // ---- Lead capture -------------------------------------------------------
   // A WhatsApp button used to be the only way to reach us, so the visitor's number
   // was never known and nothing could be sent back. Now the button opens a short
-  // form (name + phone) that posts to Make: alert to the leads group plus an
+  // form (name, phone and email, all required since 19.11.2026) that posts to Make: alert to the leads group plus an
   // automatic WhatsApp to the visitor. "Write to me directly" keeps the old path.
   const HOOK = 'https://hook.eu1.make.com/4djji59ddryqc9f1t2rmtkfmr5c2mwa4';
   const NAMES = {
@@ -59,13 +59,18 @@
     return /^0\d{8,9}$/.test(d) ? d : '';
   }
 
+  function cleanEmail(v) {
+    const e = String(v || '').trim().slice(0, 120);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e) ? e : '';
+  }
+
   function sendLead(data) {
     const phone = localPhone(data.phone);
     if (!phone) return Promise.resolve(false);
     if (sent.has(phone)) return Promise.resolve(true);
     sent.add(phone);
     const body = JSON.stringify({
-      name: String(data.name || '').trim().slice(0, 80), phone: phone,
+      name: String(data.name || '').trim().slice(0, 80), phone: phone, email: cleanEmail(data.email),
       system: systemName, slug: system,
       details: String(data.details || '').slice(0, 600),
       source: data.source, reply: data.reply || 'yes', page: location.pathname
@@ -134,11 +139,12 @@
       + '<h2 id="dzl-t">נחזור אליך בוואצאפ</h2>'
       // TEMP 18.11.2026: the automatic WhatsApp (Make 8589306) goes out from Elchai's suspended number,
       // so the popup promises a reply soon, not a message right now. Revert: shraga-proposals/revert-whatsapp-number.md.
-      // Original (singular): + '<p>השאירו שם וטלפון ונשלח לך מיד הודעה עם קישור לתיאום הדגמה של ' + systemName + '.</p>'
-      + '<p>השאירו שם וטלפון ונחזור אליך בוואצאפ בקרוב לתיאום הדגמה של ' + systemName + '.</p>'
+      // Original (singular): + '<p>השאירו שם טלפון ומייל ונשלח לך מיד הודעה עם קישור לתיאום הדגמה של ' + systemName + '.</p>'
+      + '<p>השאירו שם טלפון ומייל ונחזור אליך בוואצאפ בקרוב לתיאום הדגמה של ' + systemName + '.</p>'
       + '<form novalidate>'
       + '<label>שם מלא<input name="name" autocomplete="name" required maxlength="80"></label>'
       + '<label>טלפון נייד<input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required maxlength="20"></label>'
+      + '<label>מייל (לשליחת זימון לפגישה)<input name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" style="text-align:right" required maxlength="120"></label>'
       + '<input class="dzl-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">'
       + '<div class="dzl-err" role="alert"></div>'
       + '<button type="submit" class="dzl-go">' + WA_ICON + '<span>שלחו לי הודעה בוואצאפ</span></button>'
@@ -159,10 +165,12 @@
       if (form.elements.website.value) { closeModal(); return; }
       if (!name) { err.textContent = 'נא למלא שם'; form.elements.name.focus(); return; }
       if (!phone) { err.textContent = 'מספר הטלפון לא תקין. בדקו שהוא מלא ומתחיל ב-05'; form.elements.phone.focus(); return; }
+      const email = cleanEmail(form.elements.email.value);
+      if (!email) { err.textContent = 'כתובת המייל לא תקינה'; form.elements.email.focus(); return; }
       err.textContent = '';
       const btn = form.querySelector('.dzl-go');
       btn.disabled = true;
-      sendLead({ name: name, phone: phone, details: 'לחיצה על כפתור וואצאפ', source: 'טופס קצר' }).then((ok) => {
+      sendLead({ name: name, phone: phone, email: email, details: 'לחיצה על כפתור וואצאפ', source: 'טופס קצר' }).then((ok) => {
         if (!modal) return;
         if (!ok) {
           btn.disabled = false;
@@ -208,9 +216,10 @@
         const text = new URL(String(url)).searchParams.get('text') || '';
         const phone = (text.match(/טלפון:\s*([^\n]+)/) || [])[1];
         const name = (text.match(/שם:\s*([^\n]+)/) || [])[1];
+        const email = (text.match(/(?:אימייל|מייל):\s*([^\n]+)/) || [])[1];
         if (phone && name) {
           captured = true;
-          sendLead({ name: name, phone: phone, details: text.replace(/\n/g, ' | '), source: 'טופס הצטרפות' });
+          sendLead({ name: name, phone: phone, email: email, details: text.replace(/\n/g, ' | '), source: 'טופס הצטרפות' });
         }
       } catch (_) { /* Never block the visitor from reaching WhatsApp. */ }
     }
@@ -231,7 +240,7 @@
             const b = JSON.parse((init && init.body) || '{}');
             captured = true;
             sendLead({
-              name: b.name, phone: b.phone, source: 'טופס פיילוט', reply: 'no',
+              name: b.name, phone: b.phone, email: b.email, source: 'טופס פיילוט', reply: 'no',
               details: ['ישוב: ' + (b.settlement || ''), 'תפקיד: ' + (b.role || ''), 'משקי בית: ' + (b.households || '')].join(' | ')
             });
           } catch (_) { /* Body was not JSON: the backend still has the lead. */ }

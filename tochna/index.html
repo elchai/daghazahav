@@ -301,14 +301,14 @@ footer{padding:28px 0 34px;margin-top:30px;background:#0f1729;color:#a9b3c9;font
     <div class="fcard" id="lead">
       <div class="fhead">
         <h2>רוצים לדעת מה אפשר לבנות לכם?</h2>
-        <p class="fsub">שם וטלפון ואחזור אליכם עוד היום.</p>
+        <p class="fsub">שם טלפון ומייל ואחזור אליך עוד היום.</p>
       </div>
       <form id="btForm" onsubmit="btSubmit(event)">
         <input type="hidden" name="_subject" value="פנייה חדשה מדף בית תוכנה - daghazahav.com">
         <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <div class="fg"><label for="btName">שם מלא</label><input type="text" id="btName" name="name" autocomplete="name" required></div>
         <div class="fg"><label for="btPhone">טלפון</label><input type="tel" id="btPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="050-0000000" required pattern="[\d\-\+\s\(\)]{9,}" title="הכנס מספר טלפון תקין"></div>
-        <div class="fg"><label for="btEmail">מייל <span class="opt">(לא חובה, לשליחת זימון לפגישה)</span></label><input type="email" id="btEmail" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@example.com"></div>
+        <div class="fg"><label for="btEmail">מייל <span class="opt">(לשליחת זימון לפגישה)</span></label><input type="email" id="btEmail" name="email" autocomplete="email" inputmode="email" dir="ltr" placeholder="name@example.com" required></div>
         <button type="submit" class="btn btn-p">קבעו לי שיחת אפיון ללא עלות</button>
         <p class="fnote">הפרטים נשמרים אצלנו בלבד. <a href="/privacy.html" target="_blank" rel="noopener">מדיניות פרטיות</a></p>
       </form>
