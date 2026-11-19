@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- סמל זמני של תמלולון: ריבוע מעוגל בטורקיז וציאן, בועת דיבור לבנה ובתוכה גל קול עם פס ענבר -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#115e59"/>
+      <stop offset="0.55" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#g)"/>
+  <path d="M168 106h176a72 72 0 0 1 72 72v108a72 72 0 0 1-72 72H236l-82 58c-8 6-18-2-15-11l16-50a72 72 0 0 1-59-71V178a72 72 0 0 1 72-72Z" fill="#fff"/>
+  <g fill="#0f766e" stroke-linecap="round">
+    <rect x="164" y="204" width="24" height="56" rx="12"/>
+    <rect x="204" y="174" width="24" height="116" rx="12"/>
+    <rect x="244" y="146" width="24" height="172" rx="12" fill="#f59e0b"/>
+    <rect x="284" y="174" width="24" height="116" rx="12"/>
+    <rect x="324" y="204" width="24" height="56" rx="12"/>
+  </g>
+</svg>
