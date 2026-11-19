@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ARTICLES, PUBLISHED } from './articles-data.mjs';
+// An unlisted article keeps its page (noindex) but is left out of the index, related cards, sitemap and llms.txt.
+const LISTED = ARTICLES.filter((a) => !a.unlisted);
 import { GUIDES, GUIDES_PUBLISHED, GUIDES_MODIFIED, PILLAR } from './guides-data.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -59,7 +61,7 @@ function rich(s) {
 }
 const plain = (s) => s.replace(INLINE, (_, label, href, bold) => label ?? bold);
 
-function head({ title, description, canonical, image, type, ld }) {
+function head({ title, description, canonical, image, type, ld, noindex }) {
   return `<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -68,7 +70,7 @@ function head({ title, description, canonical, image, type, ld }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${attr(description)}">
 <link rel="canonical" href="${canonical}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="${noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}">
 <meta property="og:type" content="${type}">
 <meta property="og:locale" content="he_IL">
 <meta property="og:site_name" content="דג הזהב">
@@ -187,7 +189,7 @@ function article(a) {
     },
   ];
 
-  const out = `${head({ title: a.title, description: a.description, canonical, image, type: 'article', ld })}
+  const out = `${head({ title: a.title, description: a.description, canonical, image, type: 'article', ld, noindex: a.unlisted })}
 <body>
 ${nav('articles')}
 <main>
@@ -353,7 +355,7 @@ function index() {
   const title = 'מאמרים ומדריכים על מערכות ניהול | DAGHAZAHAV';
   const description = 'מדריכים לפיתוח מערכת ניהול בהתאמה אישית ומאמר מעמיק על כל מערכת של דג הזהב: ישובון, הפקון, מוסכון, קהילה בבניין, אירוחון, מפעלון, משמרון, מטווחון, דפוסון ו-CRAZY CRM.';
   const guides = [pillar, ...GUIDES.filter((g) => !g.pillar)];
-  const all = [...guides, ...ARTICLES];
+  const all = [...guides, ...LISTED];
   const ld = [
     ORG,
     {
@@ -383,7 +385,7 @@ ${guides.map((g, i) => guideCard(g, 'h3', i % 3)).join('\n')}
 </div>
 <h2 id="systems">${t('מאמרים על המערכות')}</h2>
 <div class="posts">
-${ARTICLES.map((a, i) => card(a, 'h3', i % 3)).join('\n')}
+${LISTED.map((a, i) => card(a, 'h3', i % 3)).join('\n')}
 </div>
 <section class="cta" aria-labelledby="cta-h">
 <h2 id="cta-h">${t('לא מצאתם מערכת שמתאימה בדיוק לארגון שלכם?')}</h2>
@@ -414,7 +416,7 @@ function sitemap() {
   const block = [
     `  <url><loc>${ORIGIN}/articles/</loc><lastmod>${LATEST}</lastmod></url>`,
     ...GUIDES.map((g) => `  <url><loc>${url(g)}</loc><lastmod>${GUIDES_MODIFIED}</lastmod></url>`),
-    ...ARTICLES.map((a) => `  <url><loc>${url(a)}</loc><lastmod>${MODIFIED}</lastmod></url>`),
+    ...LISTED.map((a) => `  <url><loc>${url(a)}</loc><lastmod>${MODIFIED}</lastmod></url>`),
   ].join('\n');
   const r = replaceBlock('sitemap.xml', '  <!-- articles:start -->', '  <!-- articles:end -->', block);
   const src = r.src ?? fs.readFileSync(r.p, 'utf8').split('\r\n').join('\n').replace('</urlset>', `${r.full}</urlset>`);
@@ -429,7 +431,7 @@ function llms() {
     '',
     '## מאמרים',
     `- [מאמרים ומדריכים: מערכות ניהול בהתאמה אישית](${ORIGIN}/articles/): מדריכים לפיתוח מערכת ניהול ומאמר מעמיק על כל מערכת, עם יכולות, קהל יעד ושאלות נפוצות.`,
-    ...ARTICLES.map((a) => `- [${a.h1}](${url(a)}): ${a.answer}`),
+    ...LISTED.map((a) => `- [${a.h1}](${url(a)}): ${a.answer}`),
   ].join('\n');
   const r = replaceBlock('llms.txt', '<!-- articles:start -->', '<!-- articles:end -->', block);
   let src = r.src;
