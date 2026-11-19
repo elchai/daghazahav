@@ -12,8 +12,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://daghazahav.com';
 const OUT = path.join(ROOT, 'articles');
 const PHONE = '054-2012000';
-// TEMP 18.11.2026: Elchai's WhatsApp (972542012000) is suspended, leads go to SHRAGA 972555038501. Revert = git revert this commit.
-const WA = 'https://wa.me/972555038501?text=';
+const WA = 'https://wa.me/972542012000?text=';
 const ORG_ID = `${ORIGIN}/#org`;
 const PERSON_ID = 'https://elchai.co.il/#elchai';
 const OG = `${ORIGIN}/og-daghazahav-2026.jpg`;
