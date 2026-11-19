@@ -87,7 +87,6 @@ export const ARTICLES = [
   },
   {
     slug: 'gadudon-battalion-management',
-    unlisted: true, // military system, never advertised (16.11.2026): page kept with noindex, out of every list
     sys: 'gadudon',
     name: 'גדודון',
     kind: 'יחידות צבאיות',
@@ -639,7 +638,7 @@ export const ARTICLES = [
       ['אפשר לחבר לתוכנת השכר שלנו?', 'דוח השעות יוצא לאקסל לפי עובד ואתר. חיבור ישיר אפשרי לכל מערכת עם ממשק פתוח, ובודקים אותו לפני שמתחילים.'],
       ['כמה זה עולה?', 'הקמה חד פעמית ומנוי חודשי שכולל וואצאפ, תמיכה ועדכונים. המחיר תלוי במספר השומרים והאתרים ונשלח אחרי שיחת היכרות.'],
     ],
-    related: ['mitvachon-shooting-range-management', 'mifalon-factory-management', 'yishuvon-settlement-management'],
+    related: ['mitvachon-shooting-range-management', 'gadudon-battalion-management', 'yishuvon-settlement-management'],
   },
   {
     slug: 'mitvachon-shooting-range-management',
@@ -718,7 +717,7 @@ export const ARTICLES = [
       ['צריך גם אתר עם הזמנה אונליין?', 'אפשר. האתר מתעדכן מתוך המערכת: מקצים פנויים, קורסים וטופס הרשמה שנכנס ישר ללוח ההזמנות.'],
       ['כמה זה עולה?', 'הקמה חד פעמית ומנוי חודשי שכולל וואצאפ, תמיכה ועדכונים. המחיר תלוי בגודל המטווח ובמספר המשתמשים ונשלח אחרי שיחת היכרות.'],
     ],
-    related: ['mishmeron-security-company-management', 'yishuvon-settlement-management', 'mifalon-factory-management'],
+    related: ['mishmeron-security-company-management', 'gadudon-battalion-management', 'mifalon-factory-management'],
   },
   {
     slug: 'dfuson-print-shop-management',

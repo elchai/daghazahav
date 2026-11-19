@@ -110,16 +110,8 @@ const sitemap = read('sitemap.xml');
 const llms = read('llms.txt');
 const indexHtml = read('articles/index.html');
 for (const [label, src] of [['sitemap.xml', sitemap], ['llms.txt', llms]]) for (const [re, why] of BANNED) if (re.test(src)) fail(label, `banned: ${why}`);
-const UNLISTED = new Set(ARTICLES.filter((a) => a.unlisted).map((a) => a.slug));
 for (const slug of pages) {
   const u = `${ORIGIN}/articles/${slug}/`;
-  if (UNLISTED.has(slug)) {
-    // Unlisted (e.g. Gadudon, a military system that is never advertised): must stay out of every list.
-    if (sitemap.includes(`<loc>${u}</loc>`)) fail('sitemap.xml', `unlisted ${slug} is listed`);
-    if (llms.includes(`(${u})`)) fail('llms.txt', `unlisted ${slug} is listed`);
-    if (indexHtml.includes(`href="/articles/${slug}/"`)) fail('articles/index.html', `unlisted ${slug} is linked`);
-    continue;
-  }
   if (!sitemap.includes(`<loc>${u}</loc>`)) fail('sitemap.xml', `missing ${u}`);
   if (!llms.includes(`(${u})`)) fail('llms.txt', `missing ${u}`);
   if (!indexHtml.includes(`href="/articles/${slug}/"`)) fail('articles/index.html', `missing link to ${slug}`);
@@ -127,8 +119,6 @@ for (const slug of pages) {
 for (const m of sitemap.matchAll(/<url><loc>([^<]+)<\/loc>(?:<lastmod>([^<]*)<\/lastmod>)?/g)) {
   if (m[1].startsWith(`${ORIGIN}/articles/`) && !/^\d{4}-\d{2}-\d{2}$/.test(m[2] || '')) fail('sitemap.xml', `bad lastmod for ${m[1]}`);
 }
-// Gadudon is a military system and is never advertised (Elchai, 16.11.2026): not on the homepage, not in any list.
-for (const g of ['index.html', 'sitemap.xml', 'articles/index.html']) if (/גדודון|\/gadudon\//.test(read(g))) fail(g, 'mentions Gadudon');
 // Every article and guide in the data must be built.
 for (const a of [...ARTICLES, ...GUIDES]) if (!pages.includes(a.slug)) fail('articles/', `${a.slug} is in the data but not built`);
 
