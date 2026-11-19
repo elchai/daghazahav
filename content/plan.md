@@ -34,7 +34,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | done |
 | 15 | accessibility-standard-5568-systems | נגישות במערכת ניהול: מה דורש תקן ת"י 5568 | תקן נגישות 5568 מערכת | informational | kehilot, yishuvon | done |
 | 15.0 | personal-ai-agent-for-business-owners | סוכן AI אישי לבעל עסק: מה הוא עושה בשבילך מהוואצאפ | סוכן AI אישי לעסק | commercial | shraga | todo |
-| 15.1 | restaurant-management-software | תוכנה לניהול מסעדה: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מסעדה | commercial | misadon | todo |
+| 15.1 | restaurant-management-software | תוכנה לניהול מסעדה: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מסעדה | commercial | misadon | done |
 | 15.2 | transport-company-management-software | תוכנה לניהול חברת הסעות והובלה: מה היא צריכה לכלול | תוכנה לניהול חברת הסעות | commercial | nahagon | todo |
 | 15.3 | nonprofit-management-software | מערכת ניהול לעמותה: תרומות קבלות ומתנדבים במקום אחד | מערכת ניהול לעמותה | commercial | amooton | todo |
 | 15.4 | automatic-pricing-quotes-software | תמחור אוטומטי והצעות מחיר: איך מפסיקים לחשב באקסל | תוכנה לתמחור והצעות מחיר | commercial | timchuron | todo |
