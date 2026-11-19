@@ -1,0 +1,132 @@
+/* Homepage upgrade 19.11.2026 (after peach.co.il review, approved by Elchai):
+   two-line hero headline, product shot with floating stat badges, value line,
+   "how it works" in 3 steps, 6 reasons as Bento cards, integrations marquee, FAQ.
+   Loaded after light.css so it follows the live light theme and its blue palette. */
+
+/* ── Text: balanced lines, a sentence never splits mid-way when it can be avoided ── */
+.hero-title, .hero-value, .hv2-step h3, .hv2-step p, .hv2-why .exp h3, .hv2-why .exp p,
+.hv2-int .sec-sub, .hv2-faq summary, .hv2-faq .hv2-a p, #how .sec-title, #why .sec-title,
+#integrations .sec-title, #faq .sec-title { text-wrap: balance; }
+.hv2-line { display: block; }
+
+/* ── HERO ── */
+.hero-content { max-width: 1040px; }
+.hero-title { font-size: clamp(1.75rem, 4.2vw, 3rem); line-height: 1.22; margin-bottom: 16px; letter-spacing: -0.01em; }
+.hero-title .ht-l1, .hero-title .ht-l2 { display: block; }
+.hero-title .ht-l1 { color: var(--text); }
+.hero-value { max-width: 640px; margin: 0 auto 36px; font-size: clamp(1.02rem, 1.9vw, 1.2rem); color: var(--dim); line-height: 1.7; }
+.hero-value strong { color: #1d4fa3; font-weight: 800; background: linear-gradient(transparent 62%, rgba(10,143,181,.16) 62%); padding: 0 2px; }
+
+.hero-stats { list-style: none; margin: 0; padding: 0; }
+.hero-shot { position: relative; max-width: 900px; margin: 54px auto 0; }
+.hero-frame { position: relative; z-index: 1; background: #fff; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(17,26,46,.45), 0 0 0 6px rgba(255,255,255,.55); }
+.hero-frame-bar { display: flex; gap: 7px; align-items: center; height: 32px; padding: 0 14px; direction: ltr; background: #f1f4f9; border-bottom: 1px solid var(--border); }
+.hero-frame-bar i { width: 10px; height: 10px; border-radius: 50%; background: #d3d9e4; }
+.hero-frame-bar i:nth-child(1) { background: #ff6159; } .hero-frame-bar i:nth-child(2) { background: #ffbd2e; } .hero-frame-bar i:nth-child(3) { background: #28c941; }
+.hero-frame img { display: block; width: 100%; height: auto; }
+
+.hero-stat {
+  position: absolute; z-index: 2; display: flex; flex-direction: column; gap: 2px; text-align: center;
+  min-width: 150px; padding: 14px 20px; border-radius: 18px;
+  background: rgba(255,255,255,.74); border: 1px solid rgba(255,255,255,.9);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 18px 40px -18px rgba(17,26,46,.38), 0 0 0 1px rgba(29,79,163,.10);
+  animation: hv2-float 6s ease-in-out infinite;
+}
+.hero-stat b { font-size: 1.75rem; font-weight: 900; line-height: 1.1; background: linear-gradient(135deg, #0a8fb5, #1d4fa3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-stat span { font-size: .86rem; font-weight: 600; color: #2b3550; white-space: nowrap; }
+.hero-stat.s1 { top: 16%; right: -58px; }
+.hero-stat.s2 { bottom: 12%; left: -62px; animation-delay: -2s; }
+.hero-stat.s3 { top: -26px; left: 9%; animation-delay: -4s; }
+@keyframes hv2-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (max-width: 1100px) {
+  .hero-stat.s1 { right: -14px; }
+  .hero-stat.s2 { left: -14px; }
+}
+@media (max-width: 768px) {
+  .hero-shot { margin-top: 40px; }
+  .hero-stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: -22px 6px 0; }
+  .hero-stat { position: static; min-width: 0; padding: 10px 6px; border-radius: 14px; animation: none; }
+  .hero-stat b { font-size: 1.25rem; }
+  .hero-stat span { font-size: .74rem; white-space: normal; line-height: 1.3; }
+}
+
+/* ── HOW IT WORKS: 3 steps ── */
+.hv2-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; position: relative; counter-reset: none; }
+.hv2-steps::before { content: ''; position: absolute; top: 44px; right: 16%; left: 16%; height: 2px; background: linear-gradient(to left, rgba(10,143,181,.15), #0a8fb5, #1d4fa3, rgba(29,79,163,.15)); z-index: 0; }
+.hv2-step { position: relative; z-index: 1; text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: var(--r2); padding: 26px 24px 28px; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.hv2-step:hover { transform: translateY(-5px); border-color: rgba(29,79,163,.45); box-shadow: 0 18px 40px -16px rgba(29,79,163,.35); }
+.hv2-n { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px; border-radius: 50%; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem; color: #fff; background: linear-gradient(135deg, #0a8fb5, #1d4fa3); box-shadow: 0 0 0 6px #fff, 0 8px 18px -6px rgba(29,79,163,.6); }
+.hv2-step h3 { font-size: 1.18rem; font-weight: 800; color: var(--text); margin-bottom: 8px; line-height: 1.35; }
+.hv2-step p { color: var(--dim); font-size: .95rem; line-height: 1.75; }
+
+/* ── WHY: 6 numbered Bento cards (reuses .exp, lifts on hover) ── */
+.hv2-why .exp-grid { grid-template-columns: repeat(4, 1fr); margin-bottom: 0; }
+.hv2-why .exp.wide { grid-column: span 2; }
+.hv2-why .exp { padding: 26px 24px; }
+.hv2-why .exp:hover { transform: translateY(-5px); border-color: rgba(29,79,163,.45); box-shadow: 0 18px 40px -16px rgba(29,79,163,.35); }
+.hv2-why .exp::before { background: linear-gradient(to left, #0a8fb5, #1d4fa3); }
+.hv2-why .exp-num { font-size: 1.9rem; background: linear-gradient(135deg, #0a8fb5, #1d4fa3); -webkit-background-clip: text; background-clip: text; margin-bottom: 10px; }
+.hv2-why .exp h3 { font-size: 1.08rem; margin-bottom: 8px; }
+.hv2-why .exp p { font-size: .93rem; line-height: 1.75; }
+@media (max-width: 1024px) {
+  .hv2-why .exp-grid { grid-template-columns: repeat(2, 1fr); }
+  .hv2-why .exp.wide { grid-column: auto; }
+}
+
+/* ── INTEGRATIONS marquee ── */
+.hv2-int { padding-bottom: 80px; }
+.hv2-marq { position: relative; overflow: hidden; direction: ltr; padding: 6px 0; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.hv2-track { display: flex; width: max-content; animation: hv2-marq 48s linear infinite; }
+.hv2-marq:hover .hv2-track, .hv2-marq:focus-within .hv2-track { animation-play-state: paused; }
+.hv2-list { display: flex; gap: 14px; padding-inline-end: 14px; list-style: none; margin: 0; }
+.hv2-chip { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; padding: 12px 20px; border-radius: 100px; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow); font-weight: 700; font-size: .98rem; color: #2b3550; }
+.hv2-chip small { font-weight: 500; font-size: .8rem; color: #5b6478; }
+.hv2-chip::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, #0a8fb5, #1d4fa3); flex: none; }
+@keyframes hv2-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── FAQ ── */
+.hv2-faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+.hv2-faq details { background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s; }
+.hv2-faq details[open] { border-color: rgba(29,79,163,.35); box-shadow: 0 14px 34px -18px rgba(29,79,163,.35); }
+.hv2-faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; padding: 16px 22px; font-weight: 700; font-size: 1.05rem; color: var(--text); border-radius: 16px; }
+.hv2-faq summary::-webkit-details-marker { display: none; }
+.hv2-faq summary::after { content: ''; flex: none; width: 11px; height: 11px; border-right: 2.5px solid #1d4fa3; border-bottom: 2.5px solid #1d4fa3; transform: rotate(45deg); transition: transform .25s; margin-top: -5px; }
+.hv2-faq details[open] summary::after { transform: rotate(-135deg); margin-top: 5px; }
+.hv2-faq summary:focus-visible { outline: 3px solid #1d4fa3; outline-offset: 2px; }
+.hv2-faq summary:hover { color: #1d4fa3; }
+.hv2-a { padding: 0 22px 18px; }
+.hv2-a p { color: var(--dim); font-size: .98rem; line-height: 1.8; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hv2-steps { grid-template-columns: 1fr; gap: 14px; }
+  .hv2-steps::before { display: none; }
+  .hv2-why .exp-grid { grid-template-columns: 1fr; gap: 14px; }
+  .hv2-chip { padding: 10px 16px; font-size: .92rem; }
+  .hv2-faq summary { padding: 14px 18px; font-size: 1rem; }
+  .hv2-a { padding: 0 18px 16px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.42rem; }
+  .hero-value { font-size: .98rem; }
+  #how .sec-title .grad, #why .sec-title .grad, #integrations .sec-title .grad, #faq .sec-title .grad { display: block; }
+  .hv2-step h3 { font-size: 1.04rem; }
+  .hv2-a p { font-size: .93rem; }
+  .hv2-faq summary { font-size: .97rem; }
+  #integrations .sec-sub { font-size: .95rem; }
+}
+
+/* ── Reduced motion: no float, no marquee (the list wraps and stays readable) ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat { animation: none; }
+  .hv2-step, .hv2-why .exp { transition: none; }
+  .hv2-marq { -webkit-mask-image: none; mask-image: none; direction: rtl; }
+  .hv2-track { animation: none; width: auto; }
+  .hv2-list { flex-wrap: wrap; justify-content: center; padding: 0; }
+  .hv2-list[aria-hidden="true"] { display: none; }
+}
+
+/* English mode keeps the same layout, mirrored by the page's own toggle */
+body.en .hero-stat { text-align: center; }
