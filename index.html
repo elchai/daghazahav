@@ -871,8 +871,10 @@ body.en .foot-phone { direction:ltr; }
     <div class="hero-badge" data-en="<span class='badge-dot'></span> Ministry of Defense Approved Supplier"><span class="badge-dot"></span>
       ספק משרד הביטחון
     </div>
-    <h1 class="hero-brand orb">DAGHAZAHAV<span class="sr-only"> - דג הזהב, בית תוכנה לפיתוח מערכות ניהול בהתאמה אישית</span></h1>
-    <p class="hero-sub" data-en="The Golden Fish">ד &nbsp; ג &nbsp; &nbsp; ה &nbsp; ז &nbsp; ה &nbsp; ב</p>
+    <!-- The old DAGHAZAHAV wordmark and the spaced "ד ג ה ז ה ב" line are gone from the markup itself
+         (20.11.2026): hiding them with home-v2.css left them visible to any browser holding an older
+         copy of the stylesheet. The H1 stays for search engines and screen readers, hidden inline. -->
+    <h1 class="hero-h1" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">DAGHAZAHAV - דג הזהב, בית תוכנה לפיתוח מערכות ניהול בהתאמה אישית</h1>
     <h2 class="hero-title" data-en="<span class='ht-l1'>Your whole business.</span><span class='grad ht-l2'>In one system built for you.</span>"><span class="ht-l1">כל העסק שלכם.</span><span class="grad ht-l2">במערכת אחת שנבנית בשבילכם.</span></h2>
     <p class="hero-desc hero-value" data-en="<strong>The system adapts to your business</strong> and not the other way around.">מערכת ניהול <strong>שמתאימה את&nbsp;עצמה לעסק</strong> ולא&nbsp;להפך.</p>
     <div class="ctas">
@@ -1969,17 +1971,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (function(){
   if((window.__dzLang||'he')!=='he') return;  // English uses static content; CMS is Hebrew-only
   var CMS_URL='https://script.google.com/macros/s/AKfycbwIY8sj2jer4FikdlqTNL7IxoWUHyW4_qBes15Qo8pCesiwS4j4L9O9XrhF2YyhISyNlQ/exec';
-  fetch(CMS_URL).then(function(r){return r.json();}).then(function(c){
+  fetch(CMS_URL).then(function(r){ if(!r.ok) throw new Error('CMS HTTP '+r.status); return r.json(); }).then(function(c){
     if((window.__dzLang||'he')!=='he') return;  // user switched to EN mid-fetch
     try{
     var $=function(s){return document.querySelector(s);};
     var $$=function(s){return document.querySelectorAll(s);};
 
-    // Hero
-    if(c.hero){
-    var hb=$('.hero-badge'); if(hb&&c.hero.badge){ var dot=hb.querySelector('.badge-dot'); hb.textContent=c.hero.badge; if(dot) hb.insertBefore(dot,hb.firstChild); }
-    // Hero headline and value line: HTML is the source of truth since the 19.11.2026 homepage upgrade, the CMS keeps only the badge.
-    }
+    // Hero (#home): HTML only. The CMS never writes into the hero (20.11.2026), whatever it returns.
 
     // About heading + paragraphs
     if(c.about){
