@@ -1970,7 +1970,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 <script>
 (function(){
   if((window.__dzLang||'he')!=='he') return;  // English uses static content; CMS is Hebrew-only
-  var CMS_URL='https://script.google.com/macros/s/AKfycbwIY8sj2jer4FikdlqTNL7IxoWUHyW4_qBes15Qo8pCesiwS4j4L9O9XrhF2YyhISyNlQ/exec';
+  var CMS_URL='/content.json?v='+Math.floor(Date.now()/3e5);  // 20.11.2026: same-origin file edited via admin.html. The old Apps Script answered 403 to everyone.
   fetch(CMS_URL).then(function(r){ if(!r.ok) throw new Error('CMS HTTP '+r.status); return r.json(); }).then(function(c){
     if((window.__dzLang||'he')!=='he') return;  // user switched to EN mid-fetch
     try{
