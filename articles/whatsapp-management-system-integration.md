@@ -24,31 +24,31 @@
 
 ### הודעות לפי אירוע
 
-המערכת שולחת הודעה כשמשהו קורה: הזמנה אושרה, רכב מוכן לאיסוף, משמרת השתנתה. ב [דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) כל שלב בהזמנה שולח את ההודעה שלו, רק בשלבים שהגדרתם.
+המערכת שולחת הודעה כשמשהו קורה: הזמנה אושרה, רכב מוכן לאיסוף, משמרת השתנתה. ב[דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) כל שלב בהזמנה שולח את ההודעה שלו, רק בשלבים שהגדרתם.
 
 ### תזכורות
 
-תזכורת לתשלום, לתור או לטסט. ב [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) הלקוח מקבל תזכורת חודש לפני הטסט ותזכורת לטיפול לפי הקילומטרז׳. ב [מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) יוצאים לבד אישור הזמנה, תזכורת יום לפני וטופס לחתימה.
+תזכורת לתשלום, לתור או לטסט. ב[מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) הלקוח מקבל תזכורת חודש לפני הטסט ותזכורת לטיפול לפי הקילומטרז׳. ב[מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) יוצאים לבד אישור הזמנה, תזכורת יום לפני וטופס לחתימה.
 
 ### אישור בקישור
 
-במקום לבקש מהלקוח לענות "כן", שולחים קישור שבו הוא מאשר והאישור נרשם. במוסכון הלקוח מאשר כל שורה בהצעה בנפרד עם חתימה ושעה. ב [קהילה בבניין](https://daghazahav.com/articles/kehilot-building-community-management/) הדיירים מצביעים מקישור בלי אפליקציה ובלי סיסמה, קול אחד לכל דירה.
+במקום לבקש מהלקוח לענות "כן", שולחים קישור שבו הוא מאשר והאישור נרשם. במוסכון הלקוח מאשר כל שורה בהצעה בנפרד עם חתימה ושעה. ב[קהילה בבניין](https://daghazahav.com/articles/kehilot-building-community-management/) הדיירים מצביעים מקישור בלי אפליקציה ובלי סיסמה, קול אחד לכל דירה.
 
 ### פורטל אישי בלי אפליקציה
 
-קישור אישי שנפתח בטלפון ומראה ללקוח רק את מה ששלו: סטטוס, מסמכים ותשלום. ב [ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) כל תושב נכנס לפורטל מקישור בוואצאפ בלי להתקין אפליקציה. מה עוד חשוב בתוכנה לישוב מעבר לוואצאפ מפורט במדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/).
+קישור אישי שנפתח בטלפון ומראה ללקוח רק את מה ששלו: סטטוס, מסמכים ותשלום. ב[ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) כל תושב נכנס לפורטל מקישור בוואצאפ בלי להתקין אפליקציה. מה עוד חשוב בתוכנה לישוב מעבר לוואצאפ מפורט במדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/).
 
 ### התראות לצוות
 
-הצוות מקבל התראה ברגע שצריך לפעול. ב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) נקודת ביקורת שלא נסרקה בזמן שולחת התראה לאחראי, ושינוי בסידור מגיע מיד למי שצריך. איך בודקים את הסידור, את ההחלפות ואת ההתראות האלה לפני שבוחרים תוכנה לחברת שמירה מפורט במדריך [סידור משמרות לחברת שמירה](https://daghazahav.com/articles/security-shift-scheduling-software/).
+הצוות מקבל התראה ברגע שצריך לפעול. ב[משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) נקודת ביקורת שלא נסרקה בזמן שולחת התראה לאחראי, ושינוי בסידור מגיע מיד למי שצריך. איך בודקים את הסידור, את ההחלפות ואת ההתראות האלה לפני שבוחרים תוכנה לחברת שמירה מפורט במדריך [סידור משמרות לחברת שמירה](https://daghazahav.com/articles/security-shift-scheduling-software/).
 
 ### בוט שעונה ללקוחות
 
-בוט שעונה בכל שעה, אוסף פרטים, מציג זמינות וקובע פגישות ומעביר לאדם כשצריך. כך עובד הבוט ב [CRAZY CRM](https://daghazahav.com/articles/crazy-crm-hebrew-crm/). ב [אירוחון](https://daghazahav.com/articles/iruchon-hospitality-compound-management/) הבוט עונה על שבתות פנויות גם בלילה, ומה עוד מתחם שמארח קבוצות צריך לבדוק מפורט במדריך [תוכנה לניהול בית ספר שדה ומתחם אירוח](https://daghazahav.com/articles/hospitality-field-school-software/). במסעדה הבוט עונה בבוקר לפני שהמארחת מגיעה, ומה חשוב לבדוק בו כשסועד שואל על אלרגנים מפורט במדריך [תוכנה לניהול מסעדה](https://daghazahav.com/articles/restaurant-management-software/).
+בוט שעונה בכל שעה, אוסף פרטים, מציג זמינות וקובע פגישות ומעביר לאדם כשצריך. כך עובד הבוט ב[CRAZY CRM](https://daghazahav.com/articles/crazy-crm-hebrew-crm/). ב[אירוחון](https://daghazahav.com/articles/iruchon-hospitality-compound-management/) הבוט עונה על שבתות פנויות גם בלילה, ומה עוד מתחם שמארח קבוצות צריך לבדוק מפורט במדריך [תוכנה לניהול בית ספר שדה ומתחם אירוח](https://daghazahav.com/articles/hospitality-field-school-software/). במסעדה הבוט עונה בבוקר לפני שהמארחת מגיעה, ומה חשוב לבדוק בו כשסועד שואל על אלרגנים מפורט במדריך [תוכנה לניהול מסעדה](https://daghazahav.com/articles/restaurant-management-software/).
 
 ### קליטה מתוך הודעה
 
-הודעה נכנסת הופכת לרשומה במערכת. ב [מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) לקוח שולח הזמנה בוואצאפ או במייל, הבינה המלאכותית מזהה פריטים וכמויות ופותחת הזמנה.
+הודעה נכנסת הופכת לרשומה במערכת. ב[מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) לקוח שולח הזמנה בוואצאפ או במייל, הבינה המלאכותית מזהה פריטים וכמויות ופותחת הזמנה.
 
 ## מה חשוב לבדוק לפני שמחברים
 
@@ -108,7 +108,7 @@
 
 התחילו בהודעה אחת שחוסכת הכי הרבה טלפונים. בהרבה עסקים זו הודעת סטטוס: ההזמנה התקבלה, העבודה מוכנה, התור מחר. אחרי שהיא עובדת מוסיפים תזכורות, אחר כך אישורים בקישור ורק אז בוט.
 
-אם אתם שוקלים בוט שעונה ללקוחות, קראו גם את התשובה [מי בונה בוט וואצאפ עם בינה מלאכותית לעסקים](https://daghazahav.com/answers/whatsapp-ai-bot-for-business/). אם הוואצאפ אמור להזין CRM בלידים, ראו איך מתכננים את הקליטה ואת שלבי המכירה במדריך [פיתוח CRM בהתאמה אישית](https://daghazahav.com/articles/custom-crm-development/). ואם הוואצאפ הוא חלק ממערכת חדשה שאתם מתכננים, התחילו מ [המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
+אם אתם שוקלים בוט שעונה ללקוחות, קראו גם את התשובה [מי בונה בוט וואצאפ עם בינה מלאכותית לעסקים](https://daghazahav.com/answers/whatsapp-ai-bot-for-business/). אם הוואצאפ אמור להזין CRM בלידים, ראו איך מתכננים את הקליטה ואת שלבי המכירה במדריך [פיתוח CRM בהתאמה אישית](https://daghazahav.com/articles/custom-crm-development/). ואם הוואצאפ הוא חלק ממערכת חדשה שאתם מתכננים, התחילו מ[המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
 
 ## שאלות נפוצות
 

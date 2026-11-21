@@ -109,7 +109,7 @@
 - **סדר מעבר מימין לשמאל.** המקלדת צריכה לעבור על המסך בסדר שבו קוראים אותו ולא בסדר שבו הרכיבים נכתבו בקוד.
 - **מספרים, תאריכים וטלפונים בתוך משפט בעברית.** טקסט מעורב נוטה להתהפך על המסך ובמסמכי PDF.
 
-על הדרישות הרחבות יותר של מערכת בעברית, מעבר לנגישות, כתבנו בסעיף על דרישות ישראליות ב [המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
+על הדרישות הרחבות יותר של מערכת בעברית, מעבר לנגישות, כתבנו בסעיף על דרישות ישראליות ב[המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
 
 ## כפתור נגישות הוא תוספת ולא נגישות
 
@@ -170,7 +170,7 @@
 
 החלק שהציבור נוגע בו הוא ההצבעה. הדיירים מקבלים קישור בוואצאפ ומצביעים על פעילויות לבניין בלי אפליקציה ובלי סיסמה, קול אחד לכל דירה. אין כניסה שצריך לזכור ואין קוד להעתיק, וזה בדיוק סוג ההחלטה שמקל על כל המשתמשים ולא רק על מי שנעזר בטכנולוגיה מסייעת.
 
-מה עוד אגף קהילה צריך לבדוק מעבר לנגישות, מההרשאות של כל שכבה ועד תקציב המענק, מפורט במדריך [מערכת לאגף קהילה ברשות מקומית](https://daghazahav.com/articles/municipality-community-department-system/). גם [ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) משרתת תושבים, והמדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/) מפרט מה עוד חשוב לבדוק בתוכנה לישוב. אם אתם מתכננים מערכת שהציבור ישתמש בה, התמונה הרחבה על בחירה ובנייה של מערכת ניהול נמצאת ב [המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
+מה עוד אגף קהילה צריך לבדוק מעבר לנגישות, מההרשאות של כל שכבה ועד תקציב המענק, מפורט במדריך [מערכת לאגף קהילה ברשות מקומית](https://daghazahav.com/articles/municipality-community-department-system/). גם [ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) משרתת תושבים, והמדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/) מפרט מה עוד חשוב לבדוק בתוכנה לישוב. אם אתם מתכננים מערכת שהציבור ישתמש בה, התמונה הרחבה על בחירה ובנייה של מערכת ניהול נמצאת ב[המדריך המלא](https://daghazahav.com/articles/custom-management-system-development/).
 
 ## שאלות נפוצות
 

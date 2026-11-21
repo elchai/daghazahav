@@ -94,7 +94,21 @@ const oneLine = (s) => s.replace(/\u0000/g, ' ').replace(/\s*\n+\s*/g, ' ').repl
 function md(node, ctx) {
   if (typeof node === 'string') return decode(node).replace(/[\s\u00a0]+/g, ' ');
   if (dropped(node, ctx.opts)) return '';
-  const kids = (c = ctx) => node.children.map((k) => md(k, c)).join('');
+  // Sibling elements that CSS shows as separate lines (one sentence per <span>) touch in the source:
+  // put a space between two elements when both sides are letters. Text next to an element is left
+  // alone, so a Hebrew prefix letter stays glued to the word that follows it.
+  const kids = (c = ctx) => {
+    let out = '';
+    let prevEl = false;
+    for (const k of node.children) {
+      const s = md(k, c);
+      const isEl = typeof k !== 'string';
+      if (isEl && prevEl && /[\p{L}\p{N}]$/u.test(out) && /^[\p{L}\p{N}]/u.test(s)) out += ' ';
+      out += s;
+      if (s) prevEl = isEl;
+    }
+    return out;
+  };
   const B = '\u0000';
   const t = node.tag;
   // animated counters ship "0" in the HTML and the real number in data-target
@@ -125,6 +139,8 @@ function md(node, ctx) {
         const rest = blocks.filter((b) => b !== head).join(' ');
         return `\u0000${link(head)}${rest ? `\n${rest}` : ''}\u0000`;
       }
+      // a card (long link text or several inline parts) gets a line of its own
+      if (inner.length > 80 || node.children.filter((k) => typeof k !== 'string' && !dropped(k, ctx.opts)).length >= 3) return `\u0000${link(inner)}\u0000`;
       return ` ${link(inner)} `;
     }
     case 'strong': case 'b': {
@@ -180,7 +196,7 @@ function md(node, ctx) {
 
 function collapse(s) {
   return s.split('\u0000')
-    .map((b) => b.split('\n').map((l) => l.replace(/[ \t]+/g, ' ').replace(/ +([.,:;!?)])/g, '$1').replace(/([.!?])(?=[\u05d0-\u05ea])/g, '$1 ').trim()).join('\n').replace(/\n{2,}/g, '\n').trim())
+    .map((b) => b.split('\n').map((l) => l.replace(/[ \t]+/g, ' ').replace(/ +([.,:;!?)])/g, '$1').replace(/(^|\s)([\u05d1\u05d4\u05d5\u05db\u05dc\u05de\u05e9]) (\[|\*\*)/g, '$1$2$3').replace(/([.!?])(?=[\u05d0-\u05ea])/g, '$1 ').trim()).join('\n').replace(/\n{2,}/g, '\n').trim())
     .filter(Boolean)
     .join('\n\n');
 }

@@ -26,7 +26,7 @@
 
 ### סוגי משתמשים והרשאות
 
-מנהל, עובד משרד, עובד שטח, לקוח וספק רואים כל אחד משהו אחר. כל סוג משתמש מוסיף מסכים ובדיקות של מה מותר לו. ב [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) מכונאי לא רואה מחירים ורווח, וב [דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) המפעיל רואה רק את תור ההדפסה. הפרדות כאלה חשובות, והן חלק מההיקף.
+מנהל, עובד משרד, עובד שטח, לקוח וספק רואים כל אחד משהו אחר. כל סוג משתמש מוסיף מסכים ובדיקות של מה מותר לו. ב[מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) מכונאי לא רואה מחירים ורווח, וב [דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) המפעיל רואה רק את תור ההדפסה. הפרדות כאלה חשובות, והן חלק מההיקף.
 
 ### אוטומציות וחוקים עסקיים
 
@@ -46,7 +46,7 @@
 
 ### פורטל ללקוחות, לתושבים או לספקים
 
-ברגע שאנשים מחוץ לארגון נכנסים למערכת, היא צריכה להיות פשוטה מאוד, מאובטחת ועובדת מכל טלפון. קישור אישי בלי סיסמה, כמו שמקבל לקוח במוסכון או ספק ב [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/), חוסך הרשמה אבל דורש תכנון של אבטחה. מה פורטל של אולם צריך להכיל כדי שהלקוח באמת יפתח אותו מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/).
+ברגע שאנשים מחוץ לארגון נכנסים למערכת, היא צריכה להיות פשוטה מאוד, מאובטחת ועובדת מכל טלפון. קישור אישי בלי סיסמה, כמו שמקבל לקוח במוסכון או ספק ב[הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/), חוסך הרשמה אבל דורש תכנון של אבטחה. מה פורטל של אולם צריך להכיל כדי שהלקוח באמת יפתח אותו מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/).
 
 ### עבודה בשטח
 
@@ -98,9 +98,9 @@
 
 ## איך זה עובד אצלנו
 
-בדג הזהב אין מחירון. כל פרויקט מתחיל בשיחת זום חינמית, ואחרי שיחת אפיון קצרה מקבלים הצעה לפי ההיקף. במערכות הענפיות שלנו המבנה ידוע מראש. ב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) וב [דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) למשל יש הקמה חד פעמית ומנוי חודשי שכולל וואצאפ, תמיכה ועדכונים, והמחיר תלוי בגודל הארגון. ב [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) ההקמה, הייבוא והליווי בלי תשלום ואחר כך יש מנוי חודשי קבוע בלי תשלום נפרד על כל מודול.
+בדג הזהב אין מחירון. כל פרויקט מתחיל בשיחת זום חינמית, ואחרי שיחת אפיון קצרה מקבלים הצעה לפי ההיקף. במערכות הענפיות שלנו המבנה ידוע מראש. ב[משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) וב [דפוסון](https://daghazahav.com/articles/dfuson-print-shop-management/) למשל יש הקמה חד פעמית ומנוי חודשי שכולל וואצאפ, תמיכה ועדכונים, והמחיר תלוי בגודל הארגון. ב[מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) ההקמה, הייבוא והליווי בלי תשלום ואחר כך יש מנוי חודשי קבוע בלי תשלום נפרד על כל מודול.
 
-לשאלה הספציפית על מערכת עם אוטומציות ובוט וואצאפ יש תשובה נפרדת: [כמה עולה מערכת ניהול PWA בהתאמה אישית](https://daghazahav.com/answers/custom-pwa-management-system-cost/). ואם עוד לא החלטתם אם לבנות בכלל, התחילו מ [מערכת מדף או מערכת בהתאמה אישית](https://daghazahav.com/articles/off-the-shelf-vs-custom-system/).
+לשאלה הספציפית על מערכת עם אוטומציות ובוט וואצאפ יש תשובה נפרדת: [כמה עולה מערכת ניהול PWA בהתאמה אישית](https://daghazahav.com/answers/custom-pwa-management-system-cost/). ואם עוד לא החלטתם אם לבנות בכלל, התחילו מ[מערכת מדף או מערכת בהתאמה אישית](https://daghazahav.com/articles/off-the-shelf-vs-custom-system/).
 
 ## שאלות נפוצות
 

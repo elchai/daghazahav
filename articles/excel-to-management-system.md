@@ -29,7 +29,7 @@
 
 המטרה היא לא למחוק את האקסל מהארגון. אקסל נשאר מצוין לניתוח, לחישובים חד פעמיים ולבדיקות. מה שעובר למערכת הוא העבודה השוטפת: רישום, סטטוסים, הרשאות ותקשורת עם לקוחות.
 
-מערכת טובה יודעת גם לייצא בחזרה לאקסל. ב [ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) מייצאים חיובים ותשלומים לקובץ, וב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) דוח השעות לשכר יוצא לאקסל לפי עובד ואתר.
+מערכת טובה יודעת גם לייצא בחזרה לאקסל. ב[ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) מייצאים חיובים ותשלומים לקובץ, וב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) דוח השעות לשכר יוצא לאקסל לפי עובד ואתר.
 
 | נושא | באקסל | במערכת ניהול |
 | --- | --- | --- |
@@ -67,7 +67,7 @@
 
 ## שלב רביעי: ייבוא ובדיקת מדגם
 
-ייבוא טוב מתחיל בהתאמת עמודות: איזו עמודה באקסל הולכת לאיזה שדה במערכת. במערכות של דג הזהב מייבאים את הקובץ כמו שהוא וצוות דג הזהב עוזר להתאים את העמודות. יש מערכות שגם משלימות נתונים לבד: ב [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) המערכת משלימה את פרטי הרכבים ממשרד התחבורה.
+ייבוא טוב מתחיל בהתאמת עמודות: איזו עמודה באקסל הולכת לאיזה שדה במערכת. במערכות של דג הזהב מייבאים את הקובץ כמו שהוא וצוות דג הזהב עוזר להתאים את העמודות. יש מערכות שגם משלימות נתונים לבד: ב[מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) המערכת משלימה את פרטי הרכבים ממשרד התחבורה.
 
 אחרי הייבוא בדקו מדגם. בחרו כמה לקוחות שאתם מכירים טוב ובדקו שכל הפרטים שלהם הגיעו נכון, כולל היסטוריה ויתרות. טעות שמתגלה במדגם עולה דקות. טעות שמתגלה אחרי חודש עולה אמון.
 
@@ -94,10 +94,10 @@
 
 ## איך זה נראה במערכות שלנו
 
-- ב [ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) מייבאים את רשימת התושבים מאקסל ומחברים את הוואצאפ של הישוב. ההקמה והעלאת הנתונים נעשות ביום אחד עם ליווי אישי. מה עוד מזכירות ישוב צריכה לבדוק לפני שהיא בוחרת תוכנה מפורט במדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/).
-- ב [מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) מייבאים מאקסל פריטים, ספקים, לקוחות ועצי מוצר, עם עזרה בהתאמת העמודות. מפעל שעוד לא החליט לאיזו מערכת לעבור ימצא את השאלות במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
-- ב [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) מייבאים את יומן האירועים והלידים הקיימים מאקסל.
-- ב [קהילה בבניין](https://daghazahav.com/articles/kehilot-building-community-management/) מייבאים בניינים ותושבים מקובץ אקסל קיים, והמערכת עוזרת להתאים את העמודות.
+- ב[ישובון](https://daghazahav.com/articles/yishuvon-settlement-management/) מייבאים את רשימת התושבים מאקסל ומחברים את הוואצאפ של הישוב. ההקמה והעלאת הנתונים נעשות ביום אחד עם ליווי אישי. מה עוד מזכירות ישוב צריכה לבדוק לפני שהיא בוחרת תוכנה מפורט במדריך [תוכנה למזכירות ישוב](https://daghazahav.com/articles/settlement-secretariat-software/).
+- ב[מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) מייבאים מאקסל פריטים, ספקים, לקוחות ועצי מוצר, עם עזרה בהתאמת העמודות. מפעל שעוד לא החליט לאיזו מערכת לעבור ימצא את השאלות במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
+- ב[הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) מייבאים את יומן האירועים והלידים הקיימים מאקסל.
+- ב[קהילה בבניין](https://daghazahav.com/articles/kehilot-building-community-management/) מייבאים בניינים ותושבים מקובץ אקסל קיים, והמערכת עוזרת להתאים את העמודות.
 
 רוצים להבין מה ההעברה מוסיפה להיקף הפרויקט? ראו [מה משפיע על המחיר של פיתוח מערכת ניהול](https://daghazahav.com/articles/custom-system-cost-factors/).
 
