@@ -90,5 +90,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const res = await prerender(slugs);
   let bad = false;
   for (const r of res) { console.log(r.error ? `${r.slug}: ${r.error}` : `${r.slug}: ${r.words} words baked in`); if (r.error) bad = true; }
+  // the .md twins are converted from this HTML, so rebuild them now
+  const { buildMarkdown } = await import('./build-markdown.mjs');
+  console.log(`md-twins: ${buildMarkdown().built.length} .md twins + llms.txt rebuilt`);
   process.exit(bad ? 1 : 0);
 }

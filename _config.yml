@@ -1,0 +1,5 @@
+# GitHub Pages builds this repo with Jekyll. The site is plain HTML, so Jekyll only copies files.
+# require_front_matter keeps the .md twins (/x.md, made by scripts/build-markdown.mjs) as raw Markdown
+# files served as text/markdown, instead of the optional-front-matter plugin turning them into
+# .html pages that would collide with the real index.html files.
+require_front_matter: true
