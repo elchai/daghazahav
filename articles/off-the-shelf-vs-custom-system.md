@@ -28,11 +28,11 @@
 
 ### כמה גורמים נוגעים בעבודה?
 
-תהליך שמתחיל ונגמר אצל אדם אחד מתאים כמעט לכל כלי. כשנוגעים בו לקוח, צוות, ספק וגורם מאשר, כל אחד צריך לראות משהו אחר ולפעול מהמקום שלו. ב [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) למשל חברת הליסינג או השמאי מקבלים קישור עם התמונות וההצעה ומאשרים שורה אחרי שורה. מערכות כלליות מתקשות בדיוק בנקודות כאלה. איך בודקים את זה בפועל בתוכנה למוסך מפורט במדריך [תוכנה לניהול מוסך: מה חשוב לבדוק לפני שבוחרים](https://daghazahav.com/articles/garage-management-software-guide/).
+תהליך שמתחיל ונגמר אצל אדם אחד מתאים כמעט לכל כלי. כשנוגעים בו לקוח, צוות, ספק וגורם מאשר, כל אחד צריך לראות משהו אחר ולפעול מהמקום שלו. ב[מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) למשל חברת הליסינג או השמאי מקבלים קישור עם התמונות וההצעה ומאשרים שורה אחרי שורה. מערכות כלליות מתקשות בדיוק בנקודות כאלה. איך בודקים את זה בפועל בתוכנה למוסך מפורט במדריך [תוכנה לניהול מוסך: מה חשוב לבדוק לפני שבוחרים](https://daghazahav.com/articles/garage-management-software-guide/).
 
 ### איפה העבודה נעשית?
 
-אם העובדים בשטח, ברצפת ייצור או בסיור, המסך צריך להתאים לטלפון ולטאבלט. ב [מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) מסך העובד בנוי מכפתורים גדולים שעובדים גם עם כפפות, וב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) השומר סורק נקודת ביקורת מהטלפון. מערכת שנבנתה למשרד מרגישה מסורבלת בשטח. מה בודקים בתוכנה שהמשתמשים העיקריים שלה הם שומרים בשטח מפורט במדריך [סידור משמרות לחברת שמירה: איך בוחרים תוכנה](https://daghazahav.com/articles/security-shift-scheduling-software/).
+אם העובדים בשטח, ברצפת ייצור או בסיור, המסך צריך להתאים לטלפון ולטאבלט. ב[מפעלון](https://daghazahav.com/articles/mifalon-factory-management/) מסך העובד בנוי מכפתורים גדולים שעובדים גם עם כפפות, וב [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) השומר סורק נקודת ביקורת מהטלפון. מערכת שנבנתה למשרד מרגישה מסורבלת בשטח. מה בודקים בתוכנה שהמשתמשים העיקריים שלה הם שומרים בשטח מפורט במדריך [סידור משמרות לחברת שמירה: איך בוחרים תוכנה](https://daghazahav.com/articles/security-shift-scheduling-software/).
 
 ### כמה כלים אתם מחזיקים היום?
 
@@ -58,9 +58,9 @@
 
 בין מדף לבנייה לפי אפיון יש דרך שהרבה ארגונים לא מכירים: מערכת שכבר נבנתה לענף שלכם ועובדת, ומקבלת את ההתאמות שהארגון שלכם צריך. מקבלים בסיס בדוק ולא מוותרים על הדרך שבה אתם עובדים.
 
-כך בנויות המערכות של דג הזהב. [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) נבנתה למוסכים, [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) לאולמות ולגני אירועים ו [משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) לחברות שמירה. בהפקון התאמת המערכת לאולם נעשית בלי תשלום נוסף, ומה בודקים בתוכנה לאולם לפני שבוחרים מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/). ב [מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) המערכת נבנית לפי הנהלים של המטווח ולא להפך. במפעלים הדילמה נראית אחרת כי האפשרות הגדולה שם היא ERP, ופירקנו אותה במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
+כך בנויות המערכות של דג הזהב. [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) נבנתה למוסכים, [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) לאולמות ולגני אירועים ו[משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) לחברות שמירה. בהפקון התאמת המערכת לאולם נעשית בלי תשלום נוסף, ומה בודקים בתוכנה לאולם לפני שבוחרים מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/). ב[מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) המערכת נבנית לפי הנהלים של המטווח ולא להפך. במפעלים הדילמה נראית אחרת כי האפשרות הגדולה שם היא ERP, ופירקנו אותה במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
 
-לעסק קטן שצריך בעיקר לידים, עסקאות ומשימות יש גם מערכת מדף משלנו: [CRAZY CRM](https://daghazahav.com/articles/crazy-crm-hebrew-crm/), שנרשמים אליה ישירות באתר שלה. ההשוואה בין CRM מדף ל-CRM בהתאמה אישית לעסק קטן נמצאת ב [תשובה הזאת](https://daghazahav.com/answers/small-business-custom-crm-comparison/), ומה CRM שנבנה לפי העסק כולל מפורט במדריך [פיתוח CRM בהתאמה אישית](https://daghazahav.com/articles/custom-crm-development/).
+לעסק קטן שצריך בעיקר לידים, עסקאות ומשימות יש גם מערכת מדף משלנו: [CRAZY CRM](https://daghazahav.com/articles/crazy-crm-hebrew-crm/), שנרשמים אליה ישירות באתר שלה. ההשוואה בין CRM מדף ל-CRM בהתאמה אישית לעסק קטן נמצאת ב[תשובה הזאת](https://daghazahav.com/answers/small-business-custom-crm-comparison/), ומה CRM שנבנה לפי העסק כולל מפורט במדריך [פיתוח CRM בהתאמה אישית](https://daghazahav.com/articles/custom-crm-development/).
 
 ## מבחן התהליך האחד
 
@@ -93,7 +93,7 @@
 - **להתעלם מהיום שאחרי.** גם במדף וגם בהתאמה אישית שאלו מי עונה כשמשהו לא עובד.
 - **לא לבדוק איך יוצאים.** ודאו שאפשר לייצא את הנתונים שלכם בכל שלב.
 
-אם אחרי המבחן אתם נוטים להתאמה אישית, המדריכים [מה משפיע על המחיר](https://daghazahav.com/articles/custom-system-cost-factors/) ו [איך עובר פרויקט פיתוח](https://daghazahav.com/articles/custom-system-development-process/) יעזרו לכם להתכונן לשיחה עם מפתח.
+אם אחרי המבחן אתם נוטים להתאמה אישית, המדריכים [מה משפיע על המחיר](https://daghazahav.com/articles/custom-system-cost-factors/) ו[איך עובר פרויקט פיתוח](https://daghazahav.com/articles/custom-system-development-process/) יעזרו לכם להתכונן לשיחה עם מפתח.
 
 ## שאלות נפוצות
 
