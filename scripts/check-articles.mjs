@@ -113,7 +113,8 @@ for (const [label, src] of [['sitemap.xml', sitemap], ['llms.txt', llms]]) for (
 for (const slug of pages) {
   const u = `${ORIGIN}/articles/${slug}/`;
   if (!sitemap.includes(`<loc>${u}</loc>`)) fail('sitemap.xml', `missing ${u}`);
-  if (!llms.includes(`(${u})`)) fail('llms.txt', `missing ${u}`);
+  if (!llms.includes(`(${ORIGIN}/articles/${slug}.md)`)) fail('llms.txt', `missing ${ORIGIN}/articles/${slug}.md`);
+  if (!fs.existsSync(path.join(ROOT, 'articles', `${slug}.md`))) fail(`articles/${slug}.md`, 'markdown twin missing (run scripts/build-markdown.mjs)');
   if (!indexHtml.includes(`href="/articles/${slug}/"`)) fail('articles/index.html', `missing link to ${slug}`);
 }
 for (const m of sitemap.matchAll(/<url><loc>([^<]+)<\/loc>(?:<lastmod>([^<]*)<\/lastmod>)?/g)) {

@@ -1,12 +1,13 @@
 // Builds daghazahav.com/articles/ (index, one page per system from scripts/articles-data.mjs and the
-// topic guides from scripts/guides-data.mjs), and refreshes the articles block in sitemap.xml and llms.txt
-// (between "articles" markers). Quality gate before every ship: npm run check:articles
+// topic guides from scripts/guides-data.mjs), and refreshes the articles block in sitemap.xml
+// (between "articles" markers), then rebuilds the .md twins, llms.txt and llms-full.txt (build-markdown.mjs). Quality gate before every ship: npm run check:articles
 // Usage: node scripts/build-articles.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ARTICLES, PUBLISHED } from './articles-data.mjs';
 import { GUIDES, GUIDES_PUBLISHED, GUIDES_MODIFIED, PILLAR } from './guides-data.mjs';
+import { buildMarkdown } from './build-markdown.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://daghazahav.com';
@@ -420,26 +421,6 @@ function sitemap() {
   writeText(r.p, src, r.crlf);
 }
 
-// llms.txt: guides + articles sections right after the intro, before "## שאלות ותשובות"
-function llms() {
-  const block = [
-    '## מדריכים',
-    ...[pillar, ...GUIDES.filter((g) => !g.pillar)].map((g) => `- [${g.h1}](${url(g)}): ${g.answer}`),
-    '',
-    '## מאמרים',
-    `- [מאמרים ומדריכים: מערכות ניהול בהתאמה אישית](${ORIGIN}/articles/): מדריכים לפיתוח מערכת ניהול ומאמר מעמיק על כל מערכת, עם יכולות, קהל יעד ושאלות נפוצות.`,
-    ...ARTICLES.map((a) => `- [${a.h1}](${url(a)}): ${a.answer}`),
-  ].join('\n');
-  const r = replaceBlock('llms.txt', '<!-- articles:start -->', '<!-- articles:end -->', block);
-  let src = r.src;
-  if (src === null) {
-    src = fs.readFileSync(r.p, 'utf8').split('\r\n').join('\n');
-    const at = src.indexOf('## שאלות ותשובות');
-    src = at >= 0 ? `${src.slice(0, at)}${r.full}\n${src.slice(at)}` : `${src.trimEnd()}\n\n${r.full}`;
-  }
-  writeText(r.p, src, r.crlf);
-}
-
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, 'index.html'), index());
 for (const a of ARTICLES) {
@@ -454,7 +435,6 @@ for (const g of GUIDES) {
   fs.writeFileSync(path.join(OUT, g.slug, 'index.html'), guide(g));
 }
 sitemap();
-llms();
 
 // Guard: the copy rules that Elchai enforces on every page. The full gate is scripts/check-articles.mjs.
 const bad = [];
@@ -464,4 +444,5 @@ for (const f of ['index.html', ...ARTICLES.map((a) => `${a.slug}/index.html`), .
   if ((h.match(/<h1[\s>]/g) || []).length !== 1) bad.push(`${f}: h1 count`);
 }
 if (bad.length) { console.error(bad.join('\n')); process.exit(1); }
-console.log(`built ${GUIDES.length} guides + ${ARTICLES.length} articles + index, sitemap and llms.txt updated`);
+const md = buildMarkdown();
+console.log(`built ${GUIDES.length} guides + ${ARTICLES.length} articles + index, sitemap updated, ${md.built.length} .md twins + llms.txt rebuilt`);

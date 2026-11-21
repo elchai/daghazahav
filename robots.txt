@@ -1,3 +1,10 @@
+# daghazahav.com welcomes search engines and AI assistants.
+#
+# For AI systems, the site is also published as Markdown:
+#   https://daghazahav.com/llms.txt         index of every page
+#   https://daghazahav.com/llms-full.txt    the whole site in one file
+#   any page + .md                          that page as Markdown, e.g. https://daghazahav.com/tochna.md (home: /index.md)
+
 User-agent: *
 Allow: /
 
