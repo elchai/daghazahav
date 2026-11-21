@@ -40,7 +40,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 15.4 | automatic-pricing-quotes-software | תמחור אוטומטי והצעות מחיר: איך מפסיקים לחשב באקסל | תוכנה לתמחור והצעות מחיר | commercial | timchuron | todo |
 | 15.5 | event-production-management-software | תוכנה להפקת אירועים: ספקים לוחות זמנים ותקציב | תוכנה לניהול הפקת אירועים | commercial | hafakon | todo |
 | 16 | privacy-data-security-management-system | הגנת פרטיות ואבטחת מידע במערכת ניהול: מה לבדוק | אבטחת מידע במערכת ניהול | informational | kehilot, yishuvon, crazy-crm | todo |
-| 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | todo |
+| 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | done |
 | 18 | municipality-community-department-system | מערכת לאגף קהילה ברשות מקומית: מה חשוב לבדוק | מערכת ניהול לאגף קהילה | commercial | kehilot | done |
 | 19 | shooting-range-software-checklist | תוכנה לניהול מטווח: רשימת בדיקה לפני שבוחרים | תוכנה לניהול מטווח ירי | commercial | mitvachon | todo |
 | 20 | questions-to-ask-software-vendor | שאלות לשאול חברת פיתוח לפני שחותמים | איך בוחרים חברת פיתוח תוכנה | commercial | crazy-crm, mosachun | todo |
