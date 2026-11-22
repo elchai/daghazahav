@@ -8,7 +8,7 @@
 
 # מערכת מדף או מערכת בהתאמה אישית: איך מחליטים
 
-מאת [אלחי פיין](https://elchai.co.il/about/) · דג הזהב · 21 בנובמבר 2026 · 6 דקות קריאה
+מאת [אלחי פיין](https://elchai.co.il/about/) · דג הזהב · 22 בנובמבר 2026 · 6 דקות קריאה
 
 מערכת מדף מתאימה כשהתהליך שלכם דומה לזה של רוב הארגונים בתחום ואתם מוכנים לעבוד כמו שהכלי עובד. מערכת בהתאמה אישית מתאימה כשהתהליך הוא חלק מהיתרון שלכם, כשהעבודה עוברת בין כמה גורמים כמו לקוח, צוות וספק, או כשאתם מחזיקים היום כמה כלים שלא מדברים ביניהם. הדרך האמינה ביותר להחליט היא לקחת תהליך אמיתי אחד ולבדוק כמה ממנו הכלי עושה בלי עקיפות.
 
@@ -58,7 +58,7 @@
 
 בין מדף לבנייה לפי אפיון יש דרך שהרבה ארגונים לא מכירים: מערכת שכבר נבנתה לענף שלכם ועובדת, ומקבלת את ההתאמות שהארגון שלכם צריך. מקבלים בסיס בדוק ולא מוותרים על הדרך שבה אתם עובדים.
 
-כך בנויות המערכות של דג הזהב. [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) נבנתה למוסכים, [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) לאולמות ולגני אירועים ו[משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) לחברות שמירה. בהפקון התאמת המערכת לאולם נעשית בלי תשלום נוסף, ומה בודקים בתוכנה לאולם לפני שבוחרים מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/). ב[מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) המערכת נבנית לפי הנהלים של המטווח ולא להפך. במפעלים הדילמה נראית אחרת כי האפשרות הגדולה שם היא ERP, ופירקנו אותה במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
+כך בנויות המערכות של דג הזהב. [מוסכון](https://daghazahav.com/articles/mosachun-garage-management/) נבנתה למוסכים, [הפקון](https://daghazahav.com/articles/hafakon-event-venue-management/) לאולמות ולגני אירועים ו[משמרון](https://daghazahav.com/articles/mishmeron-security-company-management/) לחברות שמירה. בהפקון התאמת המערכת לאולם נעשית בלי תשלום נוסף, ומה בודקים בתוכנה לאולם לפני שבוחרים מפורט במדריך [תוכנה לניהול אולם אירועים](https://daghazahav.com/articles/event-venue-management-software/). ב[מטווחון](https://daghazahav.com/articles/mitvachon-shooting-range-management/) המערכת נבנית לפי הנהלים של המטווח ולא להפך, ומה בודקים בתוכנה למטווח לפני שבוחרים מפורט במדריך [תוכנה לניהול מטווח](https://daghazahav.com/articles/shooting-range-software-checklist/). במפעלים הדילמה נראית אחרת כי האפשרות הגדולה שם היא ERP, ופירקנו אותה במדריך [מפעל קטן: ERP או מערכת ניהול ייעודית](https://daghazahav.com/articles/factory-erp-or-dedicated-system/).
 
 לעסק קטן שצריך בעיקר לידים, עסקאות ומשימות יש גם מערכת מדף משלנו: [CRAZY CRM](https://daghazahav.com/articles/crazy-crm-hebrew-crm/), שנרשמים אליה ישירות באתר שלה. ההשוואה בין CRM מדף ל-CRM בהתאמה אישית לעסק קטן נמצאת ב[תשובה הזאת](https://daghazahav.com/answers/small-business-custom-crm-comparison/), ומה CRM שנבנה לפי העסק כולל מפורט במדריך [פיתוח CRM בהתאמה אישית](https://daghazahav.com/articles/custom-crm-development/).
 
@@ -181,6 +181,9 @@
 
 [תוכנה לניהול בית ספר שדה ומתחם אירוח: מה לבדוק לפני שבוחרים](https://daghazahav.com/articles/hospitality-field-school-software/)
 מדריך למה תוכנה למלון לא מחזיקה טיול שנתי של תשעים תלמידים, מה לבדוק בכל שלב מהבירור של רכזת השכבה ועד המשוב למורה, ואיך מחברים אירוח טיולים ותפעול למקום אחד. לקריאת המדריך
+
+[תוכנה לניהול מטווח: רשימת בדיקה לפני שבוחרים](https://daghazahav.com/articles/shooting-range-software-checklist/)
+מדריך למה יומן הזמנות רגיל לא מחזיק מטווח, מה לבדוק בכל שלב מההזמנה ועד יומן המקצים, איך יודעים שכל כדור שנופק רשום ואיך מעבירים בהדגמה יום אמיתי עם קבוצה לריענון. לקריאת המדריך
 
 ## מערכות שקשורות למדריך
 
