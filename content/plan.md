@@ -42,7 +42,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 16 | privacy-data-security-management-system | הגנת פרטיות ואבטחת מידע במערכת ניהול: מה לבדוק | אבטחת מידע במערכת ניהול | informational | kehilot, yishuvon, crazy-crm | todo |
 | 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | done |
 | 18 | municipality-community-department-system | מערכת לאגף קהילה ברשות מקומית: מה חשוב לבדוק | מערכת ניהול לאגף קהילה | commercial | kehilot | done |
-| 19 | shooting-range-software-checklist | תוכנה לניהול מטווח: רשימת בדיקה לפני שבוחרים | תוכנה לניהול מטווח ירי | commercial | mitvachon | todo |
+| 19 | shooting-range-software-checklist | תוכנה לניהול מטווח: רשימת בדיקה לפני שבוחרים | תוכנה לניהול מטווח ירי | commercial | mitvachon | done |
 | 20 | questions-to-ask-software-vendor | שאלות לשאול חברת פיתוח לפני שחותמים | איך בוחרים חברת פיתוח תוכנה | commercial | crazy-crm, mosachun | todo |
 | 21 | management-system-requirements-doc | איך כותבים אפיון למערכת ניהול: מבנה ודוגמה | אפיון מערכת ניהול | informational | mifalon, dfuson | todo |
 | 22 | customer-portal-without-app | פורטל לקוח בלי אפליקציה: קישור אישי בוואצאפ | פורטל לקוח | informational | mosachun, yishuvon, hafakon | todo |
