@@ -78,10 +78,31 @@ export function rewrite(text, slug, entries, ext) {
   return out;
 }
 
+// The answer page that names this product. Linking the product page to it (and it back to
+// the product) is what lets Google and AI engines connect the question to the product.
+export const ANSWERS = {
+  mosachun: ['garage-management-system-whatsapp-quotes', 'מערכת ניהול למוסך עם הצעת מחיר בוואצאפ'],
+  mifalon: ['management-system-small-medium-factory', 'מערכת ניהול למפעל קטן או בינוני'],
+  yishuvon: ['settlement-moshav-management-system', 'מערכת לניהול ישוב או מושב'],
+  kehilot: ['building-neighborhood-community-management-system', 'מערכת לניהול קהילה בבניין או בשכונה'],
+  hafakon: ['event-production-management-system', 'מערכת לניהול חברת הפקת אירועים'],
+  iruchon: ['hospitality-compound-management-system', 'מערכת לניהול מתחם אירוח וצימרים'],
+  mishmeron: ['security-company-shift-management-system', 'מערכת לניהול חברת שמירה ומשמרות'],
+  mitvachon: ['shooting-range-management-system', 'מערכת לניהול מטווח ירי, נשק ותחמושת'],
+};
+const AMARK = '<!-- daghazahav:answers -->';
+
+export function answersLinks(html, slug) {
+  const a = ANSWERS[slug];
+  if (!a || html.includes(AMARK)) return html;
+  const nav = `${AMARK}<nav aria-label="שאלות ותשובות" dir="rtl" style="max-width:72rem;margin:0 auto;padding:16px 20px 28px;text-align:center;font:14px/1.7 Heebo,system-ui,sans-serif;opacity:.85"><a href="${ORIGIN}/answers/${a[0]}/" style="color:inherit">${a[1]}: שאלות ותשובות</a> · <a href="${ORIGIN}/answers/" style="color:inherit">כל השאלות והתשובות של&nbsp;דג הזהב</a></nav>\n`;
+  return html.replace('</body>', `${nav}</body>`);
+}
+
 export function rewriteIndex(html, slug, live) {
   let out = html.split(live).join(`${ORIGIN}/${slug}/`); // canonical / og:url
   if (!out.includes(MARK)) out = out.replace('</head>', `${tracking(slug)}</head>`);
-  return out;
+  return answersLinks(out, slug);
 }
 
 async function get(url) {
