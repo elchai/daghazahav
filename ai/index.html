@@ -39,7 +39,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
 <script src="/systems-tracking.js" data-system="ai"></script>
 <style>
-:root{--navy:#0e274a;--navy2:#0a1d38;--blue:#1f5aa8;--blue2:#194a8c;--light:#f5f8fc;--ink:#0f1b33;--muted:#4a5670;--line:#dde5f0;--orange:#c2410c;--orange2:#9a3412;--wa:#17803f;--r:22px}
+:root{--navy:#0e274a;--navy2:#0a1d38;--blue:#1f5aa8;--blue2:#194a8c;--light:#f5f8fc;--ink:#0f1b33;--muted:#4a5670;--line:#dde5f0;--gold:#ffc933;--gold2:#ffe08a;--wa:#25d366;--r:22px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:Heebo,Arial,sans-serif;color:var(--ink);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -63,22 +63,22 @@ h1,h2,h3,p,li,summary,td,th{text-wrap:balance}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font:inherit;font-weight:700;font-size:17px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}
 .btn:hover{transform:translateY(-2px)}
 .btn svg{width:20px;height:20px;flex:none}
-.btn-wa{background:var(--wa);color:#fff;box-shadow:0 10px 24px -10px rgba(23,128,63,.7)}
-.btn-wa:hover{background:#126a33}
-.btn-or{background:var(--orange);color:#fff;box-shadow:0 10px 24px -10px rgba(194,65,12,.7)}
-.btn-or:hover{background:var(--orange2)}
-.btn-gh{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.35)}
-.btn-gh:hover{background:rgba(255,255,255,.18)}
-.btn-bl{background:var(--blue);color:#fff}
-.btn-bl:hover{background:var(--blue2)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 10px 24px -10px rgba(37,211,102,.6)}
+.btn-wa:hover{background:#1fb957}
+.btn-cta{background:var(--gold);color:var(--navy);box-shadow:0 12px 30px -8px rgba(255,201,51,.6)}
+.btn-cta:hover{background:var(--gold2)}
+.btn-line{background:#ffffff0d;color:#fff;border:1px solid #ffffff40;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-line:hover{background:#ffffff1a}
+.btn-nv{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
+.btn-nv:hover{background:var(--navy);color:#fff}
 .btn-sm{padding:10px 18px;font-size:15px}
-:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+:focus-visible{outline:3px solid #5a93d6;outline-offset:3px}
 /* hero */
 .hero{background:radial-gradient(1200px 600px at 80% -10%,#1f5aa8 0%,transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;margin-top:-74px;padding:130px 0 70px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
-.kicker{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:#fed7aa;margin-bottom:18px}
+.kicker{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:18px}
 .hero h1{font-size:clamp(28px,3.6vw,48px);line-height:1.15;font-weight:900;margin:0 0 18px}
-.hero h1 em{font-style:normal;color:#fdba74}
+.hero h1 em{font-style:normal;color:var(--gold)}
 .hero .sub{font-size:19px;color:rgba(255,255,255,.82);margin:0 0 28px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
@@ -86,7 +86,7 @@ h1,h2,h3,p,li,summary,td,th{text-wrap:balance}
 .hero-pic{position:relative}
 .hero-pic img{border-radius:24px;box-shadow:0 30px 70px -25px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.15)}
 .hero-badge{position:absolute;bottom:-18px;right:-10px;background:#fff;color:var(--ink);border-radius:18px;padding:12px 16px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);font-size:14px;line-height:1.35}
-.hero-badge b{display:block;font-size:22px;color:var(--orange)}
+.hero-badge b{display:block;font-size:22px;color:var(--blue2)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
 .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;text-align:center}
 .stat b{display:block;font-size:30px;font-weight:900;color:#fff}
@@ -96,7 +96,7 @@ h1,h2,h3,p,li,summary,td,th{text-wrap:balance}
 .sec{padding:76px 0}
 .sec-w{background:#fff}
 .head{text-align:center;max-width:720px;margin:0 auto 40px}
-.tag{display:inline-block;color:var(--orange);font-weight:800;font-size:14px;letter-spacing:.3px;margin-bottom:8px}
+.tag{display:inline-block;background:#dbe8f8;color:#153c70;border-radius:999px;padding:6px 16px;font-weight:700;font-size:13px;letter-spacing:.3px;margin-bottom:12px}
 .head h2{font-size:clamp(28px,3.6vw,40px);line-height:1.2;margin:0 0 12px;font-weight:900;color:var(--navy)}
 .head p{margin:0;color:var(--muted);font-size:18px}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:0 10px 30px -22px rgba(14,39,74,.45);transition:transform .2s,box-shadow .2s}
@@ -110,7 +110,7 @@ h1,h2,h3,p,li,summary,td,th{text-wrap:balance}
 .calc-in input[type=range]{width:100%;accent-color:var(--blue)}
 .calc-in small{display:block;color:var(--muted);font-weight:400;font-size:14px}
 .calc-out{background:linear-gradient(160deg,var(--navy),var(--blue2));color:#fff;border:0;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.calc-out .big{font-size:clamp(38px,6vw,56px);font-weight:900;line-height:1.1;color:#fdba74;margin:6px 0}
+.calc-out .big{font-size:clamp(38px,6vw,56px);font-weight:900;line-height:1.1;color:var(--gold);margin:6px 0}
 .calc-out .mid{font-size:18px;color:rgba(255,255,255,.85);margin:0 0 4px}
 .calc-out .note{font-size:13px;color:rgba(255,255,255,.6);margin:10px 0 18px}
 .calc-out .btn{align-self:center}
@@ -131,7 +131,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .proof img{border-radius:var(--r)}
 .proof ul{list-style:none;padding:0;margin:18px 0 0}
 .proof li{padding:10px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px}
-.proof li::before{content:"✓";color:var(--orange);font-weight:900}
+.proof li::before{content:"✓";color:var(--blue);font-weight:900}
 @media(max-width:800px){.proof{grid-template-columns:1fr}}
 .stories{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
 .story{padding:0;overflow:hidden;display:flex;flex-direction:column}
@@ -139,7 +139,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .story-v img{width:100%;height:100%;object-fit:cover}
 .story-v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55));border:0;color:#fff;font:inherit;font-weight:700;cursor:pointer}
-.play span{width:64px;height:64px;border-radius:50%;background:var(--orange);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+.play span{width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
 .play svg{width:28px;height:28px;margin-right:-3px}
 .story-b{padding:18px 20px 22px}
 .story-b blockquote{margin:0 0 12px;font-size:16px;color:var(--ink)}
@@ -154,9 +154,9 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .pkg ul{list-style:none;padding:0;margin:0 0 18px;flex:1}
 .pkg li{padding:7px 0;display:flex;gap:8px}
 .pkg li::before{content:"✓";color:var(--blue);font-weight:900}
-.pkg .price{font-weight:800;color:var(--orange);margin:0 0 14px}
-.pkg.hot{border:2px solid var(--orange)}
-.pkg .ribbon{position:absolute;top:-13px;right:22px;background:var(--orange);color:#fff;font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px}
+.pkg .price{font-weight:800;color:var(--blue2);margin:0 0 14px}
+.pkg.hot{border:2px solid var(--blue)}
+.pkg .ribbon{position:absolute;top:-13px;right:22px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px}
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
 .mode{display:flex;gap:14px;align-items:flex-start}
 .mode .ic{flex:none;width:44px;height:44px;border-radius:14px;background:#e3edf9;color:var(--blue2);display:grid;place-items:center}
@@ -165,11 +165,11 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .mode p{margin:0;color:var(--muted);font-size:15px}
 .mode-list{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
 .mode-list li{position:relative;padding-inline-start:22px;font-size:15px;font-weight:600;color:var(--navy)}
-.mode-list li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--orange)}
+.mode-list li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--blue)}
 .price-note{text-align:center;margin:26px auto 0;max-width:680px;color:var(--muted)}
 @media(max-width:900px){.pk{grid-template-columns:1fr}.modes{grid-template-columns:1fr}}
 /* diag */
-.diag{background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1px solid #fed7aa;border-radius:28px;padding:40px;display:grid;grid-template-columns:1.3fr .7fr;gap:26px;align-items:center}
+.diag{background:linear-gradient(135deg,#eff5fc,#dbe8f8);border:1px solid #c5d9f1;border-radius:28px;padding:40px;display:grid;grid-template-columns:1.3fr .7fr;gap:26px;align-items:center}
 .diag h2{margin:0 0 10px;font-size:clamp(26px,3.2vw,36px);color:var(--navy);font-weight:900}
 .diag p{margin:0;color:var(--ink)}
 .diag .ctas{justify-content:flex-start}
@@ -201,7 +201,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .cgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}
 .cside p{margin:0 0 6px;color:rgba(255,255,255,.85)}
 .cside .ctas{margin-top:20px}
-.cside a.tel{color:#fdba74;font-weight:700;text-decoration:none}
+.cside a.tel{color:var(--gold);font-weight:700;text-decoration:none}
 form.lead{background:#fff;color:var(--ink);border-radius:26px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
 form.lead label{font-weight:700;font-size:14px;display:flex;flex-direction:column;gap:6px}
 form.lead .full{grid-column:1/-1}
@@ -245,7 +245,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
       <a href="#proof">מהשטח</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a class="btn btn-or btn-sm" href="#contact">לאבחון חינם</a>
+    <a class="btn btn-cta btn-sm" href="#contact">לאבחון חינם</a>
   </div>
 </header>
 
@@ -260,7 +260,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p class="sub"><span class="l">סדנאות AI מעשיות שמשפרות את&nbsp;הרווחיות והיעילות של&nbsp;הארגון.</span><span class="l">כל&nbsp;עובד מתרגל על&nbsp;המשימות שלו ויוצא עם&nbsp;כלים לעבודה כבר&nbsp;מחר בבוקר.</span></p>
         <div class="ctas">
           <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>דברו איתי בוואצאפ</a>
-          <a class="btn btn-gh" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
+          <a class="btn btn-line" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
         </div>
         <ul class="chips">
           <li>סדנאות פרונטליות והדרכות מרחוק</li>
@@ -304,7 +304,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <div class="big" id="r-ils">23,220 ₪</div>
         <p class="mid" id="r-hrs">258 שעות עבודה שחוזרות בכל&nbsp;חודש</p>
         <p class="note">חישוב: עובדים × שעות בשבוע × עלות שעה × 4.3 שבועות.</p>
-        <a class="btn btn-or" href="#contact" data-calc-cta>רוצים להגיע למספר הזה? לאבחון חינם</a>
+        <a class="btn btn-cta" href="#contact" data-calc-cta>רוצים להגיע למספר הזה? לאבחון חינם</a>
       </div>
     </div>
   </div>
@@ -410,7 +410,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
           <li>רשימת צעדים ראשונים לכל&nbsp;משתתף</li>
         </ul>
         <p class="price">מחיר לפי&nbsp;היקף</p>
-        <a class="btn btn-bl" href="#contact" data-track="הרצאה">לבדיקת התאמה</a>
+        <a class="btn btn-nv" href="#contact" data-track="הרצאה">לבדיקת התאמה</a>
       </article>
       <article class="card pkg hot rv">
         <span class="ribbon">המסלול המבוקש</span>
@@ -425,7 +425,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
           <li>פרונטלית אצלכם בארגון</li>
         </ul>
         <p class="price">מחיר לפי&nbsp;היקף</p>
-        <a class="btn btn-or" href="#contact" data-track="סדנה מעשית">לבדיקת התאמה</a>
+        <a class="btn btn-cta" href="#contact" data-track="סדנה מעשית">לבדיקת התאמה</a>
       </article>
       <article class="card pkg rv">
         <h3>הטמעה וליווי</h3>
@@ -437,7 +437,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
           <li>ליווי חודשי ומדידת שעות שנחסכו</li>
         </ul>
         <p class="price">מחיר לפי&nbsp;היקף</p>
-        <a class="btn btn-bl" href="#contact" data-track="הטמעה וליווי">לבדיקת התאמה</a>
+        <a class="btn btn-nv" href="#contact" data-track="הטמעה וליווי">לבדיקת התאמה</a>
       </article>
     </div>
     <div class="head rv" style="margin-top:48px;margin-bottom:22px">
@@ -478,8 +478,8 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p><span class="l">נעבור יחד על&nbsp;המשימות שלוקחות לצוות הכי הרבה זמן.</span><span class="l">תצאו מהשיחה עם&nbsp;שלוש משימות ראשונות להעביר ל-AI.</span></p>
       </div>
       <div class="diag-actions">
-        <a class="btn btn-or" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת אבחון ביומן</a>
-        <a class="btn btn-bl" href="#contact">השארת פרטים</a>
+        <a class="btn btn-cta" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת אבחון ביומן</a>
+        <a class="btn btn-nv" href="#contact">השארת פרטים</a>
       </div>
     </div>
   </div>
@@ -492,7 +492,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <span class="tag">ככה זה נראה אצלי</span>
         <h2 style="margin:0 0 12px;font-size:clamp(26px,3.2vw,36px);color:var(--navy);font-weight:900;line-height:1.2">עוזר AI אישי בתוך&nbsp;הוואצאפ</h2>
         <p style="margin:0 0 18px;color:var(--muted)"><span class="l">כל&nbsp;יום אני עובד עם&nbsp;SHRAGA, סוכן AI שמנהל איתי את&nbsp;היום.</span><span class="l">הוא מכין סקירת בוקר, מזכיר משימות ומסכם פגישות.</span><span class="l">במסלול ההטמעה מנהלים מקבלים עוזר כזה משלהם.</span></p>
-        <a class="btn btn-bl" href="/shraga/">להכיר את&nbsp;SHRAGA</a>
+        <a class="btn btn-nv" href="/shraga/">להכיר את&nbsp;SHRAGA</a>
       </div>
       <div class="phone rv" aria-label="דוגמה לשיחה עם SHRAGA בוואצאפ" role="img">
         <div class="ph-top"><img src="/ai/img/shraga.png" width="36" height="36" alt=""><div><b>SHRAGA</b><small>מחובר</small></div></div>
@@ -529,7 +529,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
 <section class="sec contact" id="contact">
   <div class="wrap">
     <div class="head rv">
-      <span class="tag" style="color:#fdba74">בואו נדבר</span>
+      <span class="tag" style="background:rgba(255,201,51,.15);color:var(--gold)">בואו נדבר</span>
       <h2>שיחת אבחון חינם של&nbsp;30 דקות</h2>
       <p>ספרו לי על&nbsp;הארגון ואחזור אליכם עם&nbsp;הצעה ראשונה.</p>
     </div>
@@ -540,7 +540,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p>טלפון: <a class="tel" href="tel:+972542012000" dir="ltr">054-2012000</a></p>
         <div class="ctas">
           <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>כתבו לי בוואצאפ</a>
-          <a class="btn btn-gh" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
+          <a class="btn btn-line" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
         </div>
       </div>
       <form class="lead rv" id="aiLead" novalidate>
@@ -554,7 +554,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <label class="full">מה הכי מעסיק אתכם היום?<textarea name="notes" maxlength="500"></textarea></label>
         <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <p class="f-err full" role="alert"></p>
-        <button class="btn btn-or full" type="submit">שלחו ואחזור אליכם</button>
+        <button class="btn btn-cta full" type="submit">שלחו ואחזור אליכם</button>
       </form>
     </div>
   </div>
@@ -577,7 +577,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
 
 <div class="mbar" role="region" aria-label="פעולות מהירות">
   <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>וואצאפ</a>
-  <a class="btn btn-or" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה</a>
+  <a class="btn btn-cta" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה</a>
 </div>
 
 <script>
