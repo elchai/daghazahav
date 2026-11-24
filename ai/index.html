@@ -39,7 +39,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4LJ0HYEW9L');gtag('config','AW-1038551960');</script>
 <script src="/systems-tracking.js" data-system="ai"></script>
 <style>
-:root{--navy:#0e274a;--navy2:#0a1d38;--blue:#1f5aa8;--blue2:#194a8c;--light:#f5f8fc;--ink:#0f1b33;--muted:#4a5670;--line:#dde5f0;--gold:#ffc933;--gold2:#ffe08a;--wa:#25d366;--r:22px}
+:root{--navy:#0e274a;--navy2:#0a1d38;--blue:#1f5aa8;--blue2:#194a8c;--light:#f5f8fc;--ink:#0f1b33;--muted:#4a5670;--line:#dde5f0;--acc:#8cc4ff;--wa:#25d366;--r:22px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:Heebo,Arial,sans-serif;color:var(--ink);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -65,8 +65,10 @@ h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 .btn svg{width:20px;height:20px;flex:none}
 .btn-wa{background:var(--wa);color:#fff;box-shadow:0 10px 24px -10px rgba(37,211,102,.6)}
 .btn-wa:hover{background:#1fb957}
-.btn-cta{background:var(--gold);color:var(--navy);box-shadow:0 12px 30px -8px rgba(255,201,51,.6)}
-.btn-cta:hover{background:var(--gold2)}
+.btn-cta{background:linear-gradient(135deg,#1f5aa8,#0e274a);color:#fff;box-shadow:0 12px 28px -10px rgba(31,90,168,.65)}
+.btn-cta:hover{background:linear-gradient(135deg,#2b6cc4,#163a6b);box-shadow:0 16px 32px -10px rgba(31,90,168,.75)}
+.btn-wt{background:#fff;color:var(--navy);box-shadow:0 12px 28px -12px rgba(0,0,0,.55)}
+.btn-wt:hover{background:#eef4fc}
 .btn-line{background:#ffffff0d;color:#fff;border:1px solid #ffffff40;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .btn-line:hover{background:#ffffff1a}
 .btn-nv{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
@@ -76,9 +78,9 @@ h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 /* hero */
 .hero{background:radial-gradient(1200px 600px at 80% -10%,#1f5aa8 0%,transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;margin-top:-74px;padding:130px 0 70px;overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
-.kicker{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:18px}
+.kicker{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700;color:var(--acc);margin-bottom:18px}
 .hero h1{font-size:clamp(28px,3.6vw,48px);line-height:1.15;font-weight:900;margin:0 0 18px}
-.hero h1 em{font-style:normal;color:var(--gold)}
+.hero h1 em{font-style:normal;color:var(--acc)}
 .hero .sub{font-size:19px;color:rgba(255,255,255,.82);margin:0 0 28px}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
@@ -88,9 +90,10 @@ h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 .hero-badge{position:absolute;bottom:-18px;right:-10px;background:#fff;color:var(--ink);border-radius:18px;padding:12px 16px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);font-size:14px;line-height:1.35}
 .hero-badge b{display:block;font-size:22px;color:var(--blue2)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}
-.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px;text-align:center}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px 8px;text-align:center;min-width:0}
 .stat b{display:block;font-size:30px;font-weight:900;color:#fff}
-.stat span{font-size:14px;color:rgba(255,255,255,.7)}
+.stat span{display:block;font-size:14px;color:rgba(255,255,255,.7);white-space:nowrap}
+@media(max-width:600px){.stats{gap:8px}.stat{padding:12px 4px}.stat b{font-size:24px}.stat span{font-size:11px}}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding-top:110px}.hero-badge{right:10px}}
 /* sections */
 .sec{padding:76px 0}
@@ -110,7 +113,7 @@ h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 .calc-in input[type=range]{width:100%;accent-color:var(--blue)}
 .calc-in small{display:block;color:var(--muted);font-weight:400;font-size:14px}
 .calc-out{background:linear-gradient(160deg,var(--navy),var(--blue2));color:#fff;border:0;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.calc-out .big{font-size:clamp(38px,6vw,56px);font-weight:900;line-height:1.1;color:var(--gold);margin:6px 0}
+.calc-out .big{font-size:clamp(38px,6vw,56px);font-weight:900;line-height:1.1;color:#fff;margin:6px 0}
 .calc-out .mid{font-size:18px;color:rgba(255,255,255,.85);margin:0 0 4px}
 .calc-out .note{font-size:13px;color:rgba(255,255,255,.6);margin:10px 0 18px}
 .calc-out .btn{align-self:center}
@@ -139,7 +142,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .story-v img{width:100%;height:100%;object-fit:cover}
 .story-v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55));border:0;color:#fff;font:inherit;font-weight:700;cursor:pointer}
-.play span{width:64px;height:64px;border-radius:50%;background:var(--gold);color:var(--navy);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+.play span{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
 .play svg{width:28px;height:28px;margin-right:-3px}
 .story-b{padding:18px 20px 22px}
 .story-b blockquote{margin:0 0 12px;font-size:16px;color:var(--ink)}
@@ -156,7 +159,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .pkg li::before{content:"✓";color:var(--blue);font-weight:900}
 .pkg .price{font-weight:800;color:var(--blue2);margin:0 0 14px}
 .pkg.hot{border:2px solid var(--blue)}
-.pkg .ribbon{position:absolute;top:-13px;right:22px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px}
+.pkg .ribbon{position:absolute;top:-13px;right:22px;background:var(--blue);color:#fff;font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px}
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
 .mode{display:flex;gap:14px;align-items:flex-start}
 .mode .ic{flex:none;width:44px;height:44px;border-radius:14px;background:#e3edf9;color:var(--blue2);display:grid;place-items:center}
@@ -175,6 +178,17 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .diag .ctas{justify-content:flex-start}
 .diag-actions{display:flex;flex-direction:column;gap:12px}
 @media(max-width:800px){.diag{grid-template-columns:1fr;padding:28px 22px}}
+/* booking */
+.book{padding-top:0}
+.book-box{background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px 22px 18px;box-shadow:0 20px 50px -30px rgba(14,39,74,.5)}
+.book-box .head{margin-bottom:18px}
+.cal-wrap{min-height:520px;width:100%;overflow:auto}
+.cal-wait{display:grid;place-items:center;min-height:520px;color:var(--muted)}
+.cal-alt{text-align:center;font-size:14px;color:var(--muted);margin:10px 0 0}
+.book-ok{text-align:center;padding:40px 10px}
+.book-ok h3{margin:0 0 8px;font-size:26px;color:var(--navy)}
+[hidden]{display:none!important}
+@media(max-width:600px){.book-box{padding:22px 8px 14px;border-radius:22px}}
 /* shraga */
 .sh{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
 .phone{max-width:340px;margin:0 auto;background:#e5ddd5;border-radius:30px;border:8px solid var(--navy);overflow:hidden;box-shadow:0 30px 60px -30px rgba(14,39,74,.8)}
@@ -201,7 +215,7 @@ td.after::before{content:"✓ ";color:#16a34a;font-weight:900}
 .cgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}
 .cside p{margin:0 0 6px;color:rgba(255,255,255,.85)}
 .cside .ctas{margin-top:20px}
-.cside a.tel{color:var(--gold);font-weight:700;text-decoration:none}
+.cside a.tel{color:var(--acc);font-weight:700;text-decoration:none}
 form.lead{background:#fff;color:var(--ink);border-radius:26px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
 form.lead label{font-weight:700;font-size:14px;display:flex;flex-direction:column;gap:6px}
 form.lead .full{grid-column:1/-1}
@@ -245,7 +259,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
       <a href="#proof">מהשטח</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <a class="btn btn-cta btn-sm" href="#contact">לאבחון חינם</a>
+    <a class="btn btn-wt btn-sm" href="#book">לאבחון חינם</a>
   </div>
 </header>
 
@@ -260,7 +274,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p class="sub"><span class="l">סדנאות AI מעשיות שמשפרות את&nbsp;הרווחיות והיעילות של&nbsp;הארגון.</span><span class="l">כל&nbsp;עובד מתרגל על&nbsp;המשימות שלו ויוצא עם&nbsp;כלים לעבודה כבר&nbsp;מחר בבוקר.</span></p>
         <div class="ctas">
           <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>דברו איתי בוואצאפ</a>
-          <a class="btn btn-line" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
+          <a class="btn btn-wt" href="#book">קביעת שיחה ביומן</a>
         </div>
         <ul class="chips">
           <li>סדנאות פרונטליות והדרכות מרחוק</li>
@@ -274,9 +288,9 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><b>25+</b><span>שנות עצמאות</span></div>
-      <div class="stat"><b>16</b><span>שנים בניהול חברה</span></div>
-      <div class="stat"><b>18</b><span>מערכות AI וניהול שפיתחתי</span></div>
+      <div class="stat"><b>25</b><span>שנות הדרכה</span></div>
+      <div class="stat"><b>16</b><span>שנות ניסיון כמנכ"ל חברה</span></div>
+      <div class="stat"><b>18</b><span>מערכות AI שבניתי</span></div>
     </div>
   </div>
 </section>
@@ -304,7 +318,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <div class="big" id="r-ils">23,220 ₪</div>
         <p class="mid" id="r-hrs">258 שעות עבודה שחוזרות בכל&nbsp;חודש</p>
         <p class="note">עובדים × שעות בשבוע × עלות שעה × 4.3</p>
-        <a class="btn btn-cta" href="#contact" data-calc-cta>רוצים להגיע למספר הזה? לאבחון חינם</a>
+        <a class="btn btn-wt" href="#contact" data-calc-cta>רוצים להגיע למספר הזה? לאבחון חינם</a>
       </div>
     </div>
   </div>
@@ -478,8 +492,28 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p><span class="l">נעבור יחד על&nbsp;המשימות שלוקחות לצוות הכי הרבה זמן.</span><span class="l">תצאו מהשיחה עם&nbsp;שלוש משימות ראשונות להעביר ל-AI.</span></p>
       </div>
       <div class="diag-actions">
-        <a class="btn btn-cta" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת אבחון ביומן</a>
+        <a class="btn btn-cta" href="#book">קביעת אבחון ביומן</a>
         <a class="btn btn-nv" href="#contact">השארת פרטים</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec book" id="book">
+  <div class="wrap">
+    <div class="book-box rv">
+      <div class="head">
+        <span class="tag">קביעת שיחה</span>
+        <h2>שיחת היכרות על&nbsp;הדרכות AI</h2>
+        <p>בחרו יום ושעה ביומן והזימון יגיע אליכם למייל.</p>
+      </div>
+      <div id="book-cal">
+        <div class="cal-wrap" id="cal-ai" aria-label="יומן לקביעת שיחת היכרות על הדרכות AI"><div class="cal-wait">היומן נטען...</div></div>
+        <p class="cal-alt">אפשר גם&nbsp;לכתוב לי בוואצאפ ונתאם יחד מועד.</p>
+      </div>
+      <div class="book-ok" id="book-ok" role="status" tabindex="-1" hidden>
+        <h3>השיחה נקבעה!</h3>
+        <p>הזימון נשלח אליכם למייל ונתראה בשיחה.</p>
       </div>
     </div>
   </div>
@@ -529,7 +563,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
 <section class="sec contact" id="contact">
   <div class="wrap">
     <div class="head rv">
-      <span class="tag" style="background:rgba(255,201,51,.15);color:var(--gold)">בואו נדבר</span>
+      <span class="tag" style="background:rgba(140,196,255,.15);color:var(--acc)">בואו נדבר</span>
       <h2>שיחת אבחון חינם של&nbsp;30 דקות</h2>
       <p>ספרו לי על&nbsp;הארגון ואחזור אליכם עם&nbsp;הצעה ראשונה.</p>
     </div>
@@ -540,7 +574,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p>טלפון: <a class="tel" href="tel:+972542012000" dir="ltr">054-2012000</a></p>
         <div class="ctas">
           <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>כתבו לי בוואצאפ</a>
-          <a class="btn btn-line" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה ביומן</a>
+          <a class="btn btn-wt" href="#book">קביעת שיחה ביומן</a>
         </div>
       </div>
       <form class="lead rv" id="aiLead" novalidate>
@@ -577,7 +611,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
 
 <div class="mbar" role="region" aria-label="פעולות מהירות">
   <a class="btn btn-wa" href="https://wa.me/972542012000?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%9C%D7%97%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA%20%D7%AA%D7%95%D7%AA%D7%97%20AI%20%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"/></svg>וואצאפ</a>
-  <a class="btn btn-cta" href="https://shraga.web.app/book" target="_blank" rel="noopener">קביעת שיחה</a>
+  <a class="btn btn-cta" href="#book">קביעת שיחה</a>
 </div>
 
 <script>
@@ -650,6 +684,34 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
       box.appendChild(f);
     });
   });
+
+  // Booking: the same cal.com inline embed as shraga.web.app/book, loaded when #book comes near.
+  var CAL_LINK = 'elchai/zoom40';
+  var calStarted = false;
+  function startCal() {
+    if (calStarted) return; calStarted = true;
+    document.getElementById('cal-ai').innerHTML = '';
+    (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+    Cal('init', 'ai', { origin: 'https://app.cal.com' });
+    Cal.ns.ai('inline', { elementOrSelector: '#cal-ai', calLink: CAL_LINK, config: { layout: 'month_view', theme: 'light', notes: 'שיחת היכרות על הדרכות AI (דף תותח AI)' } });
+    Cal.ns.ai('ui', { theme: 'light', hideEventTypeDetails: false, layout: 'month_view', cssVarsPerTheme: { light: { 'cal-brand': '#1f5aa8' } } });
+    var fired = false;
+    var done = function () {
+      if (fired) return; fired = true;
+      document.getElementById('book-cal').hidden = true;
+      var ok = document.getElementById('book-ok'); ok.hidden = false; ok.focus();
+      if (window.gtag) gtag('event', 'ai_booking', { event_category: 'ai' });
+    };
+    Cal.ns.ai('on', { action: 'bookingSuccessfulV2', callback: done });
+    Cal.ns.ai('on', { action: 'bookingSuccessful', callback: done });
+  }
+  var bookEl = document.getElementById('book');
+  if ('IntersectionObserver' in window) {
+    var bio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { startCal(); bio.disconnect(); } }, { rootMargin: '600px 0px' });
+    bio.observe(bookEl);
+  } else startCal();
+  document.querySelectorAll('a[href="#book"]').forEach(function (a) { a.addEventListener('click', startCal); });
+  if (location.hash === '#book') startCal();
 
   // Fade-up reveal on scroll.
   var els = document.querySelectorAll('.rv');
