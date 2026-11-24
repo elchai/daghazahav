@@ -93,7 +93,8 @@ h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px 8px;text-align:center;min-width:0}
 .stat b{display:block;font-size:30px;font-weight:900;color:#fff}
 .stat span{display:block;font-size:14px;color:rgba(255,255,255,.7);white-space:nowrap}
-@media(max-width:600px){.stats{gap:8px}.stat{padding:12px 4px}.stat b{font-size:24px}.stat span{font-size:11px}}
+@media(max-width:600px){.stats{grid-template-columns:auto auto auto;gap:6px}.stat{padding:12px 3px}.stat b{font-size:24px}.stat span{font-size:11px}}
+@media(max-width:370px){.stat span{font-size:10px}}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding-top:110px}.hero-badge{right:10px}}
 /* sections */
 .sec{padding:76px 0}
@@ -685,7 +686,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
     });
   });
 
-  // Booking: the same cal.com inline embed as shraga.web.app/book, loaded when #book comes near.
+  // Booking: the same cal.com inline embed as the SHRAGA booking page, loaded when #book comes near.
   var CAL_LINK = 'elchai/zoom40';
   var calStarted = false;
   function startCal() {
