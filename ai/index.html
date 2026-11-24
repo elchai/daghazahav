@@ -45,7 +45,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:Heebo,Arial,sans-serif;color:var(--ink);background:var(--light);line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--blue)}
-h1,h2,h3,p,li,summary,td,th{text-wrap:balance}
+h1,h2,h3,p,li,summary,td,th,small,label,.btn{text-wrap:balance}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 .skip{position:absolute;top:8px;right:12px;transform:translateY(-200%);background:#fff;color:var(--ink);padding:8px 14px;border-radius:10px;z-index:100}
 .skip:focus{transform:none}
@@ -286,7 +286,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
     <div class="head rv">
       <span class="tag">מחשבון חיסכון</span>
       <h2>כמה שווה לכם שעה שנחסכת?</h2>
-      <p>הזיזו את&nbsp;הסמנים וראו כמה זמן וכסף חוזרים לארגון בכל&nbsp;חודש.</p>
+      <p>הזיזו את&nbsp;הסמנים וראו כמה חוזר לכם בכל&nbsp;חודש.</p>
     </div>
     <div class="calc rv">
       <div class="card calc-in">
@@ -294,7 +294,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
           <input id="c-emp" type="range" min="1" max="300" step="1" value="20"></label>
         <label for="c-hrs"><span class="row"><span>שעות שכל עובד חוסך בשבוע</span><output id="o-hrs" for="c-hrs">3</output></span>
           <input id="c-hrs" type="range" min="0.5" max="10" step="0.5" value="3">
-          <small>משתתפי סדנאות מדווחים לרוב על&nbsp;שעתיים עד&nbsp;חמש שעות בשבוע.</small></label>
+          <small>רוב המשתתפים חוסכים 2 עד&nbsp;5 שעות בשבוע.</small></label>
         <label for="c-cost"><span class="row"><span>עלות שעת עבודה (₪)</span><output id="o-cost" for="c-cost">90</output></span>
           <input id="c-cost" type="range" min="40" max="400" step="5" value="90">
           <small>כולל שכר והוצאות מעסיק.</small></label>
@@ -303,7 +303,7 @@ form.lead input.hp{position:absolute;top:0;right:0;width:1px;height:1px;padding:
         <p class="mid">החיסכון החודשי של&nbsp;הארגון</p>
         <div class="big" id="r-ils">23,220 ₪</div>
         <p class="mid" id="r-hrs">258 שעות עבודה שחוזרות בכל&nbsp;חודש</p>
-        <p class="note">חישוב: עובדים × שעות בשבוע × עלות שעה × 4.3 שבועות.</p>
+        <p class="note">עובדים × שעות בשבוע × עלות שעה × 4.3</p>
         <a class="btn btn-cta" href="#contact" data-calc-cta>רוצים להגיע למספר הזה? לאבחון חינם</a>
       </div>
     </div>
