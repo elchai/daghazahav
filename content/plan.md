@@ -37,7 +37,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 15.1 | restaurant-management-software | תוכנה לניהול מסעדה: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מסעדה | commercial | misadon | done |
 | 15.2 | transport-company-management-software | תוכנה לניהול חברת הסעות והובלה: מה היא צריכה לכלול | תוכנה לניהול חברת הסעות | commercial | nahagon | done |
 | 15.3 | nonprofit-management-software | מערכת ניהול לעמותה: תרומות קבלות ומתנדבים במקום אחד | מערכת ניהול לעמותה | commercial | amooton | done |
-| 15.4 | automatic-pricing-quotes-software | תמחור אוטומטי והצעות מחיר: איך מפסיקים לחשב באקסל | תוכנה לתמחור והצעות מחיר | commercial | timchuron | todo |
+| 15.4 | automatic-pricing-quotes-software | תמחור אוטומטי והצעות מחיר: איך מפסיקים לחשב באקסל | תוכנה לתמחור והצעות מחיר | commercial | timchuron | done |
 | 15.5 | event-production-management-software | תוכנה להפקת אירועים: ספקים לוחות זמנים ותקציב | תוכנה לניהול הפקת אירועים | commercial | hafakon | todo |
 | 16 | privacy-data-security-management-system | הגנת פרטיות ואבטחת מידע במערכת ניהול: מה לבדוק | אבטחת מידע במערכת ניהול | informational | kehilot, yishuvon, crazy-crm | todo |
 | 17 | hospitality-field-school-software | תוכנה לניהול בית ספר שדה ומתחם אירוח | תוכנה לניהול מתחם אירוח | commercial | iruchon | done |
