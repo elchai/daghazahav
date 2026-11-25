@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>פאנל ניהול — DAGHAZAHAV</title>
+<title>פאנל ניהול - DAGHAZAHAV</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -257,7 +257,7 @@
 
 <div class="top-bar">
   <div>
-    <h1>⚙ פאנל ניהול — DAGHAZAHAV</h1>
+    <h1>⚙ פאנל ניהול - DAGHAZAHAV</h1>
     <span>ערוך טקסטים ופרויקטים, לחץ שמור הכל בסיום</span>
   </div>
   <a class="btn-open" href="index.html" target="_blank">פתח פורטפוליו ↗</a>
@@ -275,11 +275,11 @@
       <input type="text" id="hero_badge" placeholder="ספק משרד הביטחון">
     </div>
     <div class="field-row">
-      <label>כותרת — שורה ראשית</label>
+      <label>כותרת: שורה ראשית</label>
       <input type="text" id="hero_title" placeholder="פיתוח מערכות ניהול מתקדמות">
     </div>
     <div class="field-row">
-      <label>כותרת — שורה שנייה (צבע gradient)</label>
+      <label>כותרת: שורה שנייה (צבע gradient)</label>
       <input type="text" id="hero_titleGrad" placeholder="בהתאמה אישית">
     </div>
     <div class="field-row">
@@ -312,19 +312,19 @@
     <div style="margin-bottom:10px;margin-top:20px;font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">כרטיסי ערכים</div>
     <div class="value-cards">
       <div class="val-card">
-        <label>כרטיס 1 — כותרת</label>
+        <label>כרטיס 1: כותרת</label>
         <input type="text" id="val0_title">
         <label>טקסט</label>
         <textarea id="val0_text"></textarea>
       </div>
       <div class="val-card">
-        <label>כרטיס 2 — כותרת</label>
+        <label>כרטיס 2: כותרת</label>
         <input type="text" id="val1_title">
         <label>טקסט</label>
         <textarea id="val1_text"></textarea>
       </div>
       <div class="val-card">
-        <label>כרטיס 3 — כותרת</label>
+        <label>כרטיס 3: כותרת</label>
         <input type="text" id="val2_title">
         <label>טקסט</label>
         <textarea id="val2_text"></textarea>
@@ -402,7 +402,7 @@ function populate(c) {
     if (x) x.value = v.text || '';
   });
 
-  // Projects — build dynamic list
+  // Projects - build dynamic list
   const list = document.getElementById('projects-list');
   list.innerHTML = '';
   (c.projects || []).forEach((p, i) => {
