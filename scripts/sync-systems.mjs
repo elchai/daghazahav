@@ -34,6 +34,8 @@ export const SYSTEMS = [
   { slug: 'timchuron', live: 'https://timchuron.web.app/' },
   { slug: 'timlulon', live: 'https://timlulon.web.app/' },
   { slug: 'shraga', live: 'https://shraga.web.app/' },
+  // app.html and smoov-sdk.js stay on smoovsign.com: the product itself, not mirrored.
+  { slug: 'smoovsign', live: 'https://smoovsign.com/', external: ['app.html', 'smoov-sdk.js'] },
 ];
 
 const TEXT = new Set(['.html', '.js', '.css', '.json', '.webmanifest', '.svg', '.txt', '.xml']);
@@ -99,8 +101,9 @@ export function answersLinks(html, slug) {
   return html.replace('</body>', `${nav}</body>`);
 }
 
-export function rewriteIndex(html, slug, live) {
+export function rewriteIndex(html, slug, live, external = []) {
   let out = html.split(live).join(`${ORIGIN}/${slug}/`); // canonical / og:url
+  for (const e of external) out = out.split(`${ORIGIN}/${slug}/${e}`).join(live + e); // pages that live only on the product domain
   if (!out.includes(MARK)) out = out.replace('</head>', `${tracking(slug)}</head>`);
   return answersLinks(out, slug);
 }
@@ -111,12 +114,12 @@ async function get(url) {
   return Buffer.from(await r.arrayBuffer());
 }
 
-export async function crawl(live) {
+export async function crawl(live, external = []) {
   const files = new Map();
   const queue = [...START];
   while (queue.length) {
     const p = queue.shift();
-    if (files.has(p)) continue;
+    if (files.has(p) || external.includes(p)) continue;
     const body = await get(new URL(p, live).href);
     if (!body) { if (p === 'index.html') throw new Error(`${live}: index.html not reachable`); files.set(p, null); continue; }
     // SPA hosts answer unknown paths with index.html: a non-HTML path that returns HTML is missing.
@@ -130,7 +133,7 @@ export async function crawl(live) {
 }
 
 export async function sync(sys) {
-  const files = await crawl(sys.live);
+  const files = await crawl(sys.live, sys.external);
   const entries = [...new Set([...files.keys()].map((p) => p.split('/')[0]))].filter((n) => n !== 'index.html');
   const dst = path.join(ROOT, sys.slug);
   fs.rmSync(dst, { recursive: true, force: true });
@@ -143,7 +146,7 @@ export async function sync(sys) {
     let text = rewrite(body.toString('utf8'), sys.slug, entries, ext);
     // the app lives on its own domain: a relative /login would open daghazahav.com/login (404)
     text = text.replace(/(["'])\/login(["'/?#])/g, (m, q, end) => q + sys.live + 'login' + end);
-    if (p === 'index.html') text = rewriteIndex(text, sys.slug, sys.live);
+    if (p === 'index.html') text = rewriteIndex(text, sys.slug, sys.live, sys.external);
     for (const e of entries) {
       const m = text.match(new RegExp(`["'\`(=]/${escape(e)}[/"'\`)?#]`));
       if (m) leftovers.push(`${p}: ${m[0]}`);

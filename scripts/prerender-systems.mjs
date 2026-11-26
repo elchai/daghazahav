@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { SYSTEMS } from './sync-systems.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const SUMMARY = /<div id="root">\s*<main id="public-summary"[\s\S]*?<\/main>\s*<\/div>/;
 const START = '<!--prerender:start-->';
 const END = '<!--prerender:end-->';
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp4': 'video/mp4', '.webmanifest': 'application/manifest+json' };
@@ -73,6 +74,8 @@ export async function prerender(slugs) {
       const block = `${START}${body}${END}`;
       if (html.includes(START)) html = html.replace(new RegExp(`${START}[\\s\\S]*?${END}`), () => block);
       else if (/<div id="root"><\/div>/.test(html)) html = html.replace('<div id="root"></div>', () => `<div id="root">${block}</div>`);
+      // a product page that ships a no-JS summary inside the root (smoovsign): the baked content replaces it
+      else if (SUMMARY.test(html)) html = html.replace(SUMMARY, () => `<div id="root">${block}</div>`);
       else { out.push({ slug, error: 'no empty <div id="root"> to fill' }); continue; }
       fs.writeFileSync(file, html);
       out.push({ slug, words: n });
