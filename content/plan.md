@@ -34,7 +34,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 | 13 | security-shift-scheduling-software | סידור משמרות לחברת שמירה: איך בוחרים תוכנה | תוכנה לסידור משמרות שומרים | commercial | mishmeron | done |
 | 14 | print-shop-management-software | תוכנה לניהול בית דפוס: מהליד ועד המסירה | תוכנה לניהול בית דפוס | commercial | dfuson | done |
 | 15 | accessibility-standard-5568-systems | נגישות במערכת ניהול: מה דורש תקן ת"י 5568 | תקן נגישות 5568 מערכת | informational | kehilot, yishuvon | done |
-| 15.0 | personal-ai-agent-for-business-owners | סוכן AI אישי לבעל עסק: מה הוא עושה בשבילך מהוואצאפ | סוכן AI אישי לעסק | commercial | shraga | todo |
+| 15.0 | personal-ai-agent-for-business-owners | סוכן AI אישי לבעל עסק: מה הוא עושה בשבילך מהוואצאפ | סוכן AI אישי לעסק | commercial | shraga | done |
 | 15.1 | restaurant-management-software | תוכנה לניהול מסעדה: מה חשוב לבדוק לפני שבוחרים | תוכנה לניהול מסעדה | commercial | misadon | done |
 | 15.2 | transport-company-management-software | תוכנה לניהול חברת הסעות והובלה: מה היא צריכה לכלול | תוכנה לניהול חברת הסעות | commercial | nahagon | done |
 | 15.3 | nonprofit-management-software | מערכת ניהול לעמותה: תרומות קבלות ומתנדבים במקום אחד | מערכת ניהול לעמותה | commercial | amooton | done |
