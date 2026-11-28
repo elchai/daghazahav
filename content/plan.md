@@ -18,6 +18,7 @@ Intent: `commercial` = the reader is choosing a system or a vendor; `information
 
 | # | slug | כותרת | שאילתת יעד | intent | מאמרי מערכות לקישור | status |
 |---|------|-------|------------|--------|---------------------|--------|
+| 48 | digital-signature-software-for-business | מערכת לחתימה דיגיטלית על מסמכים: מה לבדוק לפני שבוחרים | מערכת לחתימה דיגיטלית על מסמכים | commercial | smoovsign | done |
 | 47 | meeting-transcription-summary-software | מערכת לתמלול וסיכום פגישות: מה לבדוק לפני שבוחרים | מערכת לתמלול וסיכום פגישות | commercial | timlulon | done |
 | 1 | custom-management-system-development | פיתוח מערכת ניהול בהתאמה אישית: המדריך המלא | פיתוח מערכת ניהול בהתאמה אישית | commercial | כל המאמרים חוץ מגדודון | done |
 | 2 | off-the-shelf-vs-custom-system | מערכת מדף או מערכת בהתאמה אישית: איך מחליטים | מערכת מדף או מערכת בהתאמה אישית | commercial | mosachun, hafakon, crazy-crm | done |
